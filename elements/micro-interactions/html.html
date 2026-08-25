@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>15 Micro-interactions — Reference</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- ===== TOP BAR ===== -->
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="topbar-mark">Micro-interactions</span>
+      <span class="topbar-count" id="topbarCount">01 / 15</span>
+    </div>
+    <button class="jump-trigger" id="jumpTrigger">
+      <span>Jump to pattern</span>
+      <kbd>/</kbd>
+    </button>
+  </header>
+
+  <!-- ===== SIGNATURE: JUMP PALETTE ===== -->
+  <div class="jump-overlay" id="jumpOverlay">
+    <div class="jump-palette" id="jumpPalette">
+      <div class="jump-input-row">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M21 21l-4.3-4.3" />
+        </svg>
+        <input type="text" class="jump-input" id="jumpInput" placeholder="Jump to a pattern..." autocomplete="off" />
+        <kbd>esc</kbd>
+      </div>
+      <div class="jump-list" id="jumpList">
+        <!-- populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PROGRESS BAR ===== -->
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress-fill" id="progressFill"></div>
+  </div>
+
+  <main id="stage-track">
+    <section class="stage stage-cover" data-index="0" data-name="Overview" data-search="overview introduction">
+      <span class="stage-cover-eyebrow">Reference</span>
+      <h1 class="stage-cover-title">
+        15 micro-interactions,<br />built and working.
+      </h1>
+      <p class="stage-cover-desc">
+        Every pattern from the article, live. Scroll to move through them, or
+        press <kbd>/</kbd> to jump to any one directly.
+      </p>
+    </section>
+
+    <section class="stage" data-index="1" data-name="Magnetic Pull" data-question="Affordance" data-search="magnetic pull hover button pricing upgrade">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">01</span>
+          <span class="stage-question">Affordance</span>
+        </div>
+        <h2 class="stage-name">Magnetic Pull</h2>
+        <div class="stage-demo">
+          <div class="pricing-card surface-card surface-card--emphasis" id="magWrap">
+            <div class="pricing-card-head">
+              <span class="pricing-plan">Team</span>
+              <span class="pricing-badge">Most popular</span>
+            </div>
+            <div class="pricing-amount">
+              <span class="pricing-currency">$</span>24<span class="pricing-period">/seat/mo</span>
+            </div>
+            <ul class="pricing-features">
+              <li>Unlimited projects</li>
+              <li>Advanced permissions</li>
+              <li>Priority support</li>
+            </ul>
+            <button class="magnetic-btn" id="magBtn">Upgrade to Team</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="2" data-name="Cursor Highlight" data-question="Affordance" data-search="cursor highlight spotlight card feature">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">02</span>
+          <span class="stage-question">Affordance</span>
+        </div>
+        <h2 class="stage-name">Cursor Highlight</h2>
+        <div class="stage-demo">
+          <div class="feature-card surface-card" id="spot">
+            <div class="card-icon-badge card-icon-badge--accent">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />
+              </svg>
+            </div>
+            <h3 class="feature-title">Instant deploys</h3>
+            <p class="feature-desc">
+              Push to main and your changes are live in under four seconds,
+              globally.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="3" data-name="Border Trace" data-question="Affordance" data-search="border trace input focus signin form">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">03</span>
+          <span class="stage-question">Affordance</span>
+        </div>
+        <h2 class="stage-name">Border Trace</h2>
+        <div class="stage-demo">
+          <div class="signin-card surface-card">
+            <h3 class="signin-title">Sign in to Basecamp</h3>
+            <label class="signin-label">Email address</label>
+            <div class="trace-input-wrap">
+              <input class="trace-input" type="text" placeholder="you@company.com" />
+              <svg class="trace-svg" viewBox="0 0 300 44" preserveAspectRatio="none">
+                <rect x="1" y="1" width="298" height="42" rx="8" />
+              </svg>
+            </div>
+            <button class="signin-btn">Continue</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="4" data-name="Row Reveal" data-question="Affordance" data-search="row reveal hover actions list file manager">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">04</span>
+          <span class="stage-question">Affordance</span>
+        </div>
+        <h2 class="stage-name">Row Reveal</h2>
+        <div class="stage-demo">
+          <div class="file-row-wrap">
+            <div class="file-row-head">
+              <span>Name</span><span>Modified</span>
+            </div>
+            <div class="row-wrap">
+              <div class="file-info">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                  <path d="M14 2v6h6" />
+                </svg>
+                <span>Q3-roadmap.fig</span>
+              </div>
+              <div class="file-row-right">
+                <span class="file-modified">2 days ago</span>
+                <div class="row-actions">
+                  <button class="row-action-btn">Rename</button>
+                  <button class="row-action-btn">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="5" data-name="Hold Confirm" data-question="Anticipation" data-search="hold confirm press delete leave channel">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">05</span>
+          <span class="stage-question">Anticipation</span>
+        </div>
+        <h2 class="stage-name">Hold Confirm</h2>
+        <div class="stage-demo">
+          <div class="settings-row-card surface-card surface-card--emphasis">
+            <div class="card-icon-badge card-icon-badge--danger">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 3H4a1 1 0 00-1 1v16a1 1 0 001 1h5" />
+                <path d="M15 17l5-5-5-5" />
+                <path d="M20 12H9" />
+              </svg>
+            </div>
+            <div class="settings-row-text">
+              <span class="settings-row-title">Leave #product-design</span>
+              <span class="settings-row-desc">You'll lose access to this channel's history.</span>
+            </div>
+            <button class="hold-btn" id="holdBtn">
+              <div class="hold-fill"></div>
+              <span>Hold to leave</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="6" data-name="Swipe Reveal" data-question="Anticipation" data-search="swipe reveal drag icon threshold inbox message">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">06</span>
+          <span class="stage-question">Anticipation</span>
+        </div>
+        <h2 class="stage-name">Swipe Reveal</h2>
+        <div class="stage-demo">
+          <div class="swipe-wrap" id="swipeWrap">
+            <div class="swipe-action">
+              <span class="icon" id="swipeIcon">Archive</span>
+            </div>
+            <div class="swipe-item" id="swipeItem">
+              <div class="inbox-avatar">JC</div>
+              <div class="inbox-text">
+                <span class="inbox-sender">Jordan Chen</span>
+                <span class="inbox-preview">Re: Q3 budget review — can we push to Thursday?</span>
+              </div>
+              <span class="inbox-time">9:41 AM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="7" data-name="Drag Lift" data-question="Anticipation" data-search="drag lift shadow card kanban">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">07</span>
+          <span class="stage-question">Anticipation</span>
+        </div>
+        <h2 class="stage-name">Drag Lift</h2>
+        <div class="stage-demo">
+          <div class="drag-card" id="dragCard" draggable="true">
+            <span class="kanban-tag">Design</span>
+            <p class="kanban-title">Redesign the onboarding checklist</p>
+            <div class="kanban-foot">
+              <span class="kanban-due">Due Fri</span>
+              <div class="kanban-avatar">RM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="8" data-name="Elastic Scroll" data-question="Anticipation" data-search="elastic overscroll list notifications feed">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">08</span>
+          <span class="stage-question">Anticipation</span>
+        </div>
+        <h2 class="stage-name">Elastic Scroll</h2>
+        <div class="stage-demo">
+          <div class="scroll-box" id="scrollBox">
+            <div class="scroll-inner" id="scrollInner">
+              <div class="notif-row">
+                <div class="notif-dot"></div>
+                <div class="notif-text">
+                  <strong>Aisha</strong> commented on your PR<span>2m</span>
+                </div>
+              </div>
+              <div class="notif-row">
+                <div class="notif-dot"></div>
+                <div class="notif-text">
+                  <strong>CI</strong> build passed on main<span>14m</span>
+                </div>
+              </div>
+              <div class="notif-row">
+                <div class="notif-dot"></div>
+                <div class="notif-text">
+                  <strong>Sam</strong> mentioned you in #general<span>1h</span>
+                </div>
+              </div>
+              <div class="notif-row">
+                <div class="notif-dot read"></div>
+                <div class="notif-text">
+                  <strong>Design</strong> team shared a file<span>3h</span>
+                </div>
+              </div>
+              <div class="notif-row">
+                <div class="notif-dot read"></div>
+                <div class="notif-text">
+                  <strong>Priya</strong> approved your request<span>1d</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="9" data-name="Skeleton" data-question="In-progress" data-search="skeleton shimmer loading placeholder profile">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">09</span>
+          <span class="stage-question">In-progress</span>
+        </div>
+        <h2 class="stage-name">Skeleton</h2>
+        <div class="stage-demo">
+          <div class="profile-skeleton-card surface-card">
+            <div class="skeleton-block skeleton-avatar"></div>
+            <div class="skeleton-group">
+              <div class="skeleton-block" style="width: 60%; height: 15px"></div>
+              <div class="skeleton-block" style="width: 40%; height: 12px"></div>
+              <div class="skeleton-block" style="width: 90%; height: 12px; margin-top: 8px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="10" data-name="Morph Spinner" data-question="In-progress" data-search="morph spinner button label loading deploy">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">10</span>
+          <span class="stage-question">In-progress</span>
+        </div>
+        <h2 class="stage-name">Morph Spinner</h2>
+        <div class="stage-demo">
+          <div class="deploy-card surface-card">
+            <div class="deploy-row">
+              <span class="deploy-branch">main</span>
+              <span class="deploy-commit">a3f9e21</span>
+            </div>
+            <button class="morph-btn" id="morphBtn">
+              <span class="label">Deploy to production</span>
+              <span class="spinner"><span class="spinner-ring"></span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="11" data-name="Staged Progress" data-question="In-progress" data-search="staged progress upload labeled file">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">11</span>
+          <span class="stage-question">In-progress</span>
+        </div>
+        <h2 class="stage-name">Staged Progress</h2>
+        <div class="stage-demo">
+          <div class="upload-card surface-card">
+            <div class="upload-file-row">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" />
+                <path d="M14 2v6h6" />
+              </svg>
+              <div class="upload-file-info">
+                <span class="upload-filename">brand-assets-final.zip</span>
+                <span class="upload-filesize">84.2 MB</span>
+              </div>
+            </div>
+            <div class="stage-progress-bar">
+              <div class="stage-progress-fill" id="stageFill"></div>
+            </div>
+            <div class="stage-label" id="stageLabel">Ready to upload</div>
+            <button class="stage-btn" id="stageBtn">Start upload</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="12" data-name="Optimistic UI" data-question="In-progress" data-search="optimistic ui ghost pending todo checklist">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">12</span>
+          <span class="stage-question">In-progress</span>
+        </div>
+        <h2 class="stage-name">Optimistic UI</h2>
+        <div class="stage-demo">
+          <div class="todo-card surface-card">
+            <div class="todo-card-head">
+              <span class="todo-card-title">Launch checklist</span>
+              <span class="todo-card-count" id="todoCount">0 of 2 done</span>
+            </div>
+            <div class="optimistic-list" id="optimisticList">
+              <div class="optimistic-item">
+                <span class="todo-check"></span>Finalize pricing page copy
+              </div>
+              <div class="optimistic-item">
+                <span class="todo-check"></span>Test checkout on mobile Safari
+              </div>
+            </div>
+            <button class="optimistic-add-btn" id="optimisticAddBtn">
+              + Add task
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="13" data-name="Checkmark Morph" data-question="Confirmation" data-search="checkmark morph submit success copy link invite">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">13</span>
+          <span class="stage-question">Confirmation</span>
+        </div>
+        <h2 class="stage-name">Checkmark Morph</h2>
+        <div class="stage-demo">
+          <div class="invite-card surface-card">
+            <span class="invite-label">Invite link</span>
+            <div class="invite-row">
+              <code class="invite-url">app.dashboard.com/join/8f2k9</code>
+              <button class="confirm-btn" id="confirmBtn">
+                <span class="confirm-label">Copy</span>
+                <svg class="confirm-icon" viewBox="0 0 24 24" fill="none">
+                  <path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="14" data-name="Toast Exit" data-question="Confirmation" data-search="toast notification exit direction system">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">14</span>
+          <span class="stage-question">Confirmation</span>
+        </div>
+        <h2 class="stage-name">Toast Exit</h2>
+        <div class="stage-demo">
+          <div class="toast-demo-card surface-card">
+            <span class="toast-demo-title">Auto-save</span>
+            <p class="toast-demo-desc">
+              Changes save automatically as you type.
+            </p>
+            <button class="toast-trigger" id="toastTrigger">
+              Simulate a save
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-index="15" data-name="Undo Bar" data-question="Confirmation" data-search="undo bar countdown delete archive">
+      <div class="stage-inner">
+        <div class="stage-meta">
+          <span class="stage-index">15</span>
+          <span class="stage-question">Confirmation</span>
+        </div>
+        <h2 class="stage-name">Undo Bar</h2>
+        <div class="stage-demo">
+          <div class="inbox-action-card surface-card">
+            <div class="inbox-avatar">RK</div>
+            <div class="inbox-text">
+              <span class="inbox-sender">Rae Kim</span>
+              <span class="inbox-preview">Thanks, this looks great! Ship it 🚀</span>
+            </div>
+            <button class="undo-trigger" id="undoTrigger">Archive</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">All changes saved</div>
+
+  <div class="undo-bar" id="undoBar">
+    <div class="undo-bar-top">
+      <span>Conversation archived</span>
+      <button class="undo-btn" id="undoBtn">Undo</button>
+    </div>
+    <div class="undo-countdown-track">
+      <div class="undo-countdown-fill" id="undoFill"></div>
+    </div>
+  </div>
+</body>
+
+</html>

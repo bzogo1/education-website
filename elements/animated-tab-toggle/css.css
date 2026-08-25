@@ -1,0 +1,72 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background: #f4f4f0;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+}
+
+.tabs-demo {
+  width: 100%;
+  max-width: 1020px;
+  padding: 0 clamp(2rem, 8vw, 5rem);
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.tab {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #000;
+  cursor: pointer;
+  background: rgba(0,0,0,0.08);
+  transition: all 0.25s cubic-bezier(0.256, 0.009, 0.125, 0.997);
+}
+
+.tab&:hover {
+  background: rgba(0,0,0,0.16);
+}
+
+.tab.active {
+  background: #111;
+  color: #fff;
+}
+
+.content-wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.role-content {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: center;
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #000;
+}
+
+/* SplitText mask */
+.himaaax-split-line {
+  overflow: hidden;
+  display: block;
+}

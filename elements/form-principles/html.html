@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Forms That Don't Suck</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-tag"><i></i> 6 Form UX Principles</div>
+      <h1>Stop Making <span>Forms</span><br />People Hate</h1>
+      <p class="hero-sub">
+        Six live demos. Every principle you can interact with right now.
+      </p>
+    </header>
+
+    <main class="grid">
+      <!-- 1 -->
+      <article class="card" data-tip="0">
+        <div class="win-bar">
+          <div class="win-dot rd"></div>
+          <div class="win-dot am"></div>
+          <div class="win-dot gn"></div>
+          <span class="win-label">Tip 1 of 6</span>
+        </div>
+        <div class="card-body">
+          <div class="card-num">Disable submit</div>
+          <h2>Gray it out but explain why</h2>
+          <p class="card-note">
+            Keep submit disabled until valid. Tell the user exactly what's still
+            missing.
+          </p>
+        </div>
+        <div class="demo">
+          <div class="field">
+            <label class="lbl" for="d1n">Name <span class="req">*</span></label>
+            <input
+              type="text"
+              id="d1n"
+              placeholder="Jane Smith"
+              autocomplete="off"
+            />
+          </div>
+          <div class="field">
+            <label class="lbl" for="d1e"
+              >Email <span class="req">*</span></label
+            >
+            <input
+              type="email"
+              id="d1e"
+              placeholder="jane@example.com"
+              autocomplete="off"
+            />
+          </div>
+          <div class="field">
+            <button class="btn btn-v" id="d1b" disabled>Create account</button>
+            <p class="hint-line" id="d1h">Fill in both fields to continue.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 -->
+      <article class="card" data-tip="1">
+        <div class="win-bar">
+          <div class="win-dot rd"></div>
+          <div class="win-dot am"></div>
+          <div class="win-dot gn"></div>
+          <span class="win-label">Tip 2 of 6</span>
+        </div>
+        <div class="card-body">
+          <div class="card-num">Inline validation</div>
+          <h2>Catch errors where they happen</h2>
+          <p class="card-note">
+            Validate on blur. Never make someone scroll back up to find a
+            mistake.
+          </p>
+        </div>
+        <div class="demo">
+          <div class="field">
+            <label class="lbl" for="d2e"
+              >Email <span class="req">*</span></label
+            >
+            <input
+              type="email"
+              id="d2e"
+              placeholder="you@example.com"
+              autocomplete="off"
+            />
+            <p class="msg" id="d2em" aria-live="polite"></p>
+          </div>
+          <div class="field">
+            <label class="lbl" for="d2u"
+              >Username <span class="req">*</span></label
+            >
+            <input
+              type="text"
+              id="d2u"
+              placeholder="letters and numbers only"
+              autocomplete="off"
+            />
+            <p class="msg" id="d2um" aria-live="polite"></p>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3 -->
+      <article class="card" data-tip="2">
+        <div class="win-bar">
+          <div class="win-dot rd"></div>
+          <div class="win-dot am"></div>
+          <div class="win-dot gn"></div>
+          <span class="win-label">Tip 3 of 6</span>
+        </div>
+        <div class="card-body">
+          <div class="card-num">Character count</div>
+          <h2>Show the limit as they type</h2>
+          <p class="card-note">
+            Never let someone write a paragraph only to find out they're over
+            the limit.
+          </p>
+        </div>
+        <div class="demo">
+          <div class="field">
+            <label class="lbl" for="d3b">Bio</label>
+            <textarea
+              id="d3b"
+              placeholder="Tell us about yourself..."
+              maxlength="150"
+            ></textarea>
+            <div class="cbar-row">
+              <div class="cbar-track">
+                <div class="cbar-fill" id="d3f"></div>
+              </div>
+              <span class="cbar-lbl" id="d3l">150 left</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 -->
+      <article class="card" data-tip="3">
+        <div class="win-bar">
+          <div class="win-dot rd"></div>
+          <div class="win-dot am"></div>
+          <div class="win-dot gn"></div>
+          <span class="win-label">Tip 4 of 6</span>
+        </div>
+        <div class="card-body">
+          <div class="card-num">Pre-fill</div>
+          <h2>Don't ask for what you know</h2>
+          <p class="card-note">
+            If they're logged in, fill it in. No one should retype their own
+            email.
+          </p>
+        </div>
+        <div class="demo">
+          <div class="field">
+            <label class="lbl" for="d4n"
+              >Full name <span class="pfill">Pre-filled</span></label
+            >
+            <input type="text" id="d4n" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label class="lbl" for="d4e"
+              >Email <span class="pfill">Pre-filled</span></label
+            >
+            <input type="email" id="d4e" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label class="lbl" for="d4c">Card number</label>
+            <input
+              type="text"
+              id="d4c"
+              placeholder="Enter card number"
+              autocomplete="off"
+            />
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 - wide -->
+      <article class="card wide" data-tip="4">
+        <div class="win-bar">
+          <div class="win-dot rd"></div>
+          <div class="win-dot am"></div>
+          <div class="win-dot gn"></div>
+          <span class="win-label">Tip 5 of 6</span>
+        </div>
+        <div class="card-body">
+          <div class="card-num">Password rules</div>
+          <h2>Check off requirements in real time</h2>
+          <p class="card-note">
+            Don't let someone submit and then find out they needed a capital
+            letter. Show the rules live.
+          </p>
+        </div>
+        <div class="demo" style="display: grid; gap: 16px; align-items: start">
+          <div class="field" style="margin: 0">
+            <label class="lbl" for="d5p"
+              >Password <span class="req">*</span></label
+            >
+            <input
+              type="password"
+              id="d5p"
+              placeholder="Create a password"
+              autocomplete="new-password"
+            />
+          </div>
+          <ul class="pw-grid" id="d5r" style="margin-top: 0" aria-live="polite">
+            <li class="pw-rule" id="rl">
+              <span class="ck"></span>8+ characters
+            </li>
+            <li class="pw-rule" id="ru">
+              <span class="ck"></span>Uppercase letter
+            </li>
+            <li class="pw-rule" id="rn"><span class="ck"></span>Number</li>
+            <li class="pw-rule" id="rs">
+              <span class="ck"></span>Special character
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <!-- 6 - wide -->
+      <article class="card wide" data-tip="5">
+        <div class="win-bar">
+          <div class="win-dot rd"></div>
+          <div class="win-dot am"></div>
+          <div class="win-dot gn"></div>
+          <span class="win-label">Tip 6 of 6</span>
+        </div>
+        <div class="card-body">
+          <div class="card-num">Forgiving input</div>
+          <h2>Accept any format, clean it up yourself</h2>
+          <p class="card-note">
+            Dashes, parentheses, spaces or nothing. Handle all of it on the
+            backend.
+          </p>
+        </div>
+        <div class="demo">
+          <div style="display: grid; gap: 16px; align-items: start">
+            <div class="field" style="margin: 0">
+              <label class="lbl" for="d6p">Phone number</label>
+              <input
+                type="tel"
+                id="d6p"
+                placeholder="Any format works"
+                autocomplete="off"
+              />
+              <p class="msg ok" id="d6o" aria-live="polite"></p>
+            </div>
+            <div>
+              <p class="lbl" style="margin-bottom: 8px">Try clicking one</p>
+              <div class="chips" id="d6c">
+                <span class="chip">4155551234</span>
+                <span class="chip">415-555-1234</span>
+                <span class="chip">(415) 555-1234</span>
+                <span class="chip">415.555.1234</span>
+                <span class="chip">415 555 1234</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <span class="ft-l">Form UX Series</span>
+      <span class="ft-r">6 of 6 Principles</span>
+    </footer>
+  </body>
+</html>

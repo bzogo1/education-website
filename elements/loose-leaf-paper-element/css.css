@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Swanky+and+Moo+Moo&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  padding: 12px;
+  color: #222;
+  background-color: #ececec;
+
+  font-smoothing: antialiased;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  position: relative;
+
+  img {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    width: 90%;
+    
+    rotate: -10deg;
+    translate: -25% 0;
+    
+    transition: rotate 0.7s 0.15s;
+  }
+}
+
+.paper {
+  --width: clamp(320px, 35vw, 400px);
+  width: var(--width);
+  height: calc(var(--row-size) * 10);
+  
+  --padding: 24px;
+  padding: var(--padding);
+  padding-top: calc(var(--padding) + var(--row-size) * 2);
+  padding-left: 18%;
+  
+  // rotate: 2deg;
+  translate: 25% 0;
+  transition: color 0.7s;
+  
+  font-size: clamp(18px, 2vw, 24px);
+  font-family: "Swanky and Moo Moo", cursive;
+  line-height: var(--row-size);
+  
+  // lines
+  --line-size: 1px;
+  --row-size: calc(var(--width) / 8);
+  background-color: #e3e1de;
+  background-image: repeating-linear-gradient(
+    transparent 0 calc(var(--row-size) - var(--line-size)),
+    #0003 0 var(--row-size)
+  );
+  background-size: 75% calc(var(--row-size) * 9);
+  background-position: 60% 30%;
+  background-repeat: no-repeat;
+
+  // punched holes, here's the magic 🍮
+  mask: 
+    linear-gradient(#000, #000) no-repeat center / 100% 100%, 
+    radial-gradient(circle, #000 40%, transparent 0) repeat-y 15px 0 / 25px 50px;
+  mask-composite: subtract;
+}
+
+.note {
+  margin-top: var(--row-size);
+  text-align: right;
+  font-size: 0.8em;
+}
+
+@starting-style {
+  .wrapper img {
+    rotate: 0deg;
+  }
+  .paper {
+    color: transparent;
+  }
+}

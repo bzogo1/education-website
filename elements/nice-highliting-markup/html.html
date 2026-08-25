@@ -1,0 +1,66 @@
+<!-- Experiment Title & Support Check -->
+<header>
+  <h1>Nice &#60;mark&#62;</h1>
+  <p>My take on styling up &#60;mark&#62; element for some nice highlighting</p>
+</header>
+<!-- Experiment Title & Support Check -->
+
+<!-- Experiment Start -->
+<svg width="0" height="0" aria-hidden="true" style="position: absolute;">
+  <defs>
+    <filter id="filter-rough">
+      <feTurbulence type="fractalNoise" baseFrequency=".08" numOctaves="4"/>
+      <feDisplacementMap in="SourceGraphic" scale="5" />
+    </filter>
+  </defs>
+</svg>
+
+<main>
+  <p>The <mark>&#60;mark&#62;</mark> element in HTML is pretty cool as it is for highlighting stuff.</p>
+  <p>But it could be made <mark>even cooler</mark>.</p>
+  <p>Here's one in <mark style="--color: var(--color-green)">green</mark> 🤩</p>
+  <p> Any colour can be applied easily by updating the <mark style="--color: var(--color-green)">--color</mark> CSS variable.</p>
+  <p>A <mark style="--color: var(--color-red)">few</mark> more <mark style="--color: var(--color-blue)">colours</mark> just for <mark style="--color: var(--color-orange)">good</mark> measure. <mark style="--color: var(--color-magenta)">Nice 💜</mark></p>
+  <hr>
+  <p>🚨 Line wrapping breaks however, please see <strong>about</strong> to learn more.
+</main>
+<!-- Experiment End -->
+
+<!-- Lab Notes & Settings -->
+<div class="button-stack">
+  <button command="show-modal" commandfor="experimentDialog" class="experiment-notes-button">About</button>
+</div>
+
+<dialog id="experimentDialog" class="experiment-notes" closedby="any">
+  <div class="dialog-sidebar">
+    <button command="close" commandfor="experimentDialog"></button>
+    <section>
+      <article>
+        <h2>About</h2>
+        <p>The default <code>&#60;mark&#62;</code> element is ok, but I thought it could be fun to try something other than the default flat edged yellow highlighter for my upcoming website.</p>
+        <p>To help me, I used a real highlighter on a piece of paper, and then tried to replicate some of the effects I could see. This approach adds some jaggedness, and a lil extra highlight blob at the end from where you've held the pen for too long 😅</p>
+        <p>The CSS isn’t the most glamorous, I ended up doing some nudges here and there for the scaling and positioning of the psuedo <code>::before</code> and <code>::after</code> I’m using.</p>
+        <h3>Problems</h3>
+        <p>Annoyingly I did run into one right as I was about to share this 😔 Line wrapping breaks! I did try to just drop the contents of the <code>::before</code> psuedo into the main element, however the SVG filter that comes with it then applied to the text itself 😵‍💫. As a quick patch I'm keeping <code>display: inline-block</code> on it.</p>
+        <p>You could drop the SVG filter, then it should work? But for me the SVG filter is playing a big roll in getting the aesthetic I was after.</p>
+        <p>I tried a few things like a wrapping container, background-image, etc, but nothing was working and I don’t have much more energy to give it right now.</p>
+        <p>Fortunately, for me at least - I can only see myself using this on one or two words at a time; so I don’t see it being an issue. However it should be something you’re aware of should you want to use it yourself. Perhaps you can see an easy fix for it?</p>
+        <small>(If you do, please share 🥺)</small>
+      </article>
+      <article>
+        <h2>Credits</h2>
+        <ul class="credit-list">
+          <li>
+            <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/mark" target="_blank" rel="noopener noreferrer">MDN Docs - &#60;mark&#62; HTML element</a>
+            <p>Helpful documentation to check in on our old pal Mark.</p>
+          </li>
+        </ul>
+      </article>
+    </section>
+    <footer>
+      <p>June 2026, Christian Alder</p>
+      <p><a href="https://bsky.app/profile/hejchristian.com" target="_blank" rel="noopener noreferrer">Bluesky</a> | <a href="https://front-end.social/@hejchristian" target="_blank" rel="noopener noreferrer">Mastodon</a></p>
+    </footer>
+  </div>
+</dialog>
+<!-- Lab Notes & Settings -->

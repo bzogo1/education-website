@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Frontend Features Every Developer Should Know</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav>
+      <span class="nav-logo">Frontend Features</span>
+      <ul class="nav-links">
+        <li><a href="#infinite-scroll">Scroll</a></li>
+        <li><a href="#debounced-search">Search</a></li>
+        <li><a href="#skeletons">Skeletons</a></li>
+        <li><a href="#toasts">Toasts</a></li>
+        <li><a href="#modal">Modal</a></li>
+        <li><a href="#drag-drop">Drag</a></li>
+      </ul>
+    </nav>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <p class="sidebar-label">Contents</p>
+        <ul class="sidebar-nav">
+          <li>
+            <a href="#infinite-scroll" class="active"
+              >01 &nbsp; Infinite scroll</a
+            >
+          </li>
+          <li><a href="#debounced-search">02 &nbsp; Debounced search</a></li>
+          <li><a href="#skeletons">03 &nbsp; Loading skeletons</a></li>
+          <li><a href="#toasts">04 &nbsp; Toast notifications</a></li>
+          <li><a href="#modal">05 &nbsp; Modal dialogs</a></li>
+          <li><a href="#drag-drop">06 &nbsp; Drag and drop</a></li>
+        </ul>
+      </aside>
+
+      <main class="main">
+        <section class="section" id="infinite-scroll">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">01</span>
+              Infinite scroll
+            </div>
+            <span class="badge badge-blue">IntersectionObserver</span>
+          </div>
+          <div class="section-body">
+            <div class="label">Live demo</div>
+            <div class="scroll-container" id="scroll-container">
+              <ul class="infinite-list" id="infinite-list"></ul>
+              <div class="loader-row" id="inf-loader">
+                Loading more items...
+              </div>
+              <div class="end-msg" id="inf-end">No more items</div>
+              <div class="sentinel" id="sentinel"></div>
+            </div>
+            <div class="code-block">
+              <pre><span class="kw">const</span> observer = <span class="kw">new</span> <span class="fn">IntersectionObserver</span>(entries => {
+  <span class="kw">if</span> (entries[<span class="num">0</span>].isIntersecting) <span class="fn">loadItems</span>();
+}, { rootMargin: <span class="str">'200px'</span>, root: scrollContainer });
+
+<span class="kw">async function</span> <span class="fn">loadItems</span>() {
+  <span class="kw">if</span> (isFetching || !hasMore) <span class="kw">return</span>;
+  isFetching = <span class="kw">true</span>;
+  <span class="cm">// fetch /api/items?page=N&limit=20</span>
+  <span class="cm">// append items, increment page</span>
+  <span class="cm">// set hasMore = data.hasNextPage</span>
+}</pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="debounced-search">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">02</span>
+              Debounced search
+            </div>
+            <span class="badge badge-gray">350ms + AbortController</span>
+          </div>
+          <div class="section-body">
+            <div class="label">Live demo</div>
+            <div class="search-wrap">
+              <input
+                type="text"
+                id="search-input"
+                placeholder="Type to search..."
+                autocomplete="off"
+              />
+              <span class="search-icon">&#9906;</span>
+            </div>
+            <div id="search-status"></div>
+            <ul class="results-list" id="search-results"></ul>
+            <div class="code-block">
+              <pre><span class="kw">let</span> timer = <span class="kw">null</span>, controller = <span class="kw">null</span>;
+
+input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>, () => {
+  <span class="fn">clearTimeout</span>(timer);
+  timer = <span class="fn">setTimeout</span>(() => <span class="fn">search</span>(input.value), <span class="num">350</span>);
+});
+
+<span class="kw">async function</span> <span class="fn">search</span>(q) {
+  controller?.<span class="fn">abort</span>();
+  controller = <span class="kw">new</span> <span class="fn">AbortController</span>();
+  <span class="kw">const</span> res = <span class="kw">await</span> <span class="fn">fetch</span>(<span class="str">`/api/search?q=${q}`</span>,
+    { signal: controller.signal });
+}</pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="skeletons">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">03</span>
+              Loading skeletons
+            </div>
+            <span class="badge badge-gray">Shimmer animation</span>
+          </div>
+          <div class="section-body">
+            <div class="two-col">
+              <div>
+                <div class="label">Skeleton state</div>
+                <div id="skeleton-view">
+                  <div class="skeleton-card">
+                    <div class="skeleton skeleton-avatar"></div>
+                    <div class="skeleton-lines">
+                      <div
+                        class="skeleton skeleton-line"
+                        style="width: 55%"
+                      ></div>
+                      <div
+                        class="skeleton skeleton-line"
+                        style="width: 85%"
+                      ></div>
+                      <div
+                        class="skeleton skeleton-line"
+                        style="width: 40%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="skeleton-card">
+                    <div class="skeleton skeleton-avatar"></div>
+                    <div class="skeleton-lines">
+                      <div
+                        class="skeleton skeleton-line"
+                        style="width: 65%"
+                      ></div>
+                      <div
+                        class="skeleton skeleton-line"
+                        style="width: 75%"
+                      ></div>
+                      <div
+                        class="skeleton skeleton-line"
+                        style="width: 50%"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="skeleton-card" style="border-bottom: none">
+                    <div class="skeleton skeleton-avatar"></div>
+                    <div class="skeleton-lines">
+                      <div
+                        class="skeleton skeleton-line"
+                        style="width: 45%"
+                      ></div>
+                      <div
+                        class="skeleton skeleton-line"
+                        style="width: 90%"
+                      ></div>
+                      <div
+                        class="skeleton skeleton-line"
+                        style="width: 35%"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <div class="label">Loaded state</div>
+                <ul class="feed" id="real-content" style="display: none">
+                  <li class="feed-item">
+                    <div class="feed-avatar">AJ</div>
+                    <div style="flex: 1; min-width: 0">
+                      <div
+                        style="
+                          font-size: 13px;
+                          font-weight: 500;
+                          color: var(--ink);
+                        "
+                      >
+                        Alex Johnson
+                      </div>
+                      <div class="feed-meta">Pushed 3 commits to main</div>
+                    </div>
+                    <span class="badge badge-green">merged</span>
+                  </li>
+                  <li class="feed-item">
+                    <div class="feed-avatar">SR</div>
+                    <div style="flex: 1; min-width: 0">
+                      <div
+                        style="
+                          font-size: 13px;
+                          font-weight: 500;
+                          color: var(--ink);
+                        "
+                      >
+                        Sara Reeves
+                      </div>
+                      <div class="feed-meta">Opened pull request #142</div>
+                    </div>
+                    <span class="badge badge-amber">review</span>
+                  </li>
+                  <li
+                    class="feed-item"
+                    style="border-bottom: none; padding-bottom: 0"
+                  >
+                    <div class="feed-avatar">ML</div>
+                    <div style="flex: 1; min-width: 0">
+                      <div
+                        style="
+                          font-size: 13px;
+                          font-weight: 500;
+                          color: var(--ink);
+                        "
+                      >
+                        Marcus Lee
+                      </div>
+                      <div class="feed-meta">Closed issue #89</div>
+                    </div>
+                    <span class="badge badge-gray">closed</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="btn-row" style="margin-top: 1.25rem">
+              <button class="btn btn-sm" id="skeleton-toggle-btn">
+                Toggle state
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="toasts">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">04</span>
+              Toast notifications
+            </div>
+            <span class="badge badge-gray">Auto-dismiss + stack</span>
+          </div>
+          <div class="section-body">
+            <div class="label">Active toasts</div>
+            <div class="toast-area" id="toast-area"></div>
+            <div class="divider"></div>
+            <div class="label">Trigger</div>
+            <div class="btn-row">
+              <button class="btn btn-sm" id="toast-success">Success</button>
+              <button class="btn btn-sm" id="toast-error">Error</button>
+              <button class="btn btn-sm" id="toast-warning">Warning</button>
+              <button class="btn btn-sm" id="toast-info">Info</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="modal">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">05</span>
+              Modal dialogs
+            </div>
+            <span class="badge badge-gray"
+              >Focus trap + ESC + outside click</span
+            >
+          </div>
+          <div class="section-body">
+            <div class="modal-backdrop" id="modal-backdrop">
+              <div
+                class="modal"
+                id="modal-box"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="modal-title"
+              >
+                <div class="modal-header">
+                  <span class="modal-title" id="modal-title"
+                    >Confirm action</span
+                  >
+                  <button
+                    class="modal-close"
+                    id="modal-close-btn"
+                    aria-label="Close modal"
+                  >
+                    &times;
+                  </button>
+                </div>
+                <div class="modal-body">
+                  This action cannot be undone. All associated data will be
+                  permanently removed from the system.
+                </div>
+                <div class="modal-footer">
+                  <button class="btn btn-sm" id="modal-cancel-btn">
+                    Cancel
+                  </button>
+                  <button class="btn btn-sm btn-primary" id="modal-confirm-btn">
+                    Confirm
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="btn-row">
+              <button class="btn" id="open-modal-btn">Open modal</button>
+            </div>
+            <div class="code-block">
+              <pre><span class="cm">// Focus trap</span>
+<span class="kw">if</span> (e.key === <span class="str">'Tab'</span>) {
+  <span class="kw">const</span> els = <span class="fn">getFocusable</span>();
+  <span class="kw">if</span> (e.shiftKey && doc.activeElement === els[<span class="num">0</span>])
+    els[els.length - <span class="num">1</span>].<span class="fn">focus</span>();
+  <span class="kw">else if</span> (!e.shiftKey && doc.activeElement === els[els.length - <span class="num">1</span>])
+    els[<span class="num">0</span>].<span class="fn">focus</span>();
+}
+<span class="cm">// ESC to close</span>
+<span class="kw">if</span> (e.key === <span class="str">'Escape'</span>) <span class="fn">closeModal</span>();</pre>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="drag-drop">
+          <div class="section-header">
+            <div class="section-title">
+              <span class="section-number">06</span>
+              Drag and drop
+            </div>
+            <span class="badge badge-gray">Reorder + persist</span>
+          </div>
+          <div class="section-body">
+            <div class="label">Drag to reorder</div>
+            <ul class="drag-list" id="drag-list">
+              <li class="drag-item" draggable="true" data-id="1">
+                <span class="drag-handle">&#8942;</span>
+                <span>Render the initial page structure</span>
+                <span class="drag-order">#1</span>
+              </li>
+              <li class="drag-item" draggable="true" data-id="2">
+                <span class="drag-handle">&#8942;</span>
+                <span>Fetch data from the API</span>
+                <span class="drag-order">#2</span>
+              </li>
+              <li class="drag-item" draggable="true" data-id="3">
+                <span class="drag-handle">&#8942;</span>
+                <span>Replace skeletons with real content</span>
+                <span class="drag-order">#3</span>
+              </li>
+              <li class="drag-item" draggable="true" data-id="4">
+                <span class="drag-handle">&#8942;</span>
+                <span>Attach event listeners</span>
+                <span class="drag-order">#4</span>
+              </li>
+              <li class="drag-item" draggable="true" data-id="5">
+                <span class="drag-handle">&#8942;</span>
+                <span>Persist new order to backend</span>
+                <span class="drag-order">#5</span>
+              </li>
+            </ul>
+            <div
+              id="order-status"
+              style="
+                font-size: 12px;
+                color: var(--ink-3);
+                margin-top: 10px;
+                min-height: 18px;
+              "
+            ></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer>
+      Frontend Features Boilerplate &nbsp;&middot;&nbsp; Vanilla JS
+      &nbsp;&middot;&nbsp; No dependencies
+    </footer>
+  </body>
+</html>
