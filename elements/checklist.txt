@@ -7,3 +7,19 @@ frontend-features -
 glass-landing-page - 
 glowing-corner-hover-effect - 
 highliting-effect - 
+juicy-buttons - 
+liquid-glass-navbar - 
+log-in-robot - 
+loose-leaf-paper-element - 
+main-page-layout
+micro-interactions - 
+news-dashboard - 
+nice-highliting-markup
+parallax-card -
+product-spotlight-cards -
+scrambletext-demo -
+six-faced-cube-layout - 
+text-animations -
+tilted-carousel - 
+timeline - 
+ux-animations - 
