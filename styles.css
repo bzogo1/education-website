@@ -12,7 +12,7 @@
 html,
 body {
   height: 100%;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 body {
@@ -124,6 +124,7 @@ body.show-main .glass-landing {
     gap: 18px;
   }
 }
+<<<<<<< HEAD
 
 /* Main Page Layout Styles */
 .main-page {
@@ -1330,3 +1331,5 @@ body.show-main .glass-landing {
 .main-page .workspace {
   opacity: 0;
 }
+=======
+>>>>>>> parent of 94a89c9 (devin bugged out while doing task, might not work)
