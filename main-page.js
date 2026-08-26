@@ -8,19 +8,26 @@ let mx = 0,
   cx = 0,
   cy = 0;
 
-document.addEventListener("mousemove", (e) => {
-  mx = e.clientX;
-  my = e.clientY;
-  
-  // Show/hide cursor based on mouse position
+// Show/hide cursor based on scroll position
+function updateCursorVisibility() {
   const mainPageRect = mainPage.getBoundingClientRect();
-  const isInMainPage = my >= mainPageRect.top && my <= mainPageRect.bottom;
+  const isInMainPage = mainPageRect.top < window.innerHeight && mainPageRect.bottom > 0;
   
   if (isInMainPage) {
     cursor.style.display = "block";
+    document.body.style.cursor = "none";
   } else {
     cursor.style.display = "none";
+    document.body.style.cursor = "auto";
   }
+}
+
+window.addEventListener("scroll", updateCursorVisibility);
+updateCursorVisibility(); // Initial check
+
+document.addEventListener("mousemove", (e) => {
+  mx = e.clientX;
+  my = e.clientY;
 });
 (function animateCursor() {
   cx += (mx - cx) * 0.2;
@@ -52,7 +59,7 @@ const tl = gsap.timeline({
   defaults: { ease: "power3.out" },
   scrollTrigger: {
     trigger: ".main-page",
-    start: "top 60%",
+    start: "top 80%",
     toggleActions: "play none none reverse"
   }
 });
