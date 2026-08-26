@@ -12,7 +12,14 @@
 html,
 body {
   height: 100%;
+}
+
+body:not(.show-main) {
   overflow: hidden;
+}
+
+body.show-main {
+  overflow-y: auto;
 }
 
 body {
@@ -39,6 +46,12 @@ body.show-main .main-page {
 /* Glass landing page elements - hide when main page is shown */
 body.show-main .glass-landing {
   display: none;
+}
+
+/* Make sure main page takes full height when shown */
+body.show-main {
+  height: auto;
+  min-height: 100vh;
 }
 
 #scene {
@@ -124,7 +137,6 @@ body.show-main .glass-landing {
     gap: 18px;
   }
 }
-<<<<<<< HEAD
 
 /* Main Page Layout Styles */
 .main-page {
@@ -154,6 +166,11 @@ body.show-main .glass-landing {
   -webkit-font-smoothing: antialiased;
   cursor: none;
   line-height: 1.5;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 .main-page::before {
@@ -223,6 +240,7 @@ body.show-main .glass-landing {
   padding: 28px 56px;
   position: relative;
   z-index: 10;
+  gap: 20px;
 }
 
 .main-page .back-to-landing {
@@ -236,6 +254,7 @@ body.show-main .glass-landing {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s;
+  white-space: nowrap;
 }
 
 .main-page .back-to-landing:hover {
@@ -1222,6 +1241,7 @@ body.show-main .glass-landing {
 
   .main-page .site-header {
     padding: 20px 32px;
+    flex-wrap: wrap;
   }
 
   .main-page .workspace {
@@ -1279,6 +1299,10 @@ body.show-main .glass-landing {
     display: none;
   }
 
+  .main-page .back-to-landing {
+    display: none;
+  }
+
   .main-page .constellation {
     width: 100%;
     height: 580px;
@@ -1331,5 +1355,3 @@ body.show-main .glass-landing {
 .main-page .workspace {
   opacity: 0;
 }
-=======
->>>>>>> parent of 94a89c9 (devin bugged out while doing task, might not work)
