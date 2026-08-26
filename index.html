@@ -12,27 +12,29 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
-  <canvas id="scene"></canvas>
+  <div class="glass-landing">
+    <canvas id="scene"></canvas>
 
-  <h1 id="headline" class="sr-only">
-    <span>Digital</span>
-    <span>Design</span>
-    <span>Experience</span>
-  </h1>
+    <h1 id="headline" class="sr-only">
+      <span>Digital</span>
+      <span>Design</span>
+      <span>Experience</span>
+    </h1>
 
-<nav class="nav">
-  <span class="nav__logo">CRAFT&reg;</span>
-  <ul class="nav__links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+    <nav class="nav">
+      <span class="nav__logo">CRAFT&reg;</span>
+      <ul class="nav__links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
 
-<div class="meta">
-  <span>Milano &mdash; 2026</span>
-  <span>Scroll to explore</span>
-</div>
+    <div class="meta">
+      <span>Milano &mdash; 2026</span>
+      <span>Scroll to explore</span>
+    </div>
+  </div>
 
 <!-- Main Page Layout Content -->
 <div class="main-page">
@@ -57,21 +59,7 @@
     </span>
     <span>DERMEXCEL</span>
   </div>
-  <nav class="header-nav">
-    <a href="#">Analytics</a>
-    <a href="#">Features
-      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9" />
-      </svg>
-    </a>
-    <a href="#">Blog</a>
-    <a href="#">Get in touch</a>
-  </nav>
-  <a href="#" class="header-btn">Start for free
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12h14M13 6l6 6-6 6" />
-    </svg>
-  </a>
+  <button class="back-to-landing" id="backToLanding">← Back to Landing</button>
 </header>
 
 <main class="hero">
@@ -456,5 +444,6 @@
 }
 </script>
 <script type="module" src="script.js"></script>
+<script src="main-page.js"></script>
 </body>
 </html>

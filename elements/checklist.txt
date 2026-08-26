@@ -4,4 +4,6 @@ animated-tab-toggle -
 boiling-word-effect - 
 form-principles - 
 frontend-features - 
-glass -landing-page - 
+glass-landing-page - 
+glowing-corner-hover-effect - 
+highliting-effect - 

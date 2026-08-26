@@ -21,6 +21,26 @@ body {
   font-family: "Inter Tight", system-ui, sans-serif;
 }
 
+/* Glass landing page container - makes it scrollable */
+.glass-landing {
+  min-height: 120vh;
+  position: relative;
+}
+
+/* Landing page state - hides main page content */
+body:not(.show-main) .main-page {
+  display: none;
+}
+
+body.show-main .main-page {
+  display: block;
+}
+
+/* Glass landing page elements - hide when main page is shown */
+body.show-main .glass-landing {
+  display: none;
+}
+
 #scene {
   position: fixed;
   inset: 0;
@@ -202,6 +222,24 @@ body {
   padding: 28px 56px;
   position: relative;
   z-index: 10;
+}
+
+.main-page .back-to-landing {
+  padding: 8px 16px;
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.main-page .back-to-landing:hover {
+  background: var(--ink);
+  color: var(--bg);
 }
 
 .main-page .logo {
