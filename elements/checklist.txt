@@ -8,7 +8,7 @@ glass-landing-page -
 glowing-corner-hover-effect - 
 highliting-effect - 
 juicy-buttons - 
-liquid-glass-navbar - 
+liquid-glass-navbar - INTEGRATED
 log-in-robot - 
 loose-leaf-paper-element - 
 main-page-layout - INTEGRATED
