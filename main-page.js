@@ -329,3 +329,76 @@ gsap.from(".main-page .final-cta-card", {
 
 // Refresh
 window.addEventListener("load", () => ScrollTrigger.refresh());
+
+// ============ LIQUID GLASS NAVBAR FUNCTIONALITY ============
+const navButtons = document.querySelectorAll(".nav-btn");
+const activePill = document.getElementById("active-pill");
+const themeBtn = document.getElementById("theme-btn");
+const nav = document.getElementById("nav");
+const glare = document.getElementById("glare");
+
+if (nav && activePill && themeBtn) {
+  // The function that calculates the Apple slider
+  function updatePill(btn, smooth = true) {
+    if (!btn) return;
+    
+    // Transition on/off for Resize & Initial loading
+    if (!smooth) {
+      activePill.style.transition = 'none';
+    } else {
+      activePill.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), background 0.5s ease, box-shadow 0.5s ease';
+    }
+    
+    activePill.style.width = `${btn.offsetWidth}px`;
+    activePill.style.transform = `translateX(${btn.offsetLeft}px)`;
+  }
+
+  // Set position without jerk on first load
+  const initialActive = document.querySelector(".nav-btn.active");
+  if (initialActive) {
+    setTimeout(() => {
+      updatePill(initialActive, false);
+      // Force CSS Reflow
+      void activePill.offsetWidth; 
+    }, 50);
+  }
+
+  // Click on navigation
+  navButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      navButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      updatePill(btn);
+    });
+  });
+
+  // Dark / Light Mode Switch Logic
+  themeBtn.addEventListener("click", () => {
+    const root = document.documentElement;
+    const isDark = root.getAttribute("data-theme") === "dark";
+    root.setAttribute("data-theme", isDark ? "light" : "dark");
+    
+    // Wait briefly in case font widths (font-weight) change slightly
+    setTimeout(() => {
+      const active = document.querySelector(".nav-btn.active");
+      if (active) updatePill(active);
+    }, 100);
+  });
+
+  // Adjust position immediately when window is rotated/scaled
+  window.addEventListener("resize", () => {
+    const active = document.querySelector(".nav-btn.active");
+    if (active) updatePill(active, false);
+  });
+
+  // Interactive Liquid Glare (The white light cone in the glass)
+  nav.addEventListener("mousemove", (e) => {
+    const rect = nav.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Feed CSS variables, more performant than Style strings in JS
+    glare.style.setProperty("--x", `${x}px`);
+    glare.style.setProperty("--y", `${y}px`);
+  });
+}

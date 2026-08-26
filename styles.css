@@ -25,6 +25,7 @@ body {
 .glass-landing {
   min-height: 100vh;
   position: relative;
+  z-index: 1;
 }
 
 /* Main page container - shown below glass landing */
@@ -32,6 +33,7 @@ body {
   display: block;
   position: relative;
   margin-top: -1px; /* Prevent gap between sections */
+  z-index: 1;
 }
 
 #scene {
@@ -41,6 +43,7 @@ body {
   width: 100%;
   height: 100vh;
   display: block;
+  z-index: 0;
 }
 
 .nav {
@@ -211,7 +214,7 @@ body {
   background: var(--ink);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 100001;
   mix-blend-mode: difference;
   transform: translate(-50%, -50%);
   transition: width 0.3s, height 0.3s;
@@ -224,7 +227,7 @@ body {
   align-items: center;
   padding: 28px 56px;
   position: relative;
-  z-index: 10;
+  z-index: 1;
 }
 
 .main-page .logo {
@@ -306,7 +309,7 @@ body {
   padding: 40px 56px 40px;
   align-items: center;
   position: relative;
-  z-index: 5;
+  z-index: 1;
   min-height: 720px;
 }
 
@@ -737,7 +740,7 @@ body {
   align-items: center;
   gap: 40px;
   position: relative;
-  z-index: 5;
+  z-index: 1;
 }
 
 .main-page .workspace-label {
@@ -821,7 +824,7 @@ body {
   border-radius: 48px 48px 0 0;
   margin-top: 40px;
   position: relative;
-  z-index: 5;
+  z-index: 1;
 }
 
 .main-page .stats-grid {
@@ -866,6 +869,7 @@ body {
   padding: 120px 56px;
   background: var(--bg-warm);
   position: relative;
+  z-index: 1;
 }
 
 .main-page .features-head {
@@ -1009,6 +1013,8 @@ body {
   padding: 140px 56px;
   background: var(--bg);
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .main-page .quote-section blockquote {
@@ -1043,6 +1049,8 @@ body {
   padding: 100px 56px 120px;
   text-align: center;
   background: var(--bg);
+  position: relative;
+  z-index: 1;
 }
 
 .main-page .final-cta-card {
@@ -1133,6 +1141,8 @@ body {
   background: var(--bg);
   padding: 60px 56px 40px;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
+  position: relative;
+  z-index: 1;
 }
 
 .main-page .footer-top {
@@ -1314,4 +1324,281 @@ body {
 
 .main-page .workspace {
   opacity: 0;
+}
+
+/* =========================================
+   LIQUID GLASS NAVBAR STYLES
+   ========================================= */
+
+/* Apple Theme Variables for Liquid Glass */
+:root {
+  /* Background & Ambient Light Blobs */
+  --nav-bg-color: #e5e5ea;
+  --nav-blob-1: #ff2a5f;
+  --nav-blob-2: #007aff;
+  --nav-blob-3: #ff9500;
+  --nav-blob-opacity: 0.7;
+  
+  /* True Liquid Glass - Light Mode */
+  --nav-glass-bg: rgba(255, 255, 255, 0.15);
+  --nav-glass-border: rgba(255, 255, 255, 0.4);
+  --nav-glass-shadow: rgba(0, 0, 0, 0.1);
+  --nav-glass-highlight: rgba(255, 255, 255, 0.8);
+  --nav-glass-caustic: rgba(255, 255, 255, 0.4);
+  --nav-reflection-start: rgba(255, 255, 255, 0.6);
+  --nav-reflection-end: rgba(255, 255, 255, 0.0);
+  --nav-glare-color: rgba(255, 255, 255, 0.5);
+  
+  /* Slider Pill & Icons */
+  --nav-pill-bg: rgba(255, 255, 255, 0.7);
+  --nav-pill-shadow: 0 4px 12px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.8);
+  --nav-icon-color: rgba(0, 0, 0, 0.5);
+  --nav-icon-active: rgba(0, 0, 0, 0.95);
+  --nav-divider: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] {
+  /* Background & Ambient Light Blobs */
+  --nav-bg-color: #000000;
+  --nav-blob-1: #bf5af2;
+  --nav-blob-2: #0a84ff;
+  --nav-blob-3: #ff375f;
+  --nav-blob-opacity: 0.5;
+  
+  /* True Liquid Glass - Dark Mode */
+  --nav-glass-bg: rgba(30, 30, 35, 0.45);
+  --nav-glass-border: rgba(255, 255, 255, 0.15);
+  --nav-glass-shadow: rgba(0, 0, 0, 0.8);
+  --nav-glass-highlight: rgba(255, 255, 255, 0.25);
+  --nav-glass-caustic: rgba(255, 255, 255, 0.05);
+  --nav-reflection-start: rgba(255, 255, 255, 0.15);
+  --nav-reflection-end: rgba(255, 255, 255, 0.0);
+  --nav-glare-color: rgba(255, 255, 255, 0.15);
+  
+  /* Slider Pill & Icons */
+  --nav-pill-bg: rgba(60, 60, 65, 0.8);
+  --nav-pill-shadow: 0 4px 12px rgba(0,0,0,0.4), 0 1px 2px rgba(0,0,0,0.2), inset 0 1px 1px rgba(255,255,255,0.2);
+  --nav-icon-color: rgba(255, 255, 255, 0.5);
+  --nav-icon-active: #ffffff;
+  --nav-divider: rgba(255, 255, 255, 0.15);
+}
+
+/* The colored mesh background container */
+.nav-bg-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: var(--nav-bg-color);
+  transition: background 0.8s ease;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.nav-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: var(--nav-blob-opacity);
+  animation: nav-float 20s infinite alternate cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  will-change: transform;
+  transition: background 0.8s ease, opacity 0.8s ease;
+}
+
+.nav-blob-1 { width: 50vw; height: 50vw; top: -10%; left: -10%; background: var(--nav-blob-1); animation-delay: 0s; }
+.nav-blob-2 { width: 45vw; height: 45vw; bottom: -10%; right: -10%; background: var(--nav-blob-2); animation-delay: -5s; }
+.nav-blob-3 { width: 35vw; height: 35vw; top: 30%; left: 40%; background: var(--nav-blob-3); animation-delay: -10s; }
+
+@keyframes nav-float {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  33% { transform: translate(5%, 10%) scale(1.05) rotate(5deg); }
+  66% { transform: translate(-5%, 5%) scale(0.95) rotate(-5deg); }
+  100% { transform: translate(0, -10%) scale(1.1) rotate(0deg); }
+}
+
+/* THE LIQUID GLASS NAVBAR CONTAINER */
+.liquid-nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 99px;
+  
+  /* Extreme blur for the Apple feeling */
+  background: var(--nav-glass-bg);
+  backdrop-filter: blur(50px) saturate(200%);
+  -webkit-backdrop-filter: blur(50px) saturate(200%);
+  
+  /* Multi-layer shadows for true 3D volume */
+  box-shadow: 
+    0 40px 80px -20px var(--nav-glass-shadow),
+    0 10px 30px -10px var(--nav-glass-shadow),
+    inset 0 2px 3px -1px var(--nav-glass-highlight),
+    inset 0 -2px 4px -1px var(--nav-glass-caustic),
+    inset 0 0 0 1px var(--nav-glass-border);
+    
+  transition: all 0.5s ease;
+  z-index: 10000;
+}
+
+/* The classic curved Aqua reflection (makes it 'wet') */
+.liquid-nav::before {
+  content: '';
+  position: absolute;
+  top: 1px; left: 1px; right: 1px; height: 46%;
+  border-radius: 99px 99px 24px 24px / 99px 99px 12px 12px;
+  background: linear-gradient(180deg, var(--nav-reflection-start) 0%, var(--nav-reflection-end) 100%);
+  pointer-events: none;
+  z-index: 6; 
+  transition: background 0.5s ease;
+}
+
+/* Interactive 3D light cone that follows the mouse */
+.liquid-glare-container {
+  position: absolute;
+  inset: 0;
+  border-radius: 99px;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 5;
+}
+
+.liquid-glare {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(circle 90px at var(--x, 50%) var(--y, 50%), var(--nav-glare-color) 0%, transparent 100%);
+  mix-blend-mode: overlay;
+}
+
+.liquid-nav:hover .liquid-glare {
+  opacity: 1;
+}
+
+/* NAVIGATION BUTTONS & SLIDER */
+.nav-items {
+  position: relative;
+  display: flex;
+  gap: 4px;
+  z-index: 3;
+}
+
+/* The soft pill that slides behind the buttons */
+.active-pill {
+  position: absolute;
+  top: 0; left: 0; 
+  height: 44px;
+  background: var(--nav-pill-bg);
+  border-radius: 99px;
+  box-shadow: var(--nav-pill-shadow);
+  
+  /* Apple Bouncy Spring Animation curve */
+  transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), 
+              width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1),
+              background 0.5s ease, box-shadow 0.5s ease;
+  z-index: 1; 
+}
+
+.nav-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  padding: 0 20px;
+  height: 44px;
+  border-radius: 99px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--nav-icon-color);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.3s ease;
+  outline: none;
+  z-index: 2;
+}
+
+.btn-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.nav-btn:active .btn-content {
+  transform: scale(0.92);
+}
+
+.nav-btn.active {
+  color: var(--nav-icon-active);
+}
+
+/* DIVIDER & DARK MODE THEME BUTTON */
+.nav-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--nav-divider);
+  margin: 0 4px;
+  z-index: 3;
+  transition: background 0.5s ease;
+}
+
+.theme-btn {
+  position: relative;
+  background: transparent;
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: var(--nav-icon-color);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  z-index: 3;
+  outline: none;
+  margin-left: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.theme-btn:hover, .theme-btn:active {
+  color: var(--nav-icon-active);
+}
+
+.theme-icon-wrapper {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  transition: transform 0.2s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.theme-btn:active .theme-icon-wrapper {
+  transform: scale(0.8);
+}
+
+.theme-icon-wrapper svg {
+  position: absolute;
+  top: 0; left: 0;
+  transition: transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.4s ease;
+  stroke-width: 2.2;
+}
+
+/* Sun & Moon Animation Switch */
+.sun { opacity: 1; transform: rotate(0deg) scale(1); }
+.moon { opacity: 0; transform: rotate(-90deg) scale(0); }
+
+[data-theme="dark"] .sun { opacity: 0; transform: rotate(90deg) scale(0); }
+[data-theme="dark"] .moon { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* Hide the old navbar when liquid navbar is active */
+.nav {
+  display: none;
 }
