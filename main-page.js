@@ -2,10 +2,29 @@ gsap.registerPlugin(ScrollTrigger);
 
 // ============ CURSOR ============
 const cursor = document.querySelector(".main-page .cursor");
+const mainPage = document.querySelector(".main-page");
 let mx = 0,
   my = 0,
   cx = 0,
   cy = 0;
+
+// Show/hide cursor based on scroll position
+function updateCursorVisibility() {
+  const mainPageRect = mainPage.getBoundingClientRect();
+  const isInMainPage = mainPageRect.top < window.innerHeight && mainPageRect.bottom > 0;
+  
+  if (isInMainPage) {
+    cursor.style.display = "block";
+    document.body.style.cursor = "none";
+  } else {
+    cursor.style.display = "none";
+    document.body.style.cursor = "auto";
+  }
+}
+
+window.addEventListener("scroll", updateCursorVisibility);
+updateCursorVisibility(); // Initial check
+
 document.addEventListener("mousemove", (e) => {
   mx = e.clientX;
   my = e.clientY;
@@ -36,7 +55,14 @@ document.querySelectorAll(".main-page .constellation-lines path").forEach((path)
 });
 
 // ============ PAGE LOAD ============
-const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+const tl = gsap.timeline({ 
+  defaults: { ease: "power3.out" },
+  scrollTrigger: {
+    trigger: ".main-page",
+    start: "top 80%",
+    toggleActions: "play none none reverse"
+  }
+});
 tl.to(".main-page .site-header", { opacity: 1, duration: 0.8 }, 0)
   .to(
     ".main-page .title-inner",
@@ -127,7 +153,7 @@ gsap.to(".main-page .constellation", {
   scale: 0.92,
   scrollTrigger: {
     trigger: ".main-page .hero",
-    start: "top top",
+    start: "top bottom",
     end: "bottom top",
     scrub: 1
   }
@@ -137,7 +163,7 @@ gsap.to(".main-page .hero-left", {
   opacity: 0.4,
   scrollTrigger: {
     trigger: ".main-page .hero",
-    start: "top top",
+    start: "top bottom",
     end: "bottom top",
     scrub: 1
   }
@@ -303,12 +329,3 @@ gsap.from(".main-page .final-cta-card", {
 
 // Refresh
 window.addEventListener("load", () => ScrollTrigger.refresh());
-
-// Back to landing page functionality
-const backToLandingBtn = document.getElementById('backToLanding');
-if (backToLandingBtn) {
-  backToLandingBtn.addEventListener('click', () => {
-    document.body.classList.remove('show-main');
-    window.scrollTo(0, 0);
-  });
-}

@@ -157,20 +157,3 @@ document.fonts.ready.then(() => {
     renderer.setAnimationLoop(render);
   }
 });
-
-// Add click listener to transition to main page when clicking nav links
-document.querySelectorAll('.nav__links a').forEach(link => {
-  link.addEventListener('click', (e) => {
-    e.preventDefault();
-    document.body.classList.add('show-main');
-  });
-});
-
-// Also add click on "Scroll to explore" text
-const scrollExploreText = document.querySelector('.meta span:last-child');
-if (scrollExploreText) {
-  scrollExploreText.addEventListener('click', () => {
-    document.body.classList.add('show-main');
-  });
-  scrollExploreText.style.cursor = 'pointer';
-}

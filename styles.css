@@ -11,15 +11,8 @@
 
 html,
 body {
-  height: 100%;
-}
-
-body:not(.show-main) {
-  overflow: hidden;
-}
-
-body.show-main {
-  overflow-y: auto;
+  height: auto;
+  min-height: 100vh;
 }
 
 body {
@@ -28,40 +21,30 @@ body {
   font-family: "Inter Tight", system-ui, sans-serif;
 }
 
-/* Glass landing page container - makes it scrollable */
+/* Glass landing page container */
 .glass-landing {
-  min-height: 120vh;
+  min-height: 100vh;
   position: relative;
 }
 
-/* Landing page state - hides main page content */
-body:not(.show-main) .main-page {
-  display: none;
-}
-
-body.show-main .main-page {
+/* Main page container - shown below glass landing */
+.main-page {
   display: block;
-}
-
-/* Glass landing page elements - hide when main page is shown */
-body.show-main .glass-landing {
-  display: none;
-}
-
-/* Make sure main page takes full height when shown */
-body.show-main {
-  height: auto;
-  min-height: 100vh;
+  position: relative;
+  margin-top: -1px; /* Prevent gap between sections */
 }
 
 #scene {
-  position: fixed;
-  inset: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   display: block;
 }
 
 .nav {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -111,7 +94,7 @@ body.show-main {
 }
 
 .meta {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
@@ -164,13 +147,15 @@ body.show-main {
   font-family: "Manrope", sans-serif;
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
-  cursor: none;
   line-height: 1.5;
-  overflow-x: hidden;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
 }
 
 .main-page::before {
@@ -240,26 +225,6 @@ html {
   padding: 28px 56px;
   position: relative;
   z-index: 10;
-  gap: 20px;
-}
-
-.main-page .back-to-landing {
-  padding: 8px 16px;
-  font-family: "Manrope", sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  background: transparent;
-  border: 1px solid var(--ink);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s;
-  white-space: nowrap;
-}
-
-.main-page .back-to-landing:hover {
-  background: var(--ink);
-  color: var(--bg);
 }
 
 .main-page .logo {
@@ -1241,7 +1206,6 @@ html {
 
   .main-page .site-header {
     padding: 20px 32px;
-    flex-wrap: wrap;
   }
 
   .main-page .workspace {
@@ -1296,10 +1260,6 @@ html {
   }
 
   .main-page .header-nav {
-    display: none;
-  }
-
-  .main-page .back-to-landing {
     display: none;
   }
 
