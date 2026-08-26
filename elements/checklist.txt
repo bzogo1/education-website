@@ -4,14 +4,14 @@ animated-tab-toggle -
 boiling-word-effect - 
 form-principles - 
 frontend-features - 
-glass-landing-page - INTEGRATED
+glass-landing-page - 
 glowing-corner-hover-effect - 
 highliting-effect - 
 juicy-buttons - 
 liquid-glass-navbar - 
 log-in-robot - 
 loose-leaf-paper-element - 
-main-page-layout
+main-page-layout - INTEGRATED
 micro-interactions - 
 news-dashboard - 
 nice-highliting-markup
