@@ -4,16 +4,669 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Advantages - Digital Design Experience</title>
-  <link rel="stylesheet" href="styles.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+@layer reset, tokens, base, layout, cube, ui, cards, reveal, theme, responsive;
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer tokens {
+  :root {
+    color-scheme: dark;
+
+    --dark-bg: #1c1814;
+    --dark-fg: #ede8df;
+    --dark-muted: #8a7b6e;
+    --light-bg: #f0ece3;
+    --light-fg: #0d0d14;
+    --light-muted: #9a9aaa;
+    --accent-dark: #d4a84b;
+    --accent-light: #3a6e00;
+
+    --bg: var(--dark-bg);
+    --fg: var(--dark-fg);
+    --muted: var(--dark-muted);
+    --accent: var(--accent-dark);
+
+    --font-display: "Bebas Neue", sans-serif;
+    --font-mono: "DM Mono", monospace;
+    --hairline: 0.0625rem;
+    --ui-inset: 2rem;
+    --card-bg: rgba(28, 24, 20, 0.82);
+    --card-border: rgba(212, 168, 75, 0.2);
+    --nav-x: calc(var(--ui-inset) + 0.125rem);
+    --reveal-offset: 0.625rem;
+    --reveal-duration: 0.5s;
+    --z-ui: 10;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font-mono);
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+}
+
+@layer layout {
+  #scene {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1100px;
+    pointer-events: none;
+  }
+
+  #scroll_container {
+    position: relative;
+    z-index: 1;
+  }
+
+  section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 6rem calc(5rem + var(--ui-inset)) 6rem 5rem;
+  }
+}
+
+@layer cube {
+  #cube {
+    --s: min(74vw, 74vh, 560px);
+    width: var(--s);
+    height: var(--s);
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(90deg) rotateY(0deg);
+    will-change: transform;
+  }
+
+  .face {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    backface-visibility: hidden;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.02) 0,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 48px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0.02) 0,
+        rgba(255, 255, 255, 0.02) 1px,
+        transparent 1px,
+        transparent 48px
+      ),
+      #14100d;
+
+    img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    &:has(img) .face-ph {
+      display: none;
+    }
+  }
+
+  .face-ph {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 1.75rem;
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 8vw, 5rem);
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .face[data-face="front"] {
+    transform: translateZ(calc(var(--s) / 2));
+  }
+  .face[data-face="back"] {
+    transform: rotateY(180deg) translateZ(calc(var(--s) / 2));
+  }
+  .face[data-face="right"] {
+    transform: rotateY(90deg) translateZ(calc(var(--s) / 2));
+  }
+  .face[data-face="left"] {
+    transform: rotateY(-90deg) translateZ(calc(var(--s) / 2));
+  }
+  .face[data-face="top"] {
+    transform: rotateX(-90deg) translateZ(calc(var(--s) / 2));
+  }
+  .face[data-face="bottom"] {
+    transform: rotateX(90deg) translateZ(calc(var(--s) / 2));
+  }
+}
+
+@layer ui {
+  #hud {
+    position: fixed;
+    top: var(--ui-inset);
+    right: var(--ui-inset);
+    z-index: var(--z-ui);
+    text-align: right;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+
+    .progress-bar {
+      width: 7.5rem;
+      height: var(--hairline);
+      background: var(--muted);
+      margin-block-start: 0.5rem;
+      margin-inline-start: auto;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      position: absolute;
+      inset-block: 0;
+      inset-inline-start: 0;
+      width: 0%;
+      background: var(--accent);
+      transition: width 0.1s linear;
+    }
+
+    .scene-label {
+      font-size: 0.6rem;
+      color: var(--accent);
+      margin-block-start: 0.4rem;
+    }
+  }
+
+  #scene_strip {
+    position: fixed;
+    left: var(--nav-x);
+    top: 50%;
+    translate: -50% -50%;
+    z-index: var(--z-ui);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .scene-dot {
+    position: relative;
+    display: block;
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: background 0.3s, scale 0.3s;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -0.2rem;
+    }
+
+    &.active {
+      background: var(--accent);
+      scale: 1.8;
+    }
+  }
+
+  #theme_toggle {
+    position: fixed;
+    bottom: var(--ui-inset);
+    left: var(--nav-x);
+    translate: -50% 0;
+    z-index: var(--z-ui);
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background: color-mix(in srgb, var(--muted) 35%, transparent);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+
+    &:hover {
+      background: color-mix(in srgb, var(--muted) 55%, transparent);
+    }
+
+    svg {
+      width: 0.875rem;
+      height: 0.875rem;
+      position: absolute;
+      transition: opacity 0.3s ease, rotate 0.3s ease;
+      color: var(--accent);
+    }
+
+    .icon-sun {
+      opacity: 1;
+      rotate: 0deg;
+    }
+
+    .icon-moon {
+      opacity: 0;
+      rotate: 90deg;
+    }
+  }
+
+  #face_caption {
+    position: fixed;
+    bottom: var(--ui-inset);
+    left: 50%;
+    translate: -50% 0;
+    z-index: var(--z-ui);
+    text-align: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  #face_caption_num {
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-block-end: 0.15rem;
+  }
+
+  #face_caption_name {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    opacity: 0.5;
+    line-height: 1;
+  }
+
+  #credit {
+    position: fixed;
+    right: var(--ui-inset);
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: right center;
+    z-index: var(--z-ui);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+
+    a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+  }
+}
+
+@layer cards {
+  .text-card {
+    max-width: 23.75rem;
+    padding: 2.25rem 2rem;
+    background: var(--card-bg);
+    border-left: var(--hairline) solid var(--card-border);
+    backdrop-filter: blur(6px) saturate(120%);
+    -webkit-backdrop-filter: blur(6px) saturate(120%);
+    overflow: hidden;
+    transition: background 0.3s ease, border-color 0.3s ease;
+
+    &.right {
+      margin-inline-start: auto;
+      border-left: none;
+      border-right: var(--hairline) solid var(--card-border);
+      text-align: right;
+
+      .h-line {
+        transform-origin: right;
+        margin-inline-start: auto;
+      }
+    }
+
+    &.center {
+      margin-inline: auto;
+      border-left: none;
+      border-top: var(--hairline) solid var(--card-border);
+      text-align: center;
+      max-width: 28.75rem;
+
+      .h-line {
+        transform-origin: center;
+        margin-inline: auto;
+      }
+    }
+  }
+
+  .tag {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-block-end: 1.1rem;
+  }
+
+  :where(h1, h2) {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 0.92;
+  }
+
+  h1 {
+    font-size: clamp(3rem, 8vw, 6.5rem);
+  }
+  h2 {
+    font-size: clamp(2.2rem, 5vw, 4rem);
+  }
+
+  .body-text {
+    font-size: 0.78rem;
+    line-height: 1.8;
+    color: color-mix(in srgb, var(--fg) 55%, transparent);
+    margin-block-start: 1.25rem;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 2.5rem;
+    margin-block-start: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .h-line {
+    width: 3.125rem;
+    height: var(--hairline);
+    background: var(--accent);
+    margin-block-end: 1.2rem;
+    transform-origin: left;
+  }
+
+  .cta-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    margin-block-start: 1.75rem;
+  }
+
+  .text-card.right .cta-row {
+    justify-content: flex-end;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.25rem;
+    border: var(--hairline) solid var(--accent);
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+
+    &:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    svg {
+      width: 0.6875rem;
+      height: 0.6875rem;
+    }
+  }
+
+  .cta-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.25rem;
+    border: var(--hairline) solid
+      color-mix(in srgb, var(--muted) 45%, transparent);
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+    &:hover {
+      background: color-mix(in srgb, var(--muted) 12%, transparent);
+      border-color: var(--muted);
+      color: var(--fg);
+    }
+
+    svg {
+      width: 0.6875rem;
+      height: 0.6875rem;
+    }
+  }
+}
+
+@layer reveal {
+  :is(.tag, h1, h2, .body-text, .stat-row, .cta, .cta-back) {
+    opacity: 0;
+    translate: 0 var(--reveal-offset);
+  }
+
+  :is(h1, h2) {
+    translate: 0 1.125rem;
+    transition: opacity var(--reveal-duration) ease 0.08s,
+      translate var(--reveal-duration) ease 0.08s;
+  }
+
+  .tag {
+    transition: opacity var(--reveal-duration) ease,
+      translate var(--reveal-duration) ease;
+  }
+
+  .body-text {
+    transition: opacity var(--reveal-duration) ease 0.2s,
+      translate var(--reveal-duration) ease 0.2s;
+  }
+
+  .stat-row {
+    transition: opacity var(--reveal-duration) ease 0.3s,
+      translate var(--reveal-duration) ease 0.3s;
+  }
+
+  :is(.cta, .cta-back) {
+    transition: opacity var(--reveal-duration) ease 0.35s,
+      translate var(--reveal-duration) ease 0.35s, background 0.2s, color 0.2s,
+      border-color 0.2s;
+  }
+
+  .h-line {
+    opacity: 0;
+    scale: 0 1;
+    transition: opacity 0.4s ease, scale 0.4s ease;
+  }
+
+  :is(.tag, h1, h2, .body-text, .stat-row, .cta, .cta-back).visible {
+    opacity: 1;
+    translate: 0 0;
+  }
+
+  .h-line.visible {
+    opacity: 1;
+    scale: 1 1;
+  }
+}
+
+@layer theme {
+  :root[data-theme="light"] {
+    color-scheme: light;
+    --bg: var(--light-bg);
+    --fg: var(--light-fg);
+    --muted: var(--light-muted);
+    --accent: var(--accent-light);
+    --card-bg: rgba(240, 236, 227, 0.08);
+    --card-border: rgba(58, 110, 0, 0.14);
+
+    .face {
+      background: repeating-linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.05) 0,
+          rgba(0, 0, 0, 0.05) 1px,
+          transparent 1px,
+          transparent 48px
+        ),
+        repeating-linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.05) 0,
+          rgba(0, 0, 0, 0.05) 1px,
+          transparent 1px,
+          transparent 48px
+        ),
+        #ddd8cf;
+    }
+
+    .face-ph {
+      color: rgba(0, 0, 0, 0.07);
+    }
+
+    #theme_toggle {
+      svg {
+        color: var(--fg);
+      }
+      .icon-sun {
+        opacity: 0;
+        rotate: -90deg;
+      }
+      .icon-moon {
+        opacity: 1;
+        rotate: 0deg;
+      }
+    }
+
+    #face_caption_name {
+      opacity: 0.35;
+    }
+  }
+}
+
+@layer responsive {
+  @media (width <= 56.25em) {
+    #hud {
+      top: 1rem;
+      right: 1rem;
+    }
+
+    #scene_strip {
+      display: none;
+    }
+
+    #theme_toggle {
+      bottom: 1rem;
+      left: 1.25rem;
+      translate: 0 0;
+    }
+
+    #face_caption {
+      bottom: 1rem;
+    }
+
+    section {
+      min-height: 150vh;
+      align-items: flex-end;
+      padding: 0 1.5rem 3.5rem;
+    }
+
+    #s0 {
+      min-height: 100vh;
+      align-items: center;
+      padding: 4rem 1.5rem;
+    }
+
+    :is(.text-card, .text-card.right, .text-card.center) {
+      max-width: 100%;
+      padding: 1.5rem 1.25rem;
+    }
+
+    .body-text {
+      line-height: 1.55;
+    }
+
+    .stat-row {
+      gap: 1.5rem;
+      margin-block-start: 1.25rem;
+    }
+
+    .cta-row {
+      margin-block-start: 1.25rem;
+    }
+  }
+}
+
+  </style>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
   <div class="glass-landing">
-    <canvas id="scene"></canvas>
+    <div id="scene">
+      <div id="cube">
+        <div class="face" data-face="top" data-i="0"><span class="face-ph">TOP</span></div>
+        <div class="face" data-face="front" data-i="1"><span class="face-ph">FRONT</span></div>
+        <div class="face" data-face="right" data-i="2"><span class="face-ph">RIGHT</span></div>
+        <div class="face" data-face="back" data-i="3"><span class="face-ph">BACK</span></div>
+        <div class="face" data-face="left" data-i="4"><span class="face-ph">LEFT</span></div>
+        <div class="face" data-face="bottom" data-i="5"><span class="face-ph">BOTTOM</span></div>
+      </div>
+    </div>
 
     <h1 id="headline" class="sr-only">
       <span>Advantages</span>
@@ -88,106 +741,730 @@
       </button>
     </nav>
 
-<div class="meta">
-  <span>Milano &mdash; 2026</span>
-  <span>Advantages</span>
-</div>
+    <div id="hud">
+      <div id="hud_pct">000%</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="prog_fill"></div>
+      </div>
+      <div class="scene-label" id="scene_name">DESCENT</div>
+    </div>
 
-<!-- Main Page Layout Content -->
-<div class="main-page">
-  <div class="ambient-1"></div>
-  <div class="ambient-2"></div>
-  <div class="cursor"></div>
-
-<header class="site-header">
-  <div class="logo">
-    <span class="logo-cube">
-      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-        <defs>
-          <linearGradient id="cubeGrad" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stop-color="#3a3a3a" />
-            <stop offset="100%" stop-color="#0a0a0a" />
-          </linearGradient>
-        </defs>
-        <path d="M17 3 L29 9 L29 21 L17 27 L17 15 L5 9 Z" fill="url(#cubeGrad)" stroke="#000" stroke-width="0.5" />
-        <path d="M5 9 L17 15 L17 27 L5 21 Z" fill="#2a2a2a" stroke="#000" stroke-width="0.5" />
-        <path d="M17 3 L29 9 L17 15 L5 9 Z" fill="#444" stroke="#000" stroke-width="0.5" />
+    <button id="theme_toggle" aria-label="Toggle light/dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
       </svg>
-    </span>
-    <span>DERMEXCEL</span>
-  </div>
-  <nav class="header-nav">
-    <a href="index.html">Home</a>
-    <a href="solutions.html">Solutions</a>
-    <a href="advantages.html" class="active">Advantages</a>
-    <a href="#">Get in touch</a>
-  </nav>
-  <a href="#" class="header-btn">Start for free
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12h14M13 6l6 6-6 6" />
-    </svg>
-  </a>
-</header>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+      </svg>
+    </button>
 
-<main class="hero">
-  <div class="hero-left">
-    <h1 class="hero-title">
-      <span class="title-line"><span class="title-inner">Advantages</span></span>
-      <span class="title-line"><span class="title-inner"></span></span>
-      <span class="title-line"><span class="title-inner"></span></span>
-    </h1>
-  </div>
-
-  <div class="hero-right">
-  </div>
-</main>
-
-<footer class="site-footer">
-  <div class="footer-top">
-    <div class="footer-brand">
-      <h3>Traffo</h3>
-      <p>The analytics platform for teams who'd rather ship than spreadsheet.</p>
+    <div id="scene_strip">
+      <a href="#s0" class="scene-dot active"></a>
+      <a href="#s1" class="scene-dot"></a>
+      <a href="#s2" class="scene-dot"></a>
+      <a href="#s3" class="scene-dot"></a>
+      <a href="#s4" class="scene-dot"></a>
+      <a href="#s5" class="scene-dot"></a>
     </div>
-    <div class="footer-cols">
-      <div class="footer-col">
-        <h4>Product</h4>
-        <a href="#">Analytics</a>
-        <a href="#">Experiments</a>
-        <a href="#">Sessions</a>
-        <a href="#">Integrations</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#">About</a>
-        <a href="#">Blog</a>
-        <a href="#">Careers</a>
-        <a href="#">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>Legal</h4>
-        <a href="#">Privacy</a>
-        <a href="#">Terms</a>
-        <a href="#">Security</a>
-        <a href="#">GDPR</a>
-      </div>
+
+    <div id="face_caption">
+      <div id="face_caption_num">01</div>
+      <div id="face_caption_name">DESCENT</div>
+    </div>
+
+    <div id="scroll_container">
+      <section id="s0">
+        <div class="text-card">
+          <div class="tag">Cube Gallery — Bad Art</div>
+          <h1>WORK<br>AGAINST<br>THE MODEL</h1>
+          <p class="body-text">
+            What happens when you ask AI
+            to do the opposite of what it was built for?
+            Break proportion. Flip symmetry.
+            Leave the mistakes in place.
+            Scroll to find out.
+          </p>
+          <div class="cta-row">
+            <a class="cta" href="#s1">
+              Enter
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M1 6h10M6 1l5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="s1">
+        <div class="text-card right">
+          <div class="h-line"></div>
+          <div class="tag">01 — Art Rebellion</div>
+          <h2>FLIP<br>THE<br>PROMPT</h2>
+          <p class="body-text">
+            A cow walking a monster
+            instead of a monster walking a cow.
+            That inversion is enough
+            to break template thinking.
+            The cape ends up on the wrong body.
+          </p>
+          <div class="cta-row">
+            <a class="cta-back" href="#s0">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M11 6H1M6 11L1 6l5-5" />
+              </svg>
+              Back
+            </a>
+            <a class="cta" href="#s2">
+              Turn
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M1 6h10M6 1l5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="s2">
+        <div class="text-card">
+          <div class="h-line"></div>
+          <div class="tag">02 — Moo Walk</div>
+          <h2>NEITHER<br>LEADS</h2>
+          <p class="body-text">
+            Clashing colors. No balance.
+            A dance with no choreography.
+            When the model works against itself
+            something more genuine surfaces.
+          </p>
+          <div class="cta-row">
+            <a class="cta-back" href="#s1">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M11 6H1M6 11L1 6l5-5" />
+              </svg>
+              Back
+            </a>
+            <a class="cta" href="#s3">
+              Turn
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M1 6h10M6 1l5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="s3">
+        <div class="text-card right">
+          <div class="h-line"></div>
+          <div class="tag">03 — Bad Art</div>
+          <h2>REVERSE<br>CREATIVITY</h2>
+          <p class="body-text">
+            AI is trained to polish and regularize.
+            The harder direction is unlearning that.
+            A television for a head
+            is not an error.
+            It is the point.
+          </p>
+          <div class="stat-row" style="justify-content: flex-end">
+            <div class="stat">
+              <span class="stat-num">6</span>
+              <span class="stat-label">Works</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">360</span>
+              <span class="stat-label">Degrees</span>
+            </div>
+            <div class="stat">
+              <span class="stat-num">1</span>
+              <span class="stat-label">Object</span>
+            </div>
+          </div>
+          <div class="cta-row">
+            <a class="cta-back" href="#s2">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M11 6H1M6 11L1 6l5-5" />
+              </svg>
+              Back
+            </a>
+            <a class="cta" href="#s4">
+              Turn
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M1 6h10M6 1l5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="s4">
+        <div class="text-card">
+          <div class="h-line"></div>
+          <div class="tag">04 — No Rules</div>
+          <h2>NONSENSE<br>AT THE<br>CENTER</h2>
+          <p class="body-text">
+            Dada and the surrealists knew this.
+            Put the absurd at the center
+            and the edges stop pretending.
+            Nine heads in the branches.
+            The sun has a face and it approves.
+          </p>
+          <div class="cta-row">
+            <a class="cta-back" href="#s3">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M11 6H1M6 11L1 6l5-5" />
+              </svg>
+              Back
+            </a>
+            <a class="cta" href="#s5">
+              Turn
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M1 6h10M6 1l5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="s5">
+        <div class="text-card right">
+          <div class="h-line"></div>
+          <div class="tag">05 — Super Monsters</div>
+          <h2>RAW<br>NOT<br>POLISHED</h2>
+          <p class="body-text">
+            Forward creativity takes a sketch
+            and makes it real.
+            This goes the other way.
+            Imperfection left in place
+            is closer to something honest.
+          </p>
+          <div class="cta-row">
+            <a class="cta-back" href="#s4">
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M11 6H1M6 11L1 6l5-5" />
+              </svg>
+              Back
+            </a>
+            <a class="cta" href="#s0">
+              Begin again
+              <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M1 6h10M6 1l5 5-5 5" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="credit">
+      <a href="https://www.linkedin.com/posts/luis-martinez-lr_ai-creativity-reversecreativity-activity-7366853269517651970-zeUD?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFq1dzgByK1x_NMrcq582OMbK-_3q0DthYY" target="_blank" rel="noopener">Reverse Creativity</a>
+    </div>
+
+    <div class="meta">
+      <span>Milano &mdash; 2026</span>
+      <span>Advantages</span>
+    </div>
+
+    <!-- Main Page Layout Content -->
+    <div class="main-page">
+      <div class="ambient-1"></div>
+      <div class="ambient-2"></div>
+      <div class="cursor"></div>
+
+      <header class="site-header">
+        <div class="logo">
+          <span class="logo-cube">
+            <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+              <defs>
+                <linearGradient id="cubeGrad" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#3a3a3a" />
+                  <stop offset="100%" stop-color="#0a0a0a" />
+                </linearGradient>
+              </defs>
+              <path d="M17 3 L29 9 L29 21 L17 27 L17 15 L5 9 Z" fill="url(#cubeGrad)" stroke="#000" stroke-width="0.5" />
+              <path d="M5 9 L17 15 L17 27 L5 21 Z" fill="#2a2a2a" stroke="#000" stroke-width="0.5" />
+              <path d="M17 3 L29 9 L17 15 L5 9 Z" fill="#444" stroke="#000" stroke-width="0.5" />
+            </svg>
+          </span>
+          <span>DERMEXCEL</span>
+        </div>
+        <nav class="header-nav">
+          <a href="index.html">Home</a>
+          <a href="solutions.html">Solutions</a>
+          <a href="advantages.html" class="active">Advantages</a>
+          <a href="#">Get in touch</a>
+        </nav>
+        <a href="#" class="header-btn">Start for free
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
+        </a>
+      </header>
+
+      <main class="hero">
+        <div class="hero-left">
+          <h1 class="hero-title">
+            <span class="title-line"><span class="title-inner">Advantages</span></span>
+            <span class="title-line"><span class="title-inner"></span></span>
+            <span class="title-line"><span class="title-inner"></span></span>
+          </h1>
+        </div>
+
+        <div class="hero-right">
+        </div>
+      </main>
+
+      <footer class="site-footer">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <h3>Traffo</h3>
+            <p>The analytics platform for teams who'd rather ship than spreadsheet.</p>
+          </div>
+          <div class="footer-cols">
+            <div class="footer-col">
+              <h4>Product</h4>
+              <a href="#">Analytics</a>
+              <a href="#">Experiments</a>
+              <a href="#">Sessions</a>
+              <a href="#">Integrations</a>
+            </div>
+            <div class="footer-col">
+              <h4>Company</h4>
+              <a href="#">About</a>
+              <a href="#">Blog</a>
+              <a href="#">Careers</a>
+              <a href="#">Contact</a>
+            </div>
+            <div class="footer-col">
+              <h4>Legal</h4>
+              <a href="#">Privacy</a>
+              <a href="#">Terms</a>
+              <a href="#">Security</a>
+              <a href="#">GDPR</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 Dermal Health Science</span>
+          <span>Made with attention</span>
+        </div>
+      </footer>
     </div>
   </div>
-  <div class="footer-bottom">
-    <span>© 2026 Dermal Health Science</span>
-    <span>Made with attention</span>
-  </div>
-</footer>
-</div>
 
-<script type="importmap">
-  {
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <script type="module">
+const IMAGE_SRCS = [
+  "https://assets.codepen.io/573855/demo-raw-01.webp",
+  "https://assets.codepen.io/573855/demo-raw-02.webp",
+  "https://assets.codepen.io/573855/demo-raw-03.webp",
+  "https://assets.codepen.io/573855/demo-raw-04.webp",
+  "https://assets.codepen.io/573855/demo-raw-05.webp",
+  "https://assets.codepen.io/573855/demo-raw-06.webp"
+];
+
+const IMAGE_ASPECTS = [1, 1, 1, 1, 1, 1];
+
+const FACE_NAMES = [
+  "DESCENT",
+  "REBELLION",
+  "MOO WALK",
+  "BAD ART",
+  "NO RULES",
+  "SUPER"
+];
+
+const SWAP_RADIUS = 3;
+
+const N = IMAGE_SRCS.length;
+const STOPS = buildStops(N);
+
+const stopIndex = (s) => Math.min(N - 1, Math.floor(s * (N - 1)));
+
+function faceAtStop(i) {
+  if (i < 6) return i;
+  return 1 + ((i - 2) % 4);
+}
+
+function buildStops(n) {
+  const base = [
+    { rx: 90, ry: 0 },
+    { rx: 0, ry: 0 },
+    { rx: 0, ry: -90 },
+    { rx: 0, ry: -180 },
+    { rx: 0, ry: -270 },
+    { rx: -90, ry: -360 }
+  ];
+  const out = base.slice(0, Math.min(n, 6));
+  for (let i = 6; i < n; i++) {
+    out.push({ rx: 0, ry: -360 - (i - 6) * 90 });
+  }
+  return out;
+}
+
+const dom = {
+  cube: document.getElementById("cube"),
+  faces: [...document.querySelectorAll(".face")],
+  scrollEl: document.getElementById("scroll_container"),
+  strip: document.getElementById("scene_strip"),
+  hudPct: document.getElementById("hud_pct"),
+  progFill: document.getElementById("prog_fill"),
+  sceneName: document.getElementById("scene_name"),
+  captionNum: document.getElementById("face_caption_num"),
+  captionName: document.getElementById("face_caption_name"),
+  themeToggle: document.getElementById("theme_toggle")
+};
+
+for (let i = dom.scrollEl.querySelectorAll("section").length; i < N; i++) {
+  const sec = document.createElement("section");
+  sec.id = `s${i}`;
+  dom.scrollEl.appendChild(sec);
+}
+
+dom.strip.innerHTML = "";
+for (let i = 0; i < N; i++) {
+  const a = document.createElement("a");
+  a.href = `#s${i}`;
+  a.className = "scene-dot" + (i === 0 ? " active" : "");
+  dom.strip.appendChild(a);
+}
+
+const sceneDots = [...document.querySelectorAll(".scene-dot")];
+const sections = [...document.querySelectorAll("#scroll_container section")];
+
+const faceImgIdx = new Array(6).fill(-1);
+let currentStop = -1;
+
+const imagePromises = new Map();
+
+const isDark = () =>
+  document.documentElement.getAttribute("data-theme") === "dark";
+
+const getDarkSrc = (src) => src.replace(/\.webp$/, "-dark.webp");
+
+const getActiveSrc = (imgIdx) => {
+  const src = IMAGE_SRCS[imgIdx];
+  return isDark() ? getDarkSrc(src) : src;
+};
+
+const preloadImage = (src) => {
+  if (imagePromises.has(src)) return imagePromises.get(src);
+  const p = (async () => {
+    const img = new Image();
+    img.src = src;
+    await img.decode().catch(() => {});
+    return img;
+  })();
+  imagePromises.set(src, p);
+  return p;
+};
+
+IMAGE_SRCS.forEach((src) => {
+  preloadImage(src);
+  preloadImage(getDarkSrc(src));
+});
+
+async function setFaceImage(faceIdx, imgIdx, force = false) {
+  if (!force && faceIdx === faceAtStop(currentStop)) return;
+  if (!force && faceImgIdx[faceIdx] === imgIdx) return;
+  faceImgIdx[faceIdx] = imgIdx;
+
+  const src = getActiveSrc(imgIdx);
+  const face = dom.faces[faceIdx];
+
+  await preloadImage(src);
+
+  if (faceImgIdx[faceIdx] !== imgIdx) return;
+
+  let img = face.querySelector("img");
+  if (!img) {
+    img = new Image();
+    face.appendChild(img);
+  }
+  img.alt = FACE_NAMES[imgIdx] ?? "";
+  img.src = src;
+  img.style.objectFit = (IMAGE_ASPECTS[imgIdx] ?? 1) !== 1 ? "contain" : "";
+}
+
+const refreshFaceImages = () => {
+  const snapshot = [...faceImgIdx];
+  faceImgIdx.fill(-1);
+  snapshot.forEach((imgIdx, faceIdx) => {
+    if (imgIdx !== -1) setFaceImage(faceIdx, imgIdx, true);
+  });
+};
+
+for (let i = 0; i < Math.min(N, 6); i++) {
+  if (IMAGE_SRCS[i]) setFaceImage(i, i, true);
+}
+
+function checkImageSwaps(smooth) {
+  const base = stopIndex(smooth);
+  for (let offset = -SWAP_RADIUS; offset <= SWAP_RADIUS; offset++) {
+    if (offset === 0) continue;
+    const si = base + offset;
+    if (si < 0 || si >= N) continue;
+    setFaceImage(faceAtStop(si), si);
   }
 }
-</script>
-<script type="module" src="script.js"></script>
-<script src="main-page.js"></script>
+
+let lastFaceIdx = -1;
+
+const updateHUD = (s) => {
+  const p = Math.round(s * 100);
+  const si = sectionIndexFromScroll(scrollY);
+  currentStop = si;
+  dom.hudPct.textContent = String(p).padStart(3, "0") + "%";
+  dom.progFill.style.width = `${p}%`;
+  if (si !== lastFaceIdx) {
+    lastFaceIdx = si;
+    const name = FACE_NAMES[si] ?? "";
+    dom.sceneName.textContent = name;
+    dom.captionNum.textContent = String(si + 1).padStart(2, "0");
+    dom.captionName.textContent = name;
+    sceneDots.forEach((d, i) => d.classList.toggle("active", i === si));
+  }
+};
+
+const easeIO = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+
+const setCubeTransform = (s) => {
+  if (N < 2 || STOPS.length < 2) return;
+  const t = s * (N - 1);
+  const i = Math.min(Math.floor(t), N - 2);
+  const f = easeIO(t - i);
+  const a = STOPS[i];
+  const b = STOPS[i + 1];
+  const rx = a.rx + (b.rx - a.rx) * f;
+  const ry = a.ry + (b.ry - a.ry) * f;
+  dom.cube.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+};
+
+let sectionTops = [];
+
+const buildSectionTops = () => {
+  sectionTops = sections.map(
+    (s) => s.getBoundingClientRect().top + window.scrollY
+  );
+};
+
+const sectionIndexFromScroll = (y) => {
+  const mid = y + innerHeight * 0.5;
+  let idx = 0;
+  for (let i = 0; i < sectionTops.length; i++) {
+    if (mid >= sectionTops[i]) idx = i;
+  }
+  return Math.min(idx, N - 1);
+};
+
+const mq = window.matchMedia("(prefers-color-scheme: dark)");
+const getSystemTheme = () => (mq.matches ? "dark" : "light");
+
+const applyTheme = (theme) => {
+  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.style.colorScheme = theme;
+  refreshFaceImages();
+};
+
+applyTheme(getSystemTheme());
+mq.addEventListener("change", (e) => applyTheme(e.matches ? "dark" : "light"));
+
+dom.themeToggle.addEventListener("click", () => {
+  const cur =
+    document.documentElement.getAttribute("data-theme") || getSystemTheme();
+  applyTheme(cur === "dark" ? "light" : "dark");
+});
+
+const mqSmall = window.matchMedia("(max-width: 56.25em)");
+
+let maxScroll = 1;
+let lastScrollHeight = 0;
+let lastInnerHeight = 0;
+
+const resize = () => {
+  const h = document.documentElement.scrollHeight;
+  const vh = innerHeight;
+  if (h === lastScrollHeight && vh === lastInnerHeight) return;
+  lastScrollHeight = h;
+  lastInnerHeight = vh;
+  maxScroll = Math.max(1, h - vh);
+  buildSectionTops();
+};
+
+resize();
+
+let tgt = 0;
+let smooth = 0;
+let velocity = 0;
+
+const ease = 0.1;
+const dynamicFriction = (v) => (Math.abs(v) > 200 ? 0.8 : 0.9);
+
+window.addEventListener("resize", () => {
+  resize();
+  tgt = maxScroll > 0 ? scrollY / maxScroll : 0;
+  smooth = tgt;
+});
+
+let resizePending = false;
+const ro = new ResizeObserver(() => {
+  if (resizePending) return;
+  resizePending = true;
+  requestAnimationFrame(() => {
+    resize();
+    tgt = maxScroll > 0 ? scrollY / maxScroll : 0;
+    smooth = tgt;
+    resizePending = false;
+  });
+});
+ro.observe(document.documentElement);
+
+window.addEventListener(
+  "scroll",
+  () => {
+    tgt = maxScroll > 0 ? scrollY / maxScroll : 0;
+    tgt = Math.max(0, Math.min(1, tgt));
+  },
+  { passive: true }
+);
+
+window.addEventListener(
+  "wheel",
+  (e) => {
+    e.preventDefault();
+    const linePx = 16;
+    const pagePx = innerHeight * 0.9;
+    const delta =
+      e.deltaMode === 1
+        ? e.deltaY * linePx
+        : e.deltaMode === 2
+        ? e.deltaY * pagePx
+        : e.deltaY;
+    if (Math.abs(delta) < 5) return;
+    stopAnchorAnim();
+    velocity += delta;
+    velocity = Math.max(-600, Math.min(600, velocity));
+  },
+  { passive: false }
+);
+
+const revealEls = [
+  ...document.querySelectorAll(
+    ".tag, h1, h2, .body-text, .stat-row, .cta, .cta-back, .h-line"
+  )
+];
+
+const io = new IntersectionObserver(
+  (entries) =>
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("visible");
+        io.unobserve(e.target);
+      }
+    }),
+  { threshold: 0.1 }
+);
+revealEls.forEach((el) => io.observe(el));
+
+let lastNow = performance.now();
+
+const frame = (now) => {
+  requestAnimationFrame(frame);
+
+  if (document.hidden) {
+    lastNow = now;
+    return;
+  }
+
+  const dt = Math.min((now - lastNow) / 1000, 0.05);
+  lastNow = now;
+
+  velocity *= Math.pow(dynamicFriction(velocity), dt * 60);
+  if (Math.abs(velocity) < 0.01) velocity = 0;
+
+  if (Math.abs(velocity) > 0.2) {
+    const next = Math.max(0, Math.min(scrollY + velocity * ease, maxScroll));
+    window.scrollTo(0, next);
+    tgt = next / maxScroll;
+  }
+
+  smooth += (tgt - smooth) * (1 - Math.exp(-dt * 8));
+  smooth = Math.max(0, Math.min(1, smooth));
+
+  updateHUD(smooth);
+  checkImageSwaps(smooth);
+  setCubeTransform(smooth);
+};
+
+requestAnimationFrame(frame);
+
+let anchorAnim = null;
+let isAnchorScrolling = false;
+
+const stopAnchorAnim = () => {
+  if (anchorAnim) {
+    cancelAnimationFrame(anchorAnim);
+    anchorAnim = null;
+  }
+  isAnchorScrolling = false;
+};
+
+const easeInOutCubic = (t) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+
+const smoothScrollToY = (targetY, duration = 900) => {
+  stopAnchorAnim();
+  velocity = 0;
+  isAnchorScrolling = true;
+  const startY = window.scrollY;
+  const diff = targetY - startY;
+  const start = performance.now();
+  const tick = (now) => {
+    const p = Math.min(1, (now - start) / duration);
+    const y = startY + diff * easeInOutCubic(p);
+    window.scrollTo(0, y);
+    tgt = y / maxScroll;
+    smooth = tgt;
+    if (p < 1) {
+      anchorAnim = requestAnimationFrame(tick);
+    } else {
+      anchorAnim = null;
+      isAnchorScrolling = false;
+    }
+  };
+  anchorAnim = requestAnimationFrame(tick);
+};
+
+window.addEventListener("touchstart", stopAnchorAnim, { passive: true });
+window.addEventListener("mousedown", stopAnchorAnim, { passive: true });
+window.addEventListener("keydown", stopAnchorAnim);
+
+document.addEventListener("click", (e) => {
+  const a = e.target.closest('a[href^="#s"]');
+  if (!a) return;
+  const target = document.querySelector(a.getAttribute("href"));
+  if (!target) return;
+  e.preventDefault();
+  const isHero = a.getAttribute("href") === "#s0";
+  const idx = sections.indexOf(target);
+  const baseY =
+    idx >= 0
+      ? sectionTops[idx]
+      : target.getBoundingClientRect().top + window.scrollY;
+  const extraOffset =
+    mqSmall.matches && !isHero
+      ? Math.max(0, target.offsetHeight - innerHeight)
+      : 0;
+  smoothScrollToY(Math.max(0, baseY + extraOffset));
+});
+
+  </script>
 </body>
 </html>
