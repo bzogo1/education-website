@@ -7,14 +7,12 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600&family=Bebas+Neue&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
   <div class="glass-landing">
-    <canvas id="scene"></canvas>
-
     <h1 id="headline" class="sr-only">
       <span>Advantages</span>
     </h1>
@@ -130,15 +128,225 @@
 </header>
 
 <main class="hero">
-  <div class="hero-left">
-    <h1 class="hero-title">
-      <span class="title-line"><span class="title-inner">Advantages</span></span>
-      <span class="title-line"><span class="title-inner"></span></span>
-      <span class="title-line"><span class="title-inner"></span></span>
-    </h1>
+  <div id="scene">
+    <div id="cube">
+      <div class="face" data-face="top" data-i="0"><span class="face-ph">TOP</span></div>
+      <div class="face" data-face="front" data-i="1"><span class="face-ph">FRONT</span></div>
+      <div class="face" data-face="right" data-i="2"><span class="face-ph">RIGHT</span></div>
+      <div class="face" data-face="back" data-i="3"><span class="face-ph">BACK</span></div>
+      <div class="face" data-face="left" data-i="4"><span class="face-ph">LEFT</span></div>
+      <div class="face" data-face="bottom" data-i="5"><span class="face-ph">BOTTOM</span></div>
+    </div>
   </div>
 
-  <div class="hero-right">
+  <div id="hud">
+    <div id="hud_pct">000%</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="prog_fill"></div>
+    </div>
+    <div class="scene-label" id="scene_name">DESCENT</div>
+  </div>
+
+  <button id="theme_toggle" aria-label="Toggle light/dark mode">
+    <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+    <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z" />
+    </svg>
+  </button>
+
+  <div id="scene_strip">
+    <a href="#s0" class="scene-dot active"></a>
+    <a href="#s1" class="scene-dot"></a>
+    <a href="#s2" class="scene-dot"></a>
+    <a href="#s3" class="scene-dot"></a>
+    <a href="#s4" class="scene-dot"></a>
+    <a href="#s5" class="scene-dot"></a>
+  </div>
+
+  <div id="face_caption">
+    <div id="face_caption_num">01</div>
+    <div id="face_caption_name">DESCENT</div>
+  </div>
+
+  <div id="scroll_container">
+
+    <section id="s0">
+      <div class="text-card">
+        <div class="tag">Cube Gallery — Advantages</div>
+        <h1>ADVANTAGES<br>OF<br>EXCELLENCE</h1>
+        <p class="body-text">
+          Discover the key benefits that set our approach apart.
+          Explore each face of the cube to understand
+          how we deliver exceptional results.
+          Scroll to find out.
+        </p>
+        <div class="cta-row">
+          <a class="cta" href="#s1">
+            Explore
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M1 6h10M6 1l5 5-5 5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="s1">
+      <div class="text-card right">
+        <div class="h-line"></div>
+        <div class="tag">01 — Innovation</div>
+        <h2>CUTTING<br>EDGE<br>TECHNOLOGY</h2>
+        <p class="body-text">
+          Advanced algorithms and modern frameworks
+          power our solutions. We stay ahead of the curve
+          to deliver the best possible experience.
+        </p>
+        <div class="cta-row">
+          <a class="cta-back" href="#s0">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M11 6H1M6 11L1 6l5-5" />
+            </svg>
+            Back
+          </a>
+          <a class="cta" href="#s2">
+            Next
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M1 6h10M6 1l5 5-5 5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="s2">
+      <div class="text-card">
+        <div class="h-line"></div>
+        <div class="tag">02 — Performance</div>
+        <h2>SPEED<br>AND<br>EFFICIENCY</h2>
+        <p class="body-text">
+          Optimized performance that doesn't compromise.
+          Fast load times, smooth interactions,
+          and responsive design across all devices.
+        </p>
+        <div class="cta-row">
+          <a class="cta-back" href="#s1">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M11 6H1M6 11L1 6l5-5" />
+            </svg>
+            Back
+          </a>
+          <a class="cta" href="#s3">
+            Next
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M1 6h10M6 1l5 5-5 5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="s3">
+      <div class="text-card right">
+        <div class="h-line"></div>
+        <div class="tag">03 — Reliability</div>
+        <h2>ROBUST<br>AND<br>SECURE</h2>
+        <p class="body-text">
+          Built with security and reliability in mind.
+          Enterprise-grade protection and
+          consistent uptime you can count on.
+        </p>
+        <div class="stat-row" style="justify-content: flex-end">
+          <div class="stat">
+            <span class="stat-num">99.9</span>
+            <span class="stat-label">% Uptime</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">24/7</span>
+            <span class="stat-label">Support</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">256</span>
+            <span class="stat-label">Encryption</span>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a class="cta-back" href="#s2">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M11 6H1M6 11L1 6l5-5" />
+            </svg>
+            Back
+          </a>
+          <a class="cta" href="#s4">
+            Next
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M1 6h10M6 1l5 5-5 5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="s4">
+      <div class="text-card">
+        <div class="h-line"></div>
+        <div class="tag">04 — Scalability</div>
+        <h2>GROW<br>WITHOUT<br>LIMITS</h2>
+        <p class="body-text">
+          Infrastructure that scales with your needs.
+          From startup to enterprise, we've got you covered
+          with flexible solutions.
+        </p>
+        <div class="cta-row">
+          <a class="cta-back" href="#s3">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M11 6H1M6 11L1 6l5-5" />
+            </svg>
+            Back
+          </a>
+          <a class="cta" href="#s5">
+            Next
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M1 6h10M6 1l5 5-5 5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="s5">
+      <div class="text-card right">
+        <div class="h-line"></div>
+        <div class="tag">05 — Support</div>
+        <h2>EXPERT<br>ASSISTANCE</h2>
+        <p class="body-text">
+          Dedicated support team ready to help.
+          Expert guidance and rapid response times
+          ensure your success every step of the way.
+        </p>
+        <div class="cta-row">
+          <a class="cta-back" href="#s4">
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M11 6H1M6 11L1 6l5-5" />
+            </svg>
+            Back
+          </a>
+          <a class="cta" href="#s0">
+            Start again
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M1 6h10M6 1l5 5-5 5" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div id="credit">
+    <a href="https://www.linkedin.com/posts/luis-martinez-lr_ai-creativity-reversecreativity-activity-7366853269517651970-zeUD?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFq1dzgByK1x_NMrcq582OMbK-_3q0DthYY" target="_blank" rel="noopener">Cube Design</a>
   </div>
 </main>
 
@@ -189,5 +397,6 @@
 </script>
 <script type="module" src="script.js"></script>
 <script src="main-page.js"></script>
+<script src="cube.js"></script>
 </body>
 </html>
