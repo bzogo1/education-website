@@ -18,7 +18,7 @@ nice-highliting-markup
 parallax-card -
 product-spotlight-cards -
 scrambletext-demo -
-six-faced-cube-layout - 
+six-faced-cube-layout - INTEGRATED
 text-animations -
 tilted-carousel - 
 timeline - 
