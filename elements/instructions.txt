@@ -1,5 +1,3 @@
-add two more new pages, make them be called 
-  Solutions and Advantages. In the advantages 
-  page, add the files that are in @elements/six-
-  faced-cube-layout/, exactly how they are (dont 
-  change the appearance of the new code).
+Make a new page, it will be the sign up page, make a signup.html file, and make the page have a subpage /signup thing. 
+  On it, just keep the background white, and make a really nice looking, modern, sleek form, using ideas from @elements/
+  form-principles/

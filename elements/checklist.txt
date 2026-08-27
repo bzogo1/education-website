@@ -9,7 +9,7 @@ glowing-corner-hover-effect -
 highliting-effect - 
 juicy-buttons - 
 liquid-glass-navbar - INTEGRATED
-log-in-robot - 
+log-in-robot - INTEGRATED
 loose-leaf-paper-element - 
 main-page-layout - INTEGRATED
 micro-interactions - 
