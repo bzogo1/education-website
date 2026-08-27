@@ -1,0 +1,5 @@
+add two more new pages, make them be called 
+  Solutions and Advantages. In the advantages 
+  page, add the files that are in @elements/six-
+  faced-cube-layout/, exactly how they are (dont 
+  change the appearance of the new code).

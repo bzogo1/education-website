@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advantages - Digital Design Experience</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <div class="glass-landing">
+    <canvas id="scene"></canvas>
+
+    <h1 id="headline" class="sr-only">
+      <span>Advantages</span>
+    </h1>
+
+    <!-- Liquid Glass Navbar -->
+    <div class="nav-bg-mesh">
+      <div class="nav-blob nav-blob-1"></div>
+      <div class="nav-blob nav-blob-2"></div>
+      <div class="nav-blob nav-blob-3"></div>
+    </div>
+
+    <nav class="liquid-nav" id="nav">
+      <div class="liquid-glare-container">
+        <div class="liquid-glare" id="glare"></div>
+      </div>
+
+      <div class="nav-items">
+        <div class="active-pill" id="active-pill"></div>
+
+        <button class="nav-btn" data-page="index.html">
+          <div class="btn-content">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+            <span>Home</span>
+          </div>
+        </button>
+
+        <button class="nav-btn" data-page="solutions.html">
+          <div class="btn-content">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+              <line x1="9" y1="9" x2="9.01" y2="9"></line>
+              <line x1="15" y1="9" x2="15.01" y2="9"></line>
+            </svg>
+            <span>Solutions</span>
+          </div>
+        </button>
+
+        <button class="nav-btn active" data-page="advantages.html">
+          <div class="btn-content">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            <span>Advantages</span>
+          </div>
+        </button>
+      </div>
+
+      <div class="nav-divider"></div>
+
+      <button class="theme-btn" id="theme-btn" aria-label="Dark Mode Toggle">
+        <div class="theme-icon-wrapper">
+          <svg class="sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+          <svg class="moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </div>
+      </button>
+    </nav>
+
+<div class="meta">
+  <span>Milano &mdash; 2026</span>
+  <span>Advantages</span>
+</div>
+
+<!-- Main Page Layout Content -->
+<div class="main-page">
+  <div class="ambient-1"></div>
+  <div class="ambient-2"></div>
+  <div class="cursor"></div>
+
+<header class="site-header">
+  <div class="logo">
+    <span class="logo-cube">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <defs>
+          <linearGradient id="cubeGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#3a3a3a" />
+            <stop offset="100%" stop-color="#0a0a0a" />
+          </linearGradient>
+        </defs>
+        <path d="M17 3 L29 9 L29 21 L17 27 L17 15 L5 9 Z" fill="url(#cubeGrad)" stroke="#000" stroke-width="0.5" />
+        <path d="M5 9 L17 15 L17 27 L5 21 Z" fill="#2a2a2a" stroke="#000" stroke-width="0.5" />
+        <path d="M17 3 L29 9 L17 15 L5 9 Z" fill="#444" stroke="#000" stroke-width="0.5" />
+      </svg>
+    </span>
+    <span>DERMEXCEL</span>
+  </div>
+  <nav class="header-nav">
+    <a href="index.html">Home</a>
+    <a href="solutions.html">Solutions</a>
+    <a href="advantages.html" class="active">Advantages</a>
+    <a href="#">Get in touch</a>
+  </nav>
+  <a href="#" class="header-btn">Start for free
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M5 12h14M13 6l6 6-6 6" />
+    </svg>
+  </a>
+</header>
+
+<main class="hero">
+  <div class="hero-left">
+    <h1 class="hero-title">
+      <span class="title-line"><span class="title-inner">Advantages</span></span>
+      <span class="title-line"><span class="title-inner"></span></span>
+      <span class="title-line"><span class="title-inner"></span></span>
+    </h1>
+  </div>
+
+  <div class="hero-right">
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h3>Traffo</h3>
+      <p>The analytics platform for teams who'd rather ship than spreadsheet.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#">Analytics</a>
+        <a href="#">Experiments</a>
+        <a href="#">Sessions</a>
+        <a href="#">Integrations</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Blog</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Security</a>
+        <a href="#">GDPR</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Dermal Health Science</span>
+    <span>Made with attention</span>
+  </div>
+</footer>
+</div>
+
+<script type="importmap">
+  {
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+<script type="module" src="script.js"></script>
+<script src="main-page.js"></script>
+</body>
+</html>

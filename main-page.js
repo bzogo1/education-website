@@ -37,7 +37,7 @@ document.addEventListener("mousemove", (e) => {
   requestAnimationFrame(animateCursor);
 })();
 document
-  .querySelectorAll(".main-page a, .main-page button, .main-page .tile, .main-page .fpill, .main-page .feature-card")
+  .querySelectorAll(".main-page a, .main-page button, .main-page .tile, .main-page .fpill, .main-page .feature-card, .main-page .nav-btn")
   .forEach((el) => {
     el.addEventListener("mouseenter", () =>
       gsap.to(cursor, { width: 36, height: 36, duration: 0.3 })
@@ -354,7 +354,7 @@ if (nav && activePill && themeBtn) {
   }
 
   // Set position without jerk on first load
-  const initialActive = document.querySelector(".nav-btn.active");
+  const initialActive = document.querySelector(".nav-items .nav-btn.active");
   if (initialActive) {
     setTimeout(() => {
       updatePill(initialActive, false);
@@ -365,10 +365,20 @@ if (nav && activePill && themeBtn) {
 
   // Click on navigation
   navButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      navButtons.forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      updatePill(btn);
+    btn.addEventListener("click", (e) => {
+      // Only handle if it's a button (not a link)
+      if (btn.tagName === 'BUTTON') {
+        e.preventDefault();
+        navButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        updatePill(btn);
+        
+        // Navigate to the page specified in data-page attribute
+        const targetPage = btn.getAttribute('data-page');
+        if (targetPage) {
+          window.location.href = targetPage;
+        }
+      }
     });
   });
 
@@ -380,14 +390,14 @@ if (nav && activePill && themeBtn) {
     
     // Wait briefly in case font widths (font-weight) change slightly
     setTimeout(() => {
-      const active = document.querySelector(".nav-btn.active");
+      const active = document.querySelector(".nav-items .nav-btn.active");
       if (active) updatePill(active);
     }, 100);
   });
 
   // Adjust position immediately when window is rotated/scaled
   window.addEventListener("resize", () => {
-    const active = document.querySelector(".nav-btn.active");
+    const active = document.querySelector(".nav-items .nav-btn.active");
     if (active) updatePill(active, false);
   });
 
