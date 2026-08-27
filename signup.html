@@ -116,20 +116,74 @@
       min-height: 100vh;
       min-height: 100svh;
 
-      display: grid;
-      place-items: center;
-
-      padding: 110px 24px 70px;
+      display: flex;
+      padding: 0;
 
       overflow: clip;
       position: relative;
 
-      background:
-        radial-gradient(
-          rgba(35, 37, 45, .07) 1.2px,
-          transparent 1.3px
-        ) 0 0 / 24px 24px,
-        var(--paper);
+      background: var(--paper);
+    }
+
+    .split-container {
+      display: flex;
+      width: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
+    }
+
+    .left-side {
+      width: 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: var(--paper);
+      position: relative;
+    }
+
+    .right-side {
+      width: 75%;
+      position: relative;
+      background-image: url('https://i.pinimg.com/736x/f4/c2/5a/f4c25a47ab96646ceb333d132491f7b0.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 48px;
+    }
+
+    .right-side::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(35, 37, 45, 0.7) 0%, rgba(35, 37, 45, 0.4) 100%);
+    }
+
+    .right-side-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: white;
+      max-width: 500px;
+    }
+
+    .right-side-content h2 {
+      font-family: 'Sora', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .right-side-content p {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      opacity: 0.9;
     }
 
     .stage {
@@ -137,6 +191,7 @@
       flex-direction: column;
       align-items: center;
       position: relative;
+      width: 100%;
     }
 
     /* =========================================================
@@ -153,15 +208,17 @@
         float 4s ease-in-out infinite alternate;
 
       perspective: 800px;
+
+      transform: scale(0.7);
     }
 
     @keyframes float {
       from {
-        transform: translateY(0);
+        transform: scale(0.7) translateY(0);
       }
 
       to {
-        transform: translateY(-5px);
+        transform: scale(0.7) translateY(-5px);
       }
     }
 
@@ -673,19 +730,19 @@
         'Sora',
         sans-serif;
 
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 600;
 
       line-height: 1.35;
 
       padding:
-        9px
-        14px;
+        8px
+        12px;
 
       border-radius: 12px;
 
       width: max-content;
-      max-width: 250px;
+      max-width: 200px;
 
       text-align: center;
 
@@ -746,8 +803,8 @@
 
       width:
         min(
-          344px,
-          calc(100vw - 48px)
+          320px,
+          calc(100% - 20px)
         );
 
       background:
@@ -763,9 +820,9 @@
       border-radius: 20px;
 
       padding:
-        36px
         28px
-        40px;
+        20px
+        32px;
 
       box-shadow:
         8px 9px 0 rgba(35, 37, 45, .9);
@@ -1194,15 +1251,59 @@
        RESPONSIVE
        ========================================================= */
 
+    @media (max-width: 968px) {
+      .split-container {
+        flex-direction: column;
+      }
+
+      .left-side {
+        width: 100%;
+        padding: 48px 24px;
+        min-height: auto;
+      }
+
+      .right-side {
+        width: 100%;
+        min-height: 300px;
+        padding: 32px;
+      }
+
+      .robot {
+        transform: scale(0.8);
+      }
+
+      @keyframes float {
+        from {
+          transform: scale(0.8) translateY(0);
+        }
+
+        to {
+          transform: scale(0.8) translateY(-5px);
+        }
+      }
+
+      .card {
+        margin-top: 24px;
+      }
+    }
+
     @media (max-width: 560px) {
       .scene {
-        padding-top: 96px;
+        padding-top: 0;
       }
 
       .bubble {
-        max-width: 210px;
+        max-width: 180px;
 
-        font-size: 12.5px;
+        font-size: 11px;
+      }
+
+      .right-side-content h2 {
+        font-size: 24px;
+      }
+
+      .right-side-content p {
+        font-size: 14px;
       }
     }
 
@@ -1258,99 +1359,108 @@
 
     <div class="scene">
 
-      <main class="stage" id="stage">
+      <div class="split-container">
 
-        <!-- ROBOT -->
-        <div
-          class="robot"
-          id="robot"
-          data-mood="idle"
-        >
+        <!-- LEFT SIDE - Robot and Form -->
+        <div class="left-side">
 
-          <!-- Speech bubble -->
-          <div
-            class="bubble"
-            id="bubble"
-            role="status"
-            aria-live="polite"
-          >
-            <span id="bubbleText">
-              Hi. I'm Volt. I guard this form.
-            </span>
-          </div>
+          <main class="stage" id="stage">
 
-          <!-- Antenna -->
-          <div
-            class="antenna"
-            aria-hidden="true"
-          >
-            <span class="antenna-rod"></span>
-            <span class="antenna-tip"></span>
-          </div>
-
-          <!-- 3D Head -->
-          <div
-            class="head3d"
-            aria-hidden="true"
-          >
-
+            <!-- ROBOT -->
             <div
-              class="head"
-              id="head"
+              class="robot"
+              id="robot"
+              data-mood="idle"
             >
 
-              <span class="ear ear--l"></span>
-              <span class="ear ear--r"></span>
-
-              <!-- FRONT -->
-              <div class="face face--front">
-
-                <div class="visor">
-
-                  <div
-                    class="eyes"
-                    id="eyes"
-                  >
-                    <span class="eye eye--l"></span>
-                    <span class="eye eye--r"></span>
-                  </div>
-
-                  <span class="cheek cheek--l"></span>
-                  <span class="cheek cheek--r"></span>
-
-                  <span class="mouth"></span>
-
-                </div>
-
+              <!-- Speech bubble -->
+              <div
+                class="bubble"
+                id="bubble"
+                role="status"
+                aria-live="polite"
+              >
+                <span id="bubbleText">
+                  Hi. I'm Volt. I guard this form.
+                </span>
               </div>
 
-              <!-- BACK -->
-              <div class="face face--back">
+              <!-- Antenna -->
+              <div
+                class="antenna"
+                aria-hidden="true"
+              >
+                <span class="antenna-rod"></span>
+                <span class="antenna-tip"></span>
+              </div>
 
-                <div class="panel">
+              <!-- 3D Head -->
+              <div
+                class="head3d"
+                aria-hidden="true"
+              >
 
-                  <span class="panel-lights">
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                  </span>
+                <div
+                  class="head"
+                  id="head"
+                >
 
-                  <div
-                    class="meter"
-                    id="meter"
-                  >
-                    <i></i>
-                    <i></i>
-                    <i></i>
-                    <i></i>
+                  <span class="ear ear--l"></span>
+                  <span class="ear ear--r"></span>
+
+                  <!-- FRONT -->
+                  <div class="face face--front">
+
+                    <div class="visor">
+
+                      <div
+                        class="eyes"
+                        id="eyes"
+                      >
+                        <span class="eye eye--l"></span>
+                        <span class="eye eye--r"></span>
+                      </div>
+
+                      <span class="cheek cheek--l"></span>
+                      <span class="cheek cheek--r"></span>
+
+                      <span class="mouth"></span>
+
+                    </div>
+
                   </div>
 
-                  <p
-                    class="panel-label"
-                    id="panelLabel"
-                  >
-                    NOT LOOKING
-                  </p>
+                  <!-- BACK -->
+                  <div class="face face--back">
+
+                    <div class="panel">
+
+                      <span class="panel-lights">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                      </span>
+
+                      <div
+                        class="meter"
+                        id="meter"
+                      >
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                      </div>
+
+                      <p
+                        class="panel-label"
+                        id="panelLabel"
+                      >
+                        NOT LOOKING
+                      </p>
+
+                    </div>
+
+                  </div>
 
                 </div>
 
@@ -1358,159 +1468,167 @@
 
             </div>
 
-          </div>
+            <!-- LOGIN FORM -->
+            <form
+              class="card"
+              id="form"
+              novalidate
+            >
+
+              <!-- Hands -->
+              <span
+                class="hand hand--l"
+                aria-hidden="true"
+              ></span>
+
+              <span
+                class="hand hand--r"
+                aria-hidden="true"
+              ></span>
+
+              <!-- Title -->
+              <h1 class="title">
+                Who goes there?
+              </h1>
+
+              <!-- NAME -->
+              <label class="field">
+
+                <svg
+                  class="field-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2c-3.9 0-8 2-8 5v1.5h16V19c0-3-4.1-5-8-5Z"
+                  />
+                </svg>
+
+                <input
+                  id="name"
+                  type="text"
+                  placeholder="Your name"
+                  autocomplete="name"
+                  aria-label="Your name"
+                >
+
+              </label>
+
+              <!-- EMAIL -->
+              <label class="field">
+
+                <svg
+                  class="field-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm8 7.3L4.4 7h15.2L12 12.3ZM4 9.2V17h16V9.2l-8 5.3-8-5.3Z"
+                  />
+                </svg>
+
+                <input
+                  id="email"
+                  type="email"
+                  placeholder="Your email"
+                  autocomplete="email"
+                  aria-label="Your email"
+                >
+
+              </label>
+
+              <!-- PASSWORD -->
+              <label class="field">
+
+                <svg
+                  class="field-icon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm-3 8V7a3 3 0 0 1 6 0v3H9Zm3 4a2 2 0 0 1 1 3.7V19h-2v-1.3a2 2 0 0 1 1-3.7Z"
+                  />
+                </svg>
+
+                <input
+                  id="password"
+                  type="password"
+                  placeholder="Super secret password"
+                  autocomplete="new-password"
+                  aria-label="Password"
+                >
+
+                <!-- Password visibility -->
+                <button
+                  class="peek"
+                  id="togglePass"
+                  type="button"
+                  aria-label="Show password"
+                  aria-pressed="false"
+                >
+
+                  <svg
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M12 5c-5 0-9.3 3.1-11 7.5C2.7 16.9 7 20 12 20s9.3-3.1 11-7.5C21.3 8.1 17 5 12 5Zm0 12.5a5 5 0 1 1 5-5 5 5 0 0 1-5 5Zm0-8a3 3 0 1 0 3 3 3 3 0 0 0-3-3Z"
+                    />
+                  </svg>
+
+                </button>
+
+              </label>
+
+              <!-- LOGIN -->
+              <button
+                class="btn"
+                id="loginBtn"
+                type="submit"
+              >
+
+                <span
+                  class="btn-bolt"
+                  aria-hidden="true"
+                >
+                  ⚡
+                </span>
+
+                <span
+                  class="btn-label"
+                  id="btnLabel"
+                >
+                  SIGN ME UP
+                </span>
+
+              </button>
+
+              <!-- Feet -->
+              <span
+                class="foot foot--l"
+                aria-hidden="true"
+              ></span>
+
+              <span
+                class="foot foot--r"
+                aria-hidden="true"
+              ></span>
+
+            </form>
+
+          </main>
 
         </div>
 
-        <!-- LOGIN FORM -->
-        <form
-          class="card"
-          id="form"
-          novalidate
-        >
+        <!-- RIGHT SIDE - Background Image and Text -->
+        <div class="right-side">
+          <div class="right-side-content">
+            <h2>Join the Future of Learning</h2>
+            <p>Create your account and embark on an educational journey like never before. Experience cutting-edge digital design and interactive learning.</p>
+          </div>
+        </div>
 
-          <!-- Hands -->
-          <span
-            class="hand hand--l"
-            aria-hidden="true"
-          ></span>
-
-          <span
-            class="hand hand--r"
-            aria-hidden="true"
-          ></span>
-
-          <!-- Title -->
-          <h1 class="title">
-            Beep boop. Who goes there?
-          </h1>
-
-          <!-- NAME -->
-          <label class="field">
-
-            <svg
-              class="field-icon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2c-3.9 0-8 2-8 5v1.5h16V19c0-3-4.1-5-8-5Z"
-              />
-            </svg>
-
-            <input
-              id="name"
-              type="text"
-              placeholder="Your name"
-              autocomplete="name"
-              aria-label="Your name"
-            >
-
-          </label>
-
-          <!-- EMAIL -->
-          <label class="field">
-
-            <svg
-              class="field-icon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm8 7.3L4.4 7h15.2L12 12.3ZM4 9.2V17h16V9.2l-8 5.3-8-5.3Z"
-              />
-            </svg>
-
-            <input
-              id="email"
-              type="email"
-              placeholder="Your email"
-              autocomplete="email"
-              aria-label="Your email"
-            >
-
-          </label>
-
-          <!-- PASSWORD -->
-          <label class="field">
-
-            <svg
-              class="field-icon"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm-3 8V7a3 3 0 0 1 6 0v3H9Zm3 4a2 2 0 0 1 1 3.7V19h-2v-1.3a2 2 0 0 1 1-3.7Z"
-              />
-            </svg>
-
-            <input
-              id="password"
-              type="password"
-              placeholder="Super secret password"
-              autocomplete="new-password"
-              aria-label="Password"
-            >
-
-            <!-- Password visibility -->
-            <button
-              class="peek"
-              id="togglePass"
-              type="button"
-              aria-label="Show password"
-              aria-pressed="false"
-            >
-
-              <svg
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  d="M12 5c-5 0-9.3 3.1-11 7.5C2.7 16.9 7 20 12 20s9.3-3.1 11-7.5C21.3 8.1 17 5 12 5Zm0 12.5a5 5 0 1 1 5-5 5 5 0 0 1-5 5Zm0-8a3 3 0 1 0 3 3 3 3 0 0 0-3-3Z"
-                />
-              </svg>
-
-            </button>
-
-          </label>
-
-          <!-- LOGIN -->
-          <button
-            class="btn"
-            id="loginBtn"
-            type="submit"
-          >
-
-            <span
-              class="btn-bolt"
-              aria-hidden="true"
-            >
-              ⚡
-            </span>
-
-            <span
-              class="btn-label"
-              id="btnLabel"
-            >
-              LOG ME IN
-            </span>
-
-          </button>
-
-          <!-- Feet -->
-          <span
-            class="foot foot--l"
-            aria-hidden="true"
-          ></span>
-
-          <span
-            class="foot foot--r"
-            aria-hidden="true"
-          ></span>
-
-        </form>
-
-      </main>
+      </div>
 
     </div>
 
