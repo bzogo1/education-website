@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Sign Up - Digital Design Experience</title>
+  <title>Sign In - Digital Design Experience</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1381,7 +1381,7 @@
                 aria-live="polite"
               >
                 <span id="bubbleText">
-                  Hi. I'm Volt. I guard this form.
+                  Hi. I'm Volt. Welcome back.
                 </span>
               </div>
 
@@ -1488,31 +1488,8 @@
 
               <!-- Title -->
               <h1 class="title">
-                Who goes there?
+                Welcome back
               </h1>
-
-              <!-- NAME -->
-              <label class="field">
-
-                <svg
-                  class="field-icon"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2c-3.9 0-8 2-8 5v1.5h16V19c0-3-4.1-5-8-5Z"
-                  />
-                </svg>
-
-                <input
-                  id="name"
-                  type="text"
-                  placeholder="Your name"
-                  autocomplete="name"
-                  aria-label="Your name"
-                >
-
-              </label>
 
               <!-- EMAIL -->
               <label class="field">
@@ -1530,9 +1507,9 @@
                 <input
                   id="email"
                   type="email"
-                  placeholder="Your email"
+                  placeholder="Email address"
                   autocomplete="email"
-                  aria-label="Your email"
+                  aria-label="Email address"
                 >
 
               </label>
@@ -1553,8 +1530,8 @@
                 <input
                   id="password"
                   type="password"
-                  placeholder="Super secret password"
-                  autocomplete="new-password"
+                  placeholder="Password"
+                  autocomplete="current-password"
                   aria-label="Password"
                 >
 
@@ -1580,6 +1557,11 @@
 
               </label>
 
+              <!-- Forgot password link -->
+              <div style="text-align: right; margin-bottom: 16px;">
+                <a href="#" style="font-size: 12px; color: var(--muted); text-decoration: none; font-family: 'Sora', sans-serif; font-weight: 500;">Forgot password?</a>
+              </div>
+
               <!-- LOGIN -->
               <button
                 class="btn"
@@ -1598,7 +1580,7 @@
                   class="btn-label"
                   id="btnLabel"
                 >
-                  SIGN ME UP
+                  SIGN IN
                 </span>
 
               </button>
@@ -1623,8 +1605,8 @@
         <!-- RIGHT SIDE - Background Image and Text -->
         <div class="right-side">
           <div class="right-side-content">
-            <h2>Join the Future of Learning</h2>
-            <p>Create your account and embark on an educational journey like never before. Experience cutting-edge digital design and interactive learning.</p>
+            <h2>Welcome Back</h2>
+            <p>Sign in to continue your educational journey. Access your courses, track your progress, and connect with the community.</p>
           </div>
         </div>
 
@@ -1655,7 +1637,6 @@
 
     const form = $('#form');
 
-    const nameI = $('#name');
     const emailI = $('#email');
     const passI = $('#password');
 
@@ -1769,56 +1750,6 @@
     }
 
     /* =========================================================
-       NAME
-       ========================================================= */
-
-    nameI.addEventListener(
-      'focus',
-      () => {
-
-        turnAway(false);
-
-        setMood('watching');
-
-        say(
-          pick([
-            "A visitor. State your name.",
-            "Typing detected. Go on, I'm watching."
-          ])
-        );
-
-        followTyping(nameI);
-      }
-    );
-
-    nameI.addEventListener(
-      'input',
-      () => {
-
-        followTyping(nameI);
-
-        const value =
-          nameI.value.trim();
-
-        if (value.length >= 2) {
-
-          say(
-            `${value}. Solid name. Filed forever.`
-          );
-
-        } else if (
-          value.length === 0
-        ) {
-
-          say(
-            "Deleted. I've already forgotten it. Mostly."
-          );
-
-        }
-      }
-    );
-
-    /* =========================================================
        EMAIL
        ========================================================= */
 
@@ -1831,7 +1762,7 @@
         setMood('watching');
 
         say(
-          "Email next. I don't do spam — I don't even have an inbox."
+          "Email please. Let's get you signed in."
         );
 
         followTyping(emailI);
@@ -1854,8 +1785,8 @@
 
           say(
             pick([
-              "Now that is a proper email. Respect.",
-              "Valid address detected. Quietly delighted."
+              "That email looks familiar. Good.",
+              "Valid address. Let's continue."
             ])
           );
 
@@ -1868,7 +1799,7 @@
           ) {
 
             say(
-              "Close. My sensors say: not yet."
+              "Almost there. Check the format."
             );
 
           }
@@ -1894,7 +1825,7 @@
         tilt(0, 0);
 
         say(
-          "A secret? Say no more. *turns around*"
+          "Password time. I'll look away. *turns around*"
         );
 
         panelLabel.textContent =
@@ -1926,34 +1857,12 @@
 
         let score = 0;
 
-        if (value.length >= 8) {
-          score++;
-        }
-
-        if (
-          /[a-z]/.test(value) &&
-          /[A-Z]/.test(value)
-        ) {
-          score++;
-        }
-
-        if (
-          /\d/.test(value)
-        ) {
-          score++;
-        }
-
-        if (
-          /[^a-zA-Z0-9]/.test(value)
-        ) {
-          score++;
-        }
-
-        if (
-          value.length > 0 &&
-          score === 0
-        ) {
+        if (value.length > 0) {
           score = 1;
+        }
+
+        if (value.length >= 8) {
+          score = 2;
         }
 
         meter.dataset.lvl =
@@ -1973,13 +1882,9 @@
         panelLabel.textContent =
           value.length === 0
             ? 'NOT LOOKING'
-            : [
-                'NOT LOOKING',
-                'TOO SHORT',
-                'GETTING THERE',
-                'STRONG',
-                'FORT KNOX'
-              ][score];
+            : value.length >= 8
+              ? 'LOOKS GOOD'
+              : 'KEEP TYPING';
       }
     );
 
@@ -2014,7 +1919,7 @@
         if (show) {
 
           say(
-            "Revealing it? Good thing I'm facing the wall."
+            "Checking your password? I'm still looking away."
           );
 
         }
@@ -2055,8 +1960,8 @@
 
         say(
           pick([
-            'Ooh. Do it. Press it.',
-            'This is my favorite part.'
+            'Go ahead. Sign in.',
+            'Let’s get you logged in.'
           ])
         );
 
@@ -2114,9 +2019,9 @@
 
         say(
           pick([
-            'Ahh. That’s the stuff.',
-            'Mmm. Satisfying.',
-            'Beep. Do that again.'
+            'Nice. Press it firmly.',
+            'Good pressure. Almost there.',
+            'Click confirmed. Processing.'
           ])
         );
       }
@@ -2195,22 +2100,13 @@
         const complaints = [];
 
         if (
-          !nameI.value.trim()
-        ) {
-
-          complaints.push([
-            "Still don't know your name.",
-            nameI
-          ]);
-
-        } else if (
           !EMAIL_RE.test(
             emailI.value.trim()
           )
         ) {
 
           complaints.push([
-            "That email isn't a real place.",
+            "That email doesn't look right.",
             emailI
           ]);
 
@@ -2219,7 +2115,7 @@
         ) {
 
           complaints.push([
-            "A password would help.",
+            "Password required to continue.",
             passI
           ]);
 
@@ -2282,7 +2178,7 @@
               'success';
 
             say(
-              `Access granted. Welcome, ${nameI.value.trim()}.`
+              "Access granted. Welcome back!"
             );
 
             btn.classList.add(
@@ -2343,7 +2239,7 @@
       );
 
       btnLabel.textContent =
-        'LOG ME IN';
+        'SIGN IN';
 
       say(
         'Again? I could do this all day.'
