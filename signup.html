@@ -3,84 +3,2477 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Sign Up - Digital Design Experience</title>
-  <link rel="stylesheet" href="styles.css">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600&family=Sora:wght@500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    /* =========================================================
+       ORIGINAL PAGE
+       ========================================================= */
+
+    :root {
+      --page-bg: #f4efe5;
+      --page-text: #23252d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      font-family:
+        'Plus Jakarta Sans',
+        'Manrope',
+        'Segoe UI',
+        sans-serif;
+      color: var(--page-text);
+    }
+
+    .main-page {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      overflow: hidden;
+    }
+
+    .ambient-1,
+    .ambient-2,
+    .cursor {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .ambient-1,
+    .ambient-2 {
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+    }
+
+    .ambient-1 {
+      width: 400px;
+      height: 400px;
+      background: #ff6b4b;
+      top: -150px;
+      left: -150px;
+    }
+
+    .ambient-2 {
+      width: 400px;
+      height: 400px;
+      background: #2ec4b6;
+      bottom: -150px;
+      right: -150px;
+    }
+
+    .cursor {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #23252d;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      z-index: 100;
+    }
+
+    /* =========================================================
+       VOLT LOGIN ROBOT
+       ========================================================= */
+
+    :root {
+      --paper: #f4efe5;
+      --ink: #23252d;
+      --accent: #ff6b4b;
+      --accent-deep: #e5532f;
+      --teal: #2ec4b6;
+      --yellow: #ffc53d;
+      --shell: #fffdf8;
+      --screen: #23252d;
+      --eye: #fffdf8;
+      --muted: #9a948a;
+      --field: #faf7f0;
+      --line: 2px solid var(--ink);
+      --turn: .65s cubic-bezier(.5, -0.3, .25, 1.35);
+    }
+
+    .scene {
+      min-height: 100vh;
+      min-height: 100svh;
+
+      display: grid;
+      place-items: center;
+
+      padding: 110px 24px 70px;
+
+      overflow: clip;
+      position: relative;
+
+      background:
+        radial-gradient(
+          rgba(35, 37, 45, .07) 1.2px,
+          transparent 1.3px
+        ) 0 0 / 24px 24px,
+        var(--paper);
+    }
+
+    .stage {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* =========================================================
+       ROBOT
+       ========================================================= */
+
+    .robot {
+      position: relative;
+      z-index: 1;
+
+      margin-bottom: -16px;
+
+      animation:
+        float 4s ease-in-out infinite alternate;
+
+      perspective: 800px;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-5px);
+      }
+    }
+
+    /* =========================================================
+       ANTENNA
+       ========================================================= */
+
+    .antenna {
+      position: absolute;
+      top: -32px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      z-index: 2;
+    }
+
+    .antenna-rod {
+      width: 4px;
+      height: 22px;
+
+      background: var(--ink);
+      border-radius: 2px;
+    }
+
+    .antenna-tip {
+      width: 15px;
+      height: 15px;
+
+      border-radius: 50%;
+      background: var(--accent);
+      border: var(--line);
+
+      order: -1;
+      margin-bottom: -2px;
+
+      position: relative;
+
+      animation:
+        bob 2.4s ease-in-out infinite;
+    }
+
+    .antenna-tip::after {
+      content: '';
+
+      position: absolute;
+
+      top: 2px;
+      left: 3px;
+
+      width: 4px;
+      height: 4px;
+
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, .85);
+    }
+
+    @keyframes bob {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-2.5px);
+      }
+    }
+
+    .robot[data-mood="excited"] .antenna-tip {
+      animation-duration: .4s;
+      background: var(--yellow);
+    }
+
+    .robot[data-mood="success"] .antenna-tip {
+      background: var(--teal);
+    }
+
+    /* =========================================================
+       HEAD
+       ========================================================= */
+
+    .head3d {
+      width: 152px;
+      height: 140px;
+
+      perspective: 700px;
+      transform-style: preserve-3d;
+
+      transform:
+        translateY(var(--hy, 0px))
+        scale(var(--hsc, 1))
+        rotateX(var(--rx, 0deg))
+        rotateY(var(--ry, 0deg));
+
+      transition: transform .25s ease-out;
+
+      will-change: transform;
+    }
+
+    .is-hyped .head3d {
+      --hy: 5px;
+      --hsc: 1.04;
+    }
+
+    .is-pressed .head3d {
+      --hy: 9px;
+      --hsc: .94;
+    }
+
+    .head {
+      position: relative;
+
+      width: 100%;
+      height: 100%;
+
+      transform-style: preserve-3d;
+
+      transition: transform var(--turn);
+    }
+
+    .is-turned .head {
+      transform: rotateY(180deg);
+    }
+
+    .is-spinning .head {
+      animation: victory .9s ease-in-out;
+    }
+
+    @keyframes victory {
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+
+    /* =========================================================
+       EARS
+       ========================================================= */
+
+    .ear {
+      position: absolute;
+
+      top: 48px;
+
+      width: 16px;
+      height: 40px;
+
+      background: var(--shell);
+      border: var(--line);
+      border-radius: 8px;
+
+      transform: translateZ(0);
+    }
+
+    .ear--l {
+      left: -10px;
+    }
+
+    .ear--r {
+      right: -10px;
+    }
+
+    /* =========================================================
+       FACES
+       ========================================================= */
+
+    .face {
+      position: absolute;
+      inset: 0;
+
+      border-radius: 34px;
+
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+
+      background: var(--shell);
+      border: var(--line);
+    }
+
+    .face--front {
+      box-shadow:
+        5px 6px 0 rgba(35, 37, 45, .16);
+    }
+
+    .face--back {
+      box-shadow:
+        5px 6px 0 rgba(35, 37, 45, .16);
+
+      transform: rotateY(180deg);
+
+      display: grid;
+      place-items: center;
+    }
+
+    /* =========================================================
+       VISOR
+       ========================================================= */
+
+    .visor {
+      position: absolute;
+
+      inset: 22px 16px 20px;
+
+      background: var(--screen);
+
+      border-radius: 22px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 13px;
+
+      overflow: hidden;
+    }
+
+    .eyes {
+      display: flex;
+      gap: 28px;
+
+      transform:
+        translate(
+          var(--lx, 0px),
+          var(--ly, 0px)
+        );
+
+      transition:
+        transform .18s ease-out;
+    }
+
+    .eyes.blink .eye {
+      transform: scaleY(.08);
+    }
+
+    .eye {
+      width: 19px;
+      height: 25px;
+
+      border-radius: 9px;
+
+      background: var(--eye);
+
+      transition:
+        all .22s ease;
+    }
+
+    /* Happy eyes */
+
+    [data-mood="happy"] .eye,
+    [data-mood="success"] .eye {
+      width: 25px;
+      height: 12px;
+
+      background: transparent;
+
+      border: 5px solid var(--eye);
+      border-bottom: none;
+
+      border-radius:
+        25px 25px 0 0;
+    }
+
+    [data-mood="excited"] .eye {
+      transform: scale(1.2);
+
+      border-radius: 50%;
+
+      height: 21px;
+    }
+
+    /* Pressed eyes */
+
+    [data-mood="pressed"] .eye {
+      width: 24px;
+      height: 12px;
+
+      background: transparent;
+
+      border: 5px solid var(--eye);
+      border-top: none;
+
+      border-radius:
+        0 0 24px 24px;
+    }
+
+    /* =========================================================
+       CHEEKS
+       ========================================================= */
+
+    .cheek {
+      position: absolute;
+
+      top: 59%;
+
+      width: 15px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: var(--accent);
+
+      opacity: 0;
+
+      transition:
+        opacity .3s ease;
+    }
+
+    .cheek--l {
+      left: 15px;
+    }
+
+    .cheek--r {
+      right: 15px;
+    }
+
+    [data-mood="happy"] .cheek,
+    [data-mood="excited"] .cheek,
+    [data-mood="pressed"] .cheek,
+    [data-mood="success"] .cheek {
+      opacity: .9;
+    }
+
+    /* =========================================================
+       MOUTH
+       ========================================================= */
+
+    .mouth {
+      width: 15px;
+      height: 5px;
+
+      border-radius: 4px;
+
+      background: var(--eye);
+
+      transition:
+        all .25s ease;
+    }
+
+    [data-mood="watching"] .mouth {
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+    }
+
+    [data-mood="happy"] .mouth {
+      width: 30px;
+      height: 12px;
+
+      border-radius:
+        0 0 16px 16px;
+    }
+
+    [data-mood="excited"] .mouth {
+      width: 22px;
+      height: 16px;
+
+      border-radius:
+        0 0 13px 13px;
+    }
+
+    [data-mood="pressed"] .mouth {
+      width: 27px;
+      height: 15px;
+
+      border-radius:
+        0 0 14px 14px;
+    }
+
+    [data-mood="success"] .mouth {
+      width: 38px;
+      height: 17px;
+
+      border-radius:
+        0 0 20px 20px;
+    }
+
+    /* =========================================================
+       BACK PANEL
+       ========================================================= */
+
+    .panel {
+      width: 116px;
+
+      padding:
+        12px
+        10px
+        10px;
+
+      background: var(--screen);
+
+      border-radius: 16px;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+
+      gap: 8px;
+    }
+
+    .panel-lights {
+      display: flex;
+      gap: 6px;
+    }
+
+    .panel-lights i {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: var(--accent);
+
+      animation:
+        bob 1.8s ease-in-out infinite;
+    }
+
+    .panel-lights i:nth-child(2) {
+      animation-delay: .3s;
+      background: var(--yellow);
+    }
+
+    .panel-lights i:nth-child(3) {
+      animation-delay: .6s;
+      background: var(--teal);
+    }
+
+    .meter {
+      display: flex;
+      gap: 5px;
+    }
+
+    .meter i {
+      width: 15px;
+      height: 20px;
+
+      border-radius: 4px;
+
+      background: #3b3e49;
+
+      transition:
+        background .25s ease;
+    }
+
+    .meter[data-lvl="1"] i.on {
+      background: #ff5c4d;
+    }
+
+    .meter[data-lvl="2"] i.on {
+      background: #ff9f43;
+    }
+
+    .meter[data-lvl="3"] i.on {
+      background: var(--yellow);
+    }
+
+    .meter[data-lvl="4"] i.on {
+      background: var(--teal);
+    }
+
+    .panel-label {
+      font-family:
+        'JetBrains Mono',
+        monospace;
+
+      font-size: 9px;
+      font-weight: 800;
+
+      letter-spacing: 1.5px;
+
+      max-width: 100%;
+
+      overflow: hidden;
+
+      text-overflow: ellipsis;
+
+      color: var(--paper);
+
+      white-space: nowrap;
+    }
+
+    /* =========================================================
+       SPEECH BUBBLE
+       ========================================================= */
+
+    .bubble {
+      position: absolute;
+
+      bottom: calc(100% + 16px);
+      left: 50%;
+
+      transform:
+        translateX(-50%);
+
+      background: var(--shell);
+
+      border: var(--line);
+
+      color: var(--ink);
+
+      font-family:
+        'Sora',
+        sans-serif;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      line-height: 1.35;
+
+      padding:
+        9px
+        14px;
+
+      border-radius: 12px;
+
+      width: max-content;
+      max-width: 250px;
+
+      text-align: center;
+
+      box-shadow:
+        3px 3px 0 rgba(35, 37, 45, .9);
+
+      z-index: 3;
+    }
+
+    .bubble::after {
+      content: '';
+
+      position: absolute;
+
+      top: calc(100% - 5px);
+      left: 50%;
+
+      width: 10px;
+      height: 10px;
+
+      background: var(--shell);
+
+      border-right: var(--line);
+      border-bottom: var(--line);
+
+      transform:
+        translateX(-50%)
+        rotate(45deg);
+    }
+
+    .bubble.pop {
+      animation:
+        pop .3s
+        cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    @keyframes pop {
+      from {
+        transform:
+          translateX(-50%)
+          scale(.8);
+      }
+
+      to {
+        transform:
+          translateX(-50%)
+          scale(1);
+      }
+    }
+
+    /* =========================================================
+       FORM CARD
+       ========================================================= */
+
+    .card {
+      position: relative;
+      z-index: 2;
+
+      width:
+        min(
+          344px,
+          calc(100vw - 48px)
+        );
+
+      background:
+        linear-gradient(
+          165deg,
+          #fffefb 0%,
+          #fdfaf3 45%,
+          #f7f1e4 100%
+        );
+
+      border: var(--line);
+
+      border-radius: 20px;
+
+      padding:
+        36px
+        28px
+        40px;
+
+      box-shadow:
+        8px 9px 0 rgba(35, 37, 45, .9);
+    }
+
+    /* =========================================================
+       HANDS
+       ========================================================= */
+
+    .hand {
+      position: absolute;
+
+      top: -16px;
+
+      width: 44px;
+      height: 32px;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent 31%,
+          rgba(35, 37, 45, .9) 32%,
+          rgba(35, 37, 45, .9) 36%,
+          transparent 37%,
+          transparent 63%,
+          rgba(35, 37, 45, .9) 64%,
+          rgba(35, 37, 45, .9) 68%,
+          transparent 69%
+        )
+        0 12px /
+        100% calc(100% - 12px)
+        no-repeat,
+        var(--shell);
+
+      border: var(--line);
+
+      border-radius:
+        9px
+        9px
+        14px
+        14px;
+
+      z-index: 3;
+
+      transition:
+        transform .25s ease;
+    }
+
+    .hand--l {
+      left: 36px;
+    }
+
+    .hand--r {
+      right: 36px;
+    }
+
+    .is-hyped ~ .card .hand {
+      transform:
+        translateY(-3px)
+        scaleY(1.08);
+    }
+
+    /* =========================================================
+       FEET
+       ========================================================= */
+
+    .foot {
+      position: absolute;
+
+      bottom: -26px;
+
+      width: 54px;
+      height: 34px;
+
+      background: var(--shell);
+
+      border: var(--line);
+
+      border-radius:
+        9px
+        9px
+        14px
+        14px;
+
+      box-shadow:
+        inset
+        0 -9px 0
+        rgba(35, 37, 45, .12);
+
+      z-index: -1;
+    }
+
+    .foot--l {
+      left: 62px;
+    }
+
+    .foot--r {
+      right: 62px;
+    }
+
+    /* =========================================================
+       TITLE
+       ========================================================= */
+
+    .title {
+      font-family:
+        'Sora',
+        sans-serif;
+
+      font-size: 19px;
+
+      font-weight: 800;
+
+      letter-spacing: -.2px;
+
+      text-align: center;
+
+      margin-bottom: 24px;
+    }
+
+    /* =========================================================
+       INPUT FIELDS
+       ========================================================= */
+
+    .field {
+      display: flex;
+
+      align-items: center;
+
+      gap: 10px;
+
+      height: 52px;
+
+      padding:
+        0
+        14px;
+
+      margin-bottom: 14px;
+
+      background: var(--field);
+
+      border:
+        2px solid
+        rgba(35, 37, 45, .22);
+
+      border-radius: 12px;
+
+      transition:
+        border-color .18s ease,
+        box-shadow .18s ease,
+        transform .18s ease;
+
+      cursor: text;
+    }
+
+    .field:focus-within {
+      border-color: var(--ink);
+
+      box-shadow:
+        3px 3px 0
+        var(--accent);
+
+      transform:
+        translate(-1px, -1px);
+    }
+
+    .field-icon {
+      width: 19px;
+      height: 19px;
+
+      fill: var(--muted);
+
+      flex: none;
+
+      transition:
+        fill .18s ease;
+    }
+
+    .field:focus-within .field-icon {
+      fill: var(--ink);
+    }
+
+    .field input {
+      flex: 1;
+
+      min-width: 0;
+
+      border: none;
+
+      outline: none;
+
+      background: transparent;
+
+      font-family:
+        'Sora',
+        sans-serif;
+
+      font-size: 14.5px;
+
+      font-weight: 600;
+
+      color: var(--ink);
+    }
+
+    .field input::placeholder {
+      color: var(--muted);
+
+      font-weight: 500;
+    }
+
+    /* =========================================================
+       PASSWORD TOGGLE
+       ========================================================= */
+
+    .peek {
+      border: none;
+
+      background: none;
+
+      padding: 4px;
+
+      cursor: pointer;
+
+      border-radius: 8px;
+
+      display: grid;
+
+      place-items: center;
+    }
+
+    .peek svg {
+      width: 20px;
+      height: 20px;
+
+      fill: var(--muted);
+
+      transition:
+        fill .18s ease;
+    }
+
+    .peek:hover svg,
+    .peek[aria-pressed="true"] svg {
+      fill: var(--ink);
+    }
+
+    .peek:focus-visible {
+      outline:
+        2px solid
+        var(--ink);
+    }
+
+    /* =========================================================
+       BUTTON
+       ========================================================= */
+
+    .btn {
+      position: relative;
+
+      width: 100%;
+      height: 54px;
+
+      margin-top: 10px;
+
+      border: var(--line);
+
+      border-radius: 12px;
+
+      background: var(--accent);
+
+      color: #fff;
+
+      font-family:
+        'Sora',
+        sans-serif;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      cursor: pointer;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 8px;
+
+      box-shadow:
+        4px 5px 0
+        rgba(35, 37, 45, .9);
+
+      transition:
+        transform .18s
+          cubic-bezier(.34, 1.56, .64, 1),
+        box-shadow .18s ease,
+        background .25s ease;
+    }
+
+    .btn:hover,
+    .btn:focus-visible {
+      transform:
+        translate(-2px, -2px);
+
+      background:
+        var(--accent-deep);
+
+      box-shadow:
+        7px 8px 0
+        rgba(35, 37, 45, .9);
+    }
+
+    .btn:active {
+      transform:
+        translate(3px, 4px);
+
+      box-shadow:
+        0 0 0
+        rgba(35, 37, 45, .9);
+    }
+
+    .btn:focus-visible {
+      outline:
+        3px solid
+        var(--ink);
+
+      outline-offset: 3px;
+    }
+
+    .btn-bolt {
+      display: inline-block;
+
+      opacity: 0;
+
+      transform:
+        translateX(-10px)
+        scale(.4)
+        rotate(-30deg);
+
+      transition:
+        all .3s
+        cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .btn:hover .btn-bolt,
+    .btn:focus-visible .btn-bolt {
+      opacity: 1;
+
+      transform: none;
+
+      animation:
+        bolt-jitter .4s
+        ease-in-out infinite;
+    }
+
+    @keyframes bolt-jitter {
+      0%,
+      100% {
+        transform:
+          rotate(-7deg)
+          scale(1);
+      }
+
+      50% {
+        transform:
+          rotate(7deg)
+          scale(1.2);
+      }
+    }
+
+    .btn.is-success {
+      background: var(--teal);
+    }
+
+    /* =========================================================
+       SHAKE
+       ========================================================= */
+
+    .card.shake {
+      animation:
+        shake .4s ease;
+    }
+
+    @keyframes shake {
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-7px);
+      }
+
+      50% {
+        transform: translateX(6px);
+      }
+
+      75% {
+        transform: translateX(-3px);
+      }
+    }
+
+    /* =========================================================
+       CONFETTI
+       ========================================================= */
+
+    .confetti {
+      position: absolute;
+
+      width: 10px;
+      height: 10px;
+
+      top: 0;
+      left: 0;
+
+      border-radius: 2px;
+
+      pointer-events: none;
+
+      z-index: 10;
+    }
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 560px) {
+      .scene {
+        padding-top: 96px;
+      }
+
+      .bubble {
+        max-width: 210px;
+
+        font-size: 12.5px;
+      }
+    }
+
+    /* =========================================================
+       REDUCED MOTION
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      .robot {
+        animation: none;
+      }
+
+      .antenna-tip,
+      .panel-lights i {
+        animation: none;
+      }
+
+      .head {
+        transition-duration: .01s;
+      }
+
+      .btn:hover .btn-bolt {
+        animation: none;
+      }
+
+      .is-spinning .head {
+        animation: none;
+      }
+
+      .bubble.pop {
+        animation: none;
+      }
+
+      .eyes {
+        transition: none;
+      }
+    }
+  </style>
 </head>
+
 <body>
+
   <div class="main-page">
+
+    <!-- Original ambient elements -->
     <div class="ambient-1"></div>
     <div class="ambient-2"></div>
     <div class="cursor"></div>
 
-    <header class="site-header">
-      <div class="logo">
-        <span class="logo-cube">
-          <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
-            <defs>
-              <linearGradient id="cubeGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#3a3a3a" />
-                <stop offset="100%" stop-color="#0a0a0a" />
-              </linearGradient>
-            </defs>
-            <path d="M17 3 L29 9 L29 21 L17 27 L17 15 L5 9 Z" fill="url(#cubeGrad)" stroke="#000" stroke-width="0.5" />
-            <path d="M5 9 L17 15 L17 27 L5 21 Z" fill="#2a2a2a" stroke="#000" stroke-width="0.5" />
-            <path d="M17 3 L29 9 L17 15 L5 9 Z" fill="#444" stroke="#000" stroke-width="0.5" />
-          </svg>
-        </span>
-        <span>DERMEXCEL</span>
-      </div>
-      <nav class="header-nav">
-        <a href="index.html">Home</a>
-        <a href="solutions.html">Solutions</a>
-        <a href="advantages.html">Advantages</a>
-        <a href="#">Get in touch</a>
-      </nav>
-      <a href="signup.html" class="header-btn">Start for free
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M13 6l6 6-6 6" />
-        </svg>
-      </a>
-    </header>
+    <!-- =====================================================
+         VOLT LOGIN
+         ===================================================== -->
 
-    <main class="signup-container">
-      <div class="signup-content">
-        <h1 class="signup-title">Create your account</h1>
-        <p class="signup-subtitle">Start your journey with DermExcel today</p>
-        
-        <form class="signup-form">
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+    <div class="scene">
+
+      <main class="stage" id="stage">
+
+        <!-- ROBOT -->
+        <div
+          class="robot"
+          id="robot"
+          data-mood="idle"
+        >
+
+          <!-- Speech bubble -->
+          <div
+            class="bubble"
+            id="bubble"
+            role="status"
+            aria-live="polite"
+          >
+            <span id="bubbleText">
+              Hi. I'm Volt. I guard this form.
+            </span>
           </div>
-          
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+          <!-- Antenna -->
+          <div
+            class="antenna"
+            aria-hidden="true"
+          >
+            <span class="antenna-rod"></span>
+            <span class="antenna-tip"></span>
           </div>
-          
-          <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+          <!-- 3D Head -->
+          <div
+            class="head3d"
+            aria-hidden="true"
+          >
+
+            <div
+              class="head"
+              id="head"
+            >
+
+              <span class="ear ear--l"></span>
+              <span class="ear ear--r"></span>
+
+              <!-- FRONT -->
+              <div class="face face--front">
+
+                <div class="visor">
+
+                  <div
+                    class="eyes"
+                    id="eyes"
+                  >
+                    <span class="eye eye--l"></span>
+                    <span class="eye eye--r"></span>
+                  </div>
+
+                  <span class="cheek cheek--l"></span>
+                  <span class="cheek cheek--r"></span>
+
+                  <span class="mouth"></span>
+
+                </div>
+
+              </div>
+
+              <!-- BACK -->
+              <div class="face face--back">
+
+                <div class="panel">
+
+                  <span class="panel-lights">
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </span>
+
+                  <div
+                    class="meter"
+                    id="meter"
+                  >
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                  </div>
+
+                  <p
+                    class="panel-label"
+                    id="panelLabel"
+                  >
+                    NOT LOOKING
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
-          
-          <div class="form-group">
-            <label for="confirm-password">Confirm Password</label>
-            <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
-          </div>
-          
-          <button type="submit" class="signup-btn">Create Account</button>
+
+        </div>
+
+        <!-- LOGIN FORM -->
+        <form
+          class="card"
+          id="form"
+          novalidate
+        >
+
+          <!-- Hands -->
+          <span
+            class="hand hand--l"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="hand hand--r"
+            aria-hidden="true"
+          ></span>
+
+          <!-- Title -->
+          <h1 class="title">
+            Beep boop. Who goes there?
+          </h1>
+
+          <!-- NAME -->
+          <label class="field">
+
+            <svg
+              class="field-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 12a4.5 4.5 0 1 0-4.5-4.5A4.5 4.5 0 0 0 12 12Zm0 2c-3.9 0-8 2-8 5v1.5h16V19c0-3-4.1-5-8-5Z"
+              />
+            </svg>
+
+            <input
+              id="name"
+              type="text"
+              placeholder="Your name"
+              autocomplete="name"
+              aria-label="Your name"
+            >
+
+          </label>
+
+          <!-- EMAIL -->
+          <label class="field">
+
+            <svg
+              class="field-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2Zm8 7.3L4.4 7h15.2L12 12.3ZM4 9.2V17h16V9.2l-8 5.3-8-5.3Z"
+              />
+            </svg>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="Your email"
+              autocomplete="email"
+              aria-label="Your email"
+            >
+
+          </label>
+
+          <!-- PASSWORD -->
+          <label class="field">
+
+            <svg
+              class="field-icon"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                d="M12 2a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7a5 5 0 0 0-5-5Zm-3 8V7a3 3 0 0 1 6 0v3H9Zm3 4a2 2 0 0 1 1 3.7V19h-2v-1.3a2 2 0 0 1 1-3.7Z"
+              />
+            </svg>
+
+            <input
+              id="password"
+              type="password"
+              placeholder="Super secret password"
+              autocomplete="new-password"
+              aria-label="Password"
+            >
+
+            <!-- Password visibility -->
+            <button
+              class="peek"
+              id="togglePass"
+              type="button"
+              aria-label="Show password"
+              aria-pressed="false"
+            >
+
+              <svg
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  d="M12 5c-5 0-9.3 3.1-11 7.5C2.7 16.9 7 20 12 20s9.3-3.1 11-7.5C21.3 8.1 17 5 12 5Zm0 12.5a5 5 0 1 1 5-5 5 5 0 0 1-5 5Zm0-8a3 3 0 1 0 3 3 3 3 0 0 0-3-3Z"
+                />
+              </svg>
+
+            </button>
+
+          </label>
+
+          <!-- LOGIN -->
+          <button
+            class="btn"
+            id="loginBtn"
+            type="submit"
+          >
+
+            <span
+              class="btn-bolt"
+              aria-hidden="true"
+            >
+              ⚡
+            </span>
+
+            <span
+              class="btn-label"
+              id="btnLabel"
+            >
+              LOG ME IN
+            </span>
+
+          </button>
+
+          <!-- Feet -->
+          <span
+            class="foot foot--l"
+            aria-hidden="true"
+          ></span>
+
+          <span
+            class="foot foot--r"
+            aria-hidden="true"
+          ></span>
+
         </form>
-        
-        <p class="signup-footer">
-          Already have an account? <a href="#">Sign in</a>
-        </p>
-      </div>
-    </main>
+
+      </main>
+
+    </div>
+
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    /* =========================================================
+       VOLT LOGIN ROBOT JAVASCRIPT
+       ========================================================= */
+
+    const $ = (selector) =>
+      document.querySelector(selector);
+
+    const robot = $('#robot');
+    const stage = $('#stage');
+    const eyes = $('#eyes');
+    const bubble = $('#bubble');
+    const bubbleText = $('#bubbleText');
+
+    const meter = $('#meter');
+    const meterBars = [...meter.children];
+
+    const panelLabel = $('#panelLabel');
+
+    const form = $('#form');
+
+    const nameI = $('#name');
+    const emailI = $('#email');
+    const passI = $('#password');
+
+    const peekBtn = $('#togglePass');
+
+    const btn = $('#loginBtn');
+    const btnLabel = $('#btnLabel');
+
+    const reduceMotion =
+      matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+    const EMAIL_RE =
+      /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+    let done = false;
+    let lastSaid = '';
+
+    /* =========================================================
+       HELPERS
+       ========================================================= */
+
+    const pick = (arr) =>
+      arr[
+        Math.floor(
+          Math.random() * arr.length
+        )
+      ];
+
+    function setMood(mood) {
+      if (!done) {
+        robot.dataset.mood = mood;
+      }
+    }
+
+    function say(text) {
+      if (text === lastSaid) {
+        return;
+      }
+
+      lastSaid = text;
+
+      bubbleText.textContent = text;
+
+      bubble.classList.remove('pop');
+
+      void bubble.offsetWidth;
+
+      bubble.classList.add('pop');
+    }
+
+    function look(x, y) {
+      eyes.style.setProperty(
+        '--lx',
+        `${x}px`
+      );
+
+      eyes.style.setProperty(
+        '--ly',
+        `${y}px`
+      );
+    }
+
+    /* =========================================================
+       HEAD TILT
+       ========================================================= */
+
+    const head3d =
+      document.querySelector('.head3d');
+
+    function tilt(ry, rx) {
+      head3d.style.setProperty(
+        '--ry',
+        `${ry}deg`
+      );
+
+      head3d.style.setProperty(
+        '--rx',
+        `${rx}deg`
+      );
+    }
+
+    /* =========================================================
+       FOLLOW TYPING
+       ========================================================= */
+
+    function followTyping(input) {
+      const ratio =
+        Math.min(
+          input.value.length / 22,
+          1
+        );
+
+      look(
+        -6 + 12 * ratio,
+        5
+      );
+
+      tilt(
+        -5 + 10 * ratio,
+        -8
+      );
+    }
+
+    function turnAway(on) {
+      robot.classList.toggle(
+        'is-turned',
+        on
+      );
+    }
+
+    /* =========================================================
+       NAME
+       ========================================================= */
+
+    nameI.addEventListener(
+      'focus',
+      () => {
+
+        turnAway(false);
+
+        setMood('watching');
+
+        say(
+          pick([
+            "A visitor. State your name.",
+            "Typing detected. Go on, I'm watching."
+          ])
+        );
+
+        followTyping(nameI);
+      }
+    );
+
+    nameI.addEventListener(
+      'input',
+      () => {
+
+        followTyping(nameI);
+
+        const value =
+          nameI.value.trim();
+
+        if (value.length >= 2) {
+
+          say(
+            `${value}. Solid name. Filed forever.`
+          );
+
+        } else if (
+          value.length === 0
+        ) {
+
+          say(
+            "Deleted. I've already forgotten it. Mostly."
+          );
+
+        }
+      }
+    );
+
+    /* =========================================================
+       EMAIL
+       ========================================================= */
+
+    emailI.addEventListener(
+      'focus',
+      () => {
+
+        turnAway(false);
+
+        setMood('watching');
+
+        say(
+          "Email next. I don't do spam — I don't even have an inbox."
+        );
+
+        followTyping(emailI);
+      }
+    );
+
+    emailI.addEventListener(
+      'input',
+      () => {
+
+        followTyping(emailI);
+
+        if (
+          EMAIL_RE.test(
+            emailI.value.trim()
+          )
+        ) {
+
+          setMood('happy');
+
+          say(
+            pick([
+              "Now that is a proper email. Respect.",
+              "Valid address detected. Quietly delighted."
+            ])
+          );
+
+        } else {
+
+          setMood('watching');
+
+          if (
+            emailI.value.includes('@')
+          ) {
+
+            say(
+              "Close. My sensors say: not yet."
+            );
+
+          }
+
+        }
+      }
+    );
+
+    /* =========================================================
+       PASSWORD
+       ========================================================= */
+
+    passI.addEventListener(
+      'focus',
+      () => {
+
+        setMood('shy');
+
+        turnAway(true);
+
+        look(0, 0);
+
+        tilt(0, 0);
+
+        say(
+          "A secret? Say no more. *turns around*"
+        );
+
+        panelLabel.textContent =
+          'NOT LOOKING';
+      }
+    );
+
+    passI.addEventListener(
+      'blur',
+      (event) => {
+
+        if (
+          event.relatedTarget ===
+          peekBtn
+        ) {
+          return;
+        }
+
+        turnAway(false);
+      }
+    );
+
+    passI.addEventListener(
+      'input',
+      () => {
+
+        const value =
+          passI.value;
+
+        let score = 0;
+
+        if (value.length >= 8) {
+          score++;
+        }
+
+        if (
+          /[a-z]/.test(value) &&
+          /[A-Z]/.test(value)
+        ) {
+          score++;
+        }
+
+        if (
+          /\d/.test(value)
+        ) {
+          score++;
+        }
+
+        if (
+          /[^a-zA-Z0-9]/.test(value)
+        ) {
+          score++;
+        }
+
+        if (
+          value.length > 0 &&
+          score === 0
+        ) {
+          score = 1;
+        }
+
+        meter.dataset.lvl =
+          score;
+
+        meterBars.forEach(
+          (bar, index) => {
+
+            bar.classList.toggle(
+              'on',
+              index < score
+            );
+
+          }
+        );
+
+        panelLabel.textContent =
+          value.length === 0
+            ? 'NOT LOOKING'
+            : [
+                'NOT LOOKING',
+                'TOO SHORT',
+                'GETTING THERE',
+                'STRONG',
+                'FORT KNOX'
+              ][score];
+      }
+    );
+
+    /* =========================================================
+       SHOW / HIDE PASSWORD
+       ========================================================= */
+
+    peekBtn.addEventListener(
+      'click',
+      () => {
+
+        const show =
+          passI.type === 'password';
+
+        passI.type =
+          show
+            ? 'text'
+            : 'password';
+
+        peekBtn.setAttribute(
+          'aria-pressed',
+          String(show)
+        );
+
+        peekBtn.setAttribute(
+          'aria-label',
+          show
+            ? 'Hide password'
+            : 'Show password'
+        );
+
+        if (show) {
+
+          say(
+            "Revealing it? Good thing I'm facing the wall."
+          );
+
+        }
+
+        passI.focus();
+      }
+    );
+
+    /* =========================================================
+       BUTTON HOVER
+       ========================================================= */
+
+    function hype(on) {
+
+      if (done) {
+        return;
+      }
+
+      if (
+        on &&
+        robot.classList.contains(
+          'is-pressed'
+        )
+      ) {
+        return;
+      }
+
+      robot.classList.toggle(
+        'is-hyped',
+        on
+      );
+
+      if (on) {
+
+        turnAway(false);
+
+        setMood('excited');
+
+        say(
+          pick([
+            'Ooh. Do it. Press it.',
+            'This is my favorite part.'
+          ])
+        );
+
+      } else {
+
+        setMood('idle');
+
+        say(
+          'The button misses you already.'
+        );
+
+      }
+    }
+
+    btn.addEventListener(
+      'mouseenter',
+      () => hype(true)
+    );
+
+    btn.addEventListener(
+      'mouseleave',
+      () => hype(false)
+    );
+
+    btn.addEventListener(
+      'focus',
+      () => hype(true)
+    );
+
+    btn.addEventListener(
+      'blur',
+      () => hype(false)
+    );
+
+    /* =========================================================
+       BUTTON PRESS
+       ========================================================= */
+
+    let pressTimer;
+
+    btn.addEventListener(
+      'pointerdown',
+      () => {
+
+        clearTimeout(
+          pressTimer
+        );
+
+        robot.classList.add(
+          'is-pressed'
+        );
+
+        robot.dataset.mood =
+          'pressed';
+
+        say(
+          pick([
+            'Ahh. That’s the stuff.',
+            'Mmm. Satisfying.',
+            'Beep. Do that again.'
+          ])
+        );
+      }
+    );
+
+    function releasePress() {
+
+      clearTimeout(
+        pressTimer
+      );
+
+      pressTimer =
+        setTimeout(
+          () => {
+
+            robot.classList.remove(
+              'is-pressed'
+            );
+
+            if (
+              robot.dataset.mood ===
+              'pressed'
+            ) {
+
+              robot.dataset.mood =
+                done
+                  ? 'success'
+                  : 'excited';
+
+            }
+
+          },
+          340
+        );
+    }
+
+    btn.addEventListener(
+      'pointerup',
+      releasePress
+    );
+
+    btn.addEventListener(
+      'pointercancel',
+      releasePress
+    );
+
+    btn.addEventListener(
+      'pointerleave',
+      () => {
+
+        if (
+          robot.classList.contains(
+            'is-pressed'
+          )
+        ) {
+          releasePress();
+        }
+
+      }
+    );
+
+    /* =========================================================
+       SUBMIT
+       ========================================================= */
+
+    form.addEventListener(
+      'submit',
+      (event) => {
+
+        event.preventDefault();
+
+        if (done) {
+          return;
+        }
+
+        const complaints = [];
+
+        if (
+          !nameI.value.trim()
+        ) {
+
+          complaints.push([
+            "Still don't know your name.",
+            nameI
+          ]);
+
+        } else if (
+          !EMAIL_RE.test(
+            emailI.value.trim()
+          )
+        ) {
+
+          complaints.push([
+            "That email isn't a real place.",
+            emailI
+          ]);
+
+        } else if (
+          !passI.value
+        ) {
+
+          complaints.push([
+            "A password would help.",
+            passI
+          ]);
+
+        }
+
+        /* Validation failed */
+
+        if (
+          complaints.length
+        ) {
+
+          const [
+            message,
+            field
+          ] =
+            complaints[0];
+
+          setTimeout(
+            () => {
+
+              say(message);
+
+              setMood(
+                'watching'
+              );
+
+            },
+            380
+          );
+
+          form.classList.remove(
+            'shake'
+          );
+
+          void form.offsetWidth;
+
+          form.classList.add(
+            'shake'
+          );
+
+          field.focus();
+
+          return;
+        }
+
+        /* Login success */
+
+        done = true;
+
+        turnAway(false);
+
+        robot.classList.remove(
+          'is-hyped'
+        );
+
+        setTimeout(
+          () => {
+
+            robot.dataset.mood =
+              'success';
+
+            say(
+              `Access granted. Welcome, ${nameI.value.trim()}.`
+            );
+
+            btn.classList.add(
+              'is-success'
+            );
+
+            btnLabel.textContent =
+              'ACCESS GRANTED ✓';
+
+            look(0, 0);
+
+            tilt(0, 0);
+
+            if (!reduceMotion) {
+
+              robot.classList.add(
+                'is-spinning'
+              );
+
+              setTimeout(
+                () => {
+
+                  robot.classList.remove(
+                    'is-spinning'
+                  );
+
+                },
+                950
+              );
+
+              confetti();
+            }
+
+          },
+          420
+        );
+
+        setTimeout(
+          reset,
+          5600
+        );
+      }
+    );
+
+    /* =========================================================
+       RESET
+       ========================================================= */
+
+    function reset() {
+
+      done = false;
+
+      robot.dataset.mood =
+        'idle';
+
+      btn.classList.remove(
+        'is-success'
+      );
+
+      btnLabel.textContent =
+        'LOG ME IN';
+
+      say(
+        'Again? I could do this all day.'
+      );
+    }
+
+    /* =========================================================
+       BLINK LOOP
+       ========================================================= */
+
+    (function blinkLoop() {
+
+      setTimeout(
+        () => {
+
+          if (
+            robot.dataset.mood !==
+              'success' &&
+            !robot.classList.contains(
+              'is-turned'
+            )
+          ) {
+
+            eyes.classList.add(
+              'blink'
+            );
+
+            setTimeout(
+              () => {
+
+                eyes.classList.remove(
+                  'blink'
+                );
+
+              },
+              150
+            );
+          }
+
+          blinkLoop();
+
+        },
+        2600 +
+          Math.random() * 2600
+      );
+
+    })();
+
+    /* =========================================================
+       MOUSE TRACKING
+       ========================================================= */
+
+    let rafPending = false;
+
+    document.addEventListener(
+      'mousemove',
+      (event) => {
+
+        const active =
+          document.activeElement;
+
+        if (
+          done ||
+          (
+            active &&
+            active.tagName ===
+              'INPUT'
+          )
+        ) {
+          return;
+        }
+
+        if (rafPending) {
+          return;
+        }
+
+        rafPending = true;
+
+        requestAnimationFrame(
+          () => {
+
+            rafPending = false;
+
+            const rect =
+              robot.getBoundingClientRect();
+
+            const cx =
+              rect.left +
+              rect.width / 2;
+
+            const cy =
+              rect.top +
+              rect.height / 2;
+
+            const dx =
+              Math.max(
+                -1,
+                Math.min(
+                  1,
+                  (
+                    event.clientX -
+                    cx
+                  ) / 260
+                )
+              );
+
+            const dy =
+              Math.max(
+                -1,
+                Math.min(
+                  1,
+                  (
+                    event.clientY -
+                    cy
+                  ) / 260
+                )
+              );
+
+            look(
+              dx * 7,
+              dy * 6
+            );
+
+            if (
+              !robot.classList.contains(
+                'is-turned'
+              )
+            ) {
+
+              tilt(
+                dx * 12,
+                -dy * 9
+              );
+
+            }
+
+          }
+        );
+      }
+    );
+
+    /* =========================================================
+       CONFETTI
+       ========================================================= */
+
+    function confetti() {
+
+      const colors = [
+        '#ff6b4b',
+        '#2ec4b6',
+        '#ffc53d',
+        '#23252d',
+        '#fffdf8'
+      ];
+
+      const origin =
+        btn.getBoundingClientRect();
+
+      const host =
+        document.querySelector(
+          '.scene'
+        );
+
+      const hostRect =
+        host.getBoundingClientRect();
+
+      const ox =
+        origin.left -
+        hostRect.left +
+        origin.width / 2;
+
+      const oy =
+        origin.top -
+        hostRect.top;
+
+      for (
+        let i = 0;
+        i < 70;
+        i++
+      ) {
+
+        const bit =
+          document.createElement(
+            'span'
+          );
+
+        bit.className =
+          'confetti';
+
+        bit.style.background =
+          pick(colors);
+
+        if (
+          Math.random() > .5
+        ) {
+          bit.style.borderRadius =
+            '50%';
+        }
+
+        host.appendChild(bit);
+
+        const angle =
+          -Math.PI / 2 +
+          (
+            Math.random() - .5
+          ) * 1.6;
+
+        const speed =
+          240 +
+          Math.random() * 380;
+
+        const tx =
+          Math.cos(angle) *
+          speed;
+
+        const ty =
+          Math.sin(angle) *
+          speed;
+
+        bit.animate(
+          [
+            {
+              transform:
+                `translate(${ox}px, ${oy}px) rotate(0deg) scale(1)`,
+              opacity: 1
+            },
+
+            {
+              transform:
+                `translate(${ox + tx}px, ${oy + ty + 320}px) rotate(${540 * (Math.random() > .5 ? 1 : -1)}deg) scale(.6)`,
+              opacity: 0
+            }
+          ],
+          {
+            duration:
+              1100 +
+              Math.random() * 700,
+
+            easing:
+              'cubic-bezier(.15,.6,.35,1)'
+          }
+        ).onfinish =
+          function () {
+            bit.remove();
+          };
+      }
+    }
+  </script>
+
 </body>
 </html>
