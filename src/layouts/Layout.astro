@@ -1,12 +1,11 @@
 ---
-import '@fontsource/manrope/400.css';
-import '@fontsource/manrope/500.css';
-import '@fontsource/manrope/600.css';
-import '@fontsource/manrope/700.css';
-import '@fontsource/manrope/800.css';
-import manropeLatin400 from '@fontsource/manrope/files/manrope-latin-400-normal.woff2?url';
-import manropeLatin500 from '@fontsource/manrope/files/manrope-latin-500-normal.woff2?url';
-import manropeLatin700 from '@fontsource/manrope/files/manrope-latin-700-normal.woff2?url';
+import '@fontsource/ibm-plex-sans/400.css';
+import '@fontsource/ibm-plex-sans/500.css';
+import '@fontsource/ibm-plex-sans/600.css';
+import '@fontsource/ibm-plex-sans/700.css';
+import ibmPlexSansLatin400 from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url';
+import ibmPlexSansLatin500 from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2?url';
+import ibmPlexSansLatin700 from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-700-normal.woff2?url';
 import { ClientRouter } from 'astro:transitions';
 import '../styles/Theme.css';
 import '../styles/diagonals.css';
@@ -42,9 +41,9 @@ const ogImage = `${siteUrl}/og-image.png`;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" href={manropeLatin400} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={manropeLatin500} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={manropeLatin700} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={ibmPlexSansLatin400} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={ibmPlexSansLatin500} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={ibmPlexSansLatin700} as="font" type="font/woff2" crossorigin />
     <link rel="canonical" href={`${siteUrl}${Astro.url.pathname}`} />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
@@ -79,7 +78,7 @@ const ogImage = `${siteUrl}/og-image.png`;
     <InvitationModal />
     <style is:global>
       html {
-        font-family: Manrope;
+        font-family: 'IBM Plex Sans';
         background-color: #0d0e0e;
         overflow-x: hidden;
         scroll-behavior: smooth !important;

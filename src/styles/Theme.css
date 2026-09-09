@@ -1,8 +1,8 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-primaryColor: rgb(214, 255, 92);
-  --color-secondaryColor: rgb(190, 212, 124);
+  --color-primaryColor: rgb(145, 198, 255);
+  --color-secondaryColor: rgb(177, 211, 242);
   --color-primaryText: rgb(248, 248, 245);
   --color-heroText: rgb(235, 235, 230);
   --color-secondaryText: rgb(166, 169, 165);
@@ -20,9 +20,9 @@
   --color-mainBorderSubtler: rgb(255 255 255 / 0.1);
   --color-mainBorderFaintest: rgb(255 255 255 / 0.05);
   --color-mainBorderSubtle: rgb(55 65 81 / 0.3);
-  --color-quoteIconColor: rgb(180, 193, 157);
+  --color-quoteIconColor: rgb(170, 201, 230);
 
-  --font-Manrope: 'Manrope';
+  --font-IbmPlexSans: 'IBM Plex Sans';
 
   --breakpoint-xs: 530px;
   --breakpoint-sm: 640px;
@@ -71,7 +71,7 @@
 /* Buttons */
 
 .contained-button {
-  @apply bg-primaryColor text-black flex cursor-pointer items-center justify-center rounded-lg font-bold transition hover:bg-[#e2ff8c];
+  @apply bg-primaryColor text-black flex cursor-pointer items-center justify-center rounded-lg font-bold transition hover:bg-[#b8dcff];
 }
 .outlined-button {
   @apply text-primaryText border-mainBorder bg-bgDark2 hover:bg-bgDark3 cursor-pointer rounded-xl border border-solid text-sm;
