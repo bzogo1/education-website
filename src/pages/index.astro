@@ -13,6 +13,7 @@ import Footer from '../components/Footer.astro';
 import ScrollUpButton from '../components/ScrollUpButton.astro';
 import Gallery from '../components/Gallery.astro';
 import CtaBottom from '../components/CtaBottom.astro';
+import Pattern from '../components/ui/v-accordion-11';
 ---
 
 <Layout title="Tailcast">
@@ -26,6 +27,7 @@ import CtaBottom from '../components/CtaBottom.astro';
   <Gallery />
   <Testimonials />
   <Blog />
+  <Pattern client:load />
   <CtaBottom />
   <Footer />
   <ScrollUpButton />
