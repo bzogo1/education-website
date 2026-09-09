@@ -60,5 +60,14 @@ export function AccordionContent({ children }: { children: ReactNode }) {
   if (!context) throw new Error('AccordionContent must be used inside Accordion');
   const item = useContext(AccordionItemContext);
   const isOpen = context.openItems.includes(item);
-  return isOpen ? <div className="text-secondaryText pb-5 leading-relaxed">{children}</div> : null;
+  return (
+    <div
+      aria-hidden={!isOpen}
+      className={`grid overflow-hidden transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
+        isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+      }`}
+    >
+      <div className="text-secondaryText min-h-0 overflow-hidden pb-5 leading-relaxed">{children}</div>
+    </div>
+  );
 }
