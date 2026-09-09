@@ -1,0 +1,159 @@
+https://codepen.io/timhjellum/pen/jEMagPE - Vertical Auto-Slider Up / Down 3D Animate 
+https://codepen.io/himaaax/pen/JobwKVe - CodePen Home
+Tab content toggle (GSAP/SplitText)
+https://codepen.io/rpsthecoder/pen/ByQQJQj - Border image animations 
+https://codepen.io/editor/gymnase/pen/01a0208f-c55f-7b19-9305-4cc1381ef62d - E(tch a sketch)mail - Signature 
+https://codepen.io/web-strategist/pen/MYJrOmX - Mobile Menu Patterns 
+https://codepen.io/Margarita-the-solid/pen/XJpgEXm - Button State Builder - a visual editor for designing multi-state button flows 
+https://codepen.io/editor/chriscoyier/pen/01a0449e-50c6-711f-8146-56bd00129add - MJML: Event RSVP 
+https://codepen.io/shubniggurath/pen/jEyZdPj - GSAP wind-blown text 
+https://codepen.io/atzedent/pen/XJMJxae - animated butterfly
+https://codepen.io/donotfold/pen/yyVyybV - modular counter
+https://codepen.io/jkantner/pen/myRaNJw - 
+Tab Navigation with Isometric View
+https://codepen.io/vii120/pen/JoEBvya - file drawer carousel 
+https://codepen.io/jakebogan01/pen/PwbpgZX - liqid glass news
+https://codepen.io/editor/tommyho/pen/01a03527-6f6d-7d62-a416-aa4a7052b487 - text on iphone 
+https://codepen.io/ol-ivier/pen/LERzpKJ - Infinite Parallax Gallery – 5‑Layer Scrolling Image Wall (Three.js) 
+https://codepen.io/simeydotme/pen/LExroKW - Color Gradient Bottom-mask Button 
+https://codepen.io/dermalhealth/pen/GgNNPQJ - Data / icons float nodes connect infographic: GSAP 
+https://codepen.io/dermalhealth/pen/OPbbreW - 3d data cards
+https://codepen.io/aybukeceylan/pen/OJRNbZp - Dashboard
+https://codepen.io/aybukeceylan/pen/gOpbRPO - Dashboard
+
+
+
+https://ui.aceternity.com/components/google-gemini-effect
+https://ui.aceternity.com/components/timeline
+https://ui.aceternity.com/components/multi-step-loader
+https://ui.aceternity.com/components/signup-form
+https://ui.aceternity.com/components/sidebar#
+https://ui.aceternity.com/components/cloud-shader
+https://ui.aceternity.com/components/macbook-scroll
+https://ui.aceternity.com/components/notch
+https://ui.aceternity.com/components/tooltip-card
+https://ui.aceternity.com/components/magnetic-button
+https://ui.aceternity.com/components/dotted-glow-background
+https://ui.aceternity.com/components/card-spotlight
+https://ui.aceternity.com/components/compare
+https://ui.aceternity.com/components/container-cover
+https://ui.aceternity.com/components/feature-sections-free
+https://ui.aceternity.com/components/floating-dock
+https://ui.aceternity.com/components/file-upload
+https://ui.aceternity.com/components/hero-sections-free
+https://ui.aceternity.com/blocks/testimonials
+https://ui.aceternity.com/components/grid-and-dot-backgrounds
+https://ui.aceternity.com/components/glowing-effect
+https://ui.aceternity.com/components/infinite-moving-cards
+https://ui.aceternity.com/components/link-preview
+https://www.ui-layouts.com/components/blur-vignette
+https://www.ui-layouts.com/components/spotlight-cards
+https://www.ui-layouts.com/components/stacking-card
+https://www.ui-layouts.com/components/liquid-gradient
+https://www.ui-layouts.com/components/animated-beam
+https://www.ui-layouts.com/components/marquee
+https://www.ui-layouts.com/components/shimmer-loader
+https://www.ui-layouts.com/components/terminal-ui
+https://www.ui-layouts.com/components/linear-modal
+https://www.ui-layouts.com/components/range-slider
+https://www.ui-layouts.com/components/phone-input
+https://www.ui-layouts.com/components/datetime-picker
+https://www.ui-layouts.com/components/multi-selector
+https://www.ui-layouts.com/components/accordion
+https://www.ui-layouts.com/components/faqs
+https://www.ui-layouts.com/components/code-block
+https://www.ui-layouts.com/components/tree-code-viewer
+https://www.ui-layouts.com/components/code-tabs-mdx
+https://magicui.design/docs/components/avatar-circles
+
+
+https://21st.dev/@arunachalam/components/scroll-expansion-hero
+https://21st.dev/@manuarora700/components/container-scroll-animation
+https://21st.dev/@tommyjepsen/components/animated-hero
+https://21st.dev/@hirael/components/faq-05
+https://21st.dev/@shadcnspace/components/input-group-01
+https://21st.dev/@uiable/components/chart-tooltip
+https://21st.dev/@soralabs/components/base-alert-dialog
+https://21st.dev/@shadcnspace/components/button-group-09
+https://21st.dev/@shadcnspace/components/action-dropdown-button-group
+https://21st.dev/@vgpu/components/nextjs-flare
+https://21st.dev/@shadcnui-blocks/components/footer-04
+https://21st.dev/@cnippet-dev/components/v-sheet-7
+https://21st.dev/@oui/components/oui-text-area
+https://21st.dev/@arunachalam/components/adaptive-notch-navigation-bar
+https://21st.dev/@shadcnstore/components/datatable-1
+https://21st.dev/@cnippet-dev/components/segmented-control-tabs
+https://21st.dev/@bundui/components/pagination9
+https://21st.dev/@cnippet-dev/components/v-tabs-13
+https://21st.dev/@cnippet-dev/components/v-accordion-11
+https://21st.dev/@motiondotdev/components/motion-copy-button
+https://21st.dev/@cnippet-dev/components/v-form-13
+https://21st.dev/@radiumcoders/components/slide-to-detonate
+https://21st.dev/@felipemenezes098/components/reset-password-2
+https://21st.dev/@cnippet-dev/components/v-select-7
+https://21st.dev/@cnippet-dev/components/checkbox
+https://21st.dev/@cnippet-dev/components/v-checkbox-10
+https://21st.dev/@cnippet-dev/components/role-permissions-picker
+https://21st.dev/@cnippet-dev/components/v-fieldset-7
+https://21st.dev/@cnippet-dev/components/v-drawer-15
+https://21st.dev/@shadcnspace/components/collapsible-01
+https://21st.dev/@cnippet-dev/components/v-accordion-10
+https://21st.dev/@felipemenezes098/components/checkbox-02
+https://21st.dev/@cnippet-dev/components/v-card-16
+https://21st.dev/@cnippet-dev/components/v-label-7
+https://21st.dev/@cnippet-dev/components/v-label-9
+https://21st.dev/@corr/components/key-value-list
+https://21st.dev/@cnippet-dev/components/v-label-11
+https://21st.dev/@cnippet-dev/components/v-fieldset-10
+https://21st.dev/@felipemenezes098/components/select-03
+https://21st.dev/@cnippet-dev/components/v-form-11
+https://21st.dev/community/components/newest/2026-W35
+https://21st.dev/@jahed/components/ai-agent-response
+https://21st.dev/@cnippet-dev/components/v-checkbox-8
+https://21st.dev/@cnippet-dev/components/settings-sidebar-accordion
+https://21st.dev/@felipemenezes098/components/collapsible-05
+https://21st.dev/@felipemenezes098/components/tabs-07
+https://21st.dev/@cnippet-dev/components/onboarding-step-tracker
+https://21st.dev/@arunachalam/components/sidebar-with-chrome-like-tabs
+https://21st.dev/@cnippet-dev/components/v-breadcrumb-5
+https://21st.dev/@preetsuthar17/components/auth-change-password
+https://21st.dev/@preetsuthar17/components/auth-email-change
+https://21st.dev/@uilayout.contact/components/stats-bento
+https://21st.dev/@cnippet-dev/components/v-card-15
+https://21st.dev/@motiondotdev/components/motion-multi-state-badge
+https://21st.dev/@felipemenezes098/components/badge-13
+https://21st.dev/@edwinvakayil/components/status-dot
+https://21st.dev/@edwinvakayil/components/favicon-badge
+https://21st.dev/@preetsuthar17/components/task-filters
+https://21st.dev/@rorogogogo/components/agent-wave-loader
+https://21st.dev/@daiwiikharihar/components/hover-terminal
+https://21st.dev/@cnippet-dev/components/v-toggle-2
+https://21st.dev/@cnippet-dev/components/v-toggle-group-4
+https://21st.dev/@cnippet-dev/components/zoom-level-toggle-group
+https://21st.dev/@kvnkld/components/orbs-morph
+https://21st.dev/@kvnkld/components/orbs-helix
+https://21st.dev/@kvnkld/components/orbs-ring
+https://21st.dev/@kvnkld/components/orbs-lens
+https://21st.dev/@kvnkld/components/image-generation
+https://21st.dev/@senommu/components/ai-model-select
+https://21st.dev/@theshanelevine/components/loading-state
+https://21st.dev/@theshanelevine/components/streaming-text
+https://21st.dev/@educalvolpz/components/ai-tool-call
+https://21st.dev/@theshanelevine/components/approval-card
+https://21st.dev/@theshanelevine/components/records-table
+https://21st.dev/@kvnkld/components/task-list
+https://21st.dev/@felipemenezes098/components/dropdown-10
+https://21st.dev/@kvnkld/components/file-diff
+https://21st.dev/@educalvolpz/components/ai-context-meter
+https://21st.dev/@saurabh-2607/components/great-ui-deployment-checklist
+https://21st.dev/@ddoemonn/components/password-strength
+https://21st.dev/@ddoemonn/components/progress-bar
+
+
+
+
+Latest components gotten at "Newest" section, continue off of Jul 20 - Jul 27, 2026, Week 30
+get componenets: https://21st.dev/
+coming soon page: https://21st.dev/@kokonutd/components/background-paths
+MASSIVE library of componenets: https://al-husayn.github.io/awesome-ui-resources/#-table-of-contents
+subset of massive library for ui components: https://al-husayn.github.io/awesome-ui-resources/#-ui-libraries--components
