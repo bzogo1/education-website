@@ -43,8 +43,29 @@ import CheckArrowIcon from '../assets/icons/CheckArrowIcon.astro';
       <div class="mb-12 w-full lg:mb-0 lg:w-1/2 xl:pl-8">
         <div class="lg:w-unset mx-auto w-11/12 sm:w-4/5 md:w-3/4 lg:mx-auto">
           <span class="block-subtitle">Make Data-Driven Decisions</span>
-          <h2 class="block-big-title mt-6 mb-8 text-4xl lg:text-5xl">
-            Issue tracking you'll enjoy using
+          <h2 class="block-big-title feature-preview-title mt-6 mb-8 text-4xl lg:text-5xl">
+            <button type="button" class="feature-preview-trigger" aria-label="Preview Choose">
+              <span>Choose</span>
+              <span class="feature-preview-card">
+                <img src={feature5.src} alt="Choose preview" />
+              </span>
+            </button>
+            <span class="feature-preview-text"> your</span>
+            <button type="button" class="feature-preview-trigger" aria-label="Preview Own">
+              <span>Own</span>
+              <span class="feature-preview-card">
+                <img src={feature6.src} alt="Own preview" />
+              </span>
+            </button>
+            <span class="feature-preview-text"> option</span>
+            <span class="feature-preview-text"> to</span>
+            <button type="button" class="feature-preview-trigger" aria-label="Preview Build">
+              <span>Build</span>
+              <span class="feature-preview-card">
+                <img src={feature5.src} alt="Build preview" />
+              </span>
+            </button>
+            <span class="feature-preview-text">.</span>
           </h2>
           <p class="text-secondaryText mb-12 leading-loose">
             Monitor and track data issues with ease using our intuitive and efficient issue tracking
@@ -60,3 +81,79 @@ import CheckArrowIcon from '../assets/icons/CheckArrowIcon.astro';
     </div>
   </div>
 </section>
+
+<style>
+  .feature-preview-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.1em 0.25em;
+    line-height: 1.2;
+  }
+
+  .feature-preview-text {
+    color: inherit;
+  }
+
+  .feature-preview-trigger {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: rgb(145, 198, 255);
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.2s ease;
+  }
+
+  .feature-preview-trigger:hover,
+  .feature-preview-trigger:focus-visible {
+    color: rgb(177, 211, 242);
+    transform: translateY(-1px);
+    outline: none;
+  }
+
+  .feature-preview-card {
+    position: absolute;
+    left: 50%;
+    top: calc(100% + 0.9rem);
+    z-index: 20;
+    width: clamp(11rem, 18vw, 15rem);
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(13, 14, 14, 0.9);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 8px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+
+  .feature-preview-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .feature-preview-trigger:hover .feature-preview-card,
+  .feature-preview-trigger:focus-visible .feature-preview-card {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+
+  @media (max-width: 640px) {
+    .feature-preview-title {
+      gap: 0.08em 0.15em;
+    }
+
+    .feature-preview-card {
+      width: clamp(9rem, 40vw, 12rem);
+    }
+  }
+</style>
