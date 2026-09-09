@@ -65,7 +65,7 @@ export default function Pattern() {
         <div className="relative mb-5">
           <SearchIcon className="text-secondaryText absolute top-1/2 left-4 size-4 -translate-y-1/2" />
           <Input
-            className="pl-11"
+            className="pl-14"
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search questions..."
             value={query}
