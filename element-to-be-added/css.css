@@ -1,0 +1,221 @@
+:root {
+  --bg-gradient: linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
+  --text-dark: #222;
+  --text-light: #888;
+
+  /* 3D Dark Clay Properties */
+  --clay-dark-bg: #2a2a2a;
+  --clay-shadow-out: 10px 15px 25px rgba(0, 0, 0, 0.15),
+    -5px -5px 15px rgba(255, 255, 255, 0.8);
+  --clay-shadow-in: inset 2px 2px 5px rgba(255, 255, 255, 0.15),
+    inset -2px -2px 5px rgba(0, 0, 0, 0.5);
+
+  /* 3D Brain Highlight */
+  --brain-glow: drop-shadow(0 10px 15px rgba(255, 100, 100, 0.2));
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  background: var(--bg-gradient);
+  color: var(--text-dark);
+  min-height: 120vh; /* For scrolling */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+/* --- Header / Top --- */
+.top-brand {
+  margin-top: 40px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: var(--text-light);
+  text-transform: uppercase;
+}
+
+/* --- Main Graphic Container --- */
+.graphic-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* --- Concentric Circles --- */
+.circles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.02);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.circles::before {
+  content: "";
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.03);
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.05);
+  position: absolute;
+}
+
+.circles::after {
+  content: "";
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.04);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+  position: absolute;
+}
+
+/* --- Center Brain --- */
+.brain {
+  position: relative;
+  z-index: 10;
+  width: 60px;
+  height: 60px;
+  filter: var(--brain-glow);
+}
+
+/* --- Connecting Lines --- */
+.lines-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.line-path {
+  fill: none;
+  stroke: #333;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.6;
+}
+
+/* --- Floating Icons --- */
+.icon-node {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  background: var(--clay-dark-bg);
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: 700;
+  box-shadow: var(--clay-shadow-out), var(--clay-shadow-in);
+  z-index: 5;
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.icon-node:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.icon-node svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+}
+
+/* Node Positions */
+.n-l1 {
+  top: 20%;
+  left: 15%;
+}
+.n-l2 {
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+}
+.n-l3 {
+  bottom: 20%;
+  left: 15%;
+}
+
+.n-r1 {
+  top: 20%;
+  right: 15%;
+}
+.n-r2 {
+  top: 50%;
+  right: 10%;
+  transform: translateY(-50%);
+  font-family: serif;
+}
+.n-r3 {
+  bottom: 20%;
+  right: 15%;
+}
+
+/* Specific logo adjustments based on image */
+.logo-text {
+  font-size: 16px;
+  letter-spacing: -0.5px;
+}
+
+/* --- Typography Section --- */
+.text-section {
+  text-align: center;
+  margin-top: 40px;
+  position: relative;
+  z-index: 10;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 42px;
+  letter-spacing: -1px;
+  color: #333;
+  line-height: 1.2;
+}
+
+h1 strong {
+  font-weight: 700;
+  color: var(--text-dark);
+  display: block;
+  font-size: 48px;
+}
+
+.pointer-emoji {
+  font-size: 24px;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+/* --- Footer --- */
+.footer-brand {
+  margin-top: 80px;
+  font-size: 10px;
+  letter-spacing: 12px;
+  color: #bbb;
+}
