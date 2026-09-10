@@ -7,6 +7,7 @@ import { Image } from 'astro:assets';
 import testimonial1 from '../assets/images/testimonial1.png';
 import testimonial2 from '../assets/images/testimonial2.png';
 import testimonial3 from '../assets/images/testimonial3.png';
+import Component from '../components/ui/nextjs-flare';
 
 const serviceCategories = [
   {
@@ -339,16 +340,22 @@ const testimonials = [
                   </ul>
                 </div>
                 <div class="mt-6 lg:mt-0 lg:w-1/2">
-                  <div class="bg-bgDark1Lighter flex aspect-[4/3] items-center justify-center rounded-3xl p-12 lg:p-16">
-                    <svg
-                      class="text-secondaryColor/15 h-32 w-32"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="0.5"
-                      viewBox="0 0 24 24"
-                      set:html={cat.icon}
-                    />
-                  </div>
+                  {cat.id === 'tracking' ? (
+                    <div class="h-[640px] w-full overflow-hidden bg-black">
+                      <Component client:load />
+                    </div>
+                  ) : (
+                    <div class="bg-bgDark1Lighter flex aspect-[4/3] items-center justify-center rounded-3xl p-12 lg:p-16">
+                      <svg
+                        class="text-secondaryColor/15 h-32 w-32"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="0.5"
+                        viewBox="0 0 24 24"
+                        set:html={cat.icon}
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
