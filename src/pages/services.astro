@@ -11,7 +11,7 @@ import testimonial3 from '../assets/images/testimonial3.png';
 const serviceCategories = [
   {
     id: 'tracking',
-    label: 'Tracking',
+    label: 'Build',
     title: 'Capture every interaction',
     description:
       "Our lightweight SDK captures clicks, page views, custom events, and server-side actions with zero performance overhead. Auto-capture mode means you never miss an event - even ones you didn't know mattered yet.",
@@ -25,7 +25,7 @@ const serviceCategories = [
   },
   {
     id: 'visualization',
-    label: 'Visualization',
+    label: 'Customize',
     title: 'Dashboards that tell a story',
     description:
       'Build custom dashboards in minutes with drag-and-drop widgets. Choose from 20+ chart types, set dynamic filters, and share views with your team. Every dashboard updates in real time - no refresh needed.',
@@ -39,7 +39,7 @@ const serviceCategories = [
   },
   {
     id: 'intelligence',
-    label: 'Intelligence',
+    label: 'Showcase',
     title: 'AI that works while you sleep',
     description:
       'Automated anomaly detection catches issues before your users report them. Trend forecasting helps you plan ahead. Natural-language queries let anyone on your team ask questions and get real answers.',
@@ -53,7 +53,7 @@ const serviceCategories = [
   },
   {
     id: 'integrations',
-    label: 'Integrations',
+    label: 'Share',
     title: 'Connects to your entire stack',
     description:
       'Native integrations with 50+ tools - from data warehouses to messaging apps. REST API and webhooks for everything else. Most teams are fully connected within a single sprint.',
@@ -213,17 +213,17 @@ const testimonials = [
 ---
 
 <Layout
-  title="Services - Tailcast"
-  description="Explore Tailcast services - real-time analytics, custom dashboards, AI-powered insights, and more."
+  title="Features - Tailcast"
+  description="Explore Tailcast features - real-time analytics, custom dashboards, AI-powered insights, and more."
 >
   <Navbar />
 
-  <!-- 1. Tabbed Services -->
+  <!-- 1. Tabbed Features -->
   <section class="pt-36 pb-24 lg:pt-44">
     <div class="content-container">
       <div class="services-fade">
         <div class="mb-10 text-center">
-          <span class="block-subtitle mb-6 block">Our services</span>
+          <span class="block-subtitle mb-6 block">Our features</span>
           <h2 class="text-primaryText text-3xl font-bold tracking-tight lg:text-4xl">
             Everything your data team needs
           </h2>
@@ -235,7 +235,7 @@ const testimonials = [
           <div
             class="bg-bgDark1/80 border-mainBorderFaintest inline-flex gap-1 rounded-2xl border p-1.5"
             role="tablist"
-            aria-label="Service categories"
+            aria-label="Feature categories"
           >
             {
               serviceCategories.map((cat, i) => (
@@ -266,7 +266,7 @@ const testimonials = [
         <div
           class="mb-14 grid grid-cols-2 gap-2 sm:hidden"
           role="tablist"
-          aria-label="Service categories"
+          aria-label="Feature categories"
         >
           {
             serviceCategories.map((cat, i) => (
