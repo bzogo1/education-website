@@ -248,14 +248,20 @@ const testimonials = [
                   data-tab={cat.id}
                 >
                   <span class="flex items-center gap-2.5">
-                    <svg
-                      class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      viewBox="0 0 24 24"
-                      set:html={cat.icon}
-                    />
+                    {i === 0 ? (
+                      <span class="h-4 w-4 overflow-hidden rounded-sm">
+                        <Flare client:load />
+                      </span>
+                    ) : (
+                      <svg
+                        class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        set:html={cat.icon}
+                      />
+                    )}
                     {cat.label}
                   </span>
                 </button>
@@ -279,14 +285,20 @@ const testimonials = [
                 data-tab={cat.id}
               >
                 <span class="flex items-center justify-center gap-2">
-                  <svg
-                    class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    viewBox="0 0 24 24"
-                    set:html={cat.icon}
-                  />
+                  {i === 0 ? (
+                    <span class="h-4 w-4 overflow-hidden rounded-sm">
+                      <Flare client:load />
+                    </span>
+                  ) : (
+                    <svg
+                      class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      set:html={cat.icon}
+                    />
+                  )}
                   {cat.label}
                 </span>
               </button>
