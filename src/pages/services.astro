@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import ScrollUpButton from '../components/ScrollUpButton.astro';
+import Flare from '../components/ui/nextjs-flare';
 import { Image } from 'astro:assets';
 import testimonial1 from '../assets/images/testimonial1.png';
 import testimonial2 from '../assets/images/testimonial2.png';
@@ -306,17 +307,19 @@ const testimonials = [
                 <div class="lg:w-1/2">
                   <div class="mb-6 flex items-center gap-4">
                     <div
-                      class="flex h-12 w-12 items-center justify-center rounded-2xl"
+                      class="h-12 w-12 shrink-0 overflow-hidden rounded-2xl"
                       style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);"
                     >
-                      <svg
-                        class="text-primaryColor h-6 w-6"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                        viewBox="0 0 24 24"
-                        set:html={cat.icon}
-                      />
+                      {i === 0 ? <Flare client:load /> : (
+                        <svg
+                          class="text-primaryColor h-6 w-6"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          viewBox="0 0 24 24"
+                          set:html={cat.icon}
+                        />
+                      )}
                     </div>
                     <h3 class="text-primaryText text-2xl font-bold">{cat.title}</h3>
                   </div>
