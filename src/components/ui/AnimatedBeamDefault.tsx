@@ -2,6 +2,11 @@
 
 import { AnimatedBeam, Circle, Icons } from '../../../components/uilayouts/animated-beam';
 import React, { useRef } from 'react';
+import cloudflareIcon from '../../assets/icons/brand/cloudflare.svg';
+import githubIcon from '../../assets/icons/brand/github.svg';
+import googleCloudIcon from '../../assets/icons/brand/google-cloud.svg';
+import supabaseIcon from '../../assets/icons/brand/supabase.svg';
+import vercelIcon from '../../assets/icons/brand/vercel.svg';
 
 export default function AnimatedBeamDefault() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -11,7 +16,6 @@ export default function AnimatedBeamDefault() {
   const div4Ref = useRef<HTMLDivElement>(null);
   const div5Ref = useRef<HTMLDivElement>(null);
   const div6Ref = useRef<HTMLDivElement>(null);
-  const div7Ref = useRef<HTMLDivElement>(null);
 
   return (
     <div
@@ -21,29 +25,26 @@ export default function AnimatedBeamDefault() {
       <div className="flex h-full w-full flex-col items-stretch justify-between gap-10">
         <div className="flex flex-row items-center justify-between">
           <Circle ref={div1Ref}>
-            <Icons.typescript />
+            <img src={cloudflareIcon} alt="Cloudflare" className="h-full w-full" />
           </Circle>
           <Circle ref={div5Ref} className="p-2">
-            <Icons.tailwindcss />
+            <img src={supabaseIcon} alt="Supabase" className="h-full w-full" />
           </Circle>
         </div>
         <div className="flex flex-row items-center justify-between">
           <Circle ref={div2Ref} className="p-2">
-            <Icons.framer />
+            <img src={githubIcon} alt="GitHub" className="h-full w-full" />
           </Circle>
           <Circle ref={div4Ref} className="h-16 w-16 p-3">
             <Icons.logo />
           </Circle>
           <Circle ref={div6Ref} className="p-2">
-            <Icons.gsap />
+            <img src={vercelIcon} alt="Vercel" className="h-full w-full" />
           </Circle>
         </div>
         <div className="flex flex-row items-center justify-between">
           <Circle ref={div3Ref} className="p-2">
-            <Icons.nextjs />
-          </Circle>
-          <Circle ref={div7Ref} className="p-2">
-            <Icons.reactjs />
+            <img src={googleCloudIcon} alt="Google Cloud" className="h-full w-full" />
           </Circle>
         </div>
       </div>
@@ -93,17 +94,6 @@ export default function AnimatedBeamDefault() {
         dotted
         gradientStartColor="#00ac47"
         gradientStopColor="#4fcc5d"
-      />
-      <AnimatedBeam
-        containerRef={containerRef}
-        fromRef={div7Ref}
-        toRef={div4Ref}
-        curvature={75}
-        endYOffset={10}
-        reverse
-        dotted
-        gradientStartColor="#48b0d9"
-        gradientStopColor="#67aeff"
       />
     </div>
   );
