@@ -1,3 +1,11 @@
+---
+import cloudflareIcon from '../assets/icons/brand/cloudflare.svg';
+import githubIcon from '../assets/icons/brand/github.svg';
+import googleCloudIcon from '../assets/icons/brand/google-cloud.svg';
+import supabaseIcon from '../assets/icons/brand/supabase.svg';
+import vercelIcon from '../assets/icons/brand/vercel.svg';
+---
+
 <section class="sync-showcase" aria-labelledby="sync-showcase-title">
   <div class="content-container sync-showcase__inner">
     <div class="sync-showcase__copy">
@@ -22,7 +30,6 @@
         <path d="M260 180 C190 180 160 270 90 286" />
         <path d="M260 180 C330 180 360 90 430 74" />
         <path d="M260 180 C340 180 375 180 450 180" />
-        <path d="M260 180 C330 180 360 270 430 286" />
       </svg>
 
       <div class="sync-showcase__core" aria-hidden="true">
@@ -32,12 +39,21 @@
         </svg>
       </div>
 
-      <div class="sync-showcase__node sync-showcase__node--slack" aria-hidden="true">S</div>
-      <div class="sync-showcase__node sync-showcase__node--notion" aria-hidden="true">N</div>
-      <div class="sync-showcase__node sync-showcase__node--drive" aria-hidden="true">D</div>
-      <div class="sync-showcase__node sync-showcase__node--linear" aria-hidden="true">L</div>
-      <div class="sync-showcase__node sync-showcase__node--figma" aria-hidden="true">F</div>
-      <div class="sync-showcase__node sync-showcase__node--mail" aria-hidden="true">@</div>
+      <div class="sync-showcase__node sync-showcase__node--slack">
+        <img src={cloudflareIcon} alt="Cloudflare" />
+      </div>
+      <div class="sync-showcase__node sync-showcase__node--notion">
+        <img src={githubIcon} alt="GitHub" />
+      </div>
+      <div class="sync-showcase__node sync-showcase__node--drive">
+        <img src={googleCloudIcon} alt="Google Cloud" />
+      </div>
+      <div class="sync-showcase__node sync-showcase__node--linear">
+        <img src={supabaseIcon} alt="Supabase" />
+      </div>
+      <div class="sync-showcase__node sync-showcase__node--figma">
+        <img src={vercelIcon} alt="Vercel" />
+      </div>
     </div>
   </div>
 </section>
@@ -189,6 +205,13 @@
     font-size: 1.1rem;
     font-weight: 700;
     animation: sync-float 5s ease-in-out infinite;
+  }
+
+  .sync-showcase__node img {
+    width: 1.7rem;
+    height: 1.7rem;
+    object-fit: contain;
+    fill: currentColor;
   }
 
   .sync-showcase__node--slack { top: 8%; left: 12%; color: #f7b4d8; }
