@@ -21,7 +21,7 @@ Astro 6, TypeScript, Tailwind CSS 4, ESLint, Prettier
 
 ## Features
 
-- **8 pages** - Home, About, Services, Blog, Article, Careers, Contact, 404
+- **8 pages** - Home, About, Services, Blog, Article, Explore, Contact, 404
 - **SEO optimization** - Sitemap, Open Graph, canonical URLs, meta descriptions
 - **Accessible** - Semantic HTML, ARIA attributes, keyboard navigation
 - **View Transitions** - Smooth page navigation with Astro Client Router, no full-page reloads
@@ -70,7 +70,7 @@ You can also deploy on Vercel with one click:
 │   ├── pages/              # File-based routing
 │   │   ├── about.astro
 │   │   ├── blog/
-│   │   ├── careers/
+│   │   ├── explore/
 │   │   ├── contact.astro
 │   │   ├── index.astro
 │   │   └── 404.astro

@@ -16,14 +16,14 @@ export const getStaticPaths = () => {
 const { position } = Astro.props;
 ---
 
-<Layout title={`${position.title} - Showcase - Tailcast`} description={position.description}>
+<Layout title={`${position.title} - Explore - Tailcast`} description={position.description}>
   <Navbar />
   <section class="bg-bgDark2 pt-36 pb-20">
     <div class="content-container">
       <div class="fade-in">
         <!-- Back link -->
         <a
-          href="/careers"
+          href="/explore"
           class="text-secondaryText hover:text-primaryText mb-10 inline-flex items-center gap-2 transition"
         >
           <svg
@@ -40,7 +40,7 @@ const { position } = Astro.props;
               stroke-linecap="round"
               stroke-linejoin="round"></path>
           </svg>
-          Back to showcase
+          Back to Explore
         </a>
 
         <div class="grid grid-cols-1 gap-12 lg:grid-cols-3">
