@@ -118,7 +118,7 @@ export default function SignupForm() {
         </div>
 
         {/* Right Side - Marketing Testimonial and Mockup */}
-        <div className="relative flex h-full flex-col overflow-hidden bg-gradient-to-r from-black/40 to-transparent p-6 text-white sm:p-8 lg:p-10">
+        <div className="relative flex h-full flex-col overflow-hidden bg-gradient-to-r from-black/40 to-transparent text-white">
           {/* Background Shader */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <FlutedGlass
@@ -144,8 +144,33 @@ export default function SignupForm() {
             />
           </div>
 
-          <div className="relative z-10 h-full w-full">
-            <div className="max-w-[460px] lg:pt-6 relative z-20">
+          {/* Responsive Background Image */}
+          <div className="absolute inset-0 z-10 overflow-hidden">
+            <motion.div
+              initial={{ opacity: 0, scale: 1.05 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{
+                duration: 1,
+                delay: 0.22,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="absolute inset-0 w-full h-full"
+            >
+              <img
+                src="https://res.cloudinary.com/harshitproject/image/upload/v1774017120/hero-light.png"
+                alt="SolaceUI Dashboard App Mockup"
+                className="h-full w-full object-cover object-center opacity-80 [filter:invert(1)_hue-rotate(180deg)_brightness(0.68)_contrast(1.16)] dark:[filter:none]"
+                style={{
+                  objectPosition: 'center center',
+                }}
+              />
+            </motion.div>
+          </div>
+
+          {/* Content Overlay */}
+          <div className="relative z-20 flex h-full flex-col justify-center p-6 sm:p-8 lg:p-10 xl:p-12">
+            <div className="max-w-[460px] lg:max-w-[520px] xl:max-w-[580px]">
               <motion.div
                 initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -176,31 +201,11 @@ export default function SignupForm() {
                   delay: 0.12,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-5 text-xl font-light leading-tight tracking-[-0.035em] text-white/90 sm:text-2xl lg:text-[28px]"
+                className="mt-5 text-xl font-light leading-tight tracking-[-0.035em] text-white/90 sm:text-2xl lg:text-[28px] xl:text-[32px]"
               >
                 "Every block had the restraint and polish we usually spend weeks
                 refining."
               </motion.blockquote>
-            </div>
-
-            <div className="absolute inset-0 overflow-hidden z-10">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{
-                  duration: 1,
-                  delay: 0.22,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="absolute inset-0 w-full h-full"
-              >
-                <img
-                  src="https://res.cloudinary.com/harshitproject/image/upload/v1774017120/hero-light.png"
-                  alt="SolaceUI Dashboard App Mockup"
-                  className="h-full w-full object-cover object-top opacity-80 [filter:invert(1)_hue-rotate(180deg)_brightness(0.68)_contrast(1.16)] dark:[filter:none]"
-                />
-              </motion.div>
             </div>
           </div>
         </div>
