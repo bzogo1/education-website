@@ -11,6 +11,7 @@ import '../styles/Theme.css';
 import '../styles/diagonals.css';
 import InvitationModal from '../components/InvitationModal.astro';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/astro';
 
 interface Props {
   title: string;
@@ -78,6 +79,7 @@ const ogImage = `${siteUrl}/og-image.png`;
     </main>
     <InvitationModal />
     <Analytics />
+    <SpeedInsights />
     <style is:global>
       html {
         font-family: 'IBM Plex Sans';
