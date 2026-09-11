@@ -10,6 +10,7 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/Theme.css';
 import '../styles/diagonals.css';
 import InvitationModal from '../components/InvitationModal.astro';
+import { Analytics } from '@vercel/analytics/react';
 
 interface Props {
   title: string;
@@ -76,6 +77,7 @@ const ogImage = `${siteUrl}/og-image.png`;
       <slot />
     </main>
     <InvitationModal />
+    <Analytics />
     <style is:global>
       html {
         font-family: 'IBM Plex Sans';
