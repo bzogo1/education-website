@@ -40,7 +40,7 @@ export default function SignupForm() {
     <section className="h-screen bg-white p-3 text-black antialiased [font-synthesis:none] dark:bg-[#050505] dark:text-white overflow-hidden">
       <div className="grid h-[calc(100vh-1.5rem)] gap-6 lg:grid-cols-[0.94fr_1.06fr]">
         {/* Left Side - SignUp Form */}
-        <div className="flex h-full items-center justify-center rounded-md border border-black/10 bg-white px-6 py-8 dark:border-white/5 dark:bg-[#0a0a0c] lg:px-10 lg:py-10 xl:px-14">
+        <div className="flex h-full items-center justify-center bg-white px-6 py-8 dark:bg-[#0a0a0c] lg:px-10 lg:py-10 xl:px-14">
           <div className="mx-auto w-full max-w-[460px]">
             <div>
               <h1 className="text-2xl font-medium tracking-tight sm:text-3xl text-black dark:text-white">
@@ -118,7 +118,7 @@ export default function SignupForm() {
         </div>
 
         {/* Right Side - Marketing Testimonial and Mockup */}
-        <div className="relative flex h-full flex-col overflow-hidden rounded-md bg-linear-to-b from-black to-white p-6 text-white dark:to-[#050505] sm:p-8 lg:p-10">
+        <div className="relative flex h-full flex-col overflow-hidden bg-gradient-to-r from-black/40 to-transparent p-6 text-white sm:p-8 lg:p-10">
           {/* Background Shader */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <FlutedGlass
@@ -145,7 +145,7 @@ export default function SignupForm() {
           </div>
 
           <div className="relative z-10 h-full w-full">
-            <div className="max-w-[460px] lg:pt-6">
+            <div className="max-w-[460px] lg:pt-6 relative z-20">
               <motion.div
                 initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -183,30 +183,22 @@ export default function SignupForm() {
               </motion.blockquote>
             </div>
 
-            <div className="mt-6 w-full translate-y-[20%] overflow-hidden rounded-2xl border border-white/15 bg-black/70 p-2 shadow-[0_30px_90px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:translate-y-[18%] lg:absolute lg:left-[12%] lg:-bottom-16 lg:mt-0 lg:w-[105%] lg:max-w-none lg:origin-bottom-left lg:translate-y-0 lg:-rotate-3 xl:left-[14%] xl:-bottom-[120px] xl:w-[108%] 2xl:-bottom-[140px] 2xl:w-[112%]">
+            <div className="absolute inset-0 overflow-hidden z-10">
               <motion.div
-                initial={{ opacity: 0, y: 72, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{
                   duration: 1,
                   delay: 0.22,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="overflow-hidden rounded-xl border border-white/10 bg-black"
+                className="absolute inset-0 w-full h-full"
               >
-                <div className="flex items-center gap-1.5 border-b border-white/10 bg-black/40 px-4 py-3 select-none">
-                  <div className="size-2 rounded-full bg-white/35" />
-                  <div className="size-2 rounded-full bg-white/25" />
-                  <div className="size-2 rounded-full bg-white/15" />
-                  <span className="ml-4 text-[9px] font-mono tracking-wider text-white/40">
-                    solaceui.com/dashboard
-                  </span>
-                </div>
                 <img
                   src="https://res.cloudinary.com/harshitproject/image/upload/v1774017120/hero-light.png"
                   alt="SolaceUI Dashboard App Mockup"
-                  className="h-auto w-full object-cover object-top opacity-95 [filter:invert(1)_hue-rotate(180deg)_brightness(0.68)_contrast(1.16)] dark:[filter:none]"
+                  className="h-full w-full object-cover object-top opacity-80 [filter:invert(1)_hue-rotate(180deg)_brightness(0.68)_contrast(1.16)] dark:[filter:none]"
                 />
               </motion.div>
             </div>
