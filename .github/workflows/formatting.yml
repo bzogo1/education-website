@@ -1,11 +1,11 @@
-name: CI
+name: Formatting
 
 on:
   push:
   pull_request:
 
 jobs:
-  ci:
+  formatting:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +21,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Type check
-        run: npx astro check
+      - name: Check formatting
+        run: npm run format:check
