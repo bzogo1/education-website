@@ -1,6 +1,5 @@
 ---
 import TailcastLogo from '../assets/logos/TailcastLogo.astro';
-import GithubIcon from '../assets/icons/GithubIcon.astro';
 
 const navbarLinks = [
   { label: 'Home', href: '/#home' },
@@ -58,14 +57,11 @@ const isActive = (href: string) => {
     <div>
       <div class="hidden grow basis-0 justify-end lg:flex">
         <a
-          class="main-border-gray bg-bgDark2 hover:bg-bgDark3 flex rounded-xl pt-2 pr-8 pb-2 pl-6 text-sm text-white"
-          href="https://github.com/matt765/Tailcast"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Source code (opens in new tab)"
+          class="main-border-gray bg-bgDark2 hover:bg-bgDark3 active:scale-95 transition-transform duration-150 flex rounded-xl pt-2 pr-8 pb-2 pl-6 text-sm text-white"
+          href="/contact"
+          aria-label="Get Started"
         >
-          <GithubIcon />
-          <span class="pt-px">Source code</span>
+          <span class="pt-px">Get Started</span>
         </a>
       </div>
     </div>
@@ -99,14 +95,11 @@ const isActive = (href: string) => {
       ))
     }
     <a
-      class="outlined-button flex pt-2 pr-8 pb-2 pl-6"
-      href="https://github.com/matt765/Tailcast"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Source code (opens in new tab)"
+      class="outlined-button active:scale-95 transition-transform duration-150 flex pt-2 pr-8 pb-2 pl-6"
+      href="/contact"
+      aria-label="Get Started"
     >
-      <GithubIcon />
-      Source code
+      Get Started
     </a>
   </div>
 </nav>
