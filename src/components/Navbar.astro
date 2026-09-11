@@ -55,7 +55,14 @@ const isActive = (href: string) => {
       </div>
     </div>
     <div>
-      <div class="hidden grow basis-0 justify-end lg:flex">
+      <div class="hidden grow basis-0 justify-end gap-4 lg:flex">
+        <a
+          class="main-border-gray bg-bgDark2 hover:bg-bgDark3 active:scale-95 transition-transform duration-150 flex rounded-xl pt-2 pr-8 pb-2 pl-6 text-sm text-white"
+          href="/signup"
+          aria-label="Login"
+        >
+          <span class="pt-px">Login</span>
+        </a>
         <a
           class="main-border-gray bg-bgDark2 hover:bg-bgDark3 active:scale-95 transition-transform duration-150 flex rounded-xl pt-2 pr-8 pb-2 pl-6 text-sm text-white"
           href="/contact"
@@ -94,13 +101,22 @@ const isActive = (href: string) => {
         </a>
       ))
     }
-    <a
-      class="outlined-button active:scale-95 transition-transform duration-150 flex pt-2 pr-8 pb-2 pl-6"
-      href="/contact"
-      aria-label="Get Started"
-    >
-      Get Started
-    </a>
+    <div class="flex gap-4">
+      <a
+        class="outlined-button active:scale-95 transition-transform duration-150 flex pt-2 pr-8 pb-2 pl-6"
+        href="/signup"
+        aria-label="Login"
+      >
+        Login
+      </a>
+      <a
+        class="outlined-button active:scale-95 transition-transform duration-150 flex pt-2 pr-8 pb-2 pl-6"
+        href="/contact"
+        aria-label="Get Started"
+      >
+        Get Started
+      </a>
+    </div>
   </div>
 </nav>
 
@@ -154,7 +170,7 @@ const isActive = (href: string) => {
 
     overlay?.addEventListener('click', closeMenu);
 
-    document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    document.querySelectorAll('.mobile-nav-link, .outlined-button').forEach((link) => {
       link.addEventListener('click', closeMenu);
     });
 
