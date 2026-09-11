@@ -1,8 +1,15 @@
 ---
-import Layout from '../../layouts/Layout.astro';
 import SignupForm from '../../components/SignupForm';
 ---
 
-<Layout title="Sign Up - Tailcast">
-  <SignupForm client:load />
-</Layout>
+<!doctype html>
+<html lang="en" class="bg-white dark:bg-[#050505]">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up - Tailcast</title>
+  </head>
+  <body class="m-0 p-0 overflow-hidden">
+    <SignupForm client:load />
+  </body>
+</html>

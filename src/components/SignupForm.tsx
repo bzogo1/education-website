@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import type { ReactNode } from "react";
+import { FlutedGlass } from "@paper-design/shaders-react";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -36,19 +37,19 @@ const termsText = (
 
 export default function SignupForm() {
   return (
-    <section className="h-screen bg-white p-3 text-black antialiased [font-synthesis:none] dark:bg-[#050505] dark:text-white overflow-hidden">
+    <section className="h-screen w-screen overflow-hidden bg-white p-3 text-black antialiased [font-synthesis:none] dark:bg-[#050505] dark:text-white">
       <div className="grid h-[calc(100vh-1.5rem)] gap-6 lg:grid-cols-[0.94fr_1.06fr]">
         {/* Left Side - SignUp Form */}
-        <div className="flex h-full items-center justify-center bg-white px-6 py-8 dark:bg-[#0a0a0c] lg:px-10 lg:py-10 xl:px-14">
+        <div className="flex h-full items-center justify-center rounded-md border border-black/10 bg-white px-6 py-12 dark:border-white/5 dark:bg-[#0a0a0c] lg:px-14 lg:py-20 xl:px-20">
           <div className="mx-auto w-full max-w-[460px]">
             <div>
-              <h1 className="text-2xl font-medium tracking-tight sm:text-3xl text-black dark:text-white">
+              <h1 className="text-3xl font-medium tracking-tight sm:text-4xl text-black dark:text-white">
                 Create an account
               </h1>
             </div>
 
             {/* Social Signup Buttons */}
-            <div className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4">
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4">
               <button
                 type="button"
                 className="flex h-11 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-black/15 bg-white px-4 text-sm font-medium text-black transition-colors hover:bg-black/[0.02] dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
@@ -65,13 +66,13 @@ export default function SignupForm() {
               </button>
             </div>
 
-            <div className="my-4 flex items-center gap-4 text-xs font-medium text-black/40 dark:text-white/30">
+            <div className="my-6 flex items-center gap-4 text-xs font-medium text-black/40 dark:text-white/30">
               <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
               or
               <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
             </div>
 
-            <form className="space-y-3">
+            <form className="space-y-4">
               <div className="grid gap-4 sm:grid-cols-2">
                 {formFields.map((field) => (
                   <InputField
@@ -98,7 +99,7 @@ export default function SignupForm() {
                 type="password"
               />
 
-              <div className="space-y-2 pt-1 text-xs leading-5 text-black/45 dark:text-white/40 sm:text-[13px]">
+              <div className="space-y-3 pt-2 text-xs leading-5 text-black/45 dark:text-white/40 sm:text-[13px]">
                 <CheckboxLine>
                   I don't want to receive emails about Postdrips feature updates
                   and best practices.
@@ -108,7 +109,7 @@ export default function SignupForm() {
 
               <button
                 type="button"
-                className="mt-4 flex h-11 w-full items-center justify-center rounded-lg border border-black/40 bg-black text-sm font-medium text-white transition-colors hover:bg-black/85 dark:border-white/40 dark:bg-white dark:text-black dark:hover:bg-white/85"
+                className="mt-8 flex h-11 w-full items-center justify-center rounded-lg border border-black/40 bg-black text-sm font-medium text-white transition-colors hover:bg-black/85 dark:border-white/40 dark:bg-white dark:text-black dark:hover:bg-white/85"
               >
                 Submit
               </button>
@@ -117,51 +118,97 @@ export default function SignupForm() {
         </div>
 
         {/* Right Side - Marketing Testimonial and Mockup */}
-        <div className="relative h-full overflow-hidden bg-black text-white">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img
-              src="https://res.cloudinary.com/harshitproject/image/upload/v1774017120/hero-light.png"
-              alt="SolaceUI Dashboard App Mockup"
-              className="h-full w-full object-cover opacity-90 [filter:invert(1)_hue-rotate(180deg)_brightness(0.7)_contrast(1.1)] dark:[filter:none]"
+        <div className="relative flex h-full flex-col overflow-hidden rounded-md bg-linear-to-b from-black to-white p-8 text-white dark:to-[#050505] sm:p-12 lg:p-16">
+          {/* Background Shader */}
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <FlutedGlass
+              size={0.89}
+              shape="lines"
+              angle={0}
+              distortionShape="prism"
+              distortion={0.5}
+              shift={0}
+              blur={0}
+              edges={0.25}
+              stretch={0}
+              scale={1.11}
+              fit="cover"
+              highlights={0.1}
+              shadows={0.2}
+              grainMixer={0.1}
+              grainOverlay={0.1}
+              colorBack="#00000000"
+              colorHighlight="#FFFFFF"
+              colorShadow="#000000"
+              className="w-full h-full bg-transparent"
             />
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60" />
           </div>
 
-          {/* Content */}
-          <div className="relative z-10 flex h-full flex-col justify-center p-8 sm:p-12 lg:p-16">
-            <div className="max-w-md">
+          <div className="relative z-10 h-full w-full">
+            <div className="max-w-[460px] lg:pt-12">
               <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="flex items-center gap-3"
+                initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="flex items-center gap-4"
               >
                 <img
                   src="https://res.cloudinary.com/harshitproject/image/upload/v1746774430/member-five.png"
                   alt="Charlotte"
-                  className="h-10 w-10 shrink-0 rounded-full border-2 border-white/30 object-cover"
+                  className="size-10 shrink-0 rounded-full border border-white/20 object-cover"
                 />
                 <div>
-                  <div className="font-semibold text-white">
+                  <div className="font-semibold leading-tight text-white">
                     Charlotte
                   </div>
-                  <div className="text-sm text-white/70">
+                  <div className="mt-0.5 text-xs text-white/60">
                     Design Engineer
                   </div>
                 </div>
               </motion.div>
               <motion.blockquote
-                initial={{ opacity: 0, y: 18 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="mt-6 text-2xl font-light leading-relaxed text-white/95 sm:text-3xl"
+                initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{
+                  duration: 0.8,
+                  delay: 0.12,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="mt-7 text-2xl font-light leading-tight tracking-[-0.035em] text-white/90 sm:text-3xl lg:text-[34px]"
               >
-                "Every block had the restraint and polish we usually spend weeks refining."
+                "Every block had the restraint and polish we usually spend weeks
+                refining."
               </motion.blockquote>
+            </div>
+
+            <div className="mt-10 w-full translate-y-[24%] overflow-hidden rounded-2xl border border-white/15 bg-black/70 p-2 shadow-[0_30px_90px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:translate-y-[22%] lg:absolute lg:left-[12%] lg:-bottom-28 lg:mt-0 lg:w-[105%] lg:max-w-none lg:origin-bottom-left lg:translate-y-0 lg:-rotate-3 xl:left-[14%] xl:-bottom-[150px] xl:w-[108%] 2xl:-bottom-[170px] 2xl:w-[112%]">
+              <motion.div
+                initial={{ opacity: 0, y: 72, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{
+                  duration: 1,
+                  delay: 0.22,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="overflow-hidden rounded-xl border border-white/10 bg-black"
+              >
+                <div className="flex items-center gap-1.5 border-b border-white/10 bg-black/40 px-4 py-3 select-none">
+                  <div className="size-2 rounded-full bg-white/35" />
+                  <div className="size-2 rounded-full bg-white/25" />
+                  <div className="size-2 rounded-full bg-white/15" />
+                  <span className="ml-4 text-[9px] font-mono tracking-wider text-white/40">
+                    solaceui.com/dashboard
+                  </span>
+                </div>
+                <img
+                  src="https://res.cloudinary.com/harshitproject/image/upload/v1774017120/hero-light.png"
+                  alt="SolaceUI Dashboard App Mockup"
+                  className="h-auto w-full object-cover object-top opacity-95 [filter:invert(1)_hue-rotate(180deg)_brightness(0.68)_contrast(1.16)] dark:[filter:none]"
+                />
+              </motion.div>
             </div>
           </div>
         </div>
