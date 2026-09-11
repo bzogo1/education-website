@@ -248,20 +248,14 @@ const testimonials = [
                   data-tab={cat.id}
                 >
                   <span class="flex items-center gap-2.5">
-                    {i === 0 ? (
-                      <span class="h-4 w-4 overflow-hidden rounded-sm">
-                        <Flare client:load />
-                      </span>
-                    ) : (
-                      <svg
-                        class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                        viewBox="0 0 24 24"
-                        set:html={cat.icon}
-                      />
-                    )}
+                    <svg
+                      class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      set:html={cat.icon}
+                    />
                     {cat.label}
                   </span>
                 </button>
@@ -285,20 +279,14 @@ const testimonials = [
                 data-tab={cat.id}
               >
                 <span class="flex items-center justify-center gap-2">
-                  {i === 0 ? (
-                    <span class="h-4 w-4 overflow-hidden rounded-sm">
-                      <Flare client:load />
-                    </span>
-                  ) : (
-                    <svg
-                      class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      viewBox="0 0 24 24"
-                      set:html={cat.icon}
-                    />
-                  )}
+                  <svg
+                    class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                    set:html={cat.icon}
+                  />
                   {cat.label}
                 </span>
               </button>
@@ -322,16 +310,14 @@ const testimonials = [
                       class="h-12 w-12 shrink-0 overflow-hidden rounded-2xl"
                       style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);"
                     >
-                      {i === 0 ? <Flare client:load /> : (
-                        <svg
-                          class="text-primaryColor h-6 w-6"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="1.5"
-                          viewBox="0 0 24 24"
-                          set:html={cat.icon}
-                        />
-                      )}
+                      <svg
+                        class="text-primaryColor h-6 w-6"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        viewBox="0 0 24 24"
+                        set:html={cat.icon}
+                      />
                     </div>
                     <h3 class="text-primaryText text-2xl font-bold">{cat.title}</h3>
                   </div>
@@ -355,14 +341,20 @@ const testimonials = [
                 </div>
                 <div class="mt-6 lg:mt-0 lg:w-1/2">
                   <div class="bg-bgDark1Lighter flex aspect-[4/3] items-center justify-center rounded-3xl p-12 lg:p-16">
-                    <svg
-                      class="text-secondaryColor/15 h-32 w-32"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="0.5"
-                      viewBox="0 0 24 24"
-                      set:html={cat.icon}
-                    />
+                    {cat.id === 'tracking' ? (
+                      <div class="h-full w-full overflow-hidden rounded-2xl">
+                        <Flare client:load />
+                      </div>
+                    ) : (
+                      <svg
+                        class="text-secondaryColor/15 h-32 w-32"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="0.5"
+                        viewBox="0 0 24 24"
+                        set:html={cat.icon}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
