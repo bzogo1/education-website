@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import type { ReactNode } from "react";
-import { FlutedGlass } from "@paper-design/shaders-react";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "motion/react";
 
@@ -118,93 +117,50 @@ export default function SignupForm() {
         </div>
 
         {/* Right Side - Marketing Testimonial and Mockup */}
-        <div className="relative flex h-full flex-col overflow-hidden bg-gradient-to-r from-black/40 to-transparent text-white">
-          {/* Background Shader */}
-          <div className="absolute inset-0 z-0 pointer-events-none">
-            <FlutedGlass
-              size={0.89}
-              shape="lines"
-              angle={0}
-              distortionShape="prism"
-              distortion={0.5}
-              shift={0}
-              blur={0}
-              edges={0.25}
-              stretch={0}
-              scale={1.11}
-              fit="cover"
-              highlights={0.1}
-              shadows={0.2}
-              grainMixer={0.1}
-              grainOverlay={0.1}
-              colorBack="#00000000"
-              colorHighlight="#FFFFFF"
-              colorShadow="#000000"
-              className="w-full h-full bg-transparent"
+        <div className="relative h-full overflow-hidden bg-black text-white">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img
+              src="https://res.cloudinary.com/harshitproject/image/upload/v1774017120/hero-light.png"
+              alt="SolaceUI Dashboard App Mockup"
+              className="h-full w-full object-cover opacity-90 [filter:invert(1)_hue-rotate(180deg)_brightness(0.7)_contrast(1.1)] dark:[filter:none]"
             />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-black/60" />
           </div>
 
-          {/* Responsive Background Image */}
-          <div className="absolute inset-0 z-10 overflow-hidden">
-            <motion.div
-              initial={{ opacity: 0, scale: 1.05 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{
-                duration: 1,
-                delay: 0.22,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="absolute inset-0 w-full h-full"
-            >
-              <img
-                src="https://res.cloudinary.com/harshitproject/image/upload/v1774017120/hero-light.png"
-                alt="SolaceUI Dashboard App Mockup"
-                className="h-full w-full object-cover object-center opacity-80 [filter:invert(1)_hue-rotate(180deg)_brightness(0.68)_contrast(1.16)] dark:[filter:none]"
-                style={{
-                  objectPosition: 'center center',
-                }}
-              />
-            </motion.div>
-          </div>
-
-          {/* Content Overlay */}
-          <div className="relative z-20 flex h-full flex-col justify-center p-6 sm:p-8 lg:p-10 xl:p-12">
-            <div className="max-w-[460px] lg:max-w-[520px] xl:max-w-[580px]">
+          {/* Content */}
+          <div className="relative z-10 flex h-full flex-col justify-center p-8 sm:p-12 lg:p-16">
+            <div className="max-w-md">
               <motion.div
-                initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="flex items-center gap-4"
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-3"
               >
                 <img
                   src="https://res.cloudinary.com/harshitproject/image/upload/v1746774430/member-five.png"
                   alt="Charlotte"
-                  className="size-9 shrink-0 rounded-full border border-white/20 object-cover"
+                  className="h-10 w-10 shrink-0 rounded-full border-2 border-white/30 object-cover"
                 />
                 <div>
-                  <div className="font-semibold leading-tight text-white">
+                  <div className="font-semibold text-white">
                     Charlotte
                   </div>
-                  <div className="mt-0.5 text-xs text-white/60">
+                  <div className="text-sm text-white/70">
                     Design Engineer
                   </div>
                 </div>
               </motion.div>
               <motion.blockquote
-                initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{
-                  duration: 0.8,
-                  delay: 0.12,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="mt-5 text-xl font-light leading-tight tracking-[-0.035em] text-white/90 sm:text-2xl lg:text-[28px] xl:text-[32px]"
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mt-6 text-2xl font-light leading-relaxed text-white/95 sm:text-3xl"
               >
-                "Every block had the restraint and polish we usually spend weeks
-                refining."
+                "Every block had the restraint and polish we usually spend weeks refining."
               </motion.blockquote>
             </div>
           </div>
