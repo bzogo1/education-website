@@ -344,11 +344,20 @@ if (nav && activePill && themeBtn) {
     const trimmedTarget = rawTarget.trim();
     if (!trimmedTarget) return null;
 
-    // Allow only same-origin navigation targets and block dangerous schemes.
+    // Allow only explicit in-app routes.
+    const allowedPaths = new Set([
+      "/",
+      "/index.html",
+      "/about.html",
+      "/projects.html",
+      "/contact.html"
+    ]);
+
     try {
       const parsedUrl = new URL(trimmedTarget, window.location.origin);
       if (parsedUrl.origin !== window.location.origin) return null;
       if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") return null;
+      if (!allowedPaths.has(parsedUrl.pathname)) return null;
       return parsedUrl.pathname + parsedUrl.search + parsedUrl.hash;
     } catch (e) {
       return null;
@@ -394,7 +403,7 @@ if (nav && activePill && themeBtn) {
         const targetPage = btn.getAttribute('data-page');
         const safeTargetPage = getSafeNavigationTarget(targetPage);
         if (safeTargetPage) {
-          window.location.href = safeTargetPage;
+          window.location.assign(safeTargetPage);
         }
       }
     });
