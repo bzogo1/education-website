@@ -338,6 +338,23 @@ const nav = document.getElementById("nav");
 const glare = document.getElementById("glare");
 
 if (nav && activePill && themeBtn) {
+  function getSafeNavigationTarget(rawTarget) {
+    if (!rawTarget) return null;
+
+    const trimmedTarget = rawTarget.trim();
+    if (!trimmedTarget) return null;
+
+    // Allow only same-origin navigation targets and block dangerous schemes.
+    try {
+      const parsedUrl = new URL(trimmedTarget, window.location.origin);
+      if (parsedUrl.origin !== window.location.origin) return null;
+      if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") return null;
+      return parsedUrl.pathname + parsedUrl.search + parsedUrl.hash;
+    } catch (e) {
+      return null;
+    }
+  }
+
   // The function that calculates the Apple slider
   function updatePill(btn, smooth = true) {
     if (!btn) return;
@@ -375,8 +392,9 @@ if (nav && activePill && themeBtn) {
         
         // Navigate to the page specified in data-page attribute
         const targetPage = btn.getAttribute('data-page');
-        if (targetPage) {
-          window.location.href = targetPage;
+        const safeTargetPage = getSafeNavigationTarget(targetPage);
+        if (safeTargetPage) {
+          window.location.href = safeTargetPage;
         }
       }
     });
