@@ -75,6 +75,6 @@
     "typescript-eslint": "^8.58.1"
   },
   "overrides": {
-    "vite": "^7"
+    "vite": "^8"
   }
 }
