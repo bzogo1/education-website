@@ -46,14 +46,14 @@ import CheckArrowIcon from '../assets/icons/CheckArrowIcon.astro';
           <h2 class="block-big-title feature-preview-title mt-6 mb-8 text-4xl lg:text-5xl">
             <button type="button" class="feature-preview-trigger" aria-label="Preview Choose">
               <span>Choose</span>
-              <span class="feature-preview-card">
+              <span class="feature-preview-card feature-preview-card-top">
                 <img src={feature5.src} alt="Choose preview" />
               </span>
             </button>
             <span class="feature-preview-text"> your</span>
             <button type="button" class="feature-preview-trigger" aria-label="Preview Own">
               <span>Own</span>
-              <span class="feature-preview-card">
+              <span class="feature-preview-card feature-preview-card-top">
                 <img src={feature6.src} alt="Own preview" />
               </span>
             </button>
@@ -134,6 +134,17 @@ import CheckArrowIcon from '../assets/icons/CheckArrowIcon.astro';
     transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
+  .feature-preview-card-top {
+    top: auto;
+    bottom: calc(100% + 0.9rem);
+    transform: translate(-50%, -8px);
+  }
+
+  .feature-preview-trigger:hover .feature-preview-card-top,
+  .feature-preview-trigger:focus-visible .feature-preview-card-top {
+    transform: translate(-50%, 0);
+  }
+
   .feature-preview-card img {
     display: block;
     width: 100%;
@@ -152,7 +163,8 @@ import CheckArrowIcon from '../assets/icons/CheckArrowIcon.astro';
       gap: 0.08em 0.15em;
     }
 
-    .feature-preview-card {
+    .feature-preview-card,
+    .feature-preview-card-top {
       width: clamp(9rem, 40vw, 12rem);
     }
   }
