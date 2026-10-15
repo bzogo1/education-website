@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { createRenderer } from "./nextjs-flare-utils/renderer";
 
-export function Example() {
+export function Flare() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -23,4 +23,4 @@ export function Example() {
   );
 }
 
-export default Example;
+export default Flare;
