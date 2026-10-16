@@ -6,16 +6,7 @@ import { motion } from "framer-motion";
 import { Checkbox } from "@ark-ui/react/checkbox";
 import { CheckIcon } from "lucide-react";
 import { PasswordStrength, usePasswordStrength } from "@/components/interior/password-strength";
-
-const formFields = [
-  {
-    label: "First name",
-    value: "John",
-    type: "text",
-    placeholder: "John",
-  },
-  { label: "Last name", value: "Doe", type: "text", placeholder: "Doe" },
-];
+import { EmailVerification } from "@/components/ui/auth/email-verification";
 
 const termsText = (
   <>
@@ -39,6 +30,29 @@ const termsText = (
 export default function AuthSectionThree() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showEmailVerification, setShowEmailVerification] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+  });
+  const [termsChecked, setTermsChecked] = useState(false);
+  const [newsletterChecked, setNewsletterChecked] = useState(false);
+
+  const passwordStrength = usePasswordStrength(password);
+  const isPasswordStrong = passwordStrength.score === passwordStrength.max && !passwordStrength.guessable;
+  const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+  const isFormValid = formData.firstName && formData.lastName && isEmailValid && isPasswordStrong && termsChecked;
+
+  const handleSubmit = () => {
+    if (isFormValid) {
+      setShowEmailVerification(true);
+    }
+  };
+
+  if (showEmailVerification) {
+    return <EmailVerification email={formData.email} onBack={() => setShowEmailVerification(false)} />;
+  }
 
   return (
     <section className="h-screen bg-white p-2 text-black antialiased [font-synthesis:none] dark:bg-[#050505] dark:text-white overflow-hidden">
@@ -76,24 +90,30 @@ export default function AuthSectionThree() {
               <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
             </div>
 
-            <form className="space-y-3">
+            <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
               <div className="grid gap-3 sm:grid-cols-2">
-                {formFields.map((field) => (
-                  <InputField
-                    key={field.label}
-                    label={field.label}
-                    value={field.value}
-                    placeholder={field.placeholder}
-                    type={field.type}
-                  />
-                ))}
+                <InputField
+                  label="First name"
+                  value={formData.firstName}
+                  placeholder="John"
+                  type="text"
+                  onChange={(value) => setFormData({ ...formData, firstName: value })}
+                />
+                <InputField
+                  label="Last name"
+                  value={formData.lastName}
+                  placeholder="Doe"
+                  type="text"
+                  onChange={(value) => setFormData({ ...formData, lastName: value })}
+                />
               </div>
 
               <InputField
                 label="Email"
-                value="example@gmail.com"
+                value={formData.email}
                 placeholder="email@example.com"
                 type="email"
+                onChange={(value) => setFormData({ ...formData, email: value })}
               />
 
               <div className="space-y-1.5 text-left w-full">
@@ -126,16 +146,17 @@ export default function AuthSectionThree() {
               </div>
 
               <div className="space-y-2 pt-1 text-[11px] leading-4 text-black/45 dark:text-white/40">
-                <CheckboxLine>
+                <CheckboxLine checked={newsletterChecked} onChange={setNewsletterChecked}>
                   I don't want to receive emails about Postdrips feature updates
                   and best practices.
                 </CheckboxLine>
-                <CheckboxLine>{termsText}</CheckboxLine>
+                <CheckboxLine checked={termsChecked} onChange={setTermsChecked}>{termsText}</CheckboxLine>
               </div>
 
               <button
-                type="button"
-                className="mt-5 flex h-10 w-full items-center justify-center rounded-lg border border-black/40 bg-black text-sm font-medium text-white transition-colors hover:bg-black/85 dark:border-white/40 dark:bg-white dark:text-black dark:hover:bg-white/85"
+                type="submit"
+                disabled={!isFormValid}
+                className="mt-5 flex h-10 w-full items-center justify-center rounded-lg border border-black/40 bg-black text-sm font-medium text-white transition-colors hover:bg-black/85 disabled:opacity-50 disabled:cursor-not-allowed dark:border-white/40 dark:bg-white dark:text-black dark:hover:bg-white/85"
               >
                 Submit
               </button>
@@ -204,8 +225,8 @@ export default function AuthSectionThree() {
                 }}
                 className="mt-5 text-xl font-light leading-tight tracking-[-0.035em] text-white/90 sm:text-2xl lg:text-[28px]"
               >
-                “Every block had the restraint and polish we usually spend weeks
-                refining.”
+                "Every block had the restraint and polish we usually spend weeks
+                refining."
               </motion.blockquote>
             </div>
 
@@ -248,15 +269,15 @@ function InputField({
   placeholder,
   type = "text",
   value,
+  onChange,
 }: {
   label: string;
   placeholder: string;
   type?: string;
   value: string;
+  onChange?: (value: string) => void;
 }) {
-  const [val, setVal] = useState(value);
   const [showPassword, setShowPassword] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
 
   return (
     <div className="space-y-1.5 text-left w-full">
@@ -268,17 +289,8 @@ function InputField({
           type={
             type === "password" ? (showPassword ? "text" : "password") : type
           }
-          value={val}
-          onFocus={() => {
-            if (!isEditing) {
-              setVal("");
-              setIsEditing(true);
-            }
-          }}
-          onChange={(e) => {
-            setVal(e.target.value);
-            setIsEditing(true);
-          }}
+          value={value}
+          onChange={(e) => onChange?.(e.target.value)}
           placeholder={placeholder}
           className="w-full bg-transparent text-sm text-black outline-none placeholder:text-black/30 dark:text-white dark:placeholder:text-white/30"
         />
@@ -300,11 +312,11 @@ function InputField({
   );
 }
 
-function CheckboxLine({ children }: { children: ReactNode }) {
+function CheckboxLine({ children, checked, onChange }: { children: ReactNode; checked?: boolean; onChange?: (checked: boolean) => void }) {
   return (
     <label className="flex items-start gap-3 cursor-pointer">
       <span className="relative mt-1 size-3.5 shrink-0">
-        <Checkbox.Root className="size-full cursor-pointer">
+        <Checkbox.Root className="size-full cursor-pointer" checked={checked} onCheckedChange={onChange}>
           <Checkbox.Control className="size-full bg-white border-2 border-gray-300 rounded data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500 data-hover:border-gray-400 dark:bg-gray-900 dark:border-gray-600 dark:data-[state=checked]:bg-blue-500 dark:data-[state=checked]:border-blue-500 dark:data-hover:border-gray-400 transition-all duration-200 flex items-center justify-center">
             <Checkbox.Indicator>
               <CheckIcon className="w-3.5 h-3.5 text-white" />
