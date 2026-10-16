@@ -85,7 +85,7 @@ export default function AuthSectionThree() {
 
               <InputField
                 label="Email"
-                value="harshitlog@gmail.com"
+                value="example@gmail.com"
                 placeholder="email@example.com"
                 type="email"
               />
