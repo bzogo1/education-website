@@ -27,8 +27,8 @@ function FieldGroup({
   onToggle?: () => void;
 }) {
   return (
-    <div className="space-y-2">
-      <label className="block text-xs font-medium text-white/80">{label}</label>
+    <div className="space-y-3">
+      <label className="block text-[10px] font-medium text-white/70">{label}</label>
       <div className="relative flex h-11 items-center rounded-xl border border-white/20 bg-white/5 px-3 focus-within:border-primaryColor focus-within:ring-1 focus-within:ring-primaryColor transition-colors duration-200">
         <span className="shrink-0 text-white/40">{icon}</span>
         <input
@@ -77,7 +77,7 @@ function CheckboxRow({
           className="size-4 rounded border border-white/30 bg-transparent text-primaryColor focus:ring-1 focus:ring-primaryColor cursor-pointer"
         />
       </span>
-      <span className="text-sm text-white/90 leading-relaxed">{children}</span>
+              <span className="text-sm text-white/80 leading-relaxed">{children}</span>
     </label>
   );
 }
@@ -174,21 +174,23 @@ export default function SignupForm() {
       <div className="absolute z-10 -inset-10 blur-[140px] bg-[#91c6ff]/15 opacity-40 pointer-events-none" />
 
       <main className="relative z-20 h-full flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div className="w-full max-w-3xl">
-          <div className="relative overflow-hidden rounded-[2.5rem] border border-white/20 bg-white/8 backdrop-blur-[28px] backdrop-saturate-180 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)] p-10 md:p-16 ring-1 ring-white/10">
-            <span className="absolute inset-0 rounded-[2.5rem] border border-white/20/50 pointer-events-none" />
+        <div className="max-w-xl mx-auto">
+          <div
+            className="relative overflow-hidden rounded-[2.5rem] bg-white/5 backdrop-blur-[28px] backdrop-saturate-180 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)] p-10 md:p-16"
+            style={{ fontFamily: "'Helvetica Neue', Helvetica, Arial, sans-serif" }}
+          >
 
-            <div className="mx-auto max-w-[30rem] text-center">
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+            <div className="mx-auto max-w-[28rem] text-center">
+              <h2 className="text-xl font-bold tracking-tight text-white sm:text-2xl">
                 Create account
               </h2>
-              <p className="mt-2 text-sm text-white/80">
+              <p className="mt-2 text-xs text-white/80">
                 Join thousands of learners and start your educational journey
                 today.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-12 space-y-6">
+            <form onSubmit={handleSubmit} className="mt-10 space-y-10">
               {/* First name & Last name stacked */}
               <FieldGroup
                 label="First name"
@@ -287,15 +289,15 @@ export default function SignupForm() {
               </button>
             </form>
 
-            <div className="mt-12 relative">
+            <div className="mt-10 relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t border-white/10" />
-                <span className="mx-5 text-[10px] text-white/40 uppercase tracking-wider">
+                <span className="mx-5 text-[9px] text-white/40 uppercase tracking-wider">
                   Or continue with
                 </span>
               </div>
 
-              <div className="mt-5 grid gap-3">
+              <div className="mt-4 grid gap-3">
                 <button
                   type="button"
                   className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-4 py-3.5 text-sm font-medium text-white transition-all duration-200 hover:bg-white/10 hover:border-white/30"
@@ -313,7 +315,7 @@ export default function SignupForm() {
               </div>
             </div>
 
-            <p className="mt-12 text-center text-sm text-white/70">
+            <p className="mt-10 text-center text-xs text-white/70">
               Already have an account?{" "}
               <a
                 href="/login"
