@@ -90,8 +90,8 @@ export default function AuthSectionThree() {
               <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
             </div>
 
-            <form className="space-y-3" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
-              <div className="grid gap-3 sm:grid-cols-2">
+            <form className="space-y-2.5" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+              <div className="grid gap-2 sm:grid-cols-2">
                 <InputField
                   label="First name"
                   value={formData.firstName}
@@ -116,11 +116,11 @@ export default function AuthSectionThree() {
                 onChange={(value) => setFormData({ ...formData, email: value })}
               />
 
-              <div className="space-y-1.5 text-left w-full">
-                <label className="text-xs font-semibold text-black/60 dark:text-white/60">
+              <div className="space-y-1 text-left w-full">
+                <label className="text-[11px] font-semibold text-black/60 dark:text-white/60">
                   Password
                 </label>
-                <div className="relative flex h-10 items-center rounded-lg border border-black/15 bg-white px-3.5 dark:border-white/10 dark:bg-white/5">
+                <div className="relative flex h-9 items-center rounded-lg border border-black/15 bg-white px-3 dark:border-white/10 dark:bg-white/5">
                   <input
                     type={showPassword ? "text" : "password"}
                     value={password}
@@ -133,19 +133,19 @@ export default function AuthSectionThree() {
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white cursor-pointer"
+                    className="absolute right-3 text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white cursor-pointer"
                   >
                     {showPassword ? (
-                      <EyeOff className="size-4" />
+                      <EyeOff className="size-3.5" />
                     ) : (
-                      <Eye className="size-4" />
+                      <Eye className="size-3.5" />
                     )}
                   </button>
                 </div>
-                <PasswordStrength value={password} className="mt-2" />
+                <PasswordStrength value={password} className="mt-2" compact />
               </div>
 
-              <div className="space-y-2 pt-1 text-[11px] leading-4 text-black/45 dark:text-white/40">
+              <div className="space-y-1.5 pt-0.5 text-[10px] leading-3.5 text-black/45 dark:text-white/40">
                 <CheckboxLine checked={newsletterChecked} onChange={setNewsletterChecked}>
                   I don't want to receive emails about Postdrips feature updates
                   and best practices.
@@ -156,7 +156,7 @@ export default function AuthSectionThree() {
               <button
                 type="submit"
                 disabled={!isFormValid}
-                className="mt-5 flex h-10 w-full items-center justify-center rounded-lg border border-black/40 bg-black text-sm font-medium text-white transition-colors hover:bg-black/85 disabled:opacity-50 disabled:cursor-not-allowed dark:border-white/40 dark:bg-white dark:text-black dark:hover:bg-white/85"
+                className="mt-3 flex h-9 w-full items-center justify-center rounded-lg border border-black/40 bg-black text-sm font-medium text-white transition-colors hover:bg-black/85 disabled:opacity-50 disabled:cursor-not-allowed dark:border-white/40 dark:bg-white dark:text-black dark:hover:bg-white/85"
               >
                 Submit
               </button>
@@ -280,11 +280,11 @@ function InputField({
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="space-y-1.5 text-left w-full">
-      <label className="text-xs font-semibold text-black/60 dark:text-white/60">
+    <div className="space-y-1 text-left w-full">
+      <label className="text-[11px] font-semibold text-black/60 dark:text-white/60">
         {label}
       </label>
-      <div className="relative flex h-10 items-center rounded-lg border border-black/15 bg-white px-3.5 dark:border-white/10 dark:bg-white/5">
+      <div className="relative flex h-9 items-center rounded-lg border border-black/15 bg-white px-3 dark:border-white/10 dark:bg-white/5">
         <input
           type={
             type === "password" ? (showPassword ? "text" : "password") : type
@@ -298,12 +298,12 @@ function InputField({
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3.5 text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white cursor-pointer"
+            className="absolute right-3 text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white cursor-pointer"
           >
             {showPassword ? (
-              <EyeOff className="size-4" />
+              <EyeOff className="size-3.5" />
             ) : (
-              <Eye className="size-4" />
+              <Eye className="size-3.5" />
             )}
           </button>
         )}

@@ -105,6 +105,7 @@ export type PasswordStrengthProps = {
   announceDelay?: number;
   showRules?: boolean;
   className?: string;
+  compact?: boolean;
 };
 
 const TONES = {
@@ -129,6 +130,7 @@ export function PasswordStrength({
   announceDelay = 700,
   showRules = true,
   className = "",
+  compact = false,
 }: PasswordStrengthProps) {
   const {
     score,
@@ -150,13 +152,13 @@ export function PasswordStrength({
         aria-valuemax={max}
         aria-valuenow={score}
         aria-valuetext={label}
-        className="grid gap-1.5"
+        className="grid gap-1"
         style={{ gridTemplateColumns: `repeat(${max}, minmax(0, 1fr))` }}
       >
         {Array.from({ length: max }, (_, i) => (
           <div
             key={i}
-            className="relative h-1.5 overflow-hidden rounded-[2px] bg-stone-200 dark:bg-white/12"
+            className="relative h-1 overflow-hidden rounded-[2px] bg-stone-200 dark:bg-white/12"
           >
             <motion.span
               className={`absolute inset-0 origin-left rounded-[2px] transition-colors duration-200 ${tone.bar}`}
@@ -170,8 +172,8 @@ export function PasswordStrength({
         ))}
       </div>
 
-      <div className="mt-2 flex h-5 items-center justify-between gap-3">
-        <span className="inline-grid text-[12.5px] font-medium leading-5">
+      <div className="mt-1.5 flex h-4 items-center justify-between gap-2">
+        <span className="inline-grid text-[11px] font-medium leading-4">
           {labels.map((text, i) => (
             <motion.span
               key={text}
@@ -188,7 +190,7 @@ export function PasswordStrength({
 
         <motion.span
           aria-hidden
-          className="whitespace-nowrap text-[11.5px] leading-5 text-amber-600 dark:text-amber-400"
+          className="whitespace-nowrap text-[10px] leading-4 text-amber-600 dark:text-amber-400"
           initial={false}
           animate={{ opacity: guessable ? 1 : 0 }}
           transition={reduced ? INSTANT : CROSSFADE}
@@ -198,12 +200,12 @@ export function PasswordStrength({
       </div>
 
       {showRules && (
-        <ul className="mt-3 grid gap-1.5">
+        <ul className={`mt-2 grid gap-1 ${compact ? "grid-cols-2" : ""}`}>
           {evaluated.map((rule) => (
-            <li key={rule.id} className="flex items-center gap-2">
-              <span className="relative grid size-[14px] shrink-0 place-items-center rounded-[4px] border border-stone-200 text-white dark:border-white/[0.16] dark:text-stone-900">
+            <li key={rule.id} className="flex items-center gap-1.5">
+              <span className="relative grid size-[12px] shrink-0 place-items-center rounded-[3px] border border-stone-200 text-white dark:border-white/[0.16] dark:text-stone-900">
                 <motion.span
-                  className="absolute inset-0 rounded-[3px] bg-emerald-500"
+                  className="absolute inset-0 rounded-[2px] bg-emerald-500"
                   initial={false}
                   animate={{ opacity: rule.met ? 1 : 0 }}
                   transition={reduced ? INSTANT : CROSSFADE}
@@ -212,7 +214,7 @@ export function PasswordStrength({
                   viewBox="0 0 12 12"
                   fill="none"
                   aria-hidden
-                  className="relative size-[9px]"
+                  className="relative size-[8px]"
                   initial={false}
                   animate={{ opacity: rule.met ? 1 : 0, scale: rule.met ? 1 : 0.6 }}
                   transition={reduced ? INSTANT : CELL}
@@ -227,7 +229,7 @@ export function PasswordStrength({
                 </motion.svg>
               </span>
               <span
-                className={`text-[12.5px] leading-5 transition-colors duration-200 ${
+                className={`text-[11px] leading-4 transition-colors duration-200 ${
                   rule.met
                     ? "text-stone-700 dark:text-stone-200"
                     : "text-stone-500 dark:text-stone-400"
