@@ -35,43 +35,43 @@ const termsText = (
 
 export default function AuthSectionThree() {
   return (
-    <section className="min-h-screen bg-white p-3 text-black antialiased [font-synthesis:none] dark:bg-[#050505] dark:text-white">
-      <div className="grid min-h-[calc(100vh-1.5rem)] gap-6 lg:grid-cols-[0.94fr_1.06fr]">
+    <section className="h-screen bg-white p-2 text-black antialiased [font-synthesis:none] dark:bg-[#050505] dark:text-white overflow-hidden">
+      <div className="grid h-full gap-4 lg:grid-cols-[0.94fr_1.06fr]">
         {/* Left Side - SignUp Form */}
-        <div className="flex min-h-[760px] items-center justify-center rounded-md border border-black/10 bg-white px-6 py-12 dark:border-white/5 dark:bg-[#0a0a0c] lg:min-h-0 lg:px-14 lg:py-20 xl:px-20">
-          <div className="mx-auto w-full max-w-[460px]">
+        <div className="flex items-center justify-center rounded-md border border-black/10 bg-white px-4 py-6 dark:border-white/5 dark:bg-[#0a0a0c] lg:px-10 lg:py-8 xl:px-12">
+          <div className="mx-auto w-full max-w-[400px]">
             <div>
-              <h1 className="text-3xl font-medium tracking-tight sm:text-4xl text-black dark:text-white">
+              <h1 className="text-2xl font-medium tracking-tight sm:text-3xl text-black dark:text-white">
                 Create an account
               </h1>
             </div>
 
             {/* Social Signup Buttons */}
-            <div className="mt-8 grid gap-3 sm:grid-cols-2 sm:gap-4">
+            <div className="mt-5 grid gap-2 sm:grid-cols-2 sm:gap-3">
               <button
                 type="button"
-                className="flex h-11 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-black/15 bg-white px-4 text-sm font-medium text-black transition-colors hover:bg-black/[0.02] dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+                className="flex h-10 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-black/15 bg-white px-3 text-sm font-medium text-black transition-colors hover:bg-black/[0.02] dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 <GoogleIcon />
                 <span className="whitespace-nowrap">Sign up with Google</span>
               </button>
               <button
                 type="button"
-                className="flex h-11 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-black/15 bg-white px-4 text-sm font-medium text-black transition-colors hover:bg-black/[0.02] dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+                className="flex h-10 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-black/15 bg-white px-3 text-sm font-medium text-black transition-colors hover:bg-black/[0.02] dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 <AppleIcon />
                 <span className="whitespace-nowrap">Sign up with Apple</span>
               </button>
             </div>
 
-            <div className="my-6 flex items-center gap-4 text-xs font-medium text-black/40 dark:text-white/30">
+            <div className="my-4 flex items-center gap-3 text-xs font-medium text-black/40 dark:text-white/30">
               <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
               or
               <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
             </div>
 
-            <form className="space-y-4">
-              <div className="grid gap-4 sm:grid-cols-2">
+            <form className="space-y-3">
+              <div className="grid gap-3 sm:grid-cols-2">
                 {formFields.map((field) => (
                   <InputField
                     key={field.label}
@@ -97,7 +97,7 @@ export default function AuthSectionThree() {
                 type="password"
               />
 
-              <div className="space-y-3 pt-2 text-xs leading-5 text-black/45 dark:text-white/40 sm:text-[13px]">
+              <div className="space-y-2 pt-1 text-[11px] leading-4 text-black/45 dark:text-white/40">
                 <CheckboxLine>
                   I don't want to receive emails about Postdrips feature updates
                   and best practices.
@@ -107,7 +107,7 @@ export default function AuthSectionThree() {
 
               <button
                 type="button"
-                className="mt-8 flex h-11 w-full items-center justify-center rounded-lg border border-black/40 bg-black text-sm font-medium text-white transition-colors hover:bg-black/85 dark:border-white/40 dark:bg-white dark:text-black dark:hover:bg-white/85"
+                className="mt-5 flex h-10 w-full items-center justify-center rounded-lg border border-black/40 bg-black text-sm font-medium text-white transition-colors hover:bg-black/85 dark:border-white/40 dark:bg-white dark:text-black dark:hover:bg-white/85"
               >
                 Submit
               </button>
@@ -116,7 +116,7 @@ export default function AuthSectionThree() {
         </div>
 
         {/* Right Side - Marketing Testimonial and Mockup */}
-        <div className="relative flex min-h-[720px] flex-col overflow-hidden rounded-md bg-linear-to-b from-black to-white p-8 text-white dark:to-[#050505] sm:p-12 lg:min-h-0 lg:p-16">
+        <div className="relative flex flex-col overflow-hidden rounded-md bg-linear-to-b from-black to-white p-4 text-white dark:to-[#050505] sm:p-6 lg:p-8">
           {/* Background Shader */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <FlutedGlass
@@ -142,25 +142,25 @@ export default function AuthSectionThree() {
             />
           </div>
 
-          <div className="relative z-10 h-full w-full">
-            <div className="max-w-[460px] lg:pt-12">
+          <div className="relative z-10 h-full w-full flex flex-col justify-center">
+            <div className="max-w-[350px]">
               <motion.div
                 initial={{ opacity: 0, y: 12, filter: "blur(6px)" }}
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-10%" }}
                 transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="flex items-center gap-4"
+                className="flex items-center gap-3"
               >
                 <img
                   src="https://res.cloudinary.com/harshitproject/image/upload/v1746774430/member-five.png"
                   alt="Charlotte"
-                  className="size-10 shrink-0 rounded-full border border-white/20 object-cover"
+                  className="size-8 shrink-0 rounded-full border border-white/20 object-cover"
                 />
                 <div>
-                  <div className="font-semibold leading-tight text-white">
+                  <div className="font-semibold leading-tight text-white text-sm">
                     Charlotte
                   </div>
-                  <div className="mt-0.5 text-xs text-white/60">
+                  <div className="mt-0.5 text-[11px] text-white/60">
                     Design Engineer
                   </div>
                 </div>
@@ -174,14 +174,14 @@ export default function AuthSectionThree() {
                   delay: 0.12,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-7 text-2xl font-light leading-tight tracking-[-0.035em] text-white/90 sm:text-3xl lg:text-[34px]"
+                className="mt-5 text-xl font-light leading-tight tracking-[-0.035em] text-white/90 sm:text-2xl lg:text-[28px]"
               >
                 “Every block had the restraint and polish we usually spend weeks
                 refining.”
               </motion.blockquote>
             </div>
 
-            <div className="mt-10 w-full translate-y-[24%] overflow-hidden rounded-2xl border border-white/15 bg-black/70 p-2 shadow-[0_30px_90px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:translate-y-[22%] lg:absolute lg:left-[12%] lg:-bottom-28 lg:mt-0 lg:w-[105%] lg:max-w-none lg:origin-bottom-left lg:translate-y-0 lg:-rotate-3 xl:left-[14%] xl:-bottom-[150px] xl:w-[108%] 2xl:-bottom-[170px] 2xl:w-[112%]">
+            <div className="mt-6 w-full overflow-hidden rounded-2xl border border-white/15 bg-black/70 p-2 shadow-[0_30px_90px_rgba(0,0,0,0.5)] backdrop-blur-xl">
               <motion.div
                 initial={{ opacity: 0, y: 72, filter: "blur(10px)" }}
                 whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -193,11 +193,11 @@ export default function AuthSectionThree() {
                 }}
                 className="overflow-hidden rounded-xl border border-white/10 bg-black"
               >
-                <div className="flex items-center gap-1.5 border-b border-white/10 bg-black/40 px-4 py-3 select-none">
+                <div className="flex items-center gap-1.5 border-b border-white/10 bg-black/40 px-3 py-2 select-none">
                   <div className="size-2 rounded-full bg-white/35" />
                   <div className="size-2 rounded-full bg-white/25" />
                   <div className="size-2 rounded-full bg-white/15" />
-                  <span className="ml-4 text-[9px] font-mono tracking-wider text-white/40">
+                  <span className="ml-3 text-[8px] font-mono tracking-wider text-white/40">
                     solaceui.com/dashboard
                   </span>
                 </div>
@@ -235,7 +235,7 @@ function InputField({
       <label className="text-xs font-semibold text-black/60 dark:text-white/60">
         {label}
       </label>
-      <div className="relative flex h-11 items-center rounded-lg border border-black/15 bg-white px-3.5 dark:border-white/10 dark:bg-white/5">
+      <div className="relative flex h-10 items-center rounded-lg border border-black/15 bg-white px-3.5 dark:border-white/10 dark:bg-white/5">
         <input
           type={
             type === "password" ? (showPassword ? "text" : "password") : type
