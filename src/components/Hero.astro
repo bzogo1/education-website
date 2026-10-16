@@ -4,12 +4,25 @@ import dashboard from '../assets/images/dashboard.jpg';
 ---
 
 <section
-  class="bg-black mb-[28vw] flex w-full items-center justify-center pb-24 sm:pb-32 md:mb-[18vw] md:pb-44 lg:mb-[10vw] lg:pb-0 xl:mb-[13vw] 2xl:mb-60"
+  class="bg-black mb-[28vw] flex w-full items-center justify-center pb-24 sm:pb-32 md:mb-[18vw] md:pb-44 lg:mb-[10vw] lg:pb-0 xl:mb-[13vw] 2xl:mb-60 relative pt-20"
   id="home"
 >
+  <!-- Video Background -->
+  <div class="absolute inset-0 w-full h-full overflow-hidden -z-10">
+    <video
+      autoplay
+      loop
+      muted
+      playsinline
+      class="absolute top-0 left-0 w-full h-full object-cover"
+    >
+      <source src="/background-video.mp4" type="video/mp4" />
+    </video>
+    <div class="absolute inset-0 bg-black/50"></div>
+  </div>
   <!-- <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full pointer-events-none" style="background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 65%)"></div> -->
   <div
-    class="flex w-full flex-col items-center justify-center pt-16 text-center md:w-[50rem] md:pt-16 lg:pt-20 xl:w-[56.25rem]"
+    class="flex w-full flex-col items-center justify-center pt-16 text-center md:w-[50rem] md:pt-16 lg:pt-20 xl:w-[56.25rem] relative z-10"
   >
     <div class="hero-fade-in" style="--delay: 0s">
       <span class="block-subtitle mt-16 mb-6 block text-[0.65rem] sm:mt-32 sm:text-xs">
