@@ -79,16 +79,16 @@
   @apply bg-primaryColor text-black flex cursor-pointer items-center justify-center rounded-lg font-bold transition hover:bg-[#b8dcff];
 }
 .outlined-button {
-  @apply text-primaryText border-mainBorder bg-bgDark2 hover:bg-bgDark3 cursor-pointer rounded-xl border border-solid text-sm;
+  @apply text-primaryText border-mainBorder bg-gray-900 hover:bg-gray-800 cursor-pointer rounded-xl border border-solid text-sm;
 }
 
 /* Cards */
 
 .card {
-  @apply bg-bgDark3/40 border-mainBorderFaintest hover:border-mainBorderSubtler hover:bg-bgDark3HoverLight/70 rounded-2xl border transition-all duration-500;
+  @apply bg-gray-900/40 border-mainBorderFaintest hover:border-mainBorderSubtler hover:bg-gray-800/70 rounded-2xl border transition-all duration-500;
 }
 .card-colored-hover {
-  @apply hover:border-primaryColor/25 hover:bg-bgDark3HoverLight;
+  @apply hover:border-primaryColor/25 hover:bg-gray-800;
 }
 
 /* Images */
@@ -154,7 +154,7 @@
 /* Inputs */
 
 .form-input {
-  @apply border-mainBorderSubtler text-primaryText hover:border-primaryColor focus:border-primaryColor w-full rounded-xl border bg-transparent px-4 py-3 placeholder-gray-500 transition outline-none;
+  @apply border-mainBorderSubtler text-primaryText hover:border-primaryColor focus:border-primaryColor w-full rounded-xl border bg-gray-900 px-4 py-3 placeholder-gray-500 transition outline-none;
 }
 
 /* Modals */

@@ -20,7 +20,7 @@ const isActive = (href: string) => {
 ---
 
 <nav
-  class={`w-full h-20 flex flex-col justify-center items-center fixed z-40 transition-all duration-300 ${!isHomepage ? 'bg-bgDark1/70 backdrop-blur-[15px]' : ''}`}
+  class={`w-full h-20 flex flex-col justify-center items-center fixed z-40 transition-all duration-300 ${!isHomepage ? 'bg-black/70 backdrop-blur-[15px]' : ''}`}
   id="main-nav"
   data-homepage={isHomepage ? 'true' : 'false'}
   aria-label="Main navigation"
@@ -57,7 +57,7 @@ const isActive = (href: string) => {
     <div>
       <div class="hidden grow basis-0 justify-end lg:flex">
         <a
-          class="main-border-gray bg-bgDark2 hover:bg-bgDark3 active:scale-95 transition-transform duration-150 flex rounded-xl pt-2 pr-8 pb-2 pl-6 text-sm text-white ml-4"
+          class="main-border-gray bg-gray-900 hover:bg-gray-800 active:scale-95 transition-transform duration-150 flex rounded-xl pt-2 pr-8 pb-2 pl-6 text-sm text-white ml-4"
           href="/signup"
           aria-label="Get Started"
         >
@@ -66,7 +66,7 @@ const isActive = (href: string) => {
       </div>
     </div>
     <button
-      class="border-mainBorder hover:bg-bgDark2 flex cursor-pointer flex-col rounded-md border border-solid px-2 py-3 lg:hidden"
+      class="border-mainBorder hover:bg-gray-900 flex cursor-pointer flex-col rounded-md border border-solid px-2 py-3 lg:hidden"
       id="mobile-menu-toggle"
       aria-label="Toggle menu"
       aria-expanded="false"
@@ -81,7 +81,7 @@ const isActive = (href: string) => {
   <div class="fixed inset-0 top-20 z-40 hidden lg:hidden" id="mobile-menu-overlay"></div>
   <!-- Mobile navbar -->
   <div
-    class="bg-bgDark1 border-bgDark3 absolute top-4 left-0 z-50 mt-16 hidden w-full flex-col items-center gap-10 border-y border-solid pt-10 pb-10 lg:hidden"
+    class="bg-black border-gray-800 absolute top-4 left-0 z-50 mt-16 hidden w-full flex-col items-center gap-10 border-y border-solid pt-10 pb-10 lg:hidden"
     id="mobile-menu"
   >
     {
@@ -118,9 +118,9 @@ const isActive = (href: string) => {
     const updateNavBackground = () => {
       if (!isHomepage) return;
       if (window.scrollY > 50) {
-        nav?.classList.add('bg-bgDark1/70', 'backdrop-blur-[15px]');
+        nav?.classList.add('bg-black/70', 'backdrop-blur-[15px]');
       } else {
-        nav?.classList.remove('bg-bgDark1/70', 'backdrop-blur-[15px]');
+        nav?.classList.remove('bg-black/70', 'backdrop-blur-[15px]');
       }
     };
 

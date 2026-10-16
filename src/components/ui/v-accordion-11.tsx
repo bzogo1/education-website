@@ -55,7 +55,7 @@ export default function Pattern() {
   );
 
   return (
-    <section className="relative flex w-full justify-center bg-bgDark2 px-6 py-20 lg:py-28">
+    <section className="relative flex w-full justify-center bg-black px-6 py-20 lg:py-28">
       <div className="mx-auto w-full max-w-2xl">
         <div className="mb-8 text-center">
           <p className="block-subtitle mb-4">Have any questions?</p>
