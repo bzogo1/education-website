@@ -121,7 +121,7 @@ function GithubIcon({ width = 18, height = 18 }: { width?: number; height?: numb
       aria-hidden="true"
       className="shrink-0"
     >
-      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-1.332-1.456-1.011.109-.995.109-.995 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605 2.665-.3 5.466-1.332 5.466-1.332-1.456-1.011.109-.995.109-.995 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-1.332-1.456-1.011.109-.995.109-.995 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998 0 .395.21.692.825.57C20.565 21.797 24 17.3 24 12.297c0-6.627-5.373-12-12-12" />
+      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-1.332-1.456-1.011.109-.995.109-.995 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605 2.665-.3 5.466-1.332 5.466-1.332-1.456-1.011.109-.995.109-.995 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998 0 .395.21.692.825.57C20.565 21.797 24 17.3 24 12.297c0-6.627-5.373-12-12-12" />
     </svg>
   );
 }
@@ -157,8 +157,8 @@ export default function SignupForm() {
     agreeTerms;
 
   return (
-    <div className="min-h-screen bg-[#050505] relative overflow-hidden selection:bg-primaryColor/30">
-      {/* Background image */}
+    <div className="h-[100dvh] bg-[#050505] relative overflow-hidden selection:bg-primaryColor/30">
+      {/* Wide background image, kept full-width for ultra-wide monitors */}
       <div className="absolute inset-0 z-0">
         <img
           src="/images/signup-bg.jpg"
@@ -170,16 +170,15 @@ export default function SignupForm() {
         />
       </div>
       {/* Readability overlay */}
-      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0b0b0b]/35 via-transparent to-[#050505]/80 pointer-events-none" />
-      {/* Ambient glow behind the card */}
-      <div className="absolute z-10 -inset-10 blur-[120px] bg-[#91c6ff]/20 opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#0b0b0b]/30 via-transparent to-[#050505]/90 pointer-events-none" />
+      <div className="absolute z-10 -inset-10 blur-[140px] bg-[#91c6ff]/15 opacity-40 pointer-events-none" />
 
-      <main className="relative z-20 min-h-screen flex items-center justify-center p-4 sm:p-6 lg:p-12">
-        <div className="w-full max-w-sm">
-          <div className="relative overflow-hidden rounded-[2rem] border border-white/20 bg-white/10 backdrop-blur-[20px] backdrop-saturate-150 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.6)] p-8 md:p-12 ring-1 ring-white/10">
-            <span className="absolute inset-0 rounded-[2rem] border border-white/20/60 pointer-events-none" />
+      <main className="relative z-20 h-full flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        <div className="w-full max-w-3xl">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-white/20 bg-white/8 backdrop-blur-[28px] backdrop-saturate-180 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.7)] p-10 md:p-16 ring-1 ring-white/10">
+            <span className="absolute inset-0 rounded-[2.5rem] border border-white/20/50 pointer-events-none" />
 
-            <div className="mx-auto max-w-[24rem] text-center">
+            <div className="mx-auto max-w-[30rem] text-center">
               <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                 Create account
               </h2>
@@ -189,28 +188,28 @@ export default function SignupForm() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-10 space-y-6">
-              <div className="grid gap-4 sm:grid-cols-2">
-                <FieldGroup
-                  label="First name"
-                  placeholder="First name"
-                  name="firstName"
-                  icon={<User className="size-4 shrink-0 text-white/30" />}
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                />
-                <FieldGroup
-                  label="Last name"
-                  placeholder="Last name"
-                  name="lastName"
-                  icon={<User className="size-4 shrink-0 text-white/30" />}
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
+            <form onSubmit={handleSubmit} className="mt-12 space-y-6">
+              {/* First name & Last name stacked */}
+              <FieldGroup
+                label="First name"
+                placeholder="First name"
+                name="firstName"
+                icon={<User className="size-4 shrink-0 text-white/30" />}
+                value={formData.firstName}
+                onChange={handleChange}
+                required
+              />
+              <FieldGroup
+                label="Last name"
+                placeholder="Last name"
+                name="lastName"
+                icon={<User className="size-4 shrink-0 text-white/30" />}
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
 
+              {/* Email sandwiched */}
               <FieldGroup
                 label="Email"
                 placeholder="you@example.com"
@@ -222,6 +221,7 @@ export default function SignupForm() {
                 required
               />
 
+              {/* Password & Confirm stacked */}
               <FieldGroup
                 label="Password"
                 placeholder="Create a password"
@@ -234,7 +234,6 @@ export default function SignupForm() {
                 showToggle
                 onToggle={() => setShowPassword(!showPassword)}
               />
-
               <FieldGroup
                 label="Confirm password"
                 placeholder="Confirm your password"
@@ -248,7 +247,8 @@ export default function SignupForm() {
                 onToggle={() => setShowConfirmPassword(!showConfirmPassword)}
               />
 
-              <div className="space-y-4 pt-1">
+              {/* Options at bottom */}
+              <div className="space-y-4 pt-2">
                 <CheckboxRow
                   checked={agreeTerms}
                   onChange={(e) => setAgreeTerms(e.target.checked)}
@@ -270,7 +270,6 @@ export default function SignupForm() {
                   </a>
                   .
                 </CheckboxRow>
-
                 <CheckboxRow
                   checked={marketing}
                   onChange={(e) => setMarketing(e.target.checked)}
@@ -282,31 +281,31 @@ export default function SignupForm() {
               <button
                 type="submit"
                 disabled={!isComplete}
-                className="w-full flex items-center justify-center gap-2 rounded-xl bg-primaryColor text-black font-semibold text-sm py-3.5 transition-all duration-200 hover:bg-white hover:shadow-[0_0_24px_rgba(145,198,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 rounded-xl bg-primaryColor text-black font-semibold text-sm py-4 transition-all duration-200 hover:bg-white hover:shadow-[0_0_24px_rgba(145,198,255,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Create account
               </button>
             </form>
 
-            <div className="mt-10 relative">
+            <div className="mt-12 relative">
               <div className="absolute inset-0 flex items-center">
                 <span className="w-full border-t border-white/10" />
-                <span className="mx-4 text-[10px] text-white/40 uppercase tracking-wider">
+                <span className="mx-5 text-[10px] text-white/40 uppercase tracking-wider">
                   Or continue with
                 </span>
               </div>
 
-              <div className="mt-4 grid gap-3">
+              <div className="mt-5 grid gap-3">
                 <button
                   type="button"
-                  className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-white/10 hover:border-white/30"
+                  className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-4 py-3.5 text-sm font-medium text-white transition-all duration-200 hover:bg-white/10 hover:border-white/30"
                 >
                   <GoogleIcon />
                   <span>Sign in with Google</span>
                 </button>
                 <button
                   type="button"
-                  className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-4 py-3 text-sm font-medium text-white transition-all duration-200 hover:bg-white/10 hover:border-white/30"
+                  className="flex w-full items-center justify-center gap-2.5 rounded-xl border border-white/20 bg-white/5 px-4 py-3.5 text-sm font-medium text-white transition-all duration-200 hover:bg-white/10 hover:border-white/30"
                 >
                   <GithubIcon width={18} height={18} />
                   <span>Sign in with GitHub</span>
@@ -314,7 +313,7 @@ export default function SignupForm() {
               </div>
             </div>
 
-            <p className="mt-10 text-center text-sm text-white/70">
+            <p className="mt-12 text-center text-sm text-white/70">
               Already have an account?{" "}
               <a
                 href="/login"
