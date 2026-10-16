@@ -5,6 +5,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
 import { Checkbox } from "@ark-ui/react/checkbox";
 import { CheckIcon } from "lucide-react";
+import { PasswordStrength, usePasswordStrength } from "@/components/interior/password-strength";
 
 const formFields = [
   {
@@ -36,6 +37,9 @@ const termsText = (
 );
 
 export default function AuthSectionThree() {
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <section className="h-screen bg-white p-2 text-black antialiased [font-synthesis:none] dark:bg-[#050505] dark:text-white overflow-hidden">
       <div className="grid h-full gap-4 lg:grid-cols-[0.94fr_1.06fr]">
@@ -92,12 +96,34 @@ export default function AuthSectionThree() {
                 type="email"
               />
 
-              <InputField
-                label="Password"
-                value="*************"
-                placeholder="Enter password"
-                type="password"
-              />
+              <div className="space-y-1.5 text-left w-full">
+                <label className="text-xs font-semibold text-black/60 dark:text-white/60">
+                  Password
+                </label>
+                <div className="relative flex h-10 items-center rounded-lg border border-black/15 bg-white px-3.5 dark:border-white/10 dark:bg-white/5">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
+                    autoComplete="new-password"
+                    spellCheck={false}
+                    className="w-full bg-transparent text-sm text-black outline-none placeholder:text-black/30 dark:text-white dark:placeholder:text-white/30"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-3.5 text-black/40 dark:text-white/40 hover:text-black dark:hover:text-white cursor-pointer"
+                  >
+                    {showPassword ? (
+                      <EyeOff className="size-4" />
+                    ) : (
+                      <Eye className="size-4" />
+                    )}
+                  </button>
+                </div>
+                <PasswordStrength value={password} className="mt-2" />
+              </div>
 
               <div className="space-y-2 pt-1 text-[11px] leading-4 text-black/45 dark:text-white/40">
                 <CheckboxLine>
