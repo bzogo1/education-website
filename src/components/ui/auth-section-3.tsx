@@ -84,7 +84,7 @@ export default function AuthSectionThree() {
               </button>
             </div>
 
-            <div className="my-4 flex items-center gap-3 text-xs font-medium text-black/40 dark:text-white/30">
+            <div className="my-3 flex items-center gap-3 text-xs font-medium text-black/40 dark:text-white/30">
               <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
               or
               <div className="h-px flex-1 bg-black/10 dark:bg-white/10" />
