@@ -81,20 +81,20 @@ export default function FooterBlock() {
   return (
     <>
       <Toaster />
-      <footer className="bg-background w-full border-t border-border/30">
+      <footer className="bg-black w-full border-t border-white/20">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <div className="grid gap-12 lg:grid-cols-[1.2fr_2fr] lg:gap-16">
             <div className="max-w-sm">
               <a href="/" className="flex items-center gap-2">
-                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-foreground">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gray-900">
                   <span className="text-sm font-bold text-white">LS</span>
                 </div>
-                <span className="text-lg font-bold text-foreground">LearnSphere</span>
+                <span className="text-lg font-bold text-white">tailcast</span>
               </a>
-              <h2 className="mt-6 text-xl font-bold tracking-tight text-foreground">
+              <h2 className="mt-6 text-xl font-bold tracking-tight text-white">
                 Stay ahead in learning
               </h2>
-              <p className="mt-2 text-sm text-muted-foreground">
+              <p className="mt-2 text-sm text-gray-400">
                 Get the latest courses, resources, and tips delivered weekly.
                 No spam, unsubscribe anytime.
               </p>
@@ -109,10 +109,10 @@ export default function FooterBlock() {
                     placeholder="you@example.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="bg-card sm:flex-1"
+                    className="bg-black sm:flex-1"
                     required
                   />
-                  <Button type="submit" disabled={subscribed}>
+                  <Button type="submit" disabled={subscribed} className="bg-gray-900 text-white border-transparent hover:bg-gray-800">
                     {subscribed ? (
                       <>
                         <IconPlaceholder
@@ -143,8 +143,8 @@ export default function FooterBlock() {
               </form>
               <p
                 className={cn(
-                  "mt-3 text-xs text-muted-foreground transition-colors",
-                  subscribed && "text-foreground"
+                  "mt-3 text-xs text-gray-400 transition-colors",
+                  subscribed && "text-white"
                 )}
               >
                 {subscribed
@@ -156,7 +156,7 @@ export default function FooterBlock() {
             <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
               {columns.map((col) => (
                 <div key={col.title}>
-                  <h3 className="text-sm font-bold tracking-tight text-foreground">
+                  <h3 className="text-sm font-bold tracking-tight text-white">
                     {col.title}
                   </h3>
                   <ul className="mt-4 flex flex-col gap-3">
@@ -164,7 +164,7 @@ export default function FooterBlock() {
                       <li key={link.label}>
                         <a
                           href={link.href}
-                          className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                          className="text-sm text-gray-400 transition-colors hover:text-white"
                         >
                           {link.label}
                         </a>
@@ -179,8 +179,8 @@ export default function FooterBlock() {
           <Separator className="mt-12" />
 
           <div className="flex flex-col items-start gap-4 pt-6 sm:flex-row sm:items-center sm:justify-between">
-            <p className="text-sm text-muted-foreground">
-              &copy; {new Date().getFullYear()} LearnSphere. All rights reserved.
+            <p className="text-sm text-gray-400">
+              &copy; {new Date().getFullYear()} tailcast. All rights reserved.
             </p>
             <div className="flex items-center gap-2">
               {socials.map((social) => (
@@ -188,7 +188,7 @@ export default function FooterBlock() {
                   key={social.label}
                   href="#"
                   aria-label={social.label}
-                  className="rounded-md border border-border bg-background p-2 text-muted-foreground transition-colors hover:text-foreground"
+                  className="rounded-md border border-white/20 bg-black p-2 text-gray-400 transition-colors hover:text-white"
                 >
                   <social.icon className="size-4" aria-hidden="true" />
                 </a>
