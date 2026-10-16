@@ -344,6 +344,8 @@ const testimonials = [
       <canvas
         id="creatureCanvas"
         class="max-h-full max-w-full"
+        width="512"
+        height="384"
         style="background: transparent;"
       ></canvas>
     ) : (
@@ -678,6 +680,9 @@ const testimonials = [
         });
         const target = document.querySelector(`[data-panel="${tabId}"]`);
         target?.classList.remove('hidden');
+        if (tabId === 'intelligence') {
+          initCreatureShader();
+        }
       });
     });
   };
@@ -708,6 +713,7 @@ vec3 render(vec2 uv, out float d) {
 }
 void main(void) {
   vec2 uv=(FC-.5*R)/MN;
+  float d;
   vec3 col=render(uv,d);
   O=vec4(col,1);
 }`;
@@ -719,62 +725,84 @@ void main(){gl_Position=position;}`;
 
   const creatureVertices = [-1,1,-1,-1,1,1,1,-1];
 
-  function initCreatureShader() {
-    const canvas = document.getElementById('creatureCanvas');
-    if (!canvas) return;
-    const gl = canvas.getContext('webgl2');
-    if (!gl) return;
+  let creatureGl = null;
+  let creatureProgram = null;
+  let creatureBuffer = null;
+  let creatureResLoc = null;
+  let creatureTimeLoc = null;
+  let creatureCanvas = null;
+  let creatureRunning = false;
 
-    function resizeCanvas() {
-      const rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width * window.devicePixelRatio;
-      canvas.height = rect.height * window.devicePixelRatio;
-      gl.viewport(0, 0, canvas.width, canvas.height);
-    }
+  function creatureResize() {
+    if (!creatureCanvas || !creatureGl) return;
+    const rect = creatureCanvas.getBoundingClientRect();
+    if (rect.width === 0 || rect.height === 0) return;
+    creatureCanvas.width = rect.width * window.devicePixelRatio;
+    creatureCanvas.height = rect.height * window.devicePixelRatio;
+    creatureGl.viewport(0, 0, creatureCanvas.width, creatureCanvas.height);
+  }
+
+  function creatureRender(now) {
+    if (!creatureGl || !creatureProgram) return;
+    creatureGl.clearColor(0,0,0,0);
+    creatureGl.clear(creatureGl.COLOR_BUFFER_BIT);
+    creatureGl.useProgram(creatureProgram);
+    creatureGl.bindBuffer(creatureGl.ARRAY_BUFFER, creatureBuffer);
+    creatureGl.uniform2f(creatureResLoc, creatureCanvas.width, creatureCanvas.height);
+    creatureGl.uniform1f(creatureTimeLoc, now * 0.001);
+    creatureGl.drawArrays(creatureGl.TRIANGLE_STRIP, 0, 4);
+    requestAnimationFrame(creatureRender);
+  }
+
+  function startCreature() {
+    if (creatureRunning) return;
+    creatureRunning = true;
+    creatureResize();
+    requestAnimationFrame(creatureRender);
+  }
+
+  function initCreatureShader() {
+    creatureCanvas = document.getElementById('creatureCanvas');
+    if (!creatureCanvas) return;
+    creatureGl = creatureCanvas.getContext('webgl2');
+    if (!creatureGl) return;
 
     function compile(shader, source) {
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
+      creatureGl.shaderSource(shader, source);
+      creatureGl.compileShader(shader);
     }
 
-    function setup() {
-      const vs = gl.createShader(gl.VERTEX_SHADER);
-      const fs = gl.createShader(gl.FRAGMENT_SHADER);
-      compile(vs, creatureVertex);
-      compile(fs, creatureFragment);
-      const program = gl.createProgram();
-      gl.attachShader(program, vs);
-      gl.attachShader(program, fs);
-      gl.linkProgram(program);
-      const buffer = gl.createBuffer();
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(creatureVertices), gl.STATIC_DRAW);
-      const position = gl.getAttribLocation(program, 'position');
-      gl.enableVertexAttribArray(position);
-      gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
-      const resolution = gl.getUniformLocation(program, 'resolution');
-      const time = gl.getUniformLocation(program, 'time');
-      return { program, buffer, resolution, time };
-    }
+    const vs = creatureGl.createShader(creatureGl.VERTEX_SHADER);
+    const fs = creatureGl.createShader(creatureGl.FRAGMENT_SHADER);
+    compile(vs, creatureVertex);
+    compile(fs, creatureFragment);
+    creatureProgram = creatureGl.createProgram();
+    creatureGl.attachShader(creatureProgram, vs);
+    creatureGl.attachShader(creatureProgram, fs);
+    creatureGl.linkProgram(creatureProgram);
+    creatureBuffer = creatureGl.createBuffer();
+    creatureGl.bindBuffer(creatureGl.ARRAY_BUFFER, creatureBuffer);
+    creatureGl.bufferData(creatureGl.ARRAY_BUFFER, new Float32Array(creatureVertices), creatureGl.STATIC_DRAW);
+    const position = creatureGl.getAttribLocation(creatureProgram, 'position');
+    creatureGl.enableVertexAttribArray(position);
+    creatureGl.vertexAttribPointer(position, 2, creatureGl.FLOAT, false, 0, 0);
+    creatureResLoc = creatureGl.getUniformLocation(creatureProgram, 'resolution');
+    creatureTimeLoc = creatureGl.getUniformLocation(creatureProgram, 'time');
 
-    const { program, buffer, resolution, time } = setup();
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    const observer = new ResizeObserver(() => {
+      creatureResize();
+      startCreature();
+    });
+    observer.observe(creatureCanvas);
 
-    function render(now) {
-      gl.clearColor(0,0,0,0);
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.useProgram(program);
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-      gl.uniform2f(resolution, canvas.width, canvas.height);
-      gl.uniform1f(time, now * 0.001);
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-      requestAnimationFrame(render);
-    }
-    requestAnimationFrame(render);
+    startCreature();
   }
 
   document.addEventListener('astro:page-load', initCreatureShader);
+  document.addEventListener('astro:page-load', () => {
+    // Re-init in case the panel was hidden on first load
+    setTimeout(initCreatureShader, 100);
+  });
 </script>
 
 <style>
