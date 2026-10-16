@@ -338,28 +338,29 @@ const testimonials = [
                     ))}
                   </ul>
                 </div>
-<div class="mt-6 lg:mt-0 lg:w-1/2">
-  <div class="flex aspect-[4/3] items-center justify-center rounded-3xl p-12 lg:p-16">
-    {cat.id === 'intelligence' ? (
-      <canvas
-        id="creatureCanvas"
-        class="max-h-full max-w-full"
-        width="512"
-        height="384"
-        style="background: transparent;"
-      ></canvas>
-    ) : (
-      <svg
-        class="text-secondaryColor/15 h-32 w-32"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="0.5"
-        viewBox="0 0 24 24"
-        set:html={cat.icon}
-      />
-    )}
-  </div>
-</div>
+                <div class="mt-6 lg:mt-0 lg:w-1/2">
+                  <div class="flex aspect-[4/3] items-center justify-center rounded-3xl p-12 lg:p-16">
+                    {cat.id === 'tracking' ? (
+                      <svg
+                        class="text-secondaryColor/15 h-32 w-32"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="0.5"
+                        viewBox="0 0 24 24"
+                        set:html={cat.icon}
+                      />
+                    ) : (
+                      <svg
+                        class="text-secondaryColor/15 h-32 w-32"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="0.5"
+                        viewBox="0 0 24 24"
+                        set:html={cat.icon}
+                      />
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           ))
@@ -680,129 +681,11 @@ const testimonials = [
         });
         const target = document.querySelector(`[data-panel="${tabId}"]`);
         target?.classList.remove('hidden');
-        if (tabId === 'intelligence') {
-          initCreatureShader();
-        }
       });
     });
   };
 
   document.addEventListener('astro:page-load', initServiceTabs);
-
-  // Little Creature shader (atzedent/XJMJxae) - scaled, transparent background
-  const creatureFragment = `#version 300 es
-precision highp float;
-out vec4 O;
-uniform float time;
-uniform vec2 resolution;
-#define FC gl_FragCoord.xy
-#define R resolution
-#define T time
-#define S smoothstep
-#define SE(v,a) S(a+1./MN,a-1./MN,v)
-#define MN min(R.x,R.y)
-#define hue(a) (.5+.5*sin(3.14*(a)+vec3(0,1,2)))
-vec3 render(vec2 uv, out float d) {
-  vec2 p=uv*6.;
-  float r=length(p), t=atan(p.x,p.y);
-  d=sin(p.x*t-.5)*.9;
-  d-=cos(t*12.-(p.x*.5*sin(T-p.y*1.6-.4*sin(p.x))));
-  float s=d;
-  d=SE(abs(d-r),1.);
-  return max(d*hue(S(0,1,s*s)+r),S(1,0,sqrt(r))*hue(6.*r));
-}
-void main(void) {
-  vec2 uv=(FC-.5*R)/MN;
-  float d;
-  vec3 col=render(uv,d);
-  O=vec4(col,1);
-}`;
-
-  const creatureVertex = `#version 300 es
-precision highp float;
-in vec4 position;
-void main(){gl_Position=position;}`;
-
-  const creatureVertices = [-1,1,-1,-1,1,1,1,-1];
-
-  let creatureGl = null;
-  let creatureProgram = null;
-  let creatureBuffer = null;
-  let creatureResLoc = null;
-  let creatureTimeLoc = null;
-  let creatureCanvas = null;
-  let creatureRunning = false;
-
-  function creatureResize() {
-    if (!creatureCanvas || !creatureGl) return;
-    const rect = creatureCanvas.getBoundingClientRect();
-    if (rect.width === 0 || rect.height === 0) return;
-    creatureCanvas.width = rect.width * window.devicePixelRatio;
-    creatureCanvas.height = rect.height * window.devicePixelRatio;
-    creatureGl.viewport(0, 0, creatureCanvas.width, creatureCanvas.height);
-  }
-
-  function creatureRender(now) {
-    if (!creatureGl || !creatureProgram) return;
-    creatureGl.clearColor(0,0,0,0);
-    creatureGl.clear(creatureGl.COLOR_BUFFER_BIT);
-    creatureGl.useProgram(creatureProgram);
-    creatureGl.bindBuffer(creatureGl.ARRAY_BUFFER, creatureBuffer);
-    creatureGl.uniform2f(creatureResLoc, creatureCanvas.width, creatureCanvas.height);
-    creatureGl.uniform1f(creatureTimeLoc, now * 0.001);
-    creatureGl.drawArrays(creatureGl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(creatureRender);
-  }
-
-  function startCreature() {
-    if (creatureRunning) return;
-    creatureRunning = true;
-    creatureResize();
-    requestAnimationFrame(creatureRender);
-  }
-
-  function initCreatureShader() {
-    creatureCanvas = document.getElementById('creatureCanvas');
-    if (!creatureCanvas) return;
-    creatureGl = creatureCanvas.getContext('webgl2');
-    if (!creatureGl) return;
-
-    function compile(shader, source) {
-      creatureGl.shaderSource(shader, source);
-      creatureGl.compileShader(shader);
-    }
-
-    const vs = creatureGl.createShader(creatureGl.VERTEX_SHADER);
-    const fs = creatureGl.createShader(creatureGl.FRAGMENT_SHADER);
-    compile(vs, creatureVertex);
-    compile(fs, creatureFragment);
-    creatureProgram = creatureGl.createProgram();
-    creatureGl.attachShader(creatureProgram, vs);
-    creatureGl.attachShader(creatureProgram, fs);
-    creatureGl.linkProgram(creatureProgram);
-    creatureBuffer = creatureGl.createBuffer();
-    creatureGl.bindBuffer(creatureGl.ARRAY_BUFFER, creatureBuffer);
-    creatureGl.bufferData(creatureGl.ARRAY_BUFFER, new Float32Array(creatureVertices), creatureGl.STATIC_DRAW);
-    const position = creatureGl.getAttribLocation(creatureProgram, 'position');
-    creatureGl.enableVertexAttribArray(position);
-    creatureGl.vertexAttribPointer(position, 2, creatureGl.FLOAT, false, 0, 0);
-    creatureResLoc = creatureGl.getUniformLocation(creatureProgram, 'resolution');
-    creatureTimeLoc = creatureGl.getUniformLocation(creatureProgram, 'time');
-
-    const observer = new ResizeObserver(() => {
-      creatureResize();
-      startCreature();
-    });
-    observer.observe(creatureCanvas);
-
-    startCreature();
-  }
-
-  document.addEventListener('astro:page-load', initCreatureShader);
-  document.addEventListener('astro:page-load', () => {
-    // Re-init in case the panel was hidden on first load
-    setTimeout(initCreatureShader, 100);
-  });
 </script>
 
 <style>
@@ -817,11 +700,5 @@ void main(){gl_Position=position;}`;
       opacity: 1;
       transform: translateY(0);
     }
-  }
-
-  #creatureCanvas {
-    width: 100%;
-    height: 100%;
-    display: block;
   }
 </style>
