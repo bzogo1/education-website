@@ -38,6 +38,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@ark-ui/react": "^5.39.3",
     "@astrojs/react": "^6.0.5",
     "@astrojs/sitemap": "^3.7.2",
     "@base-ui/react": "^1.8.0",

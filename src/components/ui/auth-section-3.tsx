@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { FlutedGlass } from "@paper-design/shaders-react";
 import { Eye, EyeOff } from "lucide-react";
 import { motion } from "framer-motion";
+import { Checkbox } from "@ark-ui/react/checkbox";
+import { CheckIcon } from "lucide-react";
 
 const formFields = [
   {
@@ -276,24 +278,14 @@ function CheckboxLine({ children }: { children: ReactNode }) {
   return (
     <label className="flex items-start gap-3 cursor-pointer">
       <span className="relative mt-1 size-3.5 shrink-0">
-        <input
-          type="checkbox"
-          className="peer size-full cursor-pointer appearance-none rounded-[3px] border border-black/25 bg-white checked:border-black checked:bg-black dark:border-white/30 dark:bg-white/5 dark:checked:border-white dark:checked:bg-white"
-        />
-        <svg
-          viewBox="0 0 12 12"
-          className="pointer-events-none absolute inset-0 hidden size-full p-0.5 text-white peer-checked:block dark:text-black"
-          fill="none"
-          aria-hidden="true"
-        >
-          <path
-            d="M3 6.2 5 8.1 9 3.9"
-            stroke="currentColor"
-            strokeWidth="1.6"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
+        <Checkbox.Root className="size-full cursor-pointer">
+          <Checkbox.Control className="size-full bg-white border-2 border-gray-300 rounded data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500 data-hover:border-gray-400 dark:bg-gray-900 dark:border-gray-600 dark:data-[state=checked]:bg-blue-500 dark:data-[state=checked]:border-blue-500 dark:data-hover:border-gray-400 transition-all duration-200 flex items-center justify-center">
+            <Checkbox.Indicator>
+              <CheckIcon className="w-3.5 h-3.5 text-white" />
+            </Checkbox.Indicator>
+          </Checkbox.Control>
+          <Checkbox.HiddenInput />
+        </Checkbox.Root>
       </span>
       <span>{children}</span>
     </label>
