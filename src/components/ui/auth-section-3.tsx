@@ -316,7 +316,7 @@ function CheckboxLine({ children, checked, onChange }: { children: ReactNode; ch
   return (
     <label className="flex items-start gap-3 cursor-pointer">
       <span className="relative mt-0.5 size-3.5 shrink-0">
-        <Checkbox.Root className="size-full cursor-pointer" checked={checked} onCheckedChange={onChange}>
+        <Checkbox.Root className="size-full cursor-pointer" checked={checked} onCheckedChange={(details) => onChange?.(details.checked as boolean)}>
           <Checkbox.Control className="size-full bg-white border-2 border-gray-300 rounded data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500 data-hover:border-gray-400 dark:bg-gray-900 dark:border-gray-600 dark:data-[state=checked]:bg-blue-500 dark:data-[state=checked]:border-blue-500 dark:data-hover:border-gray-400 transition-all duration-200 flex items-center justify-center">
             <Checkbox.Indicator>
               <CheckIcon className="w-3.5 h-3.5 text-white" />
