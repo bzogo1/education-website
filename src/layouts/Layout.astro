@@ -38,7 +38,7 @@ const ogImage = `${siteUrl}/og-image.png`;
 ---
 
 <!doctype html>
-<html lang="en" class="bg-bgDark2">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -73,7 +73,7 @@ const ogImage = `${siteUrl}/og-image.png`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
   </head>
-  <body class="bg-black overflow-x-hidden">
+  <body class="overflow-x-hidden">
     <main aria-label="Main content">
       <slot />
     </main>
@@ -83,7 +83,6 @@ const ogImage = `${siteUrl}/og-image.png`;
     <style is:global>
       html {
         font-family: 'IBM Plex Sans';
-        background-color: #000000;
         overflow-x: hidden;
         scroll-behavior: smooth !important;
       }
