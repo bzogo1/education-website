@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import dashboard from '../assets/images/dashboard.jpg';
-import TechText from '../components/TechText';
 ---
 
 <section
@@ -18,7 +17,12 @@ import TechText from '../components/TechText';
       </span>
     </div>
     <div class="hero-fade-in mx-auto max-w-3xl px-4" style="--delay: 0.05s">
-      <TechText client:load />
+      <h1
+        class="xs:text-4xl text-[1.7rem] leading-[1.1] font-bold tracking-tight md:text-5xl lg:text-6xl"
+      >
+        <span class="text-heroText">One platform to track</span><br />
+        <span class="text-heroText">the full picture</span>
+      </h1>
     </div>
     <div class="hero-fade-in" style="--delay: 0.1s">
       <p
