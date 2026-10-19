@@ -14,6 +14,7 @@
 .hero-title-gradient {
   background: -webkit-linear-gradient(white, #b4add1);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
