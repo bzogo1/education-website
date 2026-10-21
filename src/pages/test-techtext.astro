@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TechText from '../components/TechText';
+---
+
+<Layout title="TechText Test">
+  <div class="min-h-screen bg-black flex items-center justify-center p-8">
+    <div class="w-full h-[400px] text-white">
+      <TechText client:load text="React Bits" color="white" accentColor="#6366f1" fontSize={120} />
+    </div>
+  </div>
+</Layout>

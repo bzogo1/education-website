@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
 	"pid": 17734,
+=======
+	"pid": 10289,
+>>>>>>> 6156b7d96d6993d19a3c9f7053f5fec6aa94d785
 	"port": 4321,
 	"url": "http://localhost:4321",
 	"urls": {
@@ -10,5 +14,9 @@
 		"networkInterfaceNames": []
 	},
 	"background": false,
+<<<<<<< HEAD
 	"startedAt": "2026-10-16T11:19:47.636Z"
+=======
+	"startedAt": "2026-10-17T00:21:41.522Z"
+>>>>>>> 6156b7d96d6993d19a3c9f7053f5fec6aa94d785
 }
