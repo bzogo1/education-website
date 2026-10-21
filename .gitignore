@@ -1,9 +1,15 @@
 # build output
 dist/
 .output/
+.astro/
 
 # dependencies
 node_modules/
+
+# test and audit reports
+test-results/
+playwright-report/
+lighthouse-reports/
 
 # logs
 npm-debug.log*

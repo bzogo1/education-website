@@ -5,5 +5,13 @@
     "paths": {
       "@/*": ["src/*"]
     }
-  }
+  },
+  "exclude": [
+    "dist",
+    ".astro",
+    "node_modules",
+    "test-results",
+    "playwright-report",
+    "lighthouse-reports"
+  ]
 }

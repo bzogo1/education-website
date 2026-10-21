@@ -2,11 +2,11 @@
 
 import { AnimatedBeam, Circle, Icons } from '../../../components/uilayouts/animated-beam';
 import React, { useRef } from 'react';
-import cloudflareIcon from '../../assets/icons/brand/cloudflare.svg';
-import githubIcon from '../../assets/icons/brand/github.svg';
-import googleCloudIcon from '../../assets/icons/brand/google-cloud.svg';
-import supabaseIcon from '../../assets/icons/brand/supabase.svg';
-import vercelIcon from '../../assets/icons/brand/vercel.svg';
+import cloudflareIcon from '../../assets/icons/brand/cloudflare.svg?url';
+import githubIcon from '../../assets/icons/brand/github.svg?url';
+import googleCloudIcon from '../../assets/icons/brand/google-cloud.svg?url';
+import supabaseIcon from '../../assets/icons/brand/supabase.svg?url';
+import vercelIcon from '../../assets/icons/brand/vercel.svg?url';
 
 export default function AnimatedBeamDefault() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -19,7 +19,7 @@ export default function AnimatedBeamDefault() {
 
   return (
     <div
-      className="relative mx-auto flex w-full max-w-[500px] items-center justify-center overflow-hidden rounded-lg border bg-muted p-2 shadow-xl sm:p-4 lg:p-10"
+      className="bg-muted relative mx-auto flex w-full max-w-[500px] items-center justify-center overflow-hidden rounded-lg border p-2 shadow-xl sm:p-4 lg:p-10"
       ref={containerRef}
     >
       <div className="flex h-full w-full flex-col items-stretch justify-between gap-10">
