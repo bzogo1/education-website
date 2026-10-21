@@ -7,6 +7,8 @@ import { Checkbox } from '@ark-ui/react/checkbox';
 import { CheckIcon } from 'lucide-react';
 import { PasswordStrength, usePasswordStrength } from '@/components/interior/password-strength';
 import { EmailVerification } from '@/components/ui/auth/email-verification';
+import testimonialImage from '../../assets/images/testimonial1.png';
+import dashboardImage from '../../assets/images/dashboard.jpg';
 
 const termsText = (
   <>
@@ -221,7 +223,7 @@ export default function AuthSectionThree() {
                 className="flex items-center gap-3"
               >
                 <img
-                  src="https://res.cloudinary.com/harshitproject/image/upload/v1746774430/member-five.png"
+                  src={testimonialImage.src}
                   alt="Charlotte"
                   className="size-8 shrink-0 rounded-full border border-white/20 object-cover"
                 />
@@ -266,7 +268,7 @@ export default function AuthSectionThree() {
                   </span>
                 </div>
                 <img
-                  src="https://res.cloudinary.com/harshitproject/image/upload/v1774017120/hero-light.png"
+                  src={dashboardImage.src}
                   alt="SolaceUI Dashboard App Mockup"
                   className="h-auto w-full object-cover object-top opacity-95 [filter:invert(1)_hue-rotate(180deg)_brightness(0.68)_contrast(1.16)] dark:[filter:none]"
                 />

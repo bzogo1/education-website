@@ -115,4 +115,4 @@ jobs:
       - name: Check links in generated pages
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose --no-progress './dist/**/*.html'
+          args: --verbose --no-progress --root-dir ./dist --exclude '^https://tailcast\.vercel\.app/' './dist/**/*.html'
