@@ -412,7 +412,9 @@ const testimonials = [
           <table class="w-full text-sm">
             <thead>
               <tr class="border-mainBorderDarker border-b">
-                <th class="text-secondaryText w-1/2 p-3 text-left font-medium sm:p-5 lg:p-6">Feature</th>
+                <th class="text-secondaryText w-1/2 p-3 text-left font-medium sm:p-5 lg:p-6"
+                  >Feature</th
+                >
                 <th class="p-3 text-center sm:p-5 lg:p-6">
                   <span class="text-secondaryColor text-base font-bold">Tailcast</span>
                 </th>
@@ -422,7 +424,7 @@ const testimonials = [
                 <th class="hidden p-3 text-center sm:table-cell sm:p-5 lg:p-6">
                   <span class="text-secondaryText font-medium">Metrifly</span>
                 </th>
-                <th class="hidden p-3 text-center md:table-cell sm:p-5 lg:p-6">
+                <th class="hidden p-3 text-center sm:p-5 md:table-cell lg:p-6">
                   <span class="text-secondaryText font-medium">Chartbolt</span>
                 </th>
               </tr>
@@ -524,7 +526,7 @@ const testimonials = [
                         )}
                       </div>
                     </td>
-                    <td class="hidden p-3 text-center md:table-cell sm:p-5 lg:p-6">
+                    <td class="hidden p-3 text-center sm:p-5 md:table-cell lg:p-6">
                       <div class="flex justify-center">
                         {f.ga4 ? (
                           <>
@@ -657,7 +659,13 @@ const testimonials = [
 
         document.querySelectorAll('.tab-button').forEach((b) => {
           const isMobile = b.closest('.sm\\:hidden') !== null;
-          b.classList.remove('bg-bgDark3', 'text-primaryText', 'shadow-lg', 'shadow-black/20', 'border-transparent');
+          b.classList.remove(
+            'bg-bgDark3',
+            'text-primaryText',
+            'shadow-lg',
+            'shadow-black/20',
+            'border-transparent'
+          );
           b.classList.add('text-secondaryText');
           if (isMobile) {
             b.classList.add('bg-bgDark1/80', 'border-mainBorderFaintest');

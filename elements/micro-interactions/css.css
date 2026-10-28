@@ -13,8 +13,8 @@
   --danger-soft: #e5484d14;
   --success: #2f9e44;
 
-  --ui: "Inter", sans-serif;
-  --mono: "JetBrains Mono", monospace;
+  --ui: 'Inter', sans-serif;
+  --mono: 'JetBrains Mono', monospace;
 
   --ease-out: cubic-bezier(0.16, 0.8, 0.24, 1);
   --ease-spring: cubic-bezier(0.32, 1.2, 0.5, 1);
@@ -106,7 +106,9 @@ kbd {
   font-family: var(--ui);
   font-size: 13px;
   cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease;
 }
 .jump-trigger:hover {
   border-color: var(--ink-tertiary);
@@ -361,7 +363,9 @@ kbd {
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: transform 0.15s ease-out, border-color 0.2s ease;
+  transition:
+    transform 0.15s ease-out,
+    border-color 0.2s ease;
 }
 .magnetic-wrap:hover .magnetic-btn {
   border-color: var(--accent);
@@ -390,7 +394,7 @@ kbd {
   z-index: 1;
 }
 .spotlight-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: var(--y, 50%);
   left: var(--x, 50%);
@@ -463,7 +467,9 @@ kbd {
   gap: 8px;
   transform: translateX(20px);
   opacity: 0;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
 }
 .row-wrap:hover .row-actions {
   transform: translateX(0);
@@ -570,7 +576,10 @@ kbd {
   cursor: grab;
   font-size: 14px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.2s ease, transform 0.15s ease, border-color 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.15s ease,
+    border-color 0.2s ease;
 }
 .drag-card:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -750,7 +759,7 @@ kbd {
   opacity: 0.5;
 }
 .optimistic-item.pending::after {
-  content: " (sending...)";
+  content: ' (sending...)';
   color: var(--ink-tertiary);
   font-size: 12px;
   font-family: var(--mono);
@@ -784,7 +793,10 @@ kbd {
   font-size: 14px;
   font-weight: 500;
   position: relative;
-  transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
 }
 .confirm-btn.success {
   background: var(--success);
@@ -832,7 +844,9 @@ kbd {
   box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.25);
   transform: translateY(-40px);
   opacity: 0;
-  transition: transform 0.35s ease, opacity 0.35s ease;
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease;
   pointer-events: none;
 }
 .toast.enter {
@@ -842,7 +856,9 @@ kbd {
 .toast.exit {
   transform: translateY(20px);
   opacity: 0;
-  transition: transform 0.4s ease, opacity 0.4s ease;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
 }
 
 /* ============================================================
@@ -872,7 +888,9 @@ kbd {
   color: #fff;
   box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.25);
   opacity: 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    opacity 0.3s ease;
   pointer-events: none;
 }
 .undo-bar.show {
@@ -935,11 +953,14 @@ kbd {
   border: 1px solid var(--border);
   border-radius: 12px;
   box-shadow: 0 1px 2px rgba(10, 10, 10, 0.03);
-  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 .surface-card--emphasis {
   border-color: var(--border-strong);
-  box-shadow: 0 4px 16px -4px rgba(10, 10, 10, 0.08),
+  box-shadow:
+    0 4px 16px -4px rgba(10, 10, 10, 0.08),
     0 1px 2px rgba(10, 10, 10, 0.04);
 }
 .card-icon-badge {
@@ -1037,7 +1058,7 @@ kbd {
   position: relative;
 }
 .pricing-features li::before {
-  content: "";
+  content: '';
   position: absolute;
   left: 0;
   top: 4px;
@@ -1047,7 +1068,7 @@ kbd {
   background: var(--accent-soft);
 }
 .pricing-features li::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 4px;
   top: 7px;
@@ -1078,7 +1099,7 @@ kbd {
   overflow: hidden;
 }
 .feature-card::before {
-  content: "";
+  content: '';
   position: absolute;
   top: var(--y, 50%);
   left: var(--x, 50%);
@@ -1543,14 +1564,16 @@ kbd {
   flex-shrink: 0;
   cursor: pointer;
   position: relative;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
 }
 .optimistic-item.done .todo-check {
   background: var(--accent);
   border-color: var(--accent);
 }
 .optimistic-item.done .todo-check::after {
-  content: "";
+  content: '';
   position: absolute;
   left: 4px;
   top: 2px;

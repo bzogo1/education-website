@@ -21,7 +21,7 @@
 ## 1.0.1 (03-06-2024)
 
 - updated all packages
-- addd contributing guidelines
+- added contributing guidelines
 - fixed console errors
 - hidden feature divider
 

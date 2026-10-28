@@ -1,8 +1,8 @@
 gsap.registerPlugin(ScrollTrigger);
 
 // ============ CURSOR ============
-const cursor = document.querySelector(".main-page .cursor");
-const mainPage = document.querySelector(".main-page");
+const cursor = document.querySelector('.main-page .cursor');
+const mainPage = document.querySelector('.main-page');
 let mx = 0,
   my = 0,
   cx = 0,
@@ -12,121 +12,119 @@ let mx = 0,
 function updateCursorVisibility() {
   const mainPageRect = mainPage.getBoundingClientRect();
   const isInMainPage = mainPageRect.top < window.innerHeight && mainPageRect.bottom > 0;
-  
+
   if (isInMainPage) {
-    cursor.style.display = "block";
-    document.body.style.cursor = "none";
+    cursor.style.display = 'block';
+    document.body.style.cursor = 'none';
   } else {
-    cursor.style.display = "none";
-    document.body.style.cursor = "auto";
+    cursor.style.display = 'none';
+    document.body.style.cursor = 'auto';
   }
 }
 
-window.addEventListener("scroll", updateCursorVisibility);
+window.addEventListener('scroll', updateCursorVisibility);
 updateCursorVisibility(); // Initial check
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener('mousemove', (e) => {
   mx = e.clientX;
   my = e.clientY;
 });
 (function animateCursor() {
   cx += (mx - cx) * 0.2;
   cy += (my - cy) * 0.2;
-  cursor.style.left = cx + "px";
-  cursor.style.top = cy + "px";
+  cursor.style.left = cx + 'px';
+  cursor.style.top = cy + 'px';
   requestAnimationFrame(animateCursor);
 })();
 document
-  .querySelectorAll(".main-page a, .main-page button, .main-page .tile, .main-page .fpill, .main-page .feature-card, .main-page .nav-btn")
+  .querySelectorAll(
+    '.main-page a, .main-page button, .main-page .tile, .main-page .fpill, .main-page .feature-card, .main-page .nav-btn'
+  )
   .forEach((el) => {
-    el.addEventListener("mouseenter", () =>
+    el.addEventListener('mouseenter', () =>
       gsap.to(cursor, { width: 36, height: 36, duration: 0.3 })
     );
-    el.addEventListener("mouseleave", () =>
+    el.addEventListener('mouseleave', () =>
       gsap.to(cursor, { width: 12, height: 12, duration: 0.3 })
     );
   });
 
 // ============ SVG LINE LENGTHS ============
-document.querySelectorAll(".main-page .constellation-lines path").forEach((path) => {
+document.querySelectorAll('.main-page .constellation-lines path').forEach((path) => {
   const length = path.getTotalLength();
   path.style.strokeDasharray = length;
   path.style.strokeDashoffset = length;
 });
 
 // ============ PAGE LOAD ============
-const tl = gsap.timeline({ 
-  defaults: { ease: "power3.out" },
+const tl = gsap.timeline({
+  defaults: { ease: 'power3.out' },
   scrollTrigger: {
-    trigger: ".main-page",
-    start: "top 80%",
-    toggleActions: "play none none reverse"
-  }
+    trigger: '.main-page',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse',
+  },
 });
-tl.to(".main-page .site-header", { opacity: 1, duration: 0.8 }, 0)
+tl.to('.main-page .site-header', { opacity: 1, duration: 0.8 }, 0)
+  .to('.main-page .title-inner', { y: 0, duration: 1.1, stagger: 0.08, ease: 'power4.out' }, 0.2)
+  .to('.main-page .hero-desc', { opacity: 1, duration: 0.8 }, 0.9)
+  .from('.main-page .hero-desc', { y: 20, duration: 0.8 }, 0.9)
+  .to('.main-page .cta-btn', { opacity: 1, duration: 0.7 }, 1.0)
+  .from('.main-page .cta-btn', { y: 20, duration: 0.7 }, 1.0)
   .to(
-    ".main-page .title-inner",
-    { y: 0, duration: 1.1, stagger: 0.08, ease: "power4.out" },
-    0.2
-  )
-  .to(".main-page .hero-desc", { opacity: 1, duration: 0.8 }, 0.9)
-  .from(".main-page .hero-desc", { y: 20, duration: 0.8 }, 0.9)
-  .to(".main-page .cta-btn", { opacity: 1, duration: 0.7 }, 1.0)
-  .from(".main-page .cta-btn", { y: 20, duration: 0.7 }, 1.0)
-  .to(
-    ".main-page .tile",
+    '.main-page .tile',
     {
       opacity: 1,
       scale: 1,
       duration: 1.2,
-      stagger: { each: 0.07, from: "center" },
-      ease: "elastic.out(1, 0.6)"
+      stagger: { each: 0.07, from: 'center' },
+      ease: 'elastic.out(1, 0.6)',
     },
     0.5
   )
   .from(
-    ".main-page .tile",
+    '.main-page .tile',
     {
       scale: 0,
       duration: 1.2,
-      stagger: { each: 0.07, from: "center" },
-      ease: "elastic.out(1, 0.6)"
+      stagger: { each: 0.07, from: 'center' },
+      ease: 'elastic.out(1, 0.6)',
     },
     0.5
   )
   .to(
-    ".main-page .constellation-lines path",
+    '.main-page .constellation-lines path',
     {
       strokeDashoffset: 0,
       duration: 1.4,
       stagger: 0.06,
-      ease: "power2.inOut"
+      ease: 'power2.inOut',
     },
     0.8
   )
-  .to(".main-page .workspace", { opacity: 1, duration: 0.8 }, 1.6)
+  .to('.main-page .workspace', { opacity: 1, duration: 0.8 }, 1.6)
   .from(
-    ".main-page .fpill",
+    '.main-page .fpill',
     {
       y: 30,
       scale: 0.5,
       opacity: 0,
       duration: 0.8,
       stagger: 0.1,
-      ease: "back.out(1.6)"
+      ease: 'back.out(1.6)',
     },
     1.6
   )
   .from(
-    ".main-page .workspace-label, .main-page .learn-more",
+    '.main-page .workspace-label, .main-page .learn-more',
     { y: 20, opacity: 0, duration: 0.6, stagger: 0.1 },
     1.6
   );
 
 // ============ CONSTELLATION 3D TILT ============
-const constellation = document.getElementById("constellation");
-const constellationInner = document.getElementById("constellationInner");
-constellation.addEventListener("mousemove", (e) => {
+const constellation = document.getElementById('constellation');
+const constellationInner = document.getElementById('constellationInner');
+constellation.addEventListener('mousemove', (e) => {
   const rect = constellation.getBoundingClientRect();
   const x = (e.clientX - rect.left) / rect.width - 0.5;
   const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -135,162 +133,156 @@ constellation.addEventListener("mousemove", (e) => {
     rotationX: -y * 8,
     duration: 0.8,
     transformPerspective: 1500,
-    ease: "power2.out"
+    ease: 'power2.out',
   });
 });
-constellation.addEventListener("mouseleave", () => {
+constellation.addEventListener('mouseleave', () => {
   gsap.to(constellationInner, {
     rotationY: 0,
     rotationX: 0,
     duration: 1,
-    ease: "elastic.out(1, 0.5)"
+    ease: 'elastic.out(1, 0.5)',
   });
 });
 
 // ============ SCROLL: CONSTELLATION PARALLAX ============
-gsap.to(".main-page .constellation", {
+gsap.to('.main-page .constellation', {
   y: 100,
   scale: 0.92,
   scrollTrigger: {
-    trigger: ".main-page .hero",
-    start: "top bottom",
-    end: "bottom top",
-    scrub: 1
-  }
+    trigger: '.main-page .hero',
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: 1,
+  },
 });
-gsap.to(".main-page .hero-left", {
+gsap.to('.main-page .hero-left', {
   y: 60,
   opacity: 0.4,
   scrollTrigger: {
-    trigger: ".main-page .hero",
-    start: "top bottom",
-    end: "bottom top",
-    scrub: 1
-  }
+    trigger: '.main-page .hero',
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: 1,
+  },
 });
 
 // ============ STAT NUMBER COUNTER ============
-document.querySelectorAll(".main-page .stat-num").forEach((el) => {
+document.querySelectorAll('.main-page .stat-num').forEach((el) => {
   const target = parseInt(el.dataset.num);
-  const suffix = el.querySelector(".accent");
-  const suffixText = suffix ? suffix.outerHTML : "";
+  const suffix = el.querySelector('.accent');
+  const suffixText = suffix ? suffix.outerHTML : '';
   ScrollTrigger.create({
     trigger: el,
-    start: "top 85%",
+    start: 'top 85%',
     once: true,
     onEnter: () => {
       let obj = { val: 0 };
       gsap.to(obj, {
         val: target,
         duration: 2,
-        ease: "power2.out",
+        ease: 'power2.out',
         onUpdate: () => {
           let display = Math.floor(obj.val);
-          if (target >= 1000)
-            display = "+" + (display / 1000).toFixed(1).replace(".0", "") + "k";
-          else if (
-            target >= 100 &&
-            target <= 999 &&
-            suffix &&
-            suffix.textContent === "k"
-          )
-            display = "+" + display;
+          if (target >= 1000) display = '+' + (display / 1000).toFixed(1).replace('.0', '') + 'k';
+          else if (target >= 100 && target <= 999 && suffix && suffix.textContent === 'k')
+            display = '+' + display;
           el.innerHTML = display + suffixText;
-        }
+        },
       });
-    }
+    },
   });
 });
 
 // ============ SECTION TITLE REVEALS ============
 function splitWords(selector) {
   document.querySelectorAll(selector).forEach((el) => {
-    const words = el.innerText.split(" ");
+    const words = el.innerText.split(' ');
     el.innerHTML = words
       .map(
         (w) =>
           `<span class="sword" style="display:inline-block;overflow:hidden;padding-bottom:0.12em;vertical-align:top;"><span class="sword-inner" style="display:inline-block;transform:translateY(110%);will-change:transform;">${w}</span></span>`
       )
-      .join(" ");
+      .join(' ');
   });
 }
-splitWords(".main-page .features-title");
-splitWords(".main-page .quote-text");
-splitWords(".main-page .final-cta-h2");
+splitWords('.main-page .features-title');
+splitWords('.main-page .quote-text');
+splitWords('.main-page .final-cta-h2');
 
 // Note: splitWords destroys spans like .accent. Re-color accent words for final-cta.
-document.querySelectorAll(".main-page .final-cta-h2 .sword-inner").forEach((el) => {
-  if (el.textContent.includes("good") || el.textContent.includes("ones")) {
-    el.style.color = "var(--yellow)";
+document.querySelectorAll('.main-page .final-cta-h2 .sword-inner').forEach((el) => {
+  if (el.textContent.includes('good') || el.textContent.includes('ones')) {
+    el.style.color = 'var(--yellow)';
   }
 });
 
-gsap.to(".main-page .features-title .sword-inner", {
+gsap.to('.main-page .features-title .sword-inner', {
   y: 0,
   duration: 1,
   stagger: 0.04,
-  ease: "power4.out",
+  ease: 'power4.out',
   scrollTrigger: {
-    trigger: ".main-page .features-title",
-    start: "top 80%",
-    toggleActions: "play none none reverse"
-  }
+    trigger: '.main-page .features-title',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse',
+  },
 });
 
-gsap.to(".main-page .quote-text .sword-inner", {
+gsap.to('.main-page .quote-text .sword-inner', {
   y: 0,
   duration: 0.9,
   stagger: 0.03,
-  ease: "power4.out",
+  ease: 'power4.out',
   scrollTrigger: {
-    trigger: ".main-page .quote-text",
-    start: "top 75%",
-    toggleActions: "play none none reverse"
-  }
+    trigger: '.main-page .quote-text',
+    start: 'top 75%',
+    toggleActions: 'play none none reverse',
+  },
 });
 
-gsap.to(".main-page .final-cta-h2 .sword-inner", {
+gsap.to('.main-page .final-cta-h2 .sword-inner', {
   y: 0,
   duration: 1,
   stagger: 0.05,
-  ease: "power4.out",
+  ease: 'power4.out',
   scrollTrigger: {
-    trigger: ".main-page .final-cta-h2",
-    start: "top 80%",
-    toggleActions: "play none none reverse"
-  }
+    trigger: '.main-page .final-cta-h2',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse',
+  },
 });
 
 // ============ FEATURE CARDS REVEAL ============
-gsap.from(".main-page .feature-card", {
+gsap.from('.main-page .feature-card', {
   y: 80,
   opacity: 0,
   duration: 1,
   stagger: 0.15,
-  ease: "power3.out",
+  ease: 'power3.out',
   scrollTrigger: {
-    trigger: ".main-page .feature-cards",
-    start: "top 75%",
-    toggleActions: "play none none reverse"
-  }
+    trigger: '.main-page .feature-cards',
+    start: 'top 75%',
+    toggleActions: 'play none none reverse',
+  },
 });
 
 // ============ QUOTE MARK ============
-gsap.from(".main-page .quote-mark", {
+gsap.from('.main-page .quote-mark', {
   scale: 0,
   rotation: -45,
   duration: 1.2,
-  ease: "elastic.out(1, 0.6)",
+  ease: 'elastic.out(1, 0.6)',
   scrollTrigger: {
-    trigger: ".main-page .quote-mark",
-    start: "top 80%",
-    toggleActions: "play none none reverse"
-  }
+    trigger: '.main-page .quote-mark',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse',
+  },
 });
 
 // ============ FEATURE CARD 3D HOVER ============
-document.querySelectorAll(".main-page .feature-card").forEach((card) => {
-  card.addEventListener("mousemove", (e) => {
+document.querySelectorAll('.main-page .feature-card').forEach((card) => {
+  card.addEventListener('mousemove', (e) => {
     const rect = card.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
@@ -300,42 +292,42 @@ document.querySelectorAll(".main-page .feature-card").forEach((card) => {
       y: -12,
       duration: 0.5,
       transformPerspective: 1200,
-      ease: "power2.out"
+      ease: 'power2.out',
     });
   });
-  card.addEventListener("mouseleave", () => {
+  card.addEventListener('mouseleave', () => {
     gsap.to(card, {
       rotationY: 0,
       rotationX: 0,
       y: 0,
       duration: 0.8,
-      ease: "elastic.out(1, 0.5)"
+      ease: 'elastic.out(1, 0.5)',
     });
   });
 });
 
 // ============ FINAL CTA PULSE ON ENTRY ============
-gsap.from(".main-page .final-cta-card", {
+gsap.from('.main-page .final-cta-card', {
   scale: 0.92,
   opacity: 0,
   duration: 1.2,
-  ease: "power3.out",
+  ease: 'power3.out',
   scrollTrigger: {
-    trigger: ".main-page .final-cta-card",
-    start: "top 80%",
-    toggleActions: "play none none reverse"
-  }
+    trigger: '.main-page .final-cta-card',
+    start: 'top 80%',
+    toggleActions: 'play none none reverse',
+  },
 });
 
 // Refresh
-window.addEventListener("load", () => ScrollTrigger.refresh());
+window.addEventListener('load', () => ScrollTrigger.refresh());
 
 // ============ LIQUID GLASS NAVBAR FUNCTIONALITY ============
-const navButtons = document.querySelectorAll(".nav-btn");
-const activePill = document.getElementById("active-pill");
-const themeBtn = document.getElementById("theme-btn");
-const nav = document.getElementById("nav");
-const glare = document.getElementById("glare");
+const navButtons = document.querySelectorAll('.nav-btn');
+const activePill = document.getElementById('active-pill');
+const themeBtn = document.getElementById('theme-btn');
+const nav = document.getElementById('nav');
+const glare = document.getElementById('glare');
 
 if (nav && activePill && themeBtn) {
   function getSafeNavigationTarget(rawTarget) {
@@ -346,17 +338,17 @@ if (nav && activePill && themeBtn) {
 
     // Allow only explicit in-app routes.
     const allowedPaths = new Set([
-      "/",
-      "/index.html",
-      "/about.html",
-      "/projects.html",
-      "/contact.html"
+      '/',
+      '/index.html',
+      '/about.html',
+      '/projects.html',
+      '/contact.html',
     ]);
 
     try {
       const parsedUrl = new URL(trimmedTarget, window.location.origin);
       if (parsedUrl.origin !== window.location.origin) return null;
-      if (parsedUrl.protocol !== "http:" && parsedUrl.protocol !== "https:") return null;
+      if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') return null;
       if (!allowedPaths.has(parsedUrl.pathname)) return null;
       return parsedUrl.pathname + parsedUrl.search + parsedUrl.hash;
     } catch (e) {
@@ -367,38 +359,39 @@ if (nav && activePill && themeBtn) {
   // The function that calculates the Apple slider
   function updatePill(btn, smooth = true) {
     if (!btn) return;
-    
+
     // Transition on/off for Resize & Initial loading
     if (!smooth) {
       activePill.style.transition = 'none';
     } else {
-      activePill.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), background 0.5s ease, box-shadow 0.5s ease';
+      activePill.style.transition =
+        'transform 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), width 0.5s cubic-bezier(0.34, 1.2, 0.64, 1), background 0.5s ease, box-shadow 0.5s ease';
     }
-    
+
     activePill.style.width = `${btn.offsetWidth}px`;
     activePill.style.transform = `translateX(${btn.offsetLeft}px)`;
   }
 
   // Set position without jerk on first load
-  const initialActive = document.querySelector(".nav-items .nav-btn.active");
+  const initialActive = document.querySelector('.nav-items .nav-btn.active');
   if (initialActive) {
     setTimeout(() => {
       updatePill(initialActive, false);
       // Force CSS Reflow
-      void activePill.offsetWidth; 
+      void activePill.offsetWidth;
     }, 50);
   }
 
   // Click on navigation
-  navButtons.forEach(btn => {
-    btn.addEventListener("click", (e) => {
+  navButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
       // Only handle if it's a button (not a link)
       if (btn.tagName === 'BUTTON') {
         e.preventDefault();
-        navButtons.forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
+        navButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
         updatePill(btn);
-        
+
         // Navigate to the page specified in data-page attribute
         const targetPage = btn.getAttribute('data-page');
         const safeTargetPage = getSafeNavigationTarget(targetPage);
@@ -410,32 +403,32 @@ if (nav && activePill && themeBtn) {
   });
 
   // Dark / Light Mode Switch Logic
-  themeBtn.addEventListener("click", () => {
+  themeBtn.addEventListener('click', () => {
     const root = document.documentElement;
-    const isDark = root.getAttribute("data-theme") === "dark";
-    root.setAttribute("data-theme", isDark ? "light" : "dark");
-    
+    const isDark = root.getAttribute('data-theme') === 'dark';
+    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+
     // Wait briefly in case font widths (font-weight) change slightly
     setTimeout(() => {
-      const active = document.querySelector(".nav-items .nav-btn.active");
+      const active = document.querySelector('.nav-items .nav-btn.active');
       if (active) updatePill(active);
     }, 100);
   });
 
   // Adjust position immediately when window is rotated/scaled
-  window.addEventListener("resize", () => {
-    const active = document.querySelector(".nav-items .nav-btn.active");
+  window.addEventListener('resize', () => {
+    const active = document.querySelector('.nav-items .nav-btn.active');
     if (active) updatePill(active, false);
   });
 
   // Interactive Liquid Glare (The white light cone in the glass)
-  nav.addEventListener("mousemove", (e) => {
+  nav.addEventListener('mousemove', (e) => {
     const rect = nav.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
-    
+
     // Feed CSS variables, more performant than Style strings in JS
-    glare.style.setProperty("--x", `${x}px`);
-    glare.style.setProperty("--y", `${y}px`);
+    glare.style.setProperty('--x', `${x}px`);
+    glare.style.setProperty('--y', `${y}px`);
   });
 }

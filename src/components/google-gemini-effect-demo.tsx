@@ -1,13 +1,13 @@
-"use client";
-import { useScroll, useTransform } from "motion/react";
-import React from "react";
-import { GoogleGeminiEffect } from "@/components/ui/google-gemini-effect";
+'use client';
+import { useScroll, useTransform } from 'motion/react';
+import React from 'react';
+import { GoogleGeminiEffect } from '@/components/ui/google-gemini-effect';
 
 export default function GoogleGeminiEffectDemo() {
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start start", "end start"],
+    offset: ['start start', 'end start'],
   });
 
   const pathLengthFirst = useTransform(scrollYProgress, [0, 0.8], [0.2, 1.2]);
@@ -18,7 +18,7 @@ export default function GoogleGeminiEffectDemo() {
 
   return (
     <div
-      className="h-[115vh] bg-black w-full dark:border dark:border-white/[0.1] rounded-md relative pt-40 overflow-clip"
+      className="relative h-[115vh] w-full overflow-clip rounded-md bg-black pt-40 dark:border dark:border-white/[0.1]"
       ref={ref}
     >
       <GoogleGeminiEffect

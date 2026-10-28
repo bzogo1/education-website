@@ -5,7 +5,7 @@ import feature6 from '../assets/images/feature6.jpg';
 import CheckArrowIcon from '../assets/icons/CheckArrowIcon.astro';
 ---
 
-<section class="bg-black mt-12 mb-12 w-full pt-4 sm:mt-24 lg:my-20 lg:mb-24">
+<section class="mt-12 mb-12 w-full bg-black pt-4 sm:mt-24 lg:my-20 lg:mb-24">
   <div class="fade-in">
     <div
       class="mx-auto flex w-11/12 flex-wrap items-center md:pl-4 xl:w-[81.25rem] xl:pr-16 xl:pl-16 2xl:w-[90.625rem]"
@@ -107,7 +107,9 @@ import CheckArrowIcon from '../assets/icons/CheckArrowIcon.astro';
     font: inherit;
     font-weight: 700;
     cursor: pointer;
-    transition: transform 0.2s ease, color 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      color 0.2s ease;
   }
 
   .feature-preview-trigger:hover,
@@ -131,7 +133,9 @@ import CheckArrowIcon from '../assets/icons/CheckArrowIcon.astro';
     opacity: 0;
     pointer-events: none;
     transform: translate(-50%, 8px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition:
+      opacity 0.2s ease,
+      transform 0.2s ease;
   }
 
   .feature-preview-card-top {

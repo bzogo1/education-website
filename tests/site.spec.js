@@ -31,11 +31,15 @@ for (const route of routes) {
     const pageErrors = [];
     const failedLocalResponses = [];
     const origin = `http://127.0.0.1:${process.env.PLAYWRIGHT_PORT ?? '4321'}`;
+    const vercelEndpoints = new Set([
+      `${origin}/_vercel/insights/script.js`,
+      `${origin}/_vercel/speed-insights/script.js`,
+    ]);
 
     page.on('pageerror', (error) => pageErrors.push(error.message));
     page.on('response', (response) => {
-      const isVercelSpeedInsights = response.url() === `${origin}/_vercel/speed-insights/script.js`;
-      if (response.url().startsWith(origin) && response.status() >= 400 && !isVercelSpeedInsights) {
+      const isVercelEndpoint = vercelEndpoints.has(response.url());
+      if (response.url().startsWith(origin) && response.status() >= 400 && !isVercelEndpoint) {
         failedLocalResponses.push(`${response.status()} ${response.url()}`);
       }
     });

@@ -35,12 +35,12 @@ body {
   letter-spacing: 0.02em;
   color: #000;
   cursor: pointer;
-  background: rgba(0,0,0,0.08);
+  background: rgba(0, 0, 0, 0.08);
   transition: all 0.25s cubic-bezier(0.256, 0.009, 0.125, 0.997);
 }
 
 .tab&:hover {
-  background: rgba(0,0,0,0.16);
+  background: rgba(0, 0, 0, 0.16);
 }
 
 .tab.active {

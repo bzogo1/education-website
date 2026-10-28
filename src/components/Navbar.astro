@@ -16,7 +16,7 @@ const isHomepage = currentPath === '/' || currentPath === '/index.html';
 const isActive = (href: string) => {
   if (href.startsWith('/#')) return false;
   return currentPath.startsWith(href);
-}
+};
 ---
 
 <nav
@@ -57,7 +57,7 @@ const isActive = (href: string) => {
     <div>
       <div class="hidden grow basis-0 justify-end lg:flex">
         <a
-          class="main-border-gray bg-gray-900 hover:bg-gray-800 active:scale-95 transition-transform duration-150 flex rounded-xl pt-2 pr-8 pb-2 pl-6 text-sm text-white ml-4"
+          class="main-border-gray ml-4 flex rounded-xl bg-gray-900 pt-2 pr-8 pb-2 pl-6 text-sm text-white transition-transform duration-150 hover:bg-gray-800 active:scale-95"
           href="/signup"
           aria-label="Get Started"
         >
@@ -66,7 +66,7 @@ const isActive = (href: string) => {
       </div>
     </div>
     <button
-      class="border-mainBorder hover:bg-gray-900 flex cursor-pointer flex-col rounded-md border border-solid px-2 py-3 lg:hidden"
+      class="border-mainBorder flex cursor-pointer flex-col rounded-md border border-solid px-2 py-3 hover:bg-gray-900 lg:hidden"
       id="mobile-menu-toggle"
       aria-label="Toggle menu"
       aria-expanded="false"
@@ -81,7 +81,7 @@ const isActive = (href: string) => {
   <div class="fixed inset-0 top-20 z-40 hidden lg:hidden" id="mobile-menu-overlay"></div>
   <!-- Mobile navbar -->
   <div
-    class="bg-black border-gray-800 absolute top-4 left-0 z-50 mt-16 hidden w-full flex-col items-center gap-10 border-y border-solid pt-10 pb-10 lg:hidden"
+    class="absolute top-4 left-0 z-50 mt-16 hidden w-full flex-col items-center gap-10 border-y border-solid border-gray-800 bg-black pt-10 pb-10 lg:hidden"
     id="mobile-menu"
   >
     {
@@ -96,7 +96,7 @@ const isActive = (href: string) => {
     }
     <div class="flex gap-4">
       <a
-        class="outlined-button active:scale-95 transition-transform duration-150 flex pt-2 pr-8 pb-2 pl-6"
+        class="outlined-button flex pt-2 pr-8 pb-2 pl-6 transition-transform duration-150 active:scale-95"
         href="/signup"
         aria-label="Login"
       >

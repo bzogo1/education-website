@@ -1,0 +1,3 @@
+{
+  "ignore": ["elements/**", "hugo-theme-relearn/**", "main-page.js", "script.js"]
+}

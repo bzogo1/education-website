@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -29,9 +29,7 @@
         <p class="sidebar-label">Contents</p>
         <ul class="sidebar-nav">
           <li>
-            <a href="#infinite-scroll" class="active"
-              >01 &nbsp; Infinite scroll</a
-            >
+            <a href="#infinite-scroll" class="active">01 &nbsp; Infinite scroll</a>
           </li>
           <li><a href="#debounced-search">02 &nbsp; Debounced search</a></li>
           <li><a href="#skeletons">03 &nbsp; Loading skeletons</a></li>
@@ -54,9 +52,7 @@
             <div class="label">Live demo</div>
             <div class="scroll-container" id="scroll-container">
               <ul class="infinite-list" id="infinite-list"></ul>
-              <div class="loader-row" id="inf-loader">
-                Loading more items...
-              </div>
+              <div class="loader-row" id="inf-loader">Loading more items...</div>
               <div class="end-msg" id="inf-end">No more items</div>
               <div class="sentinel" id="sentinel"></div>
             </div>
@@ -131,52 +127,25 @@ input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>,
                   <div class="skeleton-card">
                     <div class="skeleton skeleton-avatar"></div>
                     <div class="skeleton-lines">
-                      <div
-                        class="skeleton skeleton-line"
-                        style="width: 55%"
-                      ></div>
-                      <div
-                        class="skeleton skeleton-line"
-                        style="width: 85%"
-                      ></div>
-                      <div
-                        class="skeleton skeleton-line"
-                        style="width: 40%"
-                      ></div>
+                      <div class="skeleton skeleton-line" style="width: 55%"></div>
+                      <div class="skeleton skeleton-line" style="width: 85%"></div>
+                      <div class="skeleton skeleton-line" style="width: 40%"></div>
                     </div>
                   </div>
                   <div class="skeleton-card">
                     <div class="skeleton skeleton-avatar"></div>
                     <div class="skeleton-lines">
-                      <div
-                        class="skeleton skeleton-line"
-                        style="width: 65%"
-                      ></div>
-                      <div
-                        class="skeleton skeleton-line"
-                        style="width: 75%"
-                      ></div>
-                      <div
-                        class="skeleton skeleton-line"
-                        style="width: 50%"
-                      ></div>
+                      <div class="skeleton skeleton-line" style="width: 65%"></div>
+                      <div class="skeleton skeleton-line" style="width: 75%"></div>
+                      <div class="skeleton skeleton-line" style="width: 50%"></div>
                     </div>
                   </div>
                   <div class="skeleton-card" style="border-bottom: none">
                     <div class="skeleton skeleton-avatar"></div>
                     <div class="skeleton-lines">
-                      <div
-                        class="skeleton skeleton-line"
-                        style="width: 45%"
-                      ></div>
-                      <div
-                        class="skeleton skeleton-line"
-                        style="width: 90%"
-                      ></div>
-                      <div
-                        class="skeleton skeleton-line"
-                        style="width: 35%"
-                      ></div>
+                      <div class="skeleton skeleton-line" style="width: 45%"></div>
+                      <div class="skeleton skeleton-line" style="width: 90%"></div>
+                      <div class="skeleton skeleton-line" style="width: 35%"></div>
                     </div>
                   </div>
                 </div>
@@ -187,13 +156,7 @@ input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>,
                   <li class="feed-item">
                     <div class="feed-avatar">AJ</div>
                     <div style="flex: 1; min-width: 0">
-                      <div
-                        style="
-                          font-size: 13px;
-                          font-weight: 500;
-                          color: var(--ink);
-                        "
-                      >
+                      <div style="font-size: 13px; font-weight: 500; color: var(--ink)">
                         Alex Johnson
                       </div>
                       <div class="feed-meta">Pushed 3 commits to main</div>
@@ -203,32 +166,17 @@ input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>,
                   <li class="feed-item">
                     <div class="feed-avatar">SR</div>
                     <div style="flex: 1; min-width: 0">
-                      <div
-                        style="
-                          font-size: 13px;
-                          font-weight: 500;
-                          color: var(--ink);
-                        "
-                      >
+                      <div style="font-size: 13px; font-weight: 500; color: var(--ink)">
                         Sara Reeves
                       </div>
                       <div class="feed-meta">Opened pull request #142</div>
                     </div>
                     <span class="badge badge-amber">review</span>
                   </li>
-                  <li
-                    class="feed-item"
-                    style="border-bottom: none; padding-bottom: 0"
-                  >
+                  <li class="feed-item" style="border-bottom: none; padding-bottom: 0">
                     <div class="feed-avatar">ML</div>
                     <div style="flex: 1; min-width: 0">
-                      <div
-                        style="
-                          font-size: 13px;
-                          font-weight: 500;
-                          color: var(--ink);
-                        "
-                      >
+                      <div style="font-size: 13px; font-weight: 500; color: var(--ink)">
                         Marcus Lee
                       </div>
                       <div class="feed-meta">Closed issue #89</div>
@@ -239,9 +187,7 @@ input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>,
               </div>
             </div>
             <div class="btn-row" style="margin-top: 1.25rem">
-              <button class="btn btn-sm" id="skeleton-toggle-btn">
-                Toggle state
-              </button>
+              <button class="btn btn-sm" id="skeleton-toggle-btn">Toggle state</button>
             </div>
           </div>
         </section>
@@ -274,9 +220,7 @@ input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>,
               <span class="section-number">05</span>
               Modal dialogs
             </div>
-            <span class="badge badge-gray"
-              >Focus trap + ESC + outside click</span
-            >
+            <span class="badge badge-gray">Focus trap + ESC + outside click</span>
           </div>
           <div class="section-body">
             <div class="modal-backdrop" id="modal-backdrop">
@@ -288,28 +232,18 @@ input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>,
                 aria-labelledby="modal-title"
               >
                 <div class="modal-header">
-                  <span class="modal-title" id="modal-title"
-                    >Confirm action</span
-                  >
-                  <button
-                    class="modal-close"
-                    id="modal-close-btn"
-                    aria-label="Close modal"
-                  >
+                  <span class="modal-title" id="modal-title">Confirm action</span>
+                  <button class="modal-close" id="modal-close-btn" aria-label="Close modal">
                     &times;
                   </button>
                 </div>
                 <div class="modal-body">
-                  This action cannot be undone. All associated data will be
-                  permanently removed from the system.
+                  This action cannot be undone. All associated data will be permanently removed from
+                  the system.
                 </div>
                 <div class="modal-footer">
-                  <button class="btn btn-sm" id="modal-cancel-btn">
-                    Cancel
-                  </button>
-                  <button class="btn btn-sm btn-primary" id="modal-confirm-btn">
-                    Confirm
-                  </button>
+                  <button class="btn btn-sm" id="modal-cancel-btn">Cancel</button>
+                  <button class="btn btn-sm btn-primary" id="modal-confirm-btn">Confirm</button>
                 </div>
               </div>
             </div>
@@ -370,12 +304,7 @@ input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>,
             </ul>
             <div
               id="order-status"
-              style="
-                font-size: 12px;
-                color: var(--ink-3);
-                margin-top: 10px;
-                min-height: 18px;
-              "
+              style="font-size: 12px; color: var(--ink-3); margin-top: 10px; min-height: 18px"
             ></div>
           </div>
         </section>
@@ -383,8 +312,8 @@ input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>,
     </div>
 
     <footer>
-      Frontend Features Boilerplate &nbsp;&middot;&nbsp; Vanilla JS
-      &nbsp;&middot;&nbsp; No dependencies
+      Frontend Features Boilerplate &nbsp;&middot;&nbsp; Vanilla JS &nbsp;&middot;&nbsp; No
+      dependencies
     </footer>
   </body>
 </html>

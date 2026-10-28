@@ -1,7 +1,7 @@
 @import 'tailwindcss';
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
-@import "@fontsource-variable/geist";
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource-variable/geist';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -76,16 +76,16 @@
 /* Buttons */
 
 .contained-button {
-  @apply bg-primaryColor text-black flex cursor-pointer items-center justify-center rounded-lg font-bold transition hover:bg-[#b8dcff];
+  @apply bg-primaryColor flex cursor-pointer items-center justify-center rounded-lg font-bold text-black transition hover:bg-[#b8dcff];
 }
 .outlined-button {
-  @apply text-primaryText border-mainBorder bg-gray-900 hover:bg-gray-800 cursor-pointer rounded-xl border border-solid text-sm;
+  @apply text-primaryText border-mainBorder cursor-pointer rounded-xl border border-solid bg-gray-900 text-sm hover:bg-gray-800;
 }
 
 /* Cards */
 
 .card {
-  @apply bg-gray-900/40 border-mainBorderFaintest hover:border-mainBorderSubtler hover:bg-gray-800/70 rounded-2xl border transition-all duration-500;
+  @apply border-mainBorderFaintest hover:border-mainBorderSubtler rounded-2xl border bg-gray-900/40 transition-all duration-500 hover:bg-gray-800/70;
 }
 .card-colored-hover {
   @apply hover:border-primaryColor/25 hover:bg-gray-800;

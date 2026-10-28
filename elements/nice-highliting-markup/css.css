@@ -1,12 +1,12 @@
 /* 
 	Some base CSS styles I use for these experiments, 
-	inluding CSS variables, a reset, and base styling for 
+  including CSS variables, a reset, and base styling for
 	many of the properties.
 */
 @import url(https://codepen.io/HejChristian/pen/QwWeZQE.css);
 
 :root {
-    /* Flexoki Color Palette - 400 */
+  /* Flexoki Color Palette - 400 */
   --color-red: hsl(13, 100%, 87%);
   --color-orange: hsl(27, 98%, 84%);
   --color-yellow: hsl(46, 83%, 80%);
@@ -20,13 +20,13 @@
 /* Some default template overrides */
 main {
   flex-direction: column;
-  
+
   p {
     font-size: var(--step-1);
     max-width: 40ch;
     width: 100%;
   }
-  
+
   hr {
     width: 100%;
     border-color: var(--color-accent);
@@ -40,19 +40,19 @@ mark {
   position: relative;
   background-color: unset; /* Goodbye default yellow, we'll let the pseudo elements take it from here */
   isolation: isolate;
-  
+
   &::before {
     position: absolute;
     inset: 0;
     content: '';
-    
+
     /* Not glamorous. with some time I could probably make this nicer. */
     /* This was mostly just manual tweaks until it looked nice (to me) */
     width: calc(100% + 1ch);
-    left: -.25ch;
+    left: -0.25ch;
     height: 110%;
     top: -5%;
-    
+
     /* I left these in, so you can easily play with where where the elliptical border is */
     /* border-top-left-radius: 2px; */
     /* border-top-right-radius: 0; */
@@ -61,12 +61,12 @@ mark {
 
     background-color: var(--color);
     background-image: var(--texture-noise);
-    opacity: .75;
-    
-    box-shadow: 
-      inset -2px 0px 1px hsl(from var(--color) h s calc(l - 20)), 
+    opacity: 0.75;
+
+    box-shadow:
+      inset -2px 0px 1px hsl(from var(--color) h s calc(l - 20)),
       inset -4px 0px 5px hsl(from var(--color) h s calc(l - 20));
-    
+
     /* I left these in too, if you wanted it experiment with some internal or external borders - could be fun! */
     /* border: solid 2px hsl(from var(--color) h s calc(l + 5)); */
     /* outline: solid 1px hsl(from var(--color) h s calc(l - 20)); */
@@ -79,21 +79,20 @@ mark {
   &::after {
     position: absolute;
     content: '';
-    
+
     /* Again, Not glamorous CSS time. */
     /* I was just testing out various units and sizes until it looked good (to me) */
     height: 1ch;
-    width: .5ch;
+    width: 0.5ch;
     top: 2px;
-    right: -.25em;
-    
-    background: 
-      radial-gradient(
-        hsl(from var(--color) h s calc(l - 30)),
-        hsl(from var(--color) h s l)
-      );
-    
-    opacity: .4;
+    right: -0.25em;
+
+    background: radial-gradient(
+      hsl(from var(--color) h s calc(l - 30)),
+      hsl(from var(--color) h s l)
+    );
+
+    opacity: 0.4;
     border-radius: 10px 0 50px/200px 0; /* I just messed with this until it looked skewed enough */
     rotate: 15deg; /* This could be fun to randomise via build step or JS on client side, translation too! */
     filter: url(#filter-rough);

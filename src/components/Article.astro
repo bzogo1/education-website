@@ -35,7 +35,7 @@ const { title, subtitle, date, image, author, readTime, tags } = articleData;
             {tags.map((tag: string, index: number) => (
               <span
                 class:list={[
-                  'badge-primary whitespace-nowrap font-bold tracking-wider text-[#d4d5fa] uppercase',
+                  'badge-primary font-bold tracking-wider whitespace-nowrap text-[#d4d5fa] uppercase',
                   index >= 2 && 'hidden sm:inline-flex',
                 ]}
               >
@@ -49,7 +49,9 @@ const { title, subtitle, date, image, author, readTime, tags } = articleData;
         {title}
       </h1>
       <p class="text-secondaryText mb-8 text-lg">{subtitle}</p>
-      <div class="text-secondaryText flex flex-col items-center justify-center gap-4 text-sm min-[560px]:flex-row">
+      <div
+        class="text-secondaryText flex flex-col items-center justify-center gap-4 text-sm min-[560px]:flex-row"
+      >
         {
           author && (
             <div class="flex items-center gap-3">

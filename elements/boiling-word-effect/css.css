@@ -10,8 +10,8 @@ body {
   background-color: #ececec;
   font-size: clamp(1rem, 2vw + 0.5rem, 2rem);
   font-size: 24px;
-  font-family: "Space Grotesk", sans-serif;
-  
+  font-family: 'Space Grotesk', sans-serif;
+
   display: flex;
   justify-content: center;
   align-items: center;

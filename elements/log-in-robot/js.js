@@ -66,7 +66,7 @@ function turnAway(on) {
 nameI.addEventListener('focus', () => {
   turnAway(false);
   setMood('watching');
-  say(pick(["A visitor. State your name.", "Typing detected. Go on, I'm watching."]));
+  say(pick(['A visitor. State your name.', "Typing detected. Go on, I'm watching."]));
   followTyping(nameI);
 });
 
@@ -81,7 +81,7 @@ nameI.addEventListener('input', () => {
 emailI.addEventListener('focus', () => {
   turnAway(false);
   setMood('watching');
-  say('Email next. I don\'t do spam — I don\'t even have an inbox.');
+  say("Email next. I don't do spam — I don't even have an inbox.");
   followTyping(emailI);
 });
 
@@ -89,7 +89,9 @@ emailI.addEventListener('input', () => {
   followTyping(emailI);
   if (EMAIL_RE.test(emailI.value.trim())) {
     setMood('happy');
-    say(pick(['Now that is a proper email. Respect.', 'Valid address detected. Quietly delighted.']));
+    say(
+      pick(['Now that is a proper email. Respect.', 'Valid address detected. Quietly delighted.'])
+    );
   } else {
     setMood('watching');
     if (emailI.value.includes('@')) say('Close. My sensors say: not yet.');
@@ -102,7 +104,7 @@ passI.addEventListener('focus', () => {
   turnAway(true);
   look(0, 0);
   tilt(0, 0);
-  say("A secret? Say no more. *turns around*");
+  say('A secret? Say no more. *turns around*');
   panelLabel.textContent = 'NOT LOOKING';
 });
 
@@ -122,9 +124,10 @@ passI.addEventListener('input', () => {
 
   meter.dataset.lvl = score;
   meterBars.forEach((bar, i) => bar.classList.toggle('on', i < score));
-  panelLabel.textContent = v.length === 0
-    ? 'NOT LOOKING'
-    : ['NOT LOOKING', 'TOO SHORT', 'GETTING THERE', 'STRONG', 'FORT KNOX'][score];
+  panelLabel.textContent =
+    v.length === 0
+      ? 'NOT LOOKING'
+      : ['NOT LOOKING', 'TOO SHORT', 'GETTING THERE', 'STRONG', 'FORT KNOX'][score];
 });
 
 // show / hide password
@@ -133,7 +136,7 @@ peekBtn.addEventListener('click', () => {
   passI.type = show ? 'text' : 'password';
   peekBtn.setAttribute('aria-pressed', String(show));
   peekBtn.setAttribute('aria-label', show ? 'Hide password' : 'Show password');
-  if (show) say('Revealing it? Good thing I\'m facing the wall.');
+  if (show) say("Revealing it? Good thing I'm facing the wall.");
   passI.focus();
 });
 
@@ -186,12 +189,16 @@ form.addEventListener('submit', (e) => {
 
   const complaints = [];
   if (!nameI.value.trim()) complaints.push(["Still don't know your name.", nameI]);
-  else if (!EMAIL_RE.test(emailI.value.trim())) complaints.push(['That email isn\'t a real place.', emailI]);
+  else if (!EMAIL_RE.test(emailI.value.trim()))
+    complaints.push(["That email isn't a real place.", emailI]);
   else if (!passI.value) complaints.push(['A password would help.', passI]);
 
   if (complaints.length) {
     const [msg, field] = complaints[0];
-    setTimeout(() => { say(msg); setMood('watching'); }, 380);
+    setTimeout(() => {
+      say(msg);
+      setMood('watching');
+    }, 380);
     form.classList.remove('shake');
     void form.offsetWidth;
     form.classList.add('shake');
@@ -231,13 +238,16 @@ function reset() {
 
 // blinking + follow the mouse
 (function blinkLoop() {
-  setTimeout(() => {
-    if (robot.dataset.mood !== 'success' && !robot.classList.contains('is-turned')) {
-      eyes.classList.add('blink');
-      setTimeout(() => eyes.classList.remove('blink'), 150);
-    }
-    blinkLoop();
-  }, 2600 + Math.random() * 2600);
+  setTimeout(
+    () => {
+      if (robot.dataset.mood !== 'success' && !robot.classList.contains('is-turned')) {
+        eyes.classList.add('blink');
+        setTimeout(() => eyes.classList.remove('blink'), 150);
+      }
+      blinkLoop();
+    },
+    2600 + Math.random() * 2600
+  );
 })();
 
 let rafPending = false;
@@ -271,10 +281,10 @@ function confetti() {
     const bit = document.createElement('span');
     bit.className = 'confetti';
     bit.style.background = pick(colors);
-    if (Math.random() > .5) bit.style.borderRadius = '50%';
+    if (Math.random() > 0.5) bit.style.borderRadius = '50%';
     host.appendChild(bit);
 
-    const angle = -Math.PI / 2 + (Math.random() - .5) * 1.6;
+    const angle = -Math.PI / 2 + (Math.random() - 0.5) * 1.6;
     const speed = 240 + Math.random() * 380;
     const tx = Math.cos(angle) * speed;
     const ty = Math.sin(angle) * speed;
@@ -282,9 +292,14 @@ function confetti() {
     bit.animate(
       [
         { transform: `translate(${ox}px, ${oy}px) rotate(0deg) scale(1)`, opacity: 1 },
-        { transform: `translate(${ox + tx}px, ${oy + ty + 320}px) rotate(${540 * (Math.random() > .5 ? 1 : -1)}deg) scale(.6)`, opacity: 0 }
+        {
+          transform: `translate(${ox + tx}px, ${oy + ty + 320}px) rotate(${540 * (Math.random() > 0.5 ? 1 : -1)}deg) scale(.6)`,
+          opacity: 0,
+        },
       ],
       { duration: 1100 + Math.random() * 700, easing: 'cubic-bezier(.15,.6,.35,1)' }
-    ).onfinish = function () { bit.remove(); };
+    ).onfinish = function () {
+      bit.remove();
+    };
   }
 }

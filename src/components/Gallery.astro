@@ -16,7 +16,7 @@ const slides = [
 const totalPages = slides.length;
 ---
 
-<section class="bg-black w-full pt-8 pb-16 lg:pt-12 lg:pb-24">
+<section class="w-full bg-black pt-8 pb-16 lg:pt-12 lg:pb-24">
   <div class="fade-in">
     <div class="content-container">
       <div class="mb-12 max-w-2xl">
@@ -31,7 +31,7 @@ const totalPages = slides.length;
         <!-- Track wrapper with arrows -->
         <div class="gallery-viewport relative">
           <button
-            class="gallery-prev border-mainBorder bg-gray-900 text-primaryText hover:bg-gray-800 absolute top-1/2 -left-7 z-10 flex hidden h-14 w-14 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border transition-colors duration-300 lg:flex"
+            class="gallery-prev border-mainBorder text-primaryText absolute top-1/2 -left-7 z-10 flex hidden h-14 w-14 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border bg-gray-900 transition-colors duration-300 hover:bg-gray-800 lg:flex"
             aria-label="Previous"
           >
             <svg
@@ -45,7 +45,7 @@ const totalPages = slides.length;
             </svg>
           </button>
           <button
-            class="gallery-next border-mainBorder bg-gray-900 text-primaryText hover:bg-gray-800 absolute top-1/2 -right-7 z-10 flex hidden h-14 w-14 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border transition-colors duration-300 lg:flex"
+            class="gallery-next border-mainBorder text-primaryText absolute top-1/2 -right-7 z-10 flex hidden h-14 w-14 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border bg-gray-900 transition-colors duration-300 hover:bg-gray-800 lg:flex"
             aria-label="Next"
           >
             <svg
@@ -65,7 +65,7 @@ const totalPages = slides.length;
             >
               {
                 [...slides, ...slides].map((slide) => (
-                  <div class="gallery-slide bg-gray-900 border-mainBorderDarker flex aspect-[4/3] w-full shrink-0 items-center justify-center rounded-xl border sm:w-[calc(50%-0.75rem)]">
+                  <div class="gallery-slide border-mainBorderDarker flex aspect-[4/3] w-full shrink-0 items-center justify-center rounded-xl border bg-gray-900 sm:w-[calc(50%-0.75rem)]">
                     <svg
                       class="text-secondaryColor/25 h-14 w-14"
                       fill="none"

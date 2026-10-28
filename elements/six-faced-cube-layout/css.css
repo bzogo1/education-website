@@ -28,8 +28,8 @@
     --muted: var(--dark-muted);
     --accent: var(--accent-dark);
 
-    --font-display: "Bebas Neue", sans-serif;
-    --font-mono: "DM Mono", monospace;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-mono: 'DM Mono', monospace;
     --hairline: 0.0625rem;
     --ui-inset: 2rem;
     --card-bg: rgba(28, 24, 20, 0.82);
@@ -51,7 +51,9 @@
     color: var(--fg);
     font-family: var(--font-mono);
     overflow-x: hidden;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition:
+      background 0.3s ease,
+      color 0.3s ease;
   }
 }
 
@@ -96,7 +98,8 @@
     inset: 0;
     overflow: hidden;
     backface-visibility: hidden;
-    background: repeating-linear-gradient(
+    background:
+      repeating-linear-gradient(
         0deg,
         rgba(255, 255, 255, 0.02) 0,
         rgba(255, 255, 255, 0.02) 1px,
@@ -138,22 +141,22 @@
     user-select: none;
   }
 
-  .face[data-face="front"] {
+  .face[data-face='front'] {
     transform: translateZ(calc(var(--s) / 2));
   }
-  .face[data-face="back"] {
+  .face[data-face='back'] {
     transform: rotateY(180deg) translateZ(calc(var(--s) / 2));
   }
-  .face[data-face="right"] {
+  .face[data-face='right'] {
     transform: rotateY(90deg) translateZ(calc(var(--s) / 2));
   }
-  .face[data-face="left"] {
+  .face[data-face='left'] {
     transform: rotateY(-90deg) translateZ(calc(var(--s) / 2));
   }
-  .face[data-face="top"] {
+  .face[data-face='top'] {
     transform: rotateX(-90deg) translateZ(calc(var(--s) / 2));
   }
-  .face[data-face="bottom"] {
+  .face[data-face='bottom'] {
     transform: rotateX(90deg) translateZ(calc(var(--s) / 2));
   }
 }
@@ -214,11 +217,13 @@
     height: 0.25rem;
     border-radius: 50%;
     background: var(--muted);
-    transition: background 0.3s, scale 0.3s;
+    transition:
+      background 0.3s,
+      scale 0.3s;
     cursor: pointer;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       inset: -0.2rem;
     }
@@ -254,7 +259,9 @@
       width: 0.875rem;
       height: 0.875rem;
       position: absolute;
-      transition: opacity 0.3s ease, rotate 0.3s ease;
+      transition:
+        opacity 0.3s ease,
+        rotate 0.3s ease;
       color: var(--accent);
     }
 
@@ -325,7 +332,9 @@
     backdrop-filter: blur(6px) saturate(120%);
     -webkit-backdrop-filter: blur(6px) saturate(120%);
     overflow: hidden;
-    transition: background 0.3s ease, border-color 0.3s ease;
+    transition:
+      background 0.3s ease,
+      border-color 0.3s ease;
 
     &.right {
       margin-inline-start: auto;
@@ -442,7 +451,9 @@
     text-transform: uppercase;
     text-decoration: none;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s;
 
     &:hover {
       background: var(--accent);
@@ -460,15 +471,17 @@
     align-items: center;
     gap: 0.6rem;
     padding: 0.6rem 1.25rem;
-    border: var(--hairline) solid
-      color-mix(in srgb, var(--muted) 45%, transparent);
+    border: var(--hairline) solid color-mix(in srgb, var(--muted) 45%, transparent);
     color: var(--muted);
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    transition:
+      background 0.2s,
+      color 0.2s,
+      border-color 0.2s;
 
     &:hover {
       background: color-mix(in srgb, var(--muted) 12%, transparent);
@@ -491,35 +504,44 @@
 
   :is(h1, h2) {
     translate: 0 1.125rem;
-    transition: opacity var(--reveal-duration) ease 0.08s,
+    transition:
+      opacity var(--reveal-duration) ease 0.08s,
       translate var(--reveal-duration) ease 0.08s;
   }
 
   .tag {
-    transition: opacity var(--reveal-duration) ease,
+    transition:
+      opacity var(--reveal-duration) ease,
       translate var(--reveal-duration) ease;
   }
 
   .body-text {
-    transition: opacity var(--reveal-duration) ease 0.2s,
+    transition:
+      opacity var(--reveal-duration) ease 0.2s,
       translate var(--reveal-duration) ease 0.2s;
   }
 
   .stat-row {
-    transition: opacity var(--reveal-duration) ease 0.3s,
+    transition:
+      opacity var(--reveal-duration) ease 0.3s,
       translate var(--reveal-duration) ease 0.3s;
   }
 
   :is(.cta, .cta-back) {
-    transition: opacity var(--reveal-duration) ease 0.35s,
-      translate var(--reveal-duration) ease 0.35s, background 0.2s, color 0.2s,
+    transition:
+      opacity var(--reveal-duration) ease 0.35s,
+      translate var(--reveal-duration) ease 0.35s,
+      background 0.2s,
+      color 0.2s,
       border-color 0.2s;
   }
 
   .h-line {
     opacity: 0;
     scale: 0 1;
-    transition: opacity 0.4s ease, scale 0.4s ease;
+    transition:
+      opacity 0.4s ease,
+      scale 0.4s ease;
   }
 
   :is(.tag, h1, h2, .body-text, .stat-row, .cta, .cta-back).visible {
@@ -534,7 +556,7 @@
 }
 
 @layer theme {
-  :root[data-theme="light"] {
+  :root[data-theme='light'] {
     color-scheme: light;
     --bg: var(--light-bg);
     --fg: var(--light-fg);
@@ -544,7 +566,8 @@
     --card-border: rgba(58, 110, 0, 0.14);
 
     .face {
-      background: repeating-linear-gradient(
+      background:
+        repeating-linear-gradient(
           0deg,
           rgba(0, 0, 0, 0.05) 0,
           rgba(0, 0, 0, 0.05) 1px,

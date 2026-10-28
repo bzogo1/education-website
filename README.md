@@ -85,13 +85,13 @@ You can also deploy on Vercel with one click:
 
 ## Available commands
 
-| Command           | Action                           |
-| :---------------- | :------------------------------- |
-| `npm run dev`     | Start development server         |
-| `npm run build`   | Build for production (`./dist/`) |
-| `npm run preview` | Preview production build locally |
-| `npm run lint`    | Run ESLint                       |
-| `npm run format`  | Format code with Prettier        |
+| Command            | Action                                                   |
+| :----------------- | :------------------------------------------------------- |
+| `npm run dev`      | Start development server                                 |
+| `npm run build`    | Build for production (`./dist/`)                         |
+| `npm run preview`  | Preview production build locally                         |
+| `npm run lint`     | Run ESLint                                               |
+| `npm run format`   | Format code with Prettier                                |
 | `npm run test:e2e` | Build the site and run cross-browser accessibility tests |
 
 ## License

@@ -22,7 +22,8 @@ const faqs = [
     value: 'q2',
   },
   {
-    content: 'All new accounts start with a 14-day free trial on the Pro plan. No credit card is required to start.',
+    content:
+      'All new accounts start with a 14-day free trial on the Pro plan. No credit card is required to start.',
     trigger: 'Is there a free trial available?',
     value: 'q3',
   },
@@ -51,7 +52,7 @@ export default function Pattern() {
   const filtered = faqs.filter(
     (faq) =>
       faq.trigger.toLowerCase().includes(query.toLowerCase()) ||
-      faq.content.toLowerCase().includes(query.toLowerCase()),
+      faq.content.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
@@ -60,7 +61,7 @@ export default function Pattern() {
         <div className="mb-8 text-center">
           <p className="block-subtitle mb-4">Have any questions?</p>
           <h2 className="block-big-title">Frequently Asked Questions</h2>
-          <p className="mt-4 text-secondaryText">Search or browse answers below.</p>
+          <p className="text-secondaryText mt-4">Search or browse answers below.</p>
         </div>
         <div className="relative mb-5">
           <SearchIcon className="text-secondaryText absolute top-1/2 left-4 size-4 -translate-y-1/2" />
@@ -72,7 +73,9 @@ export default function Pattern() {
           />
         </div>
         {filtered.length === 0 ? (
-          <p className="text-secondaryText py-8 text-center text-sm">No results for &quot;{query}&quot;</p>
+          <p className="text-secondaryText py-8 text-center text-sm">
+            No results for &quot;{query}&quot;
+          </p>
         ) : (
           <Accordion className="w-full" multiple>
             {filtered.map((faq) => (

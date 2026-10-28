@@ -10,7 +10,7 @@ import { ClientRouter } from 'astro:transitions';
 import '../styles/Theme.css';
 import '../styles/diagonals.css';
 import InvitationModal from '../components/InvitationModal.astro';
-import { Analytics } from '@vercel/analytics/react';
+import Analytics from '@vercel/analytics/astro';
 import SpeedInsights from '@vercel/speed-insights/astro';
 
 interface Props {
@@ -73,7 +73,7 @@ const ogImage = `${siteUrl}/og-image.png`;
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
   </head>
-  <body class="overflow-x-hidden bg-bgDark1 text-primaryText">
+  <body class="bg-bgDark1 text-primaryText overflow-x-hidden">
     <main aria-label="Main content">
       <slot />
     </main>

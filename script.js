@@ -1,16 +1,15 @@
-import * as THREE from "three";
-import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 
-const LINES = [...document.querySelectorAll("#headline span")].map((span) =>
+const LINES = [...document.querySelectorAll('#headline span')].map((span) =>
   span.textContent.trim().toUpperCase()
 );
-const BG = "#e9e9e7";
-const INK = "#111111";
+const BG = '#e9e9e7';
+const INK = '#111111';
 const CAMERA_Z = 5;
-const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
-  .matches;
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const canvas = document.getElementById("scene");
+const canvas = document.getElementById('scene');
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
@@ -23,8 +22,8 @@ camera.position.z = CAMERA_Z;
 const pmrem = new THREE.PMREMGenerator(renderer);
 scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
 
-const textCanvas = document.createElement("canvas");
-const textCtx = textCanvas.getContext("2d");
+const textCanvas = document.createElement('canvas');
+const textCtx = textCanvas.getContext('2d');
 let textTexture = null;
 
 const textPlane = new THREE.Mesh(
@@ -44,7 +43,7 @@ const torus = new THREE.Mesh(
     ior: 1.45,
     dispersion: 4,
     envMapIntensity: 1,
-    toneMapped: false
+    toneMapped: false,
   })
 );
 torus.position.z = 2.2;
@@ -58,8 +57,8 @@ function drawText(width, height) {
   textCtx.fillStyle = BG;
   textCtx.fillRect(0, 0, width, height);
   textCtx.fillStyle = INK;
-  textCtx.textAlign = "center";
-  textCtx.textBaseline = "middle";
+  textCtx.textAlign = 'center';
+  textCtx.textBaseline = 'middle';
 
   const maxWidth = width * 0.92;
   const maxHeight = height * 0.78;
@@ -67,9 +66,7 @@ function drawText(width, height) {
   const lineGap = 0.98;
 
   textCtx.font = `900 ${baseSize}px "Inter Tight", sans-serif`;
-  const sizes = LINES.map(
-    (line) => baseSize * (maxWidth / textCtx.measureText(line).width)
-  );
+  const sizes = LINES.map((line) => baseSize * (maxWidth / textCtx.measureText(line).width));
   const totalHeight = sizes.reduce((sum, size) => sum + size * lineGap, 0);
   const fit = Math.min(1, maxHeight / totalHeight);
 
@@ -100,8 +97,7 @@ function resize() {
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 
-  const visibleHeight =
-    2 * CAMERA_Z * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+  const visibleHeight = 2 * CAMERA_Z * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
   const visibleWidth = visibleHeight * camera.aspect;
   textPlane.scale.set(visibleWidth, visibleHeight, 1);
 
@@ -112,7 +108,7 @@ function resize() {
 }
 
 const pointer = new THREE.Vector2();
-window.addEventListener("pointermove", (e) => {
+window.addEventListener('pointermove', (e) => {
   pointer.x = (e.clientX / window.innerWidth) * 2 - 1;
   pointer.y = (e.clientY / window.innerHeight) * 2 - 1;
 });
@@ -142,7 +138,7 @@ function debounce(fn, delay) {
 
 const debouncedResize = debounce(resize, 150);
 
-window.addEventListener("resize", () => {
+window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();

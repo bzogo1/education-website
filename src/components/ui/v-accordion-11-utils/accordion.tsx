@@ -8,7 +8,15 @@ type AccordionContextValue = {
 
 const AccordionContext = createContext<AccordionContextValue | null>(null);
 
-export function Accordion({ children, className = '', multiple = false }: { children: ReactNode; className?: string; multiple?: boolean }) {
+export function Accordion({
+  children,
+  className = '',
+  multiple = false,
+}: {
+  children: ReactNode;
+  className?: string;
+  multiple?: boolean;
+}) {
   const [openItems, setOpenItems] = useState<string[]>([]);
   const toggleItem = (value: string) =>
     setOpenItems((current) =>
@@ -16,7 +24,7 @@ export function Accordion({ children, className = '', multiple = false }: { chil
         ? current.filter((item) => item !== value)
         : multiple
           ? [...current, value]
-          : [value],
+          : [value]
     );
 
   return (
@@ -48,7 +56,9 @@ export function AccordionTrigger({ children }: { children: ReactNode }) {
       onClick={() => context.toggleItem(item)}
     >
       <span>{children}</span>
-      <ChevronDown className={`text-secondaryColor size-5 shrink-0 transition-transform ${context.openItems.includes(item) ? 'rotate-180' : ''}`} />
+      <ChevronDown
+        className={`text-secondaryColor size-5 shrink-0 transition-transform ${context.openItems.includes(item) ? 'rotate-180' : ''}`}
+      />
     </button>
   );
 }
@@ -67,7 +77,9 @@ export function AccordionContent({ children }: { children: ReactNode }) {
         isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
       }`}
     >
-      <div className="text-secondaryText min-h-0 overflow-hidden pb-5 leading-relaxed">{children}</div>
+      <div className="text-secondaryText min-h-0 overflow-hidden pb-5 leading-relaxed">
+        {children}
+      </div>
     </div>
   );
 }
