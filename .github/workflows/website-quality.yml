@@ -34,6 +34,10 @@ jobs:
         uses: fallow-rs/fallow@v3.34.1
         with:
           version: v3.34.1
+          baseline: .fallow-dead-code-baseline.json
+          health-baseline: .fallow-health-baseline.json
+          dupes-baseline: .fallow-dupes-baseline.json
+          fail-on-stale-baseline: true
 
   browser-tests:
     name: Browser and accessibility tests
