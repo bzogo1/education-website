@@ -24,7 +24,7 @@
     "theme"
   ],
   "engines": {
-    "node": ">=22"
+    "node": ">=22.23.4"
   },
   "scripts": {
     "dev": "astro dev",
