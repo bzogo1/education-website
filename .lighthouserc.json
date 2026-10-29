@@ -1,20 +1,20 @@
 {
   "ci": {
     "collect": {
-      "startServerCommand": "npm run preview -- --host 127.0.0.1 --port 4321",
-      "startServerReadyPattern": "http://127\\.0\\.0\\.1:4321",
+      "startServerCommand": "npm run preview -- --host localhost --port 4321",
+      "startServerReadyPattern": "http://localhost:4321",
       "url": [
-        "http://127.0.0.1:4321/",
-        "http://127.0.0.1:4321/about/",
-        "http://127.0.0.1:4321/features",
-        "http://127.0.0.1:4321/blog/",
-        "http://127.0.0.1:4321/blog/predictive-analytics-startups/",
-        "http://127.0.0.1:4321/explore/",
-        "http://127.0.0.1:4321/explore/senior-frontend-engineer/",
-        "http://127.0.0.1:4321/signup/",
-        "http://127.0.0.1:4321/contact/",
-        "http://127.0.0.1:4321/privacy/",
-        "http://127.0.0.1:4321/terms-of-service/"
+        "http://localhost:4321/",
+        "http://localhost:4321/about/",
+        "http://localhost:4321/features",
+        "http://localhost:4321/blog/",
+        "http://localhost:4321/blog/predictive-analytics-startups/",
+        "http://localhost:4321/explore/",
+        "http://localhost:4321/explore/senior-frontend-engineer/",
+        "http://localhost:4321/signup/",
+        "http://localhost:4321/contact/",
+        "http://localhost:4321/privacy/",
+        "http://localhost:4321/terms-of-service/"
       ],
       "numberOfRuns": 3,
       "settings": {

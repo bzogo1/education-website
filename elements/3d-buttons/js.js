@@ -1,7 +1,27 @@
-const HEXES =
-  '3b82f61d4ed822c55e15803def4444b91c1cff6a00cc5500ffc800cca00014b8a60f766edb3b7cb02e649356d46b3fa13341551e293bffbf00cc9900ffffffd3e2ef'.match(
-    /.{6}/g
-  );
+const HEXES = [
+  '3b82f6',
+  '1d4ed8',
+  '22c55e',
+  '15803d',
+  'ef4444',
+  'b91c1c',
+  'ff6a00',
+  'cc5500',
+  'ffc800',
+  'cca000',
+  '14b8a6',
+  '0f766e',
+  'db3b7c',
+  'b02e64',
+  '9356d4',
+  '6b3fa1',
+  '334155',
+  '1e293b',
+  'ffbf00',
+  'cc9900',
+  'ffffff',
+  'd3e2ef',
+];
 const COLORS = {
   blue: 0,
   green: 1,

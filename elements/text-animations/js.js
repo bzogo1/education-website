@@ -1,7 +1,11 @@
 (function () {
   const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&*+-/<>[]{}01';
-  const rand = (a, b) => Math.random() * (b - a) + a;
-  const randInt = (a, b) => Math.floor(rand(a, b + 1));
+  const rand = (min, max) => {
+    const randomValues = new Uint32Array(1);
+    crypto.getRandomValues(randomValues);
+    return min + (randomValues[0] / 0x100000000) * (max - min);
+  };
+  const randInt = (min, max) => Math.floor(rand(min, max + 1));
 
   function splitToSpans(el, textOverride, staggerMax) {
     const text = textOverride || el.textContent;
