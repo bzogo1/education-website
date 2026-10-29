@@ -23,7 +23,7 @@ jobs:
 
   fallow:
     name: Fallow codebase analysis
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v7
@@ -33,7 +33,7 @@ jobs:
       - name: Analyze JavaScript and TypeScript
         uses: fallow-rs/fallow@v3.34.1
         with:
-          version: v3.34.1
+          version: 3.34.1
           baseline: .fallow-dead-code-baseline.json
           health-baseline: .fallow-health-baseline.json
           dupes-baseline: .fallow-dupes-baseline.json
