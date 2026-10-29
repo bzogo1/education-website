@@ -30,10 +30,20 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22.23.4
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Analyze JavaScript and TypeScript
         uses: fallow-rs/fallow@v3.34.1
         with:
           version: 3.34.1
+          auto-changed-since: false
           baseline: .fallow-dead-code-baseline.json
           health-baseline: .fallow-health-baseline.json
           dupes-baseline: .fallow-dupes-baseline.json

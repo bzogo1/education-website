@@ -111,7 +111,7 @@
     "test-only-dependency:package.json:@astrojs/react",
     "test-only-dependency:package.json:@astrojs/sitemap"
   ],
-  "dev_dependencies_in_production": ["dev-dependency-in-production:package.json:shadcn"],
+  "dev_dependencies_in_production": [],
   "boundary_violations": [],
   "boundary_coverage_violations": [],
   "boundary_call_violations": [],
