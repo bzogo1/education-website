@@ -1,8 +1,12 @@
 ---
+import { getImage } from 'astro:assets';
 import Layout from '../../layouts/Layout.astro';
+import dashboard from '../../assets/images/dashboard.jpg';
 import AuthSectionThree from '../../components/ui/auth-section-3';
+
+const dashboardImage = await getImage({ src: dashboard, width: 900, format: 'webp' });
 ---
 
 <Layout title="Sign Up - Tailcast">
-  <AuthSectionThree client:load />
+  <AuthSectionThree client:idle dashboardImageSrc={dashboardImage.src} />
 </Layout>

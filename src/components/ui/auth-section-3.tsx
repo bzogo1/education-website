@@ -8,7 +8,6 @@ import { CheckIcon } from 'lucide-react';
 import { PasswordStrength, usePasswordStrength } from '@/components/interior/password-strength';
 import { EmailVerification } from '@/components/ui/auth/email-verification';
 import testimonialImage from '../../assets/images/testimonial1.png';
-import dashboardImage from '../../assets/images/dashboard.jpg';
 
 const termsText = (
   <>
@@ -29,7 +28,7 @@ const termsText = (
   </>
 );
 
-export default function AuthSectionThree() {
+export default function AuthSectionThree({ dashboardImageSrc }: { dashboardImageSrc: string }) {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showEmailVerification, setShowEmailVerification] = useState(false);
@@ -268,7 +267,7 @@ export default function AuthSectionThree() {
                   </span>
                 </div>
                 <img
-                  src={dashboardImage.src}
+                  src={dashboardImageSrc}
                   alt="SolaceUI Dashboard App Mockup"
                   className="h-auto w-full object-cover object-top opacity-95 [filter:invert(1)_hue-rotate(180deg)_brightness(0.68)_contrast(1.16)] dark:[filter:none]"
                 />

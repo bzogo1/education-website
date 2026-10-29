@@ -1,11 +1,11 @@
 (function () {
   const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#%&*+-/<>[]{}01';
-  const rand = (min, max) => {
+  const cryptoRandomBetween = (min, max) => {
     const randomValues = new Uint32Array(1);
     crypto.getRandomValues(randomValues);
     return min + (randomValues[0] / 0x100000000) * (max - min);
   };
-  const randInt = (min, max) => Math.floor(rand(min, max + 1));
+  const cryptoRandomIntegerBetween = (min, max) => Math.floor(cryptoRandomBetween(min, max + 1));
 
   function splitToSpans(el, textOverride, staggerMax) {
     const text = textOverride || el.textContent;
@@ -90,7 +90,7 @@
             continue;
           }
           if (i < revealed) out += target[i];
-          else out += CHARS[randInt(0, CHARS.length - 1)];
+          else out += CHARS[cryptoRandomIntegerBetween(0, CHARS.length - 1)];
         }
         el.textContent = out;
         if (frame % 3 === 0) revealed++;
@@ -133,7 +133,7 @@
         const finalChar = target[i];
         if (finalChar === ' ') return;
         let count = 0;
-        const total = randInt(8, 16);
+        const total = cryptoRandomIntegerBetween(8, 16);
         s.style.borderBottom = '1px solid var(--line-strong)';
         const t = setInterval(
           () => {
@@ -141,7 +141,7 @@
             if (count >= total) {
               s.textContent = finalChar;
               clearInterval(t);
-            } else s.textContent = CHARS[randInt(0, CHARS.length - 1)];
+            } else s.textContent = CHARS[cryptoRandomIntegerBetween(0, CHARS.length - 1)];
           },
           45 + i * 4
         );
@@ -229,10 +229,10 @@
     const spans = splitToSpans(el);
     stage.addEventListener('mouseenter', () => {
       spans.forEach((s) => {
-        s.style.transform = `translate(${rand(-40, 40)}px, ${rand(
+        s.style.transform = `translate(${cryptoRandomBetween(-40, 40)}px, ${cryptoRandomBetween(
           -30,
           30
-        )}px) rotate(${rand(-40, 40)}deg)`;
+        )}px) rotate(${cryptoRandomBetween(-40, 40)}deg)`;
       });
     });
     stage.addEventListener('mouseleave', () => spans.forEach((s) => (s.style.transform = '')));
@@ -282,9 +282,9 @@
   document.querySelectorAll('[data-anim="shatter"] .demo').forEach((el) => {
     const spans = splitToSpans(el);
     spans.forEach((s) => {
-      s.style.setProperty('--tx', rand(-120, 120).toFixed(0) + 'px');
-      s.style.setProperty('--ty', rand(-90, 90).toFixed(0) + 'px');
-      s.style.setProperty('--tr', rand(-90, 90).toFixed(0) + 'deg');
+      s.style.setProperty('--tx', cryptoRandomBetween(-120, 120).toFixed(0) + 'px');
+      s.style.setProperty('--ty', cryptoRandomBetween(-90, 90).toFixed(0) + 'px');
+      s.style.setProperty('--tr', cryptoRandomBetween(-90, 90).toFixed(0) + 'deg');
     });
   });
 
@@ -344,7 +344,7 @@
       raf;
 
     function reset() {
-      drops = new Array(cols).fill(0).map(() => -randInt(0, 20));
+      drops = new Array(cols).fill(0).map(() => -cryptoRandomIntegerBetween(0, 20));
       locked = new Array(cols).fill(null);
       // decide which columns will host the target letters, centered
       const startCol = Math.floor(cols / 2 - (word.length * 1.1) / 2);
@@ -367,7 +367,7 @@
           target.done = true;
         } else {
           allDone = false;
-          const ch = CHARS[randInt(0, CHARS.length - 1)];
+          const ch = CHARS[cryptoRandomIntegerBetween(0, CHARS.length - 1)];
           ctx.fillStyle = 'rgba(233,229,220,0.55)';
           ctx.fillText(ch, x, drops[c] * fontSize);
           drops[c]++;
