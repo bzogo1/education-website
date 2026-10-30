@@ -5,9 +5,7 @@ import TailcastLogo from '../assets/logos/TailcastLogo.astro';
 ---
 
 <dialog id="invitation-modal" class="modal-backdrop" aria-labelledby="modal-title">
-  <div
-    class="xs:w-[90vw] xs:h-auto xs:max-w-[25rem] xs:rounded-2xl xs:pt-8 bg-bgDarkTransparentLighter main-border-gray-darker xs:block relative flex h-screen w-screen flex-col justify-start overflow-hidden rounded-none px-6 pt-[11vh] pb-8 backdrop-blur-xl lg:w-[53.125rem] lg:max-w-none lg:px-10 lg:pt-8 xl:w-[57.5rem] 2xl:w-[68.75rem] 2xl:px-16 2xl:py-12"
-  >
+  <div class="xs:w-[90vw] xs:h-auto xs:max-w-[25rem] xs:rounded-2xl xs:pt-8 bg-bgDarkTransparentLighter main-border-gray-darker xs:block relative flex h-screen w-screen flex-col justify-start overflow-hidden rounded-none px-6 pt-[11vh] pb-8 backdrop-blur-xl lg:w-[53.125rem] lg:max-w-none lg:px-10 lg:pt-8 xl:w-[57.5rem] 2xl:w-[68.75rem] 2xl:px-16 2xl:py-12">
     <button class="modal-close-button" id="modal-close" aria-label="Close modal">
       <CloseIcon />
     </button>
@@ -20,9 +18,18 @@ import TailcastLogo from '../assets/logos/TailcastLogo.astro';
           Winter is coming
         </h2>
         <ul class="text-primaryText mt-8 mb-6 2xl:mt-12">
-          <li class="mb-4 flex"><CheckArrowIcon /><span>Vestibulum viverra</span></li>
-          <li class="mb-4 flex"><CheckArrowIcon /><span>Morbi mollis metus pretium</span></li>
-          <li class="mb-4 flex"><CheckArrowIcon /><span>Etiam lectus nunc, commodo</span></li>
+          <li class="mb-4 flex">
+            <CheckArrowIcon />
+            <span>Vestibulum viverra</span>
+          </li>
+          <li class="mb-4 flex">
+            <CheckArrowIcon />
+            <span>Morbi mollis metus pretium</span>
+          </li>
+          <li class="mb-4 flex">
+            <CheckArrowIcon />
+            <span>Etiam lectus nunc, commodo</span>
+          </li>
         </ul>
       </div>
       <div class="flex w-full flex-col items-center justify-center pt-0 lg:w-1/2">
@@ -40,7 +47,9 @@ import TailcastLogo from '../assets/logos/TailcastLogo.astro';
         </h3>
         <div class="-m-2 mt-4 flex flex-wrap lg:mt-0">
           <div class="mx-auto w-full p-2 sm:w-4/5">
-            <label for="modal-email" class="sr-only">Email address</label>
+            <label for="modal-email" class="sr-only">
+              Email address
+            </label>
             <input
               class="form-input py-4 text-center font-medium"
               type="email"

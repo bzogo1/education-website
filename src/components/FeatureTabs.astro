@@ -34,96 +34,89 @@ const tabs = [
           role="tablist"
           aria-label="Feature details"
         >
-          {
-            tabs.map((tab, i) => (
-              <button
-                class:list={[
-                  'feature-tab group relative cursor-pointer rounded-xl py-5 pr-6 pl-7 text-left transition-all duration-500',
-                  i === 0 && 'is-active',
-                ]}
-                role="tab"
-                aria-selected={i === 0 ? 'true' : 'false'}
-                aria-controls={`feature-panel-${i}`}
-                id={`feature-tab-${i}`}
-                data-tab-index={i}
-                data-color={tab.color}
-              >
-                <div
-                  class="feature-tab-bar absolute top-4 bottom-4 left-0 w-[3px] rounded-full transition-all duration-500"
-                  style={`background-color: ${tab.color}`}
-                />
-                <div class="mb-2 flex items-center gap-3">
-                  <div class="feature-tab-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-500">
-                    <svg
-                      class="h-4 w-4 transition-colors duration-500"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      viewBox="0 0 24 24"
-                      set:html={tab.icon}
-                    />
-                  </div>
-                  <h3 class="text-primaryText text-lg font-bold tracking-tight transition-colors duration-500">
-                    {tab.heading}
-                  </h3>
+          {tabs.map((tab, i) => (
+            <button
+              class:list={[
+                'feature-tab group relative cursor-pointer rounded-xl py-5 pr-6 pl-7 text-left transition-all duration-500',
+                i === 0 && 'is-active',
+              ]}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`feature-panel-${i}`}
+              id={`feature-tab-${i}`}
+              data-tab-index={i}
+              data-color={tab.color}
+            >
+              <div
+                class="feature-tab-bar absolute top-4 bottom-4 left-0 w-[3px] rounded-full transition-all duration-500"
+                style={`background-color: ${tab.color}`}
+              />
+              <div class="mb-2 flex items-center gap-3">
+                <div class="feature-tab-icon flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-all duration-500">
+                  <svg
+                    class="h-4 w-4 transition-colors duration-500"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    set:html={tab.icon}
+                  />
                 </div>
-                <p class="feature-tab-desc text-secondaryText max-h-0 overflow-hidden pl-11 text-[0.9rem] leading-relaxed opacity-0 transition-all duration-500">
-                  {tab.description}
-                </p>
-              </button>
-            ))
-          }
+                <h3 class="text-primaryText text-lg font-bold tracking-tight transition-colors duration-500">
+                  {tab.heading}
+                </h3>
+              </div>
+              <p class="feature-tab-desc text-secondaryText max-h-0 overflow-hidden pl-11 text-[0.9rem] leading-relaxed opacity-0 transition-all duration-500">
+                {tab.description}
+              </p>
+            </button>
+          ))}
         </div>
 
         <!-- Right: image area -->
         <div class="w-full lg:w-1/2">
-          <div
-            class="feature-tab-image border-mainBorderDarker bg-bgDark1Lighter relative aspect-[4/3] w-full overflow-hidden rounded-2xl border"
-          >
+          <div class="feature-tab-image border-mainBorderDarker bg-bgDark1Lighter relative aspect-[4/3] w-full overflow-hidden rounded-2xl border">
             <!-- Subtle grid pattern -->
             <div
               class="absolute inset-0 opacity-[0.03]"
               style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2240%22 height=%2240%22><line x1=%220%22 y1=%2240%22 x2=%2240%22 y2=%2240%22 stroke=%22white%22 stroke-width=%221%22/><line x1=%2240%22 y1=%220%22 x2=%2240%22 y2=%2240%22 stroke=%22white%22 stroke-width=%221%22/></svg>');"
-            >
-            </div>
+            ></div>
 
-            {
-              tabs.map((tab, i) => (
+            {tabs.map((tab, i) => (
+              <div
+                class:list={[
+                  'feature-tab-panel absolute inset-0 flex items-center justify-center transition-all duration-700',
+                  i === 0
+                    ? 'translate-y-0 opacity-100'
+                    : 'pointer-events-none translate-y-4 opacity-0',
+                ]}
+                role="tabpanel"
+                id={`feature-panel-${i}`}
+                aria-labelledby={`feature-tab-${i}`}
+                data-panel-index={i}
+              >
+                {/* Glow behind icon */}
                 <div
-                  class:list={[
-                    'feature-tab-panel absolute inset-0 flex items-center justify-center transition-all duration-700',
-                    i === 0
-                      ? 'translate-y-0 opacity-100'
-                      : 'pointer-events-none translate-y-4 opacity-0',
-                  ]}
-                  role="tabpanel"
-                  id={`feature-panel-${i}`}
-                  aria-labelledby={`feature-tab-${i}`}
-                  data-panel-index={i}
+                  class="absolute h-48 w-48 rounded-full opacity-15 blur-3xl transition-opacity duration-700"
+                  style={`background-color: ${tab.color}`}
+                />
+                {/* Icon circle */}
+                <div
+                  class="relative flex h-32 w-32 items-center justify-center rounded-2xl border"
+                  style={`border-color: ${tab.color}20; background-color: ${tab.color}08`}
                 >
-                  {/* Glow behind icon */}
-                  <div
-                    class="absolute h-48 w-48 rounded-full opacity-15 blur-3xl transition-opacity duration-700"
-                    style={`background-color: ${tab.color}`}
+                  <svg
+                    class="h-14 w-14 transition-colors duration-500"
+                    style={`color: ${tab.color}`}
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                    viewBox="0 0 24 24"
+                    set:html={tab.icon}
                   />
-                  {/* Icon circle */}
-                  <div
-                    class="relative flex h-32 w-32 items-center justify-center rounded-2xl border"
-                    style={`border-color: ${tab.color}20; background-color: ${tab.color}08`}
-                  >
-                    <svg
-                      class="h-14 w-14 transition-colors duration-500"
-                      style={`color: ${tab.color}`}
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1"
-                      viewBox="0 0 24 24"
-                      set:html={tab.icon}
-                    />
-                  </div>
                 </div>
-              ))
-            }
+              </div>
+            ))}
           </div>
         </div>
       </div>

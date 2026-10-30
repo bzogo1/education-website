@@ -31,53 +31,51 @@ const FAQData = [
         <p class="block-subtitle mb-7 text-center">Have any questions?</p>
         <h2 class="block-big-title mb-16 text-center">Frequently Asked Questions</h2>
         <div class="-m-1 mb-11 flex flex-wrap">
-          {
-            FAQData.map((item, index) => (
-              <div class="w-full p-1">
-                <div
-                  class="faq-box card mb-4 cursor-pointer rounded-3xl px-5 py-5 sm:px-8 sm:py-6"
-                  data-open={index === 0 ? 'true' : 'false'}
+          {FAQData.map((item, index) => (
+            <div class="w-full p-1">
+              <div
+                class="faq-box card mb-4 cursor-pointer rounded-3xl px-5 py-5 sm:px-8 sm:py-6"
+                data-open={index === 0 ? 'true' : 'false'}
+              >
+                <button
+                  type="button"
+                  class="flex w-full cursor-pointer items-center justify-between bg-transparent text-left"
+                  aria-expanded={index === 0 ? 'true' : 'false'}
+                  aria-controls={`faq-panel-${index}`}
+                  id={`faq-header-${index}`}
                 >
-                  <button
-                    type="button"
-                    class="flex w-full cursor-pointer items-center justify-between bg-transparent text-left"
-                    aria-expanded={index === 0 ? 'true' : 'false'}
-                    aria-controls={`faq-panel-${index}`}
-                    id={`faq-header-${index}`}
+                  <h3 class="content-title">{item.question}</h3>
+                  <svg
+                    width="28px"
+                    height="30px"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class={`faq-chevron text-secondaryColor ml-4 shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${index === 0 ? 'rotate-[180deg]' : 'rotate-[270deg]'}`}
+                    aria-hidden="true"
                   >
-                    <h3 class="content-title">{item.question}</h3>
-                    <svg
-                      width="28px"
-                      height="30px"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                      class={`faq-chevron text-secondaryColor ml-4 shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${index === 0 ? 'rotate-[180deg]' : 'rotate-[270deg]'}`}
-                      aria-hidden="true"
-                    >
-                      <path
-                        d="M4.16732 12.5L10.0007 6.66667L15.834 12.5"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  <div
-                    class={`faq-answer-grid ${index === 0 ? 'faq-open' : ''}`}
-                    id={`faq-panel-${index}`}
-                    role="region"
-                    aria-labelledby={`faq-header-${index}`}
-                  >
-                    <div class="faq-answer-inner">
-                      <p class="text-secondaryText pt-4">{item.answer}</p>
-                    </div>
+                    <path
+                      d="M4.16732 12.5L10.0007 6.66667L15.834 12.5"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </button>
+                <div
+                  class={`faq-answer-grid ${index === 0 ? 'faq-open' : ''}`}
+                  id={`faq-panel-${index}`}
+                  role="region"
+                  aria-labelledby={`faq-header-${index}`}
+                >
+                  <div class="faq-answer-inner">
+                    <p class="text-secondaryText pt-4">{item.answer}</p>
                   </div>
                 </div>
               </div>
-            ))
-          }
+            </div>
+          ))}
         </div>
       </div>
     </div>

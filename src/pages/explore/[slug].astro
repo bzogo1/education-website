@@ -38,7 +38,8 @@ const { position } = Astro.props;
               stroke="currentColor"
               stroke-width="2"
               stroke-linecap="round"
-              stroke-linejoin="round"></path>
+              stroke-linejoin="round"
+            ></path>
           </svg>
           Back to Explore
         </a>
@@ -62,27 +63,25 @@ const { position } = Astro.props;
             <div>
               <h2 class="text-primaryText mb-6 text-2xl font-bold">What you'll do</h2>
               <ul class="space-y-4">
-                {
-                  position.responsibilities.map((item: string) => (
-                    <li class="flex gap-3">
-                      <svg
-                        class="text-primaryColor mt-0.5 h-5 w-5 shrink-0"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M20 6L9 17L4 12"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                      <span class="text-secondaryText leading-relaxed">{item}</span>
-                    </li>
-                  ))
-                }
+                {position.responsibilities.map((item: string) => (
+                  <li class="flex gap-3">
+                    <svg
+                      class="text-primaryColor mt-0.5 h-5 w-5 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20 6L9 17L4 12"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-secondaryText leading-relaxed">{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
@@ -90,27 +89,25 @@ const { position } = Astro.props;
             <div>
               <h2 class="text-primaryText mb-6 text-2xl font-bold">What we're looking for</h2>
               <ul class="space-y-4">
-                {
-                  position.requirements.map((item: string) => (
-                    <li class="flex gap-3">
-                      <svg
-                        class="text-primaryColor mt-0.5 h-5 w-5 shrink-0"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M20 6L9 17L4 12"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                      <span class="text-secondaryText leading-relaxed">{item}</span>
-                    </li>
-                  ))
-                }
+                {position.requirements.map((item: string) => (
+                  <li class="flex gap-3">
+                    <svg
+                      class="text-primaryColor mt-0.5 h-5 w-5 shrink-0"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M20 6L9 17L4 12"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                    <span class="text-secondaryText leading-relaxed">{item}</span>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -150,9 +147,7 @@ const { position } = Astro.props;
   <ScrollUpButton />
 
   <dialog id="apply-modal" class="modal-backdrop modal-fullscreen-mobile">
-    <div
-      class="bg-bgDark3 relative h-screen w-screen px-6 py-8 md:h-auto md:w-[33.75rem] md:rounded-2xl md:px-8"
-    >
+    <div class="bg-bgDark3 relative h-screen w-screen px-6 py-8 md:h-auto md:w-[33.75rem] md:rounded-2xl md:px-8">
       <button class="modal-close-button" id="close-apply-modal" aria-label="Close modal">
         <CloseIcon />
       </button>
@@ -164,7 +159,9 @@ const { position } = Astro.props;
       </p>
       <form id="apply-form">
         <div class="mb-4">
-          <label for="apply-name" class="text-primaryText mb-2 block font-medium">Full Name</label>
+          <label for="apply-name" class="text-primaryText mb-2 block font-medium">
+            Full Name
+          </label>
           <input
             type="text"
             id="apply-name"
@@ -175,7 +172,9 @@ const { position } = Astro.props;
           />
         </div>
         <div class="mb-4">
-          <label for="apply-email" class="text-primaryText mb-2 block font-medium">Email</label>
+          <label for="apply-email" class="text-primaryText mb-2 block font-medium">
+            Email
+          </label>
           <input
             type="email"
             id="apply-email"
@@ -185,9 +184,9 @@ const { position } = Astro.props;
           />
         </div>
         <div class="mb-4">
-          <label for="apply-portfolio" class="text-primaryText mb-2 block font-medium"
-            >Portfolio / GitHub</label
-          >
+          <label for="apply-portfolio" class="text-primaryText mb-2 block font-medium">
+            Portfolio / GitHub
+          </label>
           <input
             type="url"
             id="apply-portfolio"
@@ -197,28 +196,27 @@ const { position } = Astro.props;
           />
         </div>
         <div class="mb-6">
-          <label for="apply-message" class="text-primaryText mb-2 block font-medium"
-            >Why this role?</label
-          >
+          <label for="apply-message" class="text-primaryText mb-2 block font-medium">
+            Why this role?
+          </label>
           <textarea
             id="apply-message"
             rows="4"
             placeholder="Tell us briefly what excites you about this position..."
             required
             autocomplete="off"
-            class="form-input resize-none"></textarea>
+            class="form-input resize-none"
+          ></textarea>
         </div>
-        <button type="submit" class="contained-button w-full py-2.5 text-base"
-          >Submit application</button
-        >
+        <button type="submit" class="contained-button w-full py-2.5 text-base">
+          Submit application
+        </button>
       </form>
       <div
         id="apply-success"
         class="hidden flex-col items-center justify-center py-12 text-center opacity-0 transition-opacity duration-500"
       >
-        <div
-          class="bg-primaryColor/20 mb-5 flex h-16 w-16 items-center justify-center rounded-full"
-        >
+        <div class="bg-primaryColor/20 mb-5 flex h-16 w-16 items-center justify-center rounded-full">
           <svg
             width="32"
             height="32"
@@ -231,7 +229,8 @@ const { position } = Astro.props;
               stroke="rgb(99, 102, 241)"
               stroke-width="3"
               stroke-linecap="round"
-              stroke-linejoin="round"></path>
+              stroke-linejoin="round"
+            ></path>
           </svg>
         </div>
         <h3 class="text-primaryText mb-2 text-xl font-bold">Application sent!</h3>

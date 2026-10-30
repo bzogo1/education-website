@@ -63,38 +63,34 @@ const totalPages = slides.length;
               class="gallery-track flex transition-transform duration-500 ease-out"
               style="gap: 1.5rem;"
             >
-              {
-                [...slides, ...slides].map((slide) => (
-                  <div class="gallery-slide border-mainBorderDarker flex aspect-[4/3] w-full shrink-0 items-center justify-center rounded-xl border bg-gray-900 sm:w-[calc(50%-0.75rem)]">
-                    <svg
-                      class="text-secondaryColor/25 h-14 w-14"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1"
-                      viewBox="0 0 24 24"
-                      set:html={slide.icon}
-                    />
-                  </div>
-                ))
-              }
+              {[...slides, ...slides].map((slide) => (
+                <div class="gallery-slide border-mainBorderDarker flex aspect-[4/3] w-full shrink-0 items-center justify-center rounded-xl border bg-gray-900 sm:w-[calc(50%-0.75rem)]">
+                  <svg
+                    class="text-secondaryColor/25 h-14 w-14"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1"
+                    viewBox="0 0 24 24"
+                    set:html={slide.icon}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
         <!-- Dots -->
         <div class="mt-10 flex items-center justify-center gap-3">
-          {
-            Array.from({ length: totalPages }).map((_, i) => (
-              <button
-                class:list={[
-                  'gallery-dot h-4 w-4 cursor-pointer rounded-full transition-all duration-300',
-                  i === 0 ? 'bg-primaryText scale-100' : 'bg-secondaryText/30 scale-90',
-                ]}
-                data-dot-index={i}
-                aria-label={`Go to page ${i + 1}`}
-              />
-            ))
-          }
+          {Array.from({ length: totalPages }).map((_, i) => (
+            <button
+              class:list={[
+                'gallery-dot h-4 w-4 cursor-pointer rounded-full transition-all duration-300',
+                i === 0 ? 'bg-primaryText scale-100' : 'bg-secondaryText/30 scale-90',
+              ]}
+              data-dot-index={i}
+              aria-label={`Go to page ${i + 1}`}
+            />
+          ))}
         </div>
       </div>
     </div>

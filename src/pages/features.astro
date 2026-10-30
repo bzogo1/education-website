@@ -237,47 +237,15 @@ const testimonials = [
             role="tablist"
             aria-label="Feature categories"
           >
-            {
-              serviceCategories.map((cat, i) => (
-                <button
-                  class={`tab-button relative cursor-pointer rounded-xl px-6 py-2.5 text-sm font-medium transition-all duration-300 ${i === 0 ? 'bg-bgDark3 text-primaryText shadow-lg shadow-black/20' : 'text-secondaryText hover:text-primaryText'}`}
-                  role="tab"
-                  aria-selected={i === 0 ? 'true' : 'false'}
-                  aria-controls={`service-panel-${cat.id}`}
-                  data-tab={cat.id}
-                >
-                  <span class="flex items-center gap-2.5">
-                    <svg
-                      class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                      viewBox="0 0 24 24"
-                      set:html={cat.icon}
-                    />
-                    {cat.label}
-                  </span>
-                </button>
-              ))
-            }
-          </div>
-        </div>
-        <!-- Mobile tabs (2 rows of 2) -->
-        <div
-          class="mb-14 grid grid-cols-2 gap-2 sm:hidden"
-          role="tablist"
-          aria-label="Feature categories"
-        >
-          {
-            serviceCategories.map((cat, i) => (
+            {serviceCategories.map((cat, i) => (
               <button
-                class={`tab-button cursor-pointer rounded-xl border px-4 py-2.5 text-sm font-medium transition-colors duration-300 ${i === 0 ? 'bg-bgDark3 text-primaryText border-transparent' : 'bg-bgDark1/80 text-secondaryText hover:text-primaryText border-mainBorderFaintest'}`}
+                class={`tab-button relative cursor-pointer rounded-xl px-6 py-2.5 text-sm font-medium transition-all duration-300 ${i === 0 ? 'bg-bgDark3 text-primaryText shadow-lg shadow-black/20' : 'text-secondaryText hover:text-primaryText'}`}
                 role="tab"
                 aria-selected={i === 0 ? 'true' : 'false'}
                 aria-controls={`service-panel-${cat.id}`}
                 data-tab={cat.id}
               >
-                <span class="flex items-center justify-center gap-2">
+                <span class="flex items-center gap-2.5">
                   <svg
                     class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
                     fill="none"
@@ -289,82 +257,108 @@ const testimonials = [
                   {cat.label}
                 </span>
               </button>
-            ))
-          }
+            ))}
+          </div>
+        </div>
+        <!-- Mobile tabs (2 rows of 2) -->
+        <div
+          class="mb-14 grid grid-cols-2 gap-2 sm:hidden"
+          role="tablist"
+          aria-label="Feature categories"
+        >
+          {serviceCategories.map((cat, i) => (
+            <button
+              class={`tab-button cursor-pointer rounded-xl border px-4 py-2.5 text-sm font-medium transition-colors duration-300 ${i === 0 ? 'bg-bgDark3 text-primaryText border-transparent' : 'bg-bgDark1/80 text-secondaryText hover:text-primaryText border-mainBorderFaintest'}`}
+              role="tab"
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`service-panel-${cat.id}`}
+              data-tab={cat.id}
+            >
+              <span class="flex items-center justify-center gap-2">
+                <svg
+                  class={`h-4 w-4 ${i === 0 ? 'text-secondaryColor' : 'text-secondaryText/50'} tab-icon transition-colors duration-300`}
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  viewBox="0 0 24 24"
+                  set:html={cat.icon}
+                />
+                {cat.label}
+              </span>
+            </button>
+          ))}
         </div>
 
         <!-- Tab panels -->
-        {
-          serviceCategories.map((cat, i) => (
-            <div
-              class={`tab-panel ${i === 0 ? '' : 'hidden'}`}
-              role="tabpanel"
-              id={`service-panel-${cat.id}`}
-              data-panel={cat.id}
-            >
-              <div class="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
-                <div class="lg:w-1/2">
-                  <div class="mb-6 flex items-center gap-4">
-                    <div
-                      class="h-12 w-12 shrink-0 overflow-hidden rounded-2xl"
-                      style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);"
-                    >
-                      <svg
-                        class="text-primaryColor h-6 w-6"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.5"
-                        viewBox="0 0 24 24"
-                        set:html={cat.icon}
-                      />
-                    </div>
-                    <h3 class="text-primaryText text-2xl font-bold">{cat.title}</h3>
+        {serviceCategories.map((cat, i) => (
+          <div
+            class={`tab-panel ${i === 0 ? '' : 'hidden'}`}
+            role="tabpanel"
+            id={`service-panel-${cat.id}`}
+            data-panel={cat.id}
+          >
+            <div class="flex flex-col items-center gap-12 lg:flex-row lg:gap-20">
+              <div class="lg:w-1/2">
+                <div class="mb-6 flex items-center gap-4">
+                  <div
+                    class="h-12 w-12 shrink-0 overflow-hidden rounded-2xl"
+                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);"
+                  >
+                    <svg
+                      class="text-primaryColor h-6 w-6"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      set:html={cat.icon}
+                    />
                   </div>
-                  <p class="text-secondaryText mb-8 leading-relaxed">{cat.description}</p>
-                  <ul class="space-y-3">
-                    {cat.features.map((f) => (
-                      <li class="text-secondaryText flex items-center gap-3 text-sm">
-                        <svg
-                          class="text-primaryColor h-5 w-5 shrink-0"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M20 6L9 17l-5-5" />
-                        </svg>
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                  <h3 class="text-primaryText text-2xl font-bold">{cat.title}</h3>
                 </div>
-                <div class="mt-6 lg:mt-0 lg:w-1/2">
-                  <div class="flex aspect-[4/3] items-center justify-center rounded-3xl p-12 lg:p-16">
-                    {cat.id === 'tracking' ? (
+                <p class="text-secondaryText mb-8 leading-relaxed">{cat.description}</p>
+                <ul class="space-y-3">
+                  {cat.features.map((f) => (
+                    <li class="text-secondaryText flex items-center gap-3 text-sm">
                       <svg
-                        class="text-secondaryColor/15 h-32 w-32"
+                        class="text-primaryColor h-5 w-5 shrink-0"
                         fill="none"
                         stroke="currentColor"
-                        stroke-width="0.5"
+                        stroke-width="2"
                         viewBox="0 0 24 24"
-                        set:html={cat.icon}
-                      />
-                    ) : (
-                      <svg
-                        class="text-secondaryColor/15 h-32 w-32"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="0.5"
-                        viewBox="0 0 24 24"
-                        set:html={cat.icon}
-                      />
-                    )}
-                  </div>
+                      >
+                        <path d="M20 6L9 17l-5-5" />
+                      </svg>
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="mt-6 lg:mt-0 lg:w-1/2">
+                <div class="flex aspect-[4/3] items-center justify-center rounded-3xl p-12 lg:p-16">
+                  {cat.id === 'tracking' ? (
+                    <svg
+                      class="text-secondaryColor/15 h-32 w-32"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="0.5"
+                      viewBox="0 0 24 24"
+                      set:html={cat.icon}
+                    />
+                  ) : (
+                    <svg
+                      class="text-secondaryColor/15 h-32 w-32"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="0.5"
+                      viewBox="0 0 24 24"
+                      set:html={cat.icon}
+                    />
+                  )}
                 </div>
               </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -374,25 +368,23 @@ const testimonials = [
     <div class="content-container">
       <div class="fade-in">
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {
-            process.map((item, i) => (
-              <div class="group relative">
-                {i < process.length - 1 && (
-                  <div class="bg-mainBorderDarker absolute top-10 left-[calc(50%+2.5rem)] hidden h-px w-[calc(100%-3.5rem)] lg:block" />
-                )}
-                <div class="text-center">
-                  <div
-                    class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full transition-all duration-500"
-                    style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);"
-                  >
-                    <span class="text-secondaryColor text-2xl font-bold">{item.step}</span>
-                  </div>
-                  <h3 class="text-primaryText mb-3 text-lg font-bold">{item.title}</h3>
-                  <p class="text-secondaryText text-sm leading-relaxed">{item.description}</p>
+          {process.map((item, i) => (
+            <div class="group relative">
+              {i < process.length - 1 && (
+                <div class="bg-mainBorderDarker absolute top-10 left-[calc(50%+2.5rem)] hidden h-px w-[calc(100%-3.5rem)] lg:block" />
+              )}
+              <div class="text-center">
+                <div
+                  class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full transition-all duration-500"
+                  style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);"
+                >
+                  <span class="text-secondaryColor text-2xl font-bold">{item.step}</span>
                 </div>
+                <h3 class="text-primaryText mb-3 text-lg font-bold">{item.title}</h3>
+                <p class="text-secondaryText text-sm leading-relaxed">{item.description}</p>
               </div>
-            ))
-          }
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -412,9 +404,9 @@ const testimonials = [
           <table class="w-full text-sm">
             <thead>
               <tr class="border-mainBorderDarker border-b">
-                <th class="text-secondaryText w-1/2 p-3 text-left font-medium sm:p-5 lg:p-6"
-                  >Feature</th
-                >
+                <th class="text-secondaryText w-1/2 p-3 text-left font-medium sm:p-5 lg:p-6">
+                  Feature
+                </th>
                 <th class="p-3 text-center sm:p-5 lg:p-6">
                   <span class="text-secondaryColor text-base font-bold">Tailcast</span>
                 </th>
@@ -430,138 +422,136 @@ const testimonials = [
               </tr>
             </thead>
             <tbody>
-              {
-                comparisonFeatures.map((f, i) => (
-                  <tr
-                    class={
-                      i < comparisonFeatures.length - 1 ? 'border-mainBorderFaintest border-b' : ''
-                    }
-                  >
-                    <td class="p-3 sm:p-5 lg:p-6">
-                      <div class="text-primaryText text-[0.95rem] font-medium">{f.name}</div>
-                      <div class="text-secondaryText mt-0.5 hidden text-sm lg:block">
-                        {f.description}
+              {comparisonFeatures.map((f, i) => (
+                <tr
+                  class={
+                    i < comparisonFeatures.length - 1 ? 'border-mainBorderFaintest border-b' : ''
+                  }
+                >
+                  <td class="p-3 sm:p-5 lg:p-6">
+                    <div class="text-primaryText text-[0.95rem] font-medium">{f.name}</div>
+                    <div class="text-secondaryText mt-0.5 hidden text-sm lg:block">
+                      {f.description}
+                    </div>
+                  </td>
+                  <td class="bg-secondaryColor/[0.03] p-3 text-center sm:p-5 lg:p-6">
+                    <div class="flex justify-center">
+                      <div class="bg-secondaryColor/15 flex h-7 w-7 items-center justify-center rounded-lg">
+                        <svg
+                          class="text-secondaryColor h-4 w-4"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2.5"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path d="M20 6L9 17l-5-5" />
+                        </svg>
+                        <span class="sr-only">Yes</span>
                       </div>
-                    </td>
-                    <td class="bg-secondaryColor/[0.03] p-3 text-center sm:p-5 lg:p-6">
-                      <div class="flex justify-center">
-                        <div class="bg-secondaryColor/15 flex h-7 w-7 items-center justify-center rounded-lg">
+                    </div>
+                  </td>
+                  <td class="p-3 text-center sm:p-5 lg:p-6">
+                    <div class="flex justify-center">
+                      {f.mixpanel ? (
+                        <>
                           <svg
-                            class="text-secondaryColor h-4 w-4"
+                            class="text-secondaryText/40 h-5 w-5"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="2.5"
+                            stroke-width="2"
                             viewBox="0 0 24 24"
                             aria-hidden="true"
                           >
                             <path d="M20 6L9 17l-5-5" />
                           </svg>
                           <span class="sr-only">Yes</span>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="p-3 text-center sm:p-5 lg:p-6">
-                      <div class="flex justify-center">
-                        {f.mixpanel ? (
-                          <>
-                            <svg
-                              class="text-secondaryText/40 h-5 w-5"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                            >
-                              <path d="M20 6L9 17l-5-5" />
-                            </svg>
-                            <span class="sr-only">Yes</span>
-                          </>
-                        ) : (
-                          <>
-                            <svg
-                              class="h-5 w-5 text-[rgb(255_255_255/0.1)]"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                            >
-                              <path d="M5 12h14" />
-                            </svg>
-                            <span class="sr-only">No</span>
-                          </>
-                        )}
-                      </div>
-                    </td>
-                    <td class="hidden p-3 text-center sm:table-cell sm:p-5 lg:p-6">
-                      <div class="flex justify-center">
-                        {f.amplitude ? (
-                          <>
-                            <svg
-                              class="text-secondaryText/40 h-5 w-5"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                            >
-                              <path d="M20 6L9 17l-5-5" />
-                            </svg>
-                            <span class="sr-only">Yes</span>
-                          </>
-                        ) : (
-                          <>
-                            <svg
-                              class="h-5 w-5 text-[rgb(255_255_255/0.1)]"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                            >
-                              <path d="M5 12h14" />
-                            </svg>
-                            <span class="sr-only">No</span>
-                          </>
-                        )}
-                      </div>
-                    </td>
-                    <td class="hidden p-3 text-center sm:p-5 md:table-cell lg:p-6">
-                      <div class="flex justify-center">
-                        {f.ga4 ? (
-                          <>
-                            <svg
-                              class="text-secondaryText/40 h-5 w-5"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                            >
-                              <path d="M20 6L9 17l-5-5" />
-                            </svg>
-                            <span class="sr-only">Yes</span>
-                          </>
-                        ) : (
-                          <>
-                            <svg
-                              class="h-5 w-5 text-[rgb(255_255_255/0.1)]"
-                              fill="none"
-                              stroke="currentColor"
-                              stroke-width="2"
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                            >
-                              <path d="M5 12h14" />
-                            </svg>
-                            <span class="sr-only">No</span>
-                          </>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))
-              }
+                        </>
+                      ) : (
+                        <>
+                          <svg
+                            class="h-5 w-5 text-[rgb(255_255_255/0.1)]"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path d="M5 12h14" />
+                          </svg>
+                          <span class="sr-only">No</span>
+                        </>
+                      )}
+                    </div>
+                  </td>
+                  <td class="hidden p-3 text-center sm:table-cell sm:p-5 lg:p-6">
+                    <div class="flex justify-center">
+                      {f.amplitude ? (
+                        <>
+                          <svg
+                            class="text-secondaryText/40 h-5 w-5"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path d="M20 6L9 17l-5-5" />
+                          </svg>
+                          <span class="sr-only">Yes</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg
+                            class="h-5 w-5 text-[rgb(255_255_255/0.1)]"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path d="M5 12h14" />
+                          </svg>
+                          <span class="sr-only">No</span>
+                        </>
+                      )}
+                    </div>
+                  </td>
+                  <td class="hidden p-3 text-center sm:p-5 md:table-cell lg:p-6">
+                    <div class="flex justify-center">
+                      {f.ga4 ? (
+                        <>
+                          <svg
+                            class="text-secondaryText/40 h-5 w-5"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path d="M20 6L9 17l-5-5" />
+                          </svg>
+                          <span class="sr-only">Yes</span>
+                        </>
+                      ) : (
+                        <>
+                          <svg
+                            class="h-5 w-5 text-[rgb(255_255_255/0.1)]"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                          >
+                            <path d="M5 12h14" />
+                          </svg>
+                          <span class="sr-only">No</span>
+                        </>
+                      )}
+                    </div>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
@@ -580,37 +570,33 @@ const testimonials = [
           </h2>
         </div>
         <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {
-            testimonials.map((t) => (
-              <div class="card flex flex-col rounded-3xl p-8">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 448 512"
-                  class="fill-quoteIconColor mb-4 w-6"
-                >
-                  <path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320 288 216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V320 288 216z" />
-                </svg>
-                <p class="text-secondaryText mb-6 flex-grow text-sm leading-relaxed">
-                  "{t.content}"
-                </p>
-                <div class="border-mainBorderFaintest flex items-center gap-3 border-t pt-5">
-                  <Image
-                    src={t.image}
-                    alt={t.name}
-                    width={36}
-                    height={36}
-                    class="rounded-full"
-                    loading="eager"
-                    decoding="sync"
-                  />
-                  <div>
-                    <div class="text-primaryText text-sm font-medium">{t.name}</div>
-                    <div class="text-secondaryText text-xs">{t.title}</div>
-                  </div>
+          {testimonials.map((t) => (
+            <div class="card flex flex-col rounded-3xl p-8">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+                class="fill-quoteIconColor mb-4 w-6"
+              >
+                <path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V320 288 216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V320 288 216z" />
+              </svg>
+              <p class="text-secondaryText mb-6 flex-grow text-sm leading-relaxed">"{t.content}"</p>
+              <div class="border-mainBorderFaintest flex items-center gap-3 border-t pt-5">
+                <Image
+                  src={t.image}
+                  alt={t.name}
+                  width={36}
+                  height={36}
+                  class="rounded-full"
+                  loading="eager"
+                  decoding="sync"
+                />
+                <div>
+                  <div class="text-primaryText text-sm font-medium">{t.name}</div>
+                  <div class="text-secondaryText text-xs">{t.title}</div>
                 </div>
               </div>
-            ))
-          }
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -620,9 +606,7 @@ const testimonials = [
   <section class="pt-10 pb-32">
     <div class="content-container">
       <div class="fade-in">
-        <div
-          class="card flex flex-col items-center gap-10 rounded-3xl p-12 lg:flex-row lg:gap-16 lg:p-16"
-        >
+        <div class="card flex flex-col items-center gap-10 rounded-3xl p-12 lg:flex-row lg:gap-16 lg:p-16">
           <div class="lg:w-2/3">
             <h2 class="text-primaryText mb-4 text-3xl font-bold tracking-tight lg:text-4xl">
               Your data is already telling a story.

@@ -105,84 +105,80 @@ const row2 = [
     <!-- Row 1 - scrolls left -->
     <div class="marquee-container mb-6">
       <div class="marquee-track marquee-left">
-        {
-          [...row1, ...row1].map((t, i) => (
-            <div
-              class="marquee-card group card"
-              {...(i >= row1.length ? { 'aria-hidden': 'true' } : {})}
-            >
-              <div class="mb-4 flex gap-0.5" role="img" aria-label={`${t.rating} out of 5 stars`}>
-                {Array.from({ length: t.rating }).map(() => (
-                  <svg
-                    class="text-secondaryColor fill-secondaryColor h-4 w-4"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
-                  </svg>
-                ))}
-              </div>
-              <p class="text-primaryText mb-6 text-[0.95rem] leading-relaxed">"{t.content}"</p>
-              <div class="mt-auto flex items-center gap-3">
-                <Image
-                  src={t.image}
-                  alt={t.name}
-                  width={40}
-                  height={40}
-                  class="ring-mainBorderDarker rounded-full ring-1"
-                  loading="eager"
-                  decoding="sync"
-                />
-                <div>
-                  <div class="text-primaryText text-sm font-semibold">{t.name}</div>
-                  <div class="text-secondaryText text-xs">{t.title}</div>
-                </div>
+        {[...row1, ...row1].map((t, i) => (
+          <div
+            class="marquee-card group card"
+            {...(i >= row1.length ? { 'aria-hidden': 'true' } : {})}
+          >
+            <div class="mb-4 flex gap-0.5" role="img" aria-label={`${t.rating} out of 5 stars`}>
+              {Array.from({ length: t.rating }).map(() => (
+                <svg
+                  class="text-secondaryColor fill-secondaryColor h-4 w-4"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                </svg>
+              ))}
+            </div>
+            <p class="text-primaryText mb-6 text-[0.95rem] leading-relaxed">"{t.content}"</p>
+            <div class="mt-auto flex items-center gap-3">
+              <Image
+                src={t.image}
+                alt={t.name}
+                width={40}
+                height={40}
+                class="ring-mainBorderDarker rounded-full ring-1"
+                loading="eager"
+                decoding="sync"
+              />
+              <div>
+                <div class="text-primaryText text-sm font-semibold">{t.name}</div>
+                <div class="text-secondaryText text-xs">{t.title}</div>
               </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </div>
 
     <!-- Row 2 - scrolls right -->
     <div class="marquee-container">
       <div class="marquee-track marquee-right">
-        {
-          [...row2, ...row2].map((t, i) => (
-            <div
-              class="marquee-card group card"
-              {...(i >= row2.length ? { 'aria-hidden': 'true' } : {})}
-            >
-              <div class="mb-4 flex gap-0.5" role="img" aria-label={`${t.rating} out of 5 stars`}>
-                {Array.from({ length: t.rating }).map(() => (
-                  <svg
-                    class="text-secondaryColor fill-secondaryColor h-4 w-4"
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
-                  </svg>
-                ))}
-              </div>
-              <p class="text-primaryText mb-6 text-[0.95rem] leading-relaxed">"{t.content}"</p>
-              <div class="mt-auto flex items-center gap-3">
-                <Image
-                  src={t.image}
-                  alt={t.name}
-                  width={40}
-                  height={40}
-                  class="ring-mainBorderDarker rounded-full ring-1"
-                  loading="eager"
-                  decoding="sync"
-                />
-                <div>
-                  <div class="text-primaryText text-sm font-semibold">{t.name}</div>
-                  <div class="text-secondaryText text-xs">{t.title}</div>
-                </div>
+        {[...row2, ...row2].map((t, i) => (
+          <div
+            class="marquee-card group card"
+            {...(i >= row2.length ? { 'aria-hidden': 'true' } : {})}
+          >
+            <div class="mb-4 flex gap-0.5" role="img" aria-label={`${t.rating} out of 5 stars`}>
+              {Array.from({ length: t.rating }).map(() => (
+                <svg
+                  class="text-secondaryColor fill-secondaryColor h-4 w-4"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" />
+                </svg>
+              ))}
+            </div>
+            <p class="text-primaryText mb-6 text-[0.95rem] leading-relaxed">"{t.content}"</p>
+            <div class="mt-auto flex items-center gap-3">
+              <Image
+                src={t.image}
+                alt={t.name}
+                width={40}
+                height={40}
+                class="ring-mainBorderDarker rounded-full ring-1"
+                loading="eager"
+                decoding="sync"
+              />
+              <div>
+                <div class="text-primaryText text-sm font-semibold">{t.name}</div>
+                <div class="text-secondaryText text-xs">{t.title}</div>
               </div>
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
     </div>
 

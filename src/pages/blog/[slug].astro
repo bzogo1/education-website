@@ -67,33 +67,31 @@ const articleData = {
     <div class="content-container">
       <h2 class="text-primaryText mb-8 text-2xl font-bold">See also</h2>
       <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {
-          relatedPosts.map((related) => (
-            <a href={`/blog/${related.id}`} class="group">
-              <article class="card flex h-full flex-col overflow-hidden rounded-3xl transition">
-                <div class="p-4">
-                  <div class="bg-bgDark1Lighter flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl">
-                    <svg
-                      class="text-secondaryColor/30 h-16 w-16"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="0.75"
-                      viewBox="0 0 24 24"
-                      set:html={related.data.icon}
-                    />
-                  </div>
+        {relatedPosts.map((related) => (
+          <a href={`/blog/${related.id}`} class="group">
+            <article class="card flex h-full flex-col overflow-hidden rounded-3xl transition">
+              <div class="p-4">
+                <div class="bg-bgDark1Lighter flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl">
+                  <svg
+                    class="text-secondaryColor/30 h-16 w-16"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="0.75"
+                    viewBox="0 0 24 24"
+                    set:html={related.data.icon}
+                  />
                 </div>
-                <div class="flex grow flex-col px-6 pt-2 pb-8">
-                  <div class="text-secondaryText mb-3 text-sm">{formatDate(related.data.date)}</div>
-                  <h2 class="text-primaryText mb-3 text-xl font-bold transition group-hover:text-[#c8c9f8]">
-                    {related.data.title}
-                  </h2>
-                  <p class="text-secondaryText text-sm leading-relaxed">{related.data.subtitle}</p>
-                </div>
-              </article>
-            </a>
-          ))
-        }
+              </div>
+              <div class="flex grow flex-col px-6 pt-2 pb-8">
+                <div class="text-secondaryText mb-3 text-sm">{formatDate(related.data.date)}</div>
+                <h2 class="text-primaryText mb-3 text-xl font-bold transition group-hover:text-[#c8c9f8]">
+                  {related.data.title}
+                </h2>
+                <p class="text-secondaryText text-sm leading-relaxed">{related.data.subtitle}</p>
+              </div>
+            </article>
+          </a>
+        ))}
       </div>
     </div>
   </section>

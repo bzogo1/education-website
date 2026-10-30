@@ -38,20 +38,18 @@ const isActive = (href: string) => {
     </div>
     <div>
       <div class="hidden h-full pl-12 lg:flex">
-        {
-          navbarLinks.map(({ href, label }) => (
-            <a
-              class={`relative flex h-20 cursor-pointer items-center px-4 text-2xl leading-6 font-normal text-white transition duration-200 hover:text-indigo-200 focus-visible:outline-offset-[-4px] lg:text-base lg:font-medium 2xl:px-6`}
-              href={href}
-              {...(isActive(href) ? { 'aria-current': 'page' } : {})}
-            >
-              {label}
-              {isActive(href) && (
-                <span class="bg-secondaryColor absolute right-0 bottom-0 left-0 h-0.5 rounded-full" />
-              )}
-            </a>
-          ))
-        }
+        {navbarLinks.map(({ href, label }) => (
+          <a
+            class={`relative flex h-20 cursor-pointer items-center px-4 text-2xl leading-6 font-normal text-white transition duration-200 hover:text-indigo-200 focus-visible:outline-offset-[-4px] lg:text-base lg:font-medium 2xl:px-6`}
+            href={href}
+            {...(isActive(href) ? { 'aria-current': 'page' } : {})}
+          >
+            {label}
+            {isActive(href) && (
+              <span class="bg-secondaryColor absolute right-0 bottom-0 left-0 h-0.5 rounded-full" />
+            )}
+          </a>
+        ))}
       </div>
     </div>
     <div>
@@ -84,16 +82,14 @@ const isActive = (href: string) => {
     class="absolute top-4 left-0 z-50 mt-16 hidden w-full flex-col items-center gap-10 border-y border-solid border-gray-800 bg-black pt-10 pb-10 lg:hidden"
     id="mobile-menu"
   >
-    {
-      navbarLinks.map(({ label, href }) => (
-        <a
-          class="mobile-nav-link mr-4 ml-4 h-full cursor-pointer pt-2 text-2xl leading-6 font-normal text-white transition duration-300 hover:scale-110 lg:text-base lg:font-medium 2xl:mr-6 2xl:ml-6"
-          href={href}
-        >
-          {label}
-        </a>
-      ))
-    }
+    {navbarLinks.map(({ label, href }) => (
+      <a
+        class="mobile-nav-link mr-4 ml-4 h-full cursor-pointer pt-2 text-2xl leading-6 font-normal text-white transition duration-300 hover:scale-110 lg:text-base lg:font-medium 2xl:mr-6 2xl:ml-6"
+        href={href}
+      >
+        {label}
+      </a>
+    ))}
     <div class="flex gap-4">
       <a
         class="outlined-button flex pt-2 pr-8 pb-2 pl-6 transition-transform duration-150 active:scale-95"
