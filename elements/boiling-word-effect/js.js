@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef, useMemo } from 'https://esm.sh/react@19';
+import React, { useEffect, useRef, useMemo } from 'https://esm.sh/react@19';
 import { createRoot } from 'https://esm.sh/react-dom@19/client';
 import { renderToStaticMarkup } from 'https://esm.sh/react-dom@19/server';
 import rough from 'https://esm.sh/roughjs';
 import { Dog, Rabbit, Fish, Bird, Turtle } from 'https://esm.sh/lucide-react';
 
 const App = () => {
-  const [content, setContent] = useState('something something');
   const canvasRef = useRef(null);
   const lastDrawTimeRef = useRef(0);
   const rafRef = useRef(null);

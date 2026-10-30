@@ -30,7 +30,7 @@ intro
   .to(
     '.arc',
     {
-      strokeDashoffset: (i, el) => {
+      strokeDashoffset: (_index, el) => {
         const r = parseFloat(el.getAttribute('r'));
         return 2 * Math.PI * r * 0.5; // draw half
       },

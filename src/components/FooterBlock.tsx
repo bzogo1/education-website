@@ -67,7 +67,7 @@ export default function FooterBlock() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
-  function handleSubscribe(e: React.FormEvent) {
+  function handleSubscribe(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!email) return;
     setSubscribed(true);

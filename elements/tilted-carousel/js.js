@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'https://esm.sh/react@19';
+import React, { useState } from 'https://esm.sh/react@19';
 import { createRoot } from 'https://esm.sh/react-dom@19/client';
 import { motion } from 'https://esm.sh/motion/react';
 import { ChevronLeft, ChevronRight } from 'https://esm.sh/lucide-react';

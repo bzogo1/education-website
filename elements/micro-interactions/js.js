@@ -36,7 +36,6 @@ stages.forEach((s) => stageObserver.observe(s));
    ============================================================ */
 (function () {
   const overlay = $('#jumpOverlay');
-  const palette = $('#jumpPalette');
   const input = $('#jumpInput');
   const list = $('#jumpList');
   const trigger = $('#jumpTrigger');

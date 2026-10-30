@@ -63,7 +63,7 @@ function animateParticles() {
 }
 animateParticles();
 
-document.getElementById('particleBtn').addEventListener('click', (e) => {
+document.getElementById('particleBtn').addEventListener('click', () => {
   const rect = particleStage.getBoundingClientRect();
   spawnParticles(rect.width / 2, rect.height / 2);
 });
@@ -170,12 +170,12 @@ document.getElementById('particleBtn').addEventListener('click', (e) => {
       }) rotate(${depth === 0 ? 0 : depth % 2 === 0 ? -3 : 3}deg)`;
       el.style.opacity = depth > 2 ? 0 : 1;
       el.innerHTML = `<span class="tag">${card.tag}</span>${card.text}`;
-      if (i === deck.length - 1) attachDrag(el, card);
+      if (i === deck.length - 1) attachDrag(el);
       stage.appendChild(el);
     });
   }
 
-  function attachDrag(el, card) {
+  function attachDrag(el) {
     let startX = 0,
       currentX = 0,
       dragging = false;
