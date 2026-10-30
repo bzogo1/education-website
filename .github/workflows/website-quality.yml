@@ -20,6 +20,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_ALL_CODEBASE: false
+          REPOSITORY_DEVSKIM_FORWARD_EXCLUDED_DIRECTORIES: false
 
   fallow:
     name: Fallow codebase analysis

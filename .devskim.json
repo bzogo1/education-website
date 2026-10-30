@@ -1,0 +1,10 @@
+{
+  "Globs": [
+    "**/.git/**",
+    "**/bin/**",
+    "**/megalinter-reports/**",
+    "**/eslint.config.js",
+    "**/src/content.config.ts",
+    "**/playwright.config.js"
+  ]
+}
