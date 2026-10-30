@@ -164,12 +164,30 @@ document.querySelectorAll('.stat-num').forEach((el) => {
 function splitWords(selector) {
   document.querySelectorAll(selector).forEach((el) => {
     const words = el.innerText.split(' ');
-    el.innerHTML = words
-      .map(
-        (w) =>
-          `<span class="sword" style="display:inline-block;overflow:hidden;padding-bottom:0.12em;vertical-align:top;"><span class="sword-inner" style="display:inline-block;transform:translateY(110%);will-change:transform;">${w}</span></span>`
-      )
-      .join(' ');
+    el.textContent = '';
+
+    words.forEach((w, idx) => {
+      const outer = document.createElement('span');
+      outer.className = 'sword';
+      outer.style.display = 'inline-block';
+      outer.style.overflow = 'hidden';
+      outer.style.paddingBottom = '0.12em';
+      outer.style.verticalAlign = 'top';
+
+      const inner = document.createElement('span');
+      inner.className = 'sword-inner';
+      inner.style.display = 'inline-block';
+      inner.style.transform = 'translateY(110%)';
+      inner.style.willChange = 'transform';
+      inner.textContent = w;
+
+      outer.appendChild(inner);
+      el.appendChild(outer);
+
+      if (idx < words.length - 1) {
+        el.appendChild(document.createTextNode(' '));
+      }
+    });
   });
 }
 splitWords('.features-title');
