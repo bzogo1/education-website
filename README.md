@@ -90,6 +90,7 @@ You can also deploy on Vercel with one click:
 | `npm run dev`      | Start development server                                 |
 | `npm run build`    | Build for production (`./dist/`)                         |
 | `npm run preview`  | Preview production build locally                         |
+| `npm run check`    | Run Astro type and content checks                        |
 | `npm run lint`     | Run ESLint                                               |
 | `npm run format`   | Format code with Prettier                                |
 | `npm run test:e2e` | Build the site and run cross-browser accessibility tests |

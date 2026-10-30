@@ -102,7 +102,7 @@ jobs:
         run: npm run build
 
       - name: Audit representative page templates
-        uses: treosh/lighthouse-ci-action@v12
+        uses: treosh/lighthouse-ci-action@12.6.2
         with:
           configPath: .lighthouserc.json
           uploadArtifacts: true

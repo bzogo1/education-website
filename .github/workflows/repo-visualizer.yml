@@ -1,0 +1,26 @@
+name: Repo Visualizer
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  visualize:
+    name: Generate repository diagram
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Generate repository diagram
+        uses: githubocto/repo-visualizer@0.9.1
+        with:
+          output_file: repository-diagram.svg
+          excluded_paths: 'node_modules,dist,.astro,playwright-report,test-results'
+          should_push: false
+          artifact_name: repository-diagram

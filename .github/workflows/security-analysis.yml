@@ -1,0 +1,22 @@
+name: Security Analysis
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  noir:
+    name: OWASP Noir Action
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: OWASP Noir Action
+        uses: owasp-noir/noir@v1.4.0
+        with:
+          base_path: .
+          passive_scan: 'true'
