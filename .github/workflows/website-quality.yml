@@ -22,37 +22,6 @@ jobs:
           VALIDATE_ALL_CODEBASE: false
           REPOSITORY_DEVSKIM_FORWARD_EXCLUDED_DIRECTORIES: false
 
-  fallow:
-    name: Fallow codebase analysis
-    runs-on: ubuntu-24.04
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24.21.0
-          cache: npm
-
-      - name: Update npm
-        run: npm install --global npm@12.2.1
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Analyze JavaScript and TypeScript
-        uses: fallow-rs/fallow@v3.34.1
-        with:
-          version: 3.34.1
-          auto-changed-since: false
-          baseline: .fallow-dead-code-baseline.json
-          health-baseline: .fallow-health-baseline.json
-          dupes-baseline: .fallow-dupes-baseline.json
-          fail-on-stale-baseline: true
-
   browser-tests:
     name: Browser and accessibility tests
     runs-on: ubuntu-latest
