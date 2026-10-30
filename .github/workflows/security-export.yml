@@ -1,0 +1,16 @@
+name: Export Security Alerts
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: read
+
+jobs:
+  export:
+    name: Export
+    runs-on: ubuntu-latest
+    steps:
+      - name: GitHub Security Alert Export
+        uses: austenstone/security-export@v1.1
