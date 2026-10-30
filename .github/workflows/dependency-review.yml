@@ -1,7 +1,6 @@
 name: Dependency Review
 
 on:
-  push:
   pull_request:
 
 permissions:
@@ -9,12 +8,8 @@ permissions:
 
 jobs:
   dependency-review:
-    if: github.event_name != 'push' || github.event.deleted != true
     runs-on: ubuntu-latest
 
     steps:
       - name: Dependency review
         uses: actions/dependency-review-action@v5.0.0
-        with:
-          base-ref: ${{ github.event_name == 'push' && github.event.created && github.event.repository.default_branch || github.event_name == 'push' && github.event.before || github.event.pull_request.base.sha }}
-          head-ref: ${{ github.event_name == 'push' && github.sha || github.event.pull_request.head.sha }}

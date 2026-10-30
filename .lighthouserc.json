@@ -6,7 +6,7 @@
       "url": [
         "http://localhost:4321/",
         "http://localhost:4321/about/",
-        "http://localhost:4321/features",
+        "http://localhost:4321/features/",
         "http://localhost:4321/blog/",
         "http://localhost:4321/blog/predictive-analytics-startups/",
         "http://localhost:4321/explore/",

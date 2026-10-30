@@ -1,9 +1,12 @@
 name: ZAP Full Scan
 
 on:
-  push:
-  pull_request:
+  schedule:
+    - cron: '30 10 * * 1'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   zap_scan:

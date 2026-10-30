@@ -1,7 +1,6 @@
 name: Export Security Alerts
 
 on:
-  push:
   workflow_dispatch:
 
 permissions:

@@ -1,7 +1,6 @@
 name: Is Website vulnerable
 
 on:
-  push:
   schedule:
     - cron: '30 9 * * 1'
   workflow_dispatch:
