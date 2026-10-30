@@ -56,11 +56,23 @@ stages.forEach((s) => stageObserver.observe(s));
     filtered.forEach((entry, i) => {
       const item = document.createElement('div');
       item.className = 'jump-item' + (i === selectedIdx ? ' selected' : '');
-      item.innerHTML = `
-        <span class="jump-item-index">${entry.index.padStart(2, '0')}</span>
-        <span class="jump-item-name">${entry.name}</span>
-        <span class="jump-item-tag">${entry.question}</span>
-      `;
+
+      const indexSpan = document.createElement('span');
+      indexSpan.className = 'jump-item-index';
+      indexSpan.textContent = String(entry.index).padStart(2, '0');
+
+      const nameSpan = document.createElement('span');
+      nameSpan.className = 'jump-item-name';
+      nameSpan.textContent = entry.name;
+
+      const tagSpan = document.createElement('span');
+      tagSpan.className = 'jump-item-tag';
+      tagSpan.textContent = entry.question;
+
+      item.appendChild(indexSpan);
+      item.appendChild(nameSpan);
+      item.appendChild(tagSpan);
+
       item.addEventListener('click', () => jumpTo(entry));
       list.appendChild(item);
     });
