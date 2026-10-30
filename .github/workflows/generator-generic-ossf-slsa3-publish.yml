@@ -1,0 +1,54 @@
+name: SLSA site provenance
+
+on:
+  workflow_dispatch:
+  release:
+    types: [created]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      digests: ${{ steps.hash.outputs.digests }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.21.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build website
+        run: npm run build
+
+      - name: Archive website
+        run: tar -czf site-dist.tar.gz dist
+
+      - name: Generate provenance subject
+        id: hash
+        run: echo "digests=$(sha256sum site-dist.tar.gz | base64 -w0)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload website artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: site-dist.tar.gz
+
+  provenance:
+    needs: build
+    permissions:
+      actions: read
+      id-token: write
+      contents: write
+    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_generic_slsa3.yml@v1.4.0
+    with:
+      base64-subjects: ${{ needs.build.outputs.digests }}
+      upload-assets: ${{ github.event_name == 'release' }}

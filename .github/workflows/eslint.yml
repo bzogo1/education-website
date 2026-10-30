@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: read
+  security-events: write
 
 jobs:
   eslint:
@@ -29,3 +30,13 @@ jobs:
 
       - name: Run ESLint
         run: npm run lint
+
+      - name: Generate ESLint SARIF report
+        if: always()
+        run: npm run lint -- --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
+
+      - name: Upload ESLint SARIF report
+        if: always() && hashFiles('eslint-results.sarif') != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: eslint-results.sarif

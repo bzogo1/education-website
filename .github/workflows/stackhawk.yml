@@ -1,0 +1,61 @@
+name: StackHawk
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stackhawk:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Validate StackHawk configuration
+        env:
+          HAWK_API_KEY: ${{ secrets.HAWK_API_KEY }}
+        run: |
+          if [ -z "$HAWK_API_KEY" ]; then
+            echo "::error::Configure the HAWK_API_KEY repository secret before running this workflow."
+            exit 1
+          fi
+          if [ ! -f stackhawk.yml ]; then
+            echo "::error::Add a stackhawk.yml configuration for the Astro preview before running this workflow."
+            exit 1
+          fi
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.21.0
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build website
+        run: npm run build
+
+      - name: Start Astro preview
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4321 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:4321/ >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error::Astro preview did not start."
+          exit 1
+
+      - name: Run HawkScan
+        uses: stackhawk/hawkscan-action@4c3258cd62248dac6d9fe91dd8d45928c697dee0
+        with:
+          apiKey: ${{ secrets.HAWK_API_KEY }}
+          codeScanningAlerts: true
+          githubToken: ${{ github.token }}
