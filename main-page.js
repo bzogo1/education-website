@@ -364,7 +364,7 @@ if (nav && activePill && themeBtn) {
       if (parsedUrl.origin !== window.location.origin) return null;
       if (parsedUrl.protocol !== 'http:' && parsedUrl.protocol !== 'https:') return null;
       if (!allowedPaths.has(parsedUrl.pathname)) return null;
-      return parsedUrl.pathname + parsedUrl.search + parsedUrl.hash;
+      return parsedUrl.pathname;
     } catch (e) {
       return null;
     }
