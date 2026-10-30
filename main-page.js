@@ -197,13 +197,27 @@ document.querySelectorAll('.main-page .stat-num').forEach((el) => {
 // ============ SECTION TITLE REVEALS ============
 function splitWords(selector) {
   document.querySelectorAll(selector).forEach((el) => {
-    const words = el.innerText.split(' ');
-    el.innerHTML = words
-      .map(
-        (w) =>
-          `<span class="sword" style="display:inline-block;overflow:hidden;padding-bottom:0.12em;vertical-align:top;"><span class="sword-inner" style="display:inline-block;transform:translateY(110%);will-change:transform;">${w}</span></span>`
-      )
-      .join(' ');
+    const words = (el.textContent || '').split(' ');
+    el.textContent = '';
+
+    words.forEach((w, i) => {
+      const outer = document.createElement('span');
+      outer.className = 'sword';
+      outer.style.cssText =
+        'display:inline-block;overflow:hidden;padding-bottom:0.12em;vertical-align:top;';
+
+      const inner = document.createElement('span');
+      inner.className = 'sword-inner';
+      inner.style.cssText = 'display:inline-block;transform:translateY(110%);will-change:transform;';
+      inner.textContent = w;
+
+      outer.appendChild(inner);
+      el.appendChild(outer);
+
+      if (i < words.length - 1) {
+        el.appendChild(document.createTextNode(' '));
+      }
+    });
   });
 }
 splitWords('.main-page .features-title');
