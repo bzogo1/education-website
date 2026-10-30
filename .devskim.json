@@ -6,5 +6,6 @@
     "**/eslint.config.js",
     "**/src/content.config.ts",
     "**/playwright.config.js"
-  ]
+  ],
+  "Severities": ["Critical", "Important", "Moderate", "BestPractice"]
 }
