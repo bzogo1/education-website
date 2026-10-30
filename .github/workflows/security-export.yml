@@ -1,11 +1,13 @@
 name: Export Security Alerts
 
 on:
+  push:
   workflow_dispatch:
 
 permissions:
   contents: read
   security-events: read
+  secret-scanning-alerts: read
   vulnerability-alerts: read
 
 jobs:
