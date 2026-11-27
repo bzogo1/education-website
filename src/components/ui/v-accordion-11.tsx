@@ -1,3 +1,5 @@
+'use client';
+
 import { SearchIcon } from 'lucide-react';
 import { useState } from 'react';
 import {

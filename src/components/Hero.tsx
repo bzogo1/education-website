@@ -1,0 +1,98 @@
+import type { CSSProperties } from 'react';
+import Image from 'next/image';
+import dashboard from '@/assets/images/dashboard.jpg';
+
+export default function Hero() {
+  return (
+    <>
+      <section
+        className="bg-black mb-[28vw] flex w-full items-center justify-center pb-24 sm:pb-32 md:mb-[18vw] md:pb-44 lg:mb-[10vw] lg:pb-0 xl:mb-[13vw] 2xl:mb-60"
+        id="home"
+      >
+        {/* <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 65%)' }}></div> */}
+        <div className="flex w-full flex-col items-center justify-center pt-16 text-center md:w-[50rem] md:pt-16 lg:pt-20 xl:w-[56.25rem]">
+          <div className="hero-fade-in" style={{ '--delay': '0s' } as CSSProperties}>
+            <span className="block-subtitle mt-16 mb-6 block text-[0.65rem] sm:mt-32 sm:text-xs">
+              Discover new data flow
+            </span>
+          </div>
+          <div className="hero-fade-in mx-auto max-w-3xl px-4" style={{ '--delay': '0.05s' } as CSSProperties}>
+            <h1 className="xs:text-4xl text-[1.7rem] leading-[1.1] font-bold tracking-tight md:text-5xl lg:text-6xl">
+              <span className="text-heroText">One platform to track</span>
+              <br />
+              <span className="text-heroText">the full picture</span>
+            </h1>
+          </div>
+          <div className="hero-fade-in" style={{ '--delay': '0.1s' } as CSSProperties}>
+            <p className="text-secondaryText mx-auto mt-7 max-w-2xl px-4 text-sm leading-relaxed sm:text-base">
+              A complete analytics platform designed to scale with your team - from your first event to
+              billions of data points.
+            </p>
+          </div>
+          <div className="hero-fade-in" style={{ '--delay': '0.15s' } as CSSProperties}>
+            <div className="mt-10 mb-24 flex flex-col justify-center gap-2 sm:mb-40 sm:flex-row">
+              <button
+                className="contained-button mr-0 mb-2 h-12 w-72 text-sm transition-all duration-300 hover:shadow-[0_0_30px_rgba(99,102,241,0.25)] sm:mr-2 sm:mb-0 sm:w-44 lg:mr-3"
+                data-open-modal
+                aria-label="Get started"
+              >
+                Get Started
+              </button>
+              <button
+                className="text-primaryText bg-gray-900 hover:bg-gray-800 border-primaryColor flex h-12 w-72 cursor-pointer items-center justify-center rounded-xl border border-solid text-sm font-bold transition sm:w-44"
+                data-open-modal
+                aria-label="Live demo"
+              >
+                Live demo
+              </button>
+            </div>
+          </div>
+          <div className="relative z-20 flex w-screen justify-center">
+            <div
+              className="hero-fade-in image-glow-border absolute z-10 mx-auto w-4/5 rounded-xl lg:top-6 xl:top-0 2xl:w-[75rem]"
+              style={{ '--delay': '0.15s', opacity: 0.005 } as CSSProperties}
+            >
+              <Image
+                src={dashboard}
+                alt="Dashboard image"
+                className="main-border-gray w-full rounded-xl"
+                priority
+              />
+              <div className="pointer-events-none absolute inset-0 rounded-xl bg-black/10"></div>
+            </div>
+          </div>
+          <div className="relative flex w-screen justify-center">
+            <div className="shape-divider-bottom-1665343298 mt-4 hidden sm:mt-16 md:mt-52 lg:block">
+              <svg
+                data-name="Layer 1"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 1200 120"
+                preserveAspectRatio="none"
+                className="bg-bgDark2"
+                aria-hidden="true"
+              >
+                <path d="M1200 0L0 0 598.97 114.72 1200 0z" className="shape-fill bg-black fill-black"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <style>{`
+        .hero-fade-in {
+          opacity: 0;
+          transform: translateY(10px);
+          animation: heroFadeIn 0.5s ease forwards;
+          animation-delay: var(--delay);
+        }
+
+        @keyframes heroFadeIn {
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
+    </>
+  );
+}

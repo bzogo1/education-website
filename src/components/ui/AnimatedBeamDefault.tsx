@@ -1,6 +1,6 @@
 'use client';
 
-import { AnimatedBeam, Circle, Icons } from '../../../components/uilayouts/animated-beam';
+import { AnimatedBeam, Circle, Icons } from '@/components/uilayouts/animated-beam';
 import React, { useRef } from 'react';
 import cloudflareIcon from '../../assets/icons/brand/cloudflare.svg';
 import githubIcon from '../../assets/icons/brand/github.svg';
