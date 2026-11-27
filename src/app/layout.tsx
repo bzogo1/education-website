@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: '%s - Tailcast',
   },
   description:
-    'Open-source dark-themed website template built with Astro and Tailwind CSS. Responsive, fast, and ready to customize.',
+    'Open-source dark-themed website template built with Next.js and Tailwind CSS. Responsive, fast, and ready to customize.',
   openGraph: {
     type: 'website',
     siteName: 'Tailcast',

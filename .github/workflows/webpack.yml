@@ -1,4 +1,4 @@
-name: Astro site build
+name: Next.js site build
 
 on:
   workflow_dispatch:

@@ -6,7 +6,7 @@
   </ul>
 </div>
 
-**Dark-themed website template built with Astro 7 & Tailwind CSS, designed for a fictional startup.**<br>
+**Dark-themed website template and no-code site builder built with Next.js & Tailwind CSS, designed for a fictional startup.**<br>
 Responsive, fast, and ready to customize.
 
 [Live Demo](https://tailcast.vercel.app) · [Getting Started](#quickstart) · [Changelog](https://github.com/matt765/Tailcast/blob/main/CHANGELOG.md)
@@ -17,26 +17,21 @@ Responsive, fast, and ready to customize.
 
 ## Tech stack
 
-Astro 7, TypeScript 6, Tailwind CSS 4, ESLint, Prettier
+Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4, Supabase, Sentry, Vercel Analytics
 
 ## Features
 
-- **8 pages** - Home, About, Services, Blog, Article, Explore, Contact, 404
-- **SEO optimization** - Sitemap, Open Graph, canonical URLs, meta descriptions
+- **Marketing pages** - Home, About, Features, Blog, Explore, Contact, 404
+- **Site builder** - Drag-and-drop editor with layers, inspector, AI panel and publishing
+- **Portfolios** - Published sites served from `u/[username]/[slug]` routes
+- **SEO optimization** - Metadata, Open Graph, canonical URLs, robots
 - **Accessible** - Semantic HTML, ARIA attributes, keyboard navigation
-- **View Transitions** - Smooth page navigation with Astro Client Router, no full-page reloads
 - **Responsive** - Mobile-first design that adapts to any screen size
-- **Code quality** - ESLint, Prettier and CI pipeline pre-configured with Astro and Tailwind plugins
-
-## Preview
-
-<div align="center">
-<img src="https://github.com/user-attachments/assets/346a7576-472e-4ec4-9576-6e39796dd554" alt="Tailcast preview" width="720">
-</div>
+- **Code quality** - ESLint, Prettier and CI pipelines pre-configured
 
 ## Quickstart
 
-Requires Node.js 22.23.4 or newer and npm 12.2.1 or newer.
+Requires Node.js 22 or newer. Add your Supabase (and optionally Sentry) keys to `.env.local` first.
 
 ```bash
 git clone https://github.com/matt765/Tailcast.git
@@ -45,7 +40,7 @@ npm ci
 npm run dev
 ```
 
-Navigate to [http://localhost:4321](http://localhost:4321) to see the site.
+Navigate to [http://localhost:3000](http://localhost:3000) to see the site.
 
 You can also deploy on Vercel with one click:
 
@@ -54,48 +49,35 @@ You can also deploy on Vercel with one click:
 ## Project structure
 
 ```
-├── public/
-│   ├── favicon.svg
-│   ├── og-image.png
-│   └── robots.txt
+├── public/                  # Static assets (images, favicon, robots.txt)
 ├── src/
-│   ├── assets/
-│   │   ├── icons/          # SVG icon components
-│   │   ├── images/         # Optimized with Astro Image
-│   │   └── logos/          # Brand logo components
-│   ├── components/         # Reusable Astro components
-│   ├── content/
-│   │   └── blog/           # Markdown blog posts
-│   ├── data/               # Static data (positions)
-│   ├── layouts/
-│   │   └── Layout.astro    # Base layout with SEO meta
-│   ├── pages/              # File-based routing
-│   │   ├── about.astro
-│   │   ├── blog/
-│   │   ├── explore/
-│   │   ├── contact.astro
-│   │   ├── index.astro
-│   │   └── 404.astro
-│   └── styles/
-│       ├── Theme.css       # Design tokens & utility classes
-│       └── diagonals.css
-├── astro.config.mjs
-├── eslint.config.js
-├── package.json
+│   ├── app/                 # App Router pages, layouts and route handlers
+│   │   ├── api/             # Route handlers (AI, analytics, projects, publish)
+│   │   ├── dashboard/       # Builder dashboard
+│   │   └── u/               # Published portfolio routes
+│   ├── components/          # Reusable React components
+│   │   └── builder/        # Editor, panels and dashboard views
+│   ├── lib/                 # Site compiler, templates, store and Supabase clients
+│   └── styles/              # Theme tokens and utility styles
+├── supabase/
+│   └── migrations/          # Database schema migrations
+├── scripts/                 # Repository tooling
+├── next.config.ts
+├── postcss.config.mjs
 └── tsconfig.json
 ```
 
 ## Available commands
 
-| Command            | Action                                                   |
-| :----------------- | :------------------------------------------------------- |
-| `npm run dev`      | Start development server                                 |
-| `npm run build`    | Build for production (`./dist/`)                         |
-| `npm run preview`  | Preview production build locally                         |
-| `npm run check`    | Run Astro type and content checks                        |
-| `npm run lint`     | Run ESLint                                               |
-| `npm run format`   | Format code with Prettier                                |
-| `npm run test:e2e` | Build the site and run cross-browser accessibility tests |
+| Command              | Action                                     |
+| :------------------- | :----------------------------------------- |
+| `npm run dev`        | Start the development server               |
+| `npm run build`      | Build for production (`.next/`)            |
+| `npm run start`      | Serve the production build locally         |
+| `npm run check`      | Run the TypeScript type check              |
+| `npm run lint`       | Run ESLint                                 |
+| `npm run format`     | Format code with Prettier                  |
+| `npm run format:check` | Check formatting                         |
 
 ## License
 

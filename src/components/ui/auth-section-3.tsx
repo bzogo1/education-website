@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useId, useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import type { ReactNode } from 'react';
 import { FlutedGlass } from '@paper-design/shaders-react';
 import { Eye, EyeOff } from 'lucide-react';
@@ -9,39 +11,52 @@ import { Checkbox } from '@ark-ui/react/checkbox';
 import { CheckIcon } from 'lucide-react';
 import { PasswordStrength, usePasswordStrength } from '@/components/interior/password-strength';
 import { EmailVerification } from '@/components/ui/auth/email-verification';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 import testimonialImage from '../../assets/images/testimonial1.png';
+
+type AuthMode = 'signup' | 'signin';
+
+const USERNAME_PATTERN = /^[a-zA-Z0-9_]{3,20}$/;
 
 const termsText = (
   <>
     By creating an account, you agree to our{' '}
-    <a
-      href="#"
+    <Link
+      href="/terms-of-service"
+      onClick={(e) => e.stopPropagation()}
       className="font-medium text-black/55 underline underline-offset-2 dark:text-white/55"
     >
       Terms of Service
-    </a>{' '}
+    </Link>{' '}
     and{' '}
-    <a
-      href="#"
+    <Link
+      href="/privacy"
+      onClick={(e) => e.stopPropagation()}
       className="font-medium text-black/55 underline underline-offset-2 dark:text-white/55"
     >
       Privacy Policy
-    </a>
+    </Link>
   </>
 );
 
 export default function AuthSectionThree({ dashboardImageSrc }: { dashboardImageSrc: string }) {
+  const router = useRouter();
+  const [mode, setMode] = useState<AuthMode>('signup');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showEmailVerification, setShowEmailVerification] = useState(false);
   const [webglSupported, setWebglSupported] = useState(false);
   const [formData, setFormData] = useState({
+    username: '',
     firstName: '',
     lastName: '',
     email: '',
   });
   const [termsChecked, setTermsChecked] = useState(false);
   const [newsletterChecked, setNewsletterChecked] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [oauthProvider, setOauthProvider] = useState<'google' | 'github' | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const canvas = globalThis.document.createElement('canvas');
@@ -52,13 +67,112 @@ export default function AuthSectionThree({ dashboardImageSrc }: { dashboardImage
   const isPasswordStrong =
     passwordStrength.score === passwordStrength.max && !passwordStrength.guessable;
   const isEmailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email);
+  const isUsernameValid = USERNAME_PATTERN.test(formData.username);
   const isFormValid =
-    formData.firstName && formData.lastName && isEmailValid && isPasswordStrong && termsChecked;
+    mode === 'signin'
+      ? isEmailValid && password.length > 0
+      : formData.firstName &&
+        formData.lastName &&
+        isUsernameValid &&
+        isEmailValid &&
+        isPasswordStrong &&
+        termsChecked;
 
-  const handleSubmit = () => {
-    if (isFormValid) {
-      setShowEmailVerification(true);
+  const authErrorMessage = (err: { message?: string } | null | undefined) => {
+    const message = err?.message ?? '';
+    if (message.includes('username_taken')) return 'That username is already taken.';
+    if (/already registered|already exists/i.test(message)) {
+      return 'An account with this email already exists. Try signing in instead.';
     }
+    if (/invalid login credentials/i.test(message)) {
+      return 'Incorrect email or password.';
+    }
+    if (/email not confirmed/i.test(message)) {
+      return 'Please confirm your email first — check your inbox for the code or link.';
+    }
+    return message || 'Something went wrong. Please try again.';
+  };
+
+  const handleSocialSignup = async (provider: 'google' | 'github') => {
+    if (oauthProvider || isSubmitting) return;
+    setError(null);
+    setOauthProvider(provider);
+
+    const supabase = getSupabaseBrowserClient();
+    const { error: oauthError } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+
+    if (oauthError) {
+      setOauthProvider(null);
+      setError(authErrorMessage(oauthError));
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (!isFormValid || isSubmitting) return;
+    setError(null);
+    setIsSubmitting(true);
+
+    const supabase = getSupabaseBrowserClient();
+
+    if (mode === 'signin') {
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email: formData.email,
+        password,
+      });
+      setIsSubmitting(false);
+      if (signInError) {
+        setError(authErrorMessage(signInError));
+        return;
+      }
+      router.replace('/dashboard');
+      return;
+    }
+
+    const { data: available, error: checkError } = await supabase.rpc('username_available', {
+      p_username: formData.username,
+    });
+    if (checkError) {
+      setIsSubmitting(false);
+      setError('Could not verify username. Please try again.');
+      return;
+    }
+    if (available === false) {
+      setIsSubmitting(false);
+      setError('That username is already taken.');
+      return;
+    }
+
+    const { data, error: signUpError } = await supabase.auth.signUp({
+      email: formData.email,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/auth/callback`,
+        data: {
+          username: formData.username,
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          newsletter_opt_in: !newsletterChecked,
+        },
+      },
+    });
+    setIsSubmitting(false);
+
+    if (signUpError) {
+      setError(authErrorMessage(signUpError));
+      return;
+    }
+
+    if (data.session) {
+      router.replace('/dashboard');
+      return;
+    }
+
+    setShowEmailVerification(true);
   };
 
   if (showEmailVerification) {
@@ -75,25 +189,46 @@ export default function AuthSectionThree({ dashboardImageSrc }: { dashboardImage
           <div className="mx-auto w-full max-w-[400px]">
             <div>
               <h1 className="text-2xl font-medium tracking-tight text-black sm:text-3xl dark:text-white">
-                Create an account
+                {mode === 'signup' ? 'Create an account' : 'Welcome back'}
               </h1>
+              <p className="mt-1 text-xs text-black/60 dark:text-white/60">
+                {mode === 'signup'
+                  ? 'Sign up to get started with your account.'
+                  : 'Sign in to your account to continue.'}
+              </p>
             </div>
 
             {/* Social Signup Buttons */}
             <div className="mt-5 grid gap-2 sm:grid-cols-2 sm:gap-3">
               <button
                 type="button"
-                className="flex h-10 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-black/15 bg-white px-3 text-sm font-medium text-black transition-colors hover:bg-black/[0.02] dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+                onClick={() => handleSocialSignup('google')}
+                disabled={oauthProvider !== null || isSubmitting}
+                className="flex h-10 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-black/15 bg-white px-3 text-sm font-medium text-black transition-colors hover:bg-black/[0.02] disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 <GoogleIcon />
-                <span className="whitespace-nowrap">Sign up with Google</span>
+                <span className="whitespace-nowrap">
+                  {oauthProvider === 'google'
+                    ? 'Redirecting…'
+                    : mode === 'signup'
+                      ? 'Sign up with Google'
+                      : 'Sign in with Google'}
+                </span>
               </button>
               <button
                 type="button"
-                className="flex h-10 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-black/15 bg-white px-3 text-sm font-medium text-black transition-colors hover:bg-black/[0.02] dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
+                onClick={() => handleSocialSignup('github')}
+                disabled={oauthProvider !== null || isSubmitting}
+                className="flex h-10 w-full min-w-0 items-center justify-center gap-2 rounded-lg border border-black/15 bg-white px-3 text-sm font-medium text-black transition-colors hover:bg-black/[0.02] disabled:cursor-not-allowed disabled:opacity-60 dark:border-white/10 dark:bg-white/5 dark:text-white dark:hover:bg-white/10"
               >
                 <GithubIcon />
-                <span className="whitespace-nowrap">Sign up with GitHub</span>
+                <span className="whitespace-nowrap">
+                  {oauthProvider === 'github'
+                    ? 'Redirecting…'
+                    : mode === 'signup'
+                      ? 'Sign up with GitHub'
+                      : 'Sign in with GitHub'}
+                </span>
               </button>
             </div>
 
@@ -110,22 +245,33 @@ export default function AuthSectionThree({ dashboardImageSrc }: { dashboardImage
                 handleSubmit();
               }}
             >
-              <div className="grid gap-2 sm:grid-cols-2">
-                <InputField
-                  label="First name"
-                  value={formData.firstName}
-                  placeholder="John"
-                  type="text"
-                  onChange={(value) => setFormData({ ...formData, firstName: value })}
-                />
-                <InputField
-                  label="Last name"
-                  value={formData.lastName}
-                  placeholder="Doe"
-                  type="text"
-                  onChange={(value) => setFormData({ ...formData, lastName: value })}
-                />
-              </div>
+              {mode === 'signup' && (
+                <>
+                  <InputField
+                    label="Username"
+                    value={formData.username}
+                    placeholder="johndoe"
+                    type="text"
+                    onChange={(value) => setFormData({ ...formData, username: value })}
+                  />
+                  <div className="grid gap-2 sm:grid-cols-2">
+                    <InputField
+                      label="First name"
+                      value={formData.firstName}
+                      placeholder="John"
+                      type="text"
+                      onChange={(value) => setFormData({ ...formData, firstName: value })}
+                    />
+                    <InputField
+                      label="Last name"
+                      value={formData.lastName}
+                      placeholder="Doe"
+                      type="text"
+                      onChange={(value) => setFormData({ ...formData, lastName: value })}
+                    />
+                  </div>
+                </>
+              )}
 
               <InputField
                 label="Email"
@@ -162,26 +308,49 @@ export default function AuthSectionThree({ dashboardImageSrc }: { dashboardImage
                     {showPassword ? <EyeOff className="size-3.5" /> : <Eye className="size-3.5" />}
                   </button>
                 </div>
-                <PasswordStrength value={password} className="mt-2" compact />
+                {mode === 'signup' && (
+                  <PasswordStrength value={password} className="mt-2" compact />
+                )}
               </div>
 
-              <div className="space-y-1.5 pt-0.5 text-[10px] leading-3.5 text-black/70 dark:text-white/70">
-                <CheckboxLine checked={newsletterChecked} onChange={setNewsletterChecked}>
-                  I don't want to receive emails about Postdrips feature updates and best practices.
-                </CheckboxLine>
-                <CheckboxLine checked={termsChecked} onChange={setTermsChecked}>
-                  {termsText}
-                </CheckboxLine>
-              </div>
+              {mode === 'signup' && (
+                <div className="space-y-1.5 pt-0.5 text-[10px] leading-3.5 text-black/70 dark:text-white/70">
+                  <CheckboxLine checked={newsletterChecked} onChange={setNewsletterChecked}>
+                    I don't want to receive emails about Postdrips feature updates and best
+                    practices.
+                  </CheckboxLine>
+                  <CheckboxLine checked={termsChecked} onChange={setTermsChecked}>
+                    {termsText}
+                  </CheckboxLine>
+                </div>
+              )}
+
+              {error && (
+                <p className="pt-1 text-center text-xs text-red-600 dark:text-red-400">{error}</p>
+              )}
 
               <button
                 type="submit"
-                disabled={!isFormValid}
+                disabled={!isFormValid || isSubmitting || oauthProvider !== null}
                 className="mt-3 flex h-9 w-full items-center justify-center rounded-lg border border-black/40 bg-black text-sm font-medium text-white transition-colors hover:bg-black/85 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/40 dark:bg-white dark:text-black dark:hover:bg-white/85"
               >
-                Submit
+                {isSubmitting ? 'Please wait…' : mode === 'signup' ? 'Create account' : 'Sign in'}
               </button>
             </form>
+
+            <p className="mt-4 text-center text-xs text-black/60 dark:text-white/60">
+              {mode === 'signup' ? 'Already have an account? ' : "Don't have an account? "}
+              <button
+                type="button"
+                onClick={() => {
+                  setMode(mode === 'signup' ? 'signin' : 'signup');
+                  setError(null);
+                }}
+                className="font-medium text-black underline underline-offset-2 dark:text-white"
+              >
+                {mode === 'signup' ? 'Sign in' : 'Sign up'}
+              </button>
+            </p>
           </div>
         </div>
 

@@ -8,7 +8,7 @@ import Team from '@/components/Team';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'Tailcast is an open source dark-themed landing page template built with Astro and Tailwind CSS.',
+    'Tailcast is an open source dark-themed landing page template built with Next.js and Tailwind CSS.',
 };
 
 interface Milestone {

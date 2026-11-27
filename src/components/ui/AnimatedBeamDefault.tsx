@@ -19,7 +19,7 @@ export default function AnimatedBeamDefault() {
 
   return (
     <div
-      className="bg-muted relative mx-auto flex w-full max-w-[500px] items-center justify-center overflow-hidden rounded-lg border p-2 shadow-xl sm:p-4 lg:p-10"
+      className="relative mx-auto flex w-full max-w-[500px] items-center justify-center overflow-hidden"
       ref={containerRef}
     >
       <div className="flex h-full w-full flex-col items-stretch justify-between gap-10">

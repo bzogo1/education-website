@@ -100,9 +100,16 @@ export default function Navbar() {
           </div>
         </div>
         <div>
-          <div className="hidden grow basis-0 justify-end lg:flex">
+          <div className="hidden grow basis-0 items-center justify-end gap-2 lg:flex">
             <a
-              className="main-border-gray ml-4 flex rounded-xl bg-gray-900 pt-2 pr-8 pb-2 pl-6 text-sm text-white transition-transform duration-150 hover:bg-gray-800 active:scale-95"
+              className="rounded-xl px-4 py-2 text-sm text-white/70 transition hover:text-white"
+              href="/dashboard"
+              aria-label="Workspace"
+            >
+              Workspace
+            </a>
+            <a
+              className="main-border-gray ml-2 flex rounded-xl bg-gray-900 pt-2 pr-8 pb-2 pl-6 text-sm text-white transition-transform duration-150 hover:bg-gray-800 active:scale-95"
               href="/signup"
               aria-label="Get Started"
             >

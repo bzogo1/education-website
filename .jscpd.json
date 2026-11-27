@@ -1,3 +1,3 @@
 {
-  "ignore": ["elements/**", "hugo-theme-relearn/**", "main-page.js", "script.js"]
+  "ignore": [".next/**", "node_modules/**", "package-lock.json"]
 }

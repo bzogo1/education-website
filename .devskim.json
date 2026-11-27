@@ -4,8 +4,7 @@
     "**/bin/**",
     "**/megalinter-reports/**",
     "**/eslint.config.js",
-    "**/src/content.config.ts",
-    "**/playwright.config.js"
+    "**/.next/**"
   ],
   "Severities": ["Critical", "Important", "Moderate", "BestPractice"]
 }

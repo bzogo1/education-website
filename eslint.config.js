@@ -14,11 +14,7 @@ export default tseslint.config(
   {
     ignores: [
       '.next/',
-      'dist/',
       'node_modules/',
-      'test-results/',
-      'playwright-report/',
-      'lighthouse-reports/',
       '.vercel/',
     ],
   }

@@ -3,7 +3,7 @@
   "type": "module",
   "version": "2.0.0",
   "license": "MIT",
-  "description": "Dark themed website template built on Astro and Tailwind CSS, designed for fictional startup",
+  "description": "Dark themed website template and no-code site builder built on Next.js and Tailwind CSS",
   "author": {
     "name": "Mateusz Wyrębek",
     "email": "mateusz.wyrebek@gmail.com",

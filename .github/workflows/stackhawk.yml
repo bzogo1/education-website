@@ -25,7 +25,7 @@ jobs:
             exit 1
           fi
           if [ ! -f stackhawk.yml ]; then
-            echo "::error::Add a stackhawk.yml configuration for the Astro preview before running this workflow."
+            echo "::error::Add a stackhawk.yml configuration for the Next.js preview before running this workflow."
             exit 1
           fi
 
@@ -41,11 +41,11 @@ jobs:
       - name: Build website
         run: npm run build
 
-      - name: Start Astro preview
+      - name: Start Next.js preview
         run: |
-          npm run preview -- --hostname 127.0.0.1 --port 4321 &
+          npm run preview -- --hostname 127.0.0.1 --port 3000 &
           for attempt in $(seq 1 30); do
-            if curl --fail --silent http://127.0.0.1:4321/ >/dev/null; then
+            if curl --fail --silent http://127.0.0.1:3000/ >/dev/null; then
               exit 0
             fi
             sleep 2

@@ -1,4 +1,8 @@
+'use client';
+
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { getSupabaseBrowserClient } from '@/lib/supabase/client';
 
 type EmailVerificationProps = Readonly<{
   email: string;
@@ -11,19 +15,28 @@ const initialCodeFields = Array.from({ length: 6 }, (_, index) => ({
 }));
 
 export function EmailVerification({ email, onBack }: EmailVerificationProps) {
+  const router = useRouter();
   const [code, setCode] = useState(initialCodeFields);
-  const [codeReady, setCodeReady] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [isResending, setIsResending] = useState(false);
+  const [resendNotice, setResendNotice] = useState<string | null>(null);
+
+  const codeValue = code.map((field) => field.value).join('');
+  const codeComplete = codeValue.length === 6;
 
   const handleInputChange = (index: number, value: string) => {
     if (value.length > 1) {
-      value = value[0];
+      value = value[value.length - 1];
     }
+    if (value && !/\d/.test(value)) return;
 
+    setError(null);
+    setResendNotice(null);
     const newCode = code.map((field, fieldIndex) =>
       fieldIndex === index ? { ...field, value } : field
     );
     setCode(newCode);
-    setCodeReady(false);
 
     if (value && index < 5) {
       const nextInput = document.getElementById(code[index + 1].id) as HTMLInputElement;
@@ -38,8 +51,44 @@ export function EmailVerification({ email, onBack }: EmailVerificationProps) {
     }
   };
 
-  const handleContinue = () => {
-    setCodeReady(code.map((field) => field.value).join('').length === 6);
+  const handleContinue = async () => {
+    if (!codeComplete || isVerifying) return;
+    setIsVerifying(true);
+    setError(null);
+
+    const supabase = getSupabaseBrowserClient();
+    const { error: verifyError } = await supabase.auth.verifyOtp({
+      email,
+      token: codeValue,
+      type: 'signup',
+    });
+
+    setIsVerifying(false);
+    if (verifyError) {
+      setError(verifyError.message);
+      return;
+    }
+    router.replace('/dashboard');
+  };
+
+  const handleResend = async () => {
+    if (isResending) return;
+    setIsResending(true);
+    setError(null);
+    setResendNotice(null);
+
+    const supabase = getSupabaseBrowserClient();
+    const { error: resendError } = await supabase.auth.resend({
+      type: 'signup',
+      email,
+    });
+
+    setIsResending(false);
+    if (resendError) {
+      setError(resendError.message);
+      return;
+    }
+    setResendNotice('A new code is on its way.');
   };
 
   return (
@@ -81,17 +130,30 @@ export function EmailVerification({ email, onBack }: EmailVerificationProps) {
               </div>
             </div>
 
+            {error && (
+              <p className="mb-3 text-center text-xs text-red-600 dark:text-red-400">{error}</p>
+            )}
+            {resendNotice && (
+              <p className="mb-3 text-center text-xs text-emerald-600 dark:text-emerald-400">
+                {resendNotice}
+              </p>
+            )}
+
             <button
               onClick={handleContinue}
-              disabled={code.map((field) => field.value).join('').length !== 6}
+              disabled={!codeComplete || isVerifying}
               className="flex h-9 w-full items-center justify-center rounded-lg bg-black text-xs font-medium text-white transition-colors hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-gray-200"
             >
-              {codeReady ? 'Code entered' : 'Continue'}
+              {isVerifying ? 'Verifying…' : 'Continue'}
             </button>
 
             <div className="mt-4 text-center">
-              <button className="text-xs text-gray-600 underline underline-offset-2 transition-colors hover:text-black dark:text-gray-400 dark:hover:text-white">
-                Having trouble? Resend code
+              <button
+                onClick={handleResend}
+                disabled={isResending}
+                className="text-xs text-gray-600 underline underline-offset-2 transition-colors hover:text-black disabled:opacity-50 dark:text-gray-400 dark:hover:text-white"
+              >
+                {isResending ? 'Sending…' : 'Having trouble? Resend code'}
               </button>
             </div>
           </div>

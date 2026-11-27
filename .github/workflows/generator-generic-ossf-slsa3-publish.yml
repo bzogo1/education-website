@@ -30,7 +30,7 @@ jobs:
         run: npm run build
 
       - name: Archive website
-        run: tar -czf site-dist.tar.gz dist
+        run: tar -czf site-dist.tar.gz --exclude=.next/cache .next
 
       - name: Generate provenance subject
         id: hash

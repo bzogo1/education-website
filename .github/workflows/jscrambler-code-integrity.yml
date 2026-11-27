@@ -47,5 +47,5 @@ jobs:
           secret-key: ${{ secrets.JSCRAMBLER_SECRET_KEY }}
           access-key: ${{ secrets.JSCRAMBLER_ACCESS_KEY }}
           jscrambler-config-path: jscrambler.json
-          files-src: dist/**/*
+          files-src: .next/static/**/*
           files-dest: .

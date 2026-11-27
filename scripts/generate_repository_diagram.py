@@ -5,12 +5,10 @@ from pathlib import Path
 
 
 EXCLUDED_NAMES = {
-    ".astro",
     ".git",
-    "dist",
+    ".next",
+    ".vercel",
     "node_modules",
-    "playwright-report",
-    "test-results",
 }
 MAX_DEPTH = 9
 ROW_HEIGHT = 24

@@ -1,9 +1,4 @@
-dist
 .next/
 .vercel/
 node_modules
-.astro
-test-results
-playwright-report
-lighthouse-reports
 package-lock.json
