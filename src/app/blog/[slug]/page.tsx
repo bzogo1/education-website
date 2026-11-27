@@ -37,19 +37,13 @@ export async function generateMetadata({
 const formatDate = (date: Date) =>
   date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const post = getBlogPost(slug);
   if (!post) notFound();
 
   const allPosts = getBlogPosts();
-  const relatedPosts = allPosts
-    .filter((p) => p.slug !== post.slug)
-    .slice(0, 3);
+  const relatedPosts = allPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
 
   const articleData = {
     title: post.title,
@@ -93,7 +87,9 @@ export default async function BlogPostPage({
                     </div>
                   </div>
                   <div className="flex grow flex-col px-6 pt-2 pb-8">
-                    <div className="text-secondaryText mb-3 text-sm">{formatDate(related.date)}</div>
+                    <div className="text-secondaryText mb-3 text-sm">
+                      {formatDate(related.date)}
+                    </div>
                     <h2 className="text-primaryText mb-3 text-xl font-bold transition group-hover:text-[#c8c9f8]">
                       {related.title}
                     </h2>

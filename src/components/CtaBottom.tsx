@@ -1,11 +1,13 @@
 export default function CtaBottom() {
   return (
-    <section className="bg-black relative flex w-full justify-center pt-24 pb-20 lg:pt-32 lg:pb-32">
+    <section className="relative flex w-full justify-center bg-black pt-24 pb-20 lg:pt-32 lg:pb-32">
       <div
         className="pointer-events-none absolute top-1/2 left-1/2 h-[50rem] w-[75rem] -translate-x-1/2 -translate-y-1/2"
-        style={{ background: 'radial-gradient(ellipse 50% 40% at center, rgba(99,102,241,0.06) 0%, transparent 100%)' }}
-      >
-      </div>
+        style={{
+          background:
+            'radial-gradient(ellipse 50% 40% at center, rgba(99,102,241,0.06) 0%, transparent 100%)',
+        }}
+      ></div>
       <div className="content-container relative z-10">
         <div className="fade-in mx-auto max-w-4xl text-center">
           <h2 className="block-big-title mb-6">Join 10,000+ teams who trust Tailcast</h2>

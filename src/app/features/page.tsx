@@ -257,7 +257,7 @@ export default function FeaturesPage() {
                     <th className="hidden p-3 text-center sm:table-cell sm:p-5 lg:p-6">
                       <span className="text-secondaryText font-medium">Metrifly</span>
                     </th>
-                    <th className="hidden p-3 text-center md:table-cell sm:p-5 lg:p-6">
+                    <th className="hidden p-3 text-center sm:p-5 md:table-cell lg:p-6">
                       <span className="text-secondaryText font-medium">Chartbolt</span>
                     </th>
                   </tr>
@@ -305,7 +305,7 @@ export default function FeaturesPage() {
                           <ComparisonCell value={f.amplitude} />
                         </div>
                       </td>
-                      <td className="hidden p-3 text-center md:table-cell sm:p-5 lg:p-6">
+                      <td className="hidden p-3 text-center sm:p-5 md:table-cell lg:p-6">
                         <div className="flex justify-center">
                           <ComparisonCell value={f.ga4} />
                         </div>

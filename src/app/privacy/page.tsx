@@ -9,17 +9,17 @@ export default function PrivacyPage() {
   return (
     <div className="content-container py-12 lg:py-20">
       <h1 className="block-title mb-6">Privacy Policy</h1>
-      <p className="text-secondaryText text-base leading-relaxed mb-6">
-        This is the privacy policy page for Tailcast. Your personal information is collected and used
-        in accordance with this policy.
+      <p className="text-secondaryText mb-6 text-base leading-relaxed">
+        This is the privacy policy page for Tailcast. Your personal information is collected and
+        used in accordance with this policy.
       </p>
       <h2 className="content-title mb-3">Information We Collect</h2>
-      <p className="text-secondaryText text-base leading-relaxed mb-6">
+      <p className="text-secondaryText mb-6 text-base leading-relaxed">
         We may collect your name, email address, and other details you provide when creating an
         account or contacting us.
       </p>
       <h2 className="content-title mb-3">How We Use Your Information</h2>
-      <p className="text-secondaryText text-base leading-relaxed mb-6">
+      <p className="text-secondaryText mb-6 text-base leading-relaxed">
         Your information is used to provide and improve our services, communicate with you, and
         optionally send marketing updates if you consent to them.
       </p>

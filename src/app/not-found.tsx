@@ -17,7 +17,10 @@ export default function NotFound() {
         <p className="text-secondaryText mb-10 max-w-md">
           The page you're looking for doesn't exist or has been moved.
         </p>
-        <a href="/" className="contained-button px-8 py-3 text-lg"> Back to Home </a>
+        <a href="/" className="contained-button px-8 py-3 text-lg">
+          {' '}
+          Back to Home{' '}
+        </a>
       </section>
       <Footer />
     </>

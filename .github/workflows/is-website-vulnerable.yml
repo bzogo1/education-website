@@ -1,0 +1,19 @@
+name: Is Website vulnerable
+
+on:
+  schedule:
+    - cron: '30 9 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  website-vulnerability:
+    name: Is Website vulnerable
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scan the live website for vulnerable JavaScript libraries
+        uses: lirantal/is-website-vulnerable@v1.14.17
+        with:
+          scan-url: https://tailcast.vercel.app

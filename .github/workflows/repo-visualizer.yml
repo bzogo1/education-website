@@ -1,0 +1,25 @@
+name: Repo Visualizer
+
+on:
+  push:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  visualize:
+    name: Generate repository diagram
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Generate repository diagram
+        run: python3 scripts/generate_repository_diagram.py
+
+      - name: Upload repository diagram
+        uses: actions/upload-artifact@v7
+        with:
+          name: repository-diagram
+          path: repository-diagram.svg

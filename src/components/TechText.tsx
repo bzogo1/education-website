@@ -6,7 +6,15 @@ import type { CSSProperties } from 'react';
 type Box = { x1: number; y1: number; x2: number; y2: number };
 type Art = { image: HTMLCanvasElement; left: number; top: number };
 type Shape = { char: string; x: number; box: Box };
-type Cell = { x: number; y: number; size: number; dx: number; dy: number; start: number; land: number };
+type Cell = {
+  x: number;
+  y: number;
+  size: number;
+  dx: number;
+  dy: number;
+  start: number;
+  land: number;
+};
 type Glyph = Shape & {
   offset: { x: number; y: number };
   velocity: { x: number; y: number };
@@ -123,7 +131,7 @@ const TechText = ({
   introDuration = 2,
   guides = false,
   className = '',
-  style
+  style,
 }: TechTextProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -157,7 +165,7 @@ const TechText = ({
       clickKick,
       intro,
       introDuration,
-      guides
+      guides,
     };
     wakeRef.current();
   });
@@ -210,12 +218,14 @@ const TechText = ({
       refreshFonts();
     };
 
-    const family = (s: Settings) => s.fontFamily || getComputedStyle(container).fontFamily || 'sans-serif';
+    const family = (s: Settings) =>
+      s.fontFamily || getComputedStyle(container).fontFamily || 'sans-serif';
     const fontFor = (s: Settings, size: number) => `${s.fontWeight} ${size}px ${family(s)}`;
 
     const palette = (s: Settings) => {
       const current = getComputedStyle(container).color || '#000000';
-      const pick = (value: string) => (!value || INHERIT.test(String(value).trim()) ? current : value);
+      const pick = (value: string) =>
+        !value || INHERIT.test(String(value).trim()) ? current : value;
       return { ink: pick(s.color), accent: pick(s.accentColor) };
     };
 
@@ -244,7 +254,8 @@ const TechText = ({
         c.lineWidth = s.strokeWidth * 2;
         c.lineCap = 'butt';
         c.strokeStyle = ink;
-        if (s.lineStyle !== 'solid') c.setLineDash([Math.max(1, s.dashLength), Math.max(1, s.dashGap)]);
+        if (s.lineStyle !== 'solid')
+          c.setLineDash([Math.max(1, s.dashLength), Math.max(1, s.dashGap)]);
         c.strokeText(glyph.char, glyph.x, view.baseline);
         c.setLineDash([]);
         c.globalCompositeOperation = 'destination-out';
@@ -273,7 +284,7 @@ const TechText = ({
         s.lineStyle,
         width,
         height,
-        dpr
+        dpr,
       ].join('|');
       if (key === layoutKey && word) return word;
       layoutKey = key;
@@ -298,7 +309,11 @@ const TechText = ({
       const inkHeight = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
       const margin = width * 0.05;
       const start =
-        s.align === 'left' ? margin : s.align === 'right' ? width - margin - inkWidth : (width - inkWidth) / 2;
+        s.align === 'left'
+          ? margin
+          : s.align === 'right'
+            ? width - margin - inkWidth
+            : (width - inkWidth) / 2;
       const x = start + m.actualBoundingBoxLeft;
       const baseline = (height - inkHeight) / 2 + m.actualBoundingBoxAscent;
       const xHeight = baseline - probe.measureText('x').actualBoundingBoxAscent;
@@ -320,15 +335,17 @@ const TechText = ({
           { y: baseline, label: 'baseline' },
           { y: xHeight, label: 'x-height' },
           { y: capHeight, label: 'cap height' },
-          ...(capHeight - ascender > Math.max(11, size * 0.06) ? [{ y: ascender, label: 'ascender' }] : []),
-          { y: descender, label: 'descender' }
+          ...(capHeight - ascender > Math.max(11, size * 0.06)
+            ? [{ y: ascender, label: 'ascender' }]
+            : []),
+          { y: descender, label: 'descender' },
         ],
         bands: [
           { y0: xHeight, y1: baseline, up: true, order: 0 },
           { y0: capHeight, y1: xHeight, up: true, order: 1 },
           { y0: inkTop, y1: capHeight, up: true, order: 2 },
-          { y0: baseline, y1: inkBottom, up: false, order: 1 }
-        ].filter(band => band.y1 - band.y0 > 0.5)
+          { y0: baseline, y1: inkBottom, up: false, order: 1 },
+        ].filter((band) => band.y1 - band.y0 > 0.5),
       };
       word = next;
 
@@ -348,8 +365,8 @@ const TechText = ({
             x1: gx - own.actualBoundingBoxLeft,
             y1: baseline - own.actualBoundingBoxAscent,
             x2: gx + own.actualBoundingBoxRight,
-            y2: baseline + own.actualBoundingBoxDescent
-          }
+            y2: baseline + own.actualBoundingBoxDescent,
+          },
         };
         const kept = previous[glyphs.length];
         glyphs.push({
@@ -362,7 +379,7 @@ const TechText = ({
           assembled: 0,
           index: i,
           fill: sprite(s, next, base, false, ink),
-          dashes: sprite(s, next, base, true, ink)
+          dashes: sprite(s, next, base, true, ink),
         });
       });
       dragging = -1;
@@ -448,7 +465,8 @@ const TechText = ({
       scratchCtx.setTransform(1, 0, 0, 1, 0, 0);
       scratchCtx.globalCompositeOperation = 'source-over';
       scratchCtx.clearRect(0, 0, w, h);
-      for (const glyph of glyphs) blit(scratchCtx, glyph.dashes, glyph.offset.x, glyph.offset.y, x0, y0);
+      for (const glyph of glyphs)
+        blit(scratchCtx, glyph.dashes, glyph.offset.x, glyph.offset.y, x0, y0);
       scratchCtx.globalCompositeOperation = 'destination-in';
       scratchCtx.fillStyle = falloff(scratchCtx, cx - x0, cy - y0, radius, 1, s.softness);
       scratchCtx.fillRect(0, 0, w, h);
@@ -460,7 +478,11 @@ const TechText = ({
 
     const crisp = (value: number) => (Math.round(value * dpr) + 0.5) / dpr;
 
-    const perimeterPoint = (distance: number, w: number, h: number): [number, number, number, number] => {
+    const perimeterPoint = (
+      distance: number,
+      w: number,
+      h: number
+    ): [number, number, number, number] => {
       let d = ((distance % (2 * (w + h))) + 2 * (w + h)) % (2 * (w + h));
       if (d < w) return [frame.x1 + d, frame.y1, 0, -1];
       d -= w;
@@ -560,7 +582,7 @@ const TechText = ({
         [x1, y1],
         [x2, y1],
         [x2, y2],
-        [x1, y2]
+        [x1, y2],
       ]) {
         ctx.rect(Math.round(cx) - 2, Math.round(cy) - 2, 5, 5);
       }
@@ -584,7 +606,13 @@ const TechText = ({
       ctx.globalAlpha = 1;
     };
 
-    const drawLines = (s: Settings, view: Word, accent: string, alpha: number, growth: (k: number) => number) => {
+    const drawLines = (
+      s: Settings,
+      view: Word,
+      accent: string,
+      alpha: number,
+      growth: (k: number) => number
+    ) => {
       const pad = Math.max(12, view.size * 0.12);
       const x1 = Math.round(view.left - pad);
       const x2 = Math.round(view.right + pad);
@@ -659,7 +687,7 @@ const TechText = ({
           dx: Math.cos(angle) * distance,
           dy: Math.sin(angle) * distance * 0.7,
           start,
-          land
+          land,
         });
         glyph.assembled = Math.max(glyph.assembled, land);
       }
@@ -748,7 +776,8 @@ const TechText = ({
         const velocity = strength * Math.pow(KICK_DECAY, d);
         if (velocity < 30) break;
         for (const j of [index - d, index + d]) {
-          if (j >= 0 && j < glyphs.length) kicks.push({ index: j, at: pulse + d * 0.055, velocity });
+          if (j >= 0 && j < glyphs.length)
+            kicks.push({ index: j, at: pulse + d * 0.055, velocity });
         }
       }
       wakeRef.current();
@@ -770,7 +799,9 @@ const TechText = ({
       }
       const introOn = introKind !== 'none' && !reducedMotion && glyphs.length > 0;
       if (introOn && fontsReady) introClock += dt;
-      const progress = introOn ? clamp01((introClock - INTRO_DELAY) / Math.max(0.3, s.introDuration)) : 1;
+      const progress = introOn
+        ? clamp01((introClock - INTRO_DELAY) / Math.max(0.3, s.introDuration))
+        : 1;
       introducing = introOn && progress < 1;
 
       const sweeping = !introducing && s.sweep && !reducedMotion && !pointer.inside && dragging < 0;
@@ -793,7 +824,12 @@ const TechText = ({
         lens.y = approach(lens.y, targetY, dt, lag);
       }
       placed = active;
-      presence = approach(presence, s.reveal === 'area' && active && dragging < 0 ? 1 : 0, dt, 0.16);
+      presence = approach(
+        presence,
+        s.reveal === 'area' && active && dragging < 0 ? 1 : 0,
+        dt,
+        0.16
+      );
 
       for (let k = kicks.length - 1; k >= 0; k--) {
         if (kicks[k].at > pulse) continue;
@@ -813,7 +849,11 @@ const TechText = ({
           return;
         }
         const { offset, velocity } = glyph;
-        if (Math.abs(offset.x) < 0.05 && Math.abs(offset.y) < 0.05 && Math.hypot(velocity.x, velocity.y) < 0.5) {
+        if (
+          Math.abs(offset.x) < 0.05 &&
+          Math.abs(offset.y) < 0.05 &&
+          Math.hypot(velocity.x, velocity.y) < 0.5
+        ) {
           offset.x = 0;
           offset.y = 0;
           velocity.x = 0;
@@ -833,15 +873,22 @@ const TechText = ({
         const cursorAt = Math.min(glyphs.length - 1, Math.floor(progress / step));
         typing = progress < 0.93 ? cursorAt : -1;
         glyphs.forEach((glyph, i) => {
-          glyph.shown = i < cursorAt ? 1 : i === cursorAt ? smoothstep(0, step * 0.3, progress - i * step) : 0;
+          glyph.shown =
+            i < cursorAt ? 1 : i === cursorAt ? smoothstep(0, step * 0.3, progress - i * step) : 0;
         });
       } else {
-        glyphs.forEach(glyph => {
+        glyphs.forEach((glyph) => {
           glyph.shown = 1;
         });
       }
 
-      const focus = introducing ? typing : dragging >= 0 ? dragging : active ? glyphAt(lens.x, lens.y) : -1;
+      const focus = introducing
+        ? typing
+        : dragging >= 0
+          ? dragging
+          : active
+            ? glyphAt(lens.x, lens.y)
+            : -1;
       if (focus >= 0 && s.selection) {
         const glyph = glyphs[focus];
         const bx1 = glyph.box.x1 + glyph.offset.x - 6;
@@ -877,11 +924,22 @@ const TechText = ({
         else glyph.outline = target;
       });
 
-      guideAlpha = approach(guideAlpha, s.guides && !introducing && (focus >= 0 || presence > 0.4) ? 1 : 0, dt, 0.14);
+      guideAlpha = approach(
+        guideAlpha,
+        s.guides && !introducing && (focus >= 0 || presence > 0.4) ? 1 : 0,
+        dt,
+        0.14
+      );
 
       const hovering = !introducing && focus >= 0 && pointer.inside;
       const nextCursor =
-        dragging >= 0 ? 'grabbing' : hovering && s.draggable ? 'grab' : hovering && s.clickKick ? 'pointer' : '';
+        dragging >= 0
+          ? 'grabbing'
+          : hovering && s.draggable
+            ? 'grab'
+            : hovering && s.clickKick
+              ? 'pointer'
+              : '';
       if (nextCursor !== cursor) {
         cursor = nextCursor;
         container.style.cursor = nextCursor;
@@ -900,7 +958,7 @@ const TechText = ({
         }
       }
       if (introducing && introKind === 'metrics') {
-        drawLines(s, view, accent, 1 - smoothstep(0.84, 1, progress), k =>
+        drawLines(s, view, accent, 1 - smoothstep(0.84, 1, progress), (k) =>
           smoothstep(0.02 + 0.04 * k, 0.2 + 0.04 * k, progress)
         );
       } else if (guideAlpha > 0.005) {
@@ -1001,7 +1059,10 @@ const TechText = ({
         container.releasePointerCapture?.(e.pointerId);
         const rect = container.getBoundingClientRect();
         pointer.inside =
-          e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+          e.clientX >= rect.left &&
+          e.clientX <= rect.right &&
+          e.clientY >= rect.top &&
+          e.clientY <= rect.bottom;
       }
       if (
         e.type === 'pointerup' &&
@@ -1011,7 +1072,8 @@ const TechText = ({
         performance.now() - press.time < 450
       ) {
         const rect = container.getBoundingClientRect();
-        if (Math.hypot(e.clientX - rect.left - press.x, e.clientY - rect.top - press.y) < 6) kick(press.index);
+        if (Math.hypot(e.clientX - rect.left - press.x, e.clientY - rect.top - press.y) < 6)
+          kick(press.index);
       }
       press.index = -1;
       wake();
@@ -1033,7 +1095,11 @@ const TechText = ({
     intersectionObserver.observe(container);
     const themeObserver = new MutationObserver(wake);
     for (const node of [document.documentElement, document.body]) {
-      if (node) themeObserver.observe(node, { attributes: true, attributeFilter: ['class', 'style', 'data-theme'] });
+      if (node)
+        themeObserver.observe(node, {
+          attributes: true,
+          attributeFilter: ['class', 'style', 'data-theme'],
+        });
     }
     const schemeQuery = window.matchMedia?.('(prefers-color-scheme: dark)');
     schemeQuery?.addEventListener?.('change', wake);
@@ -1062,12 +1128,12 @@ const TechText = ({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full h-full touch-pan-y select-none ${className}`.trim()}
+      className={`relative h-full w-full touch-pan-y select-none ${className}`.trim()}
       style={style}
       role="img"
       aria-label={text}
     >
-      <canvas ref={canvasRef} className="block w-full h-full" />
+      <canvas ref={canvasRef} className="block h-full w-full" />
     </div>
   );
 };

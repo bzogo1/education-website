@@ -8,9 +8,7 @@ export type ContactFormResult = { ok: true } | { ok: false; error: string };
 
 const MAX_LENGTHS = { name: 200, email: 320, subject: 300, message: 10_000 };
 
-export async function submitContactForm(
-  formData: FormData,
-): Promise<ContactFormResult> {
+export async function submitContactForm(formData: FormData): Promise<ContactFormResult> {
   return Sentry.withServerActionInstrumentation(
     'submitContactForm',
     {
@@ -59,6 +57,6 @@ export async function submitContactForm(
       });
 
       return { ok: true };
-    },
+    }
   );
 }

@@ -36,12 +36,10 @@ export const metadata: Metadata = {
   icons: { icon: '/favicon.svg' },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className="bg-bgDark2">
-      <body className="bg-black overflow-x-hidden">
+      <body className="overflow-x-hidden bg-black">
         <main aria-label="Main content">{children}</main>
         <InvitationModal />
         <FadeInObserver />

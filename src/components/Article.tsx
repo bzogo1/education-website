@@ -56,7 +56,7 @@ export default function Article({ articleData, children }: ArticleProps) {
                 {tags.map((tag, index) => (
                   <span
                     key={tag}
-                    className={`badge-primary whitespace-nowrap font-bold tracking-wider text-[#d4d5fa] uppercase ${
+                    className={`badge-primary font-bold tracking-wider whitespace-nowrap text-[#d4d5fa] uppercase ${
                       index >= 2 ? 'hidden sm:inline-flex' : ''
                     }`}
                   >
@@ -73,7 +73,6 @@ export default function Article({ articleData, children }: ArticleProps) {
               {author && (
                 <div className="flex items-center gap-3">
                   {author.avatar ? (
-                    // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={author.avatar}
                       alt={author.name}
@@ -110,7 +109,6 @@ export default function Article({ articleData, children }: ArticleProps) {
 
           {/* Hero image */}
           <div className="mx-auto mb-16 max-w-4xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={image}
               alt={title}
@@ -131,7 +129,6 @@ export default function Article({ articleData, children }: ArticleProps) {
             {author && (
               <div className="flex items-center gap-3">
                 {author.avatar ? (
-                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={author.avatar}
                     alt={author.name}

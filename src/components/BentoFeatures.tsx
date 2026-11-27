@@ -8,7 +8,12 @@ export default function BentoFeatures() {
             <div className="card group relative flex min-h-[22rem] flex-col justify-between overflow-hidden rounded-3xl p-8 lg:col-span-2">
               <div className="relative mb-8 flex flex-1 items-center justify-center">
                 <div className="absolute inset-0 flex items-center justify-center opacity-[0.04]">
-                  <svg className="h-48 w-48" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <svg
+                    className="h-48 w-48"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
                     <polygon points="13,2 3,14 12,14 11,22 21,10 12,10" />
                   </svg>
                 </div>
@@ -31,7 +36,9 @@ export default function BentoFeatures() {
                 </div>
               </div>
               <div>
-                <h3 className="text-primaryText mb-2 text-xl font-bold">Real-time event pipeline</h3>
+                <h3 className="text-primaryText mb-2 text-xl font-bold">
+                  Real-time event pipeline
+                </h3>
                 <p className="text-secondaryText text-sm leading-relaxed">
                   Ingest millions of events per second with sub-100ms latency. See what&apos;s
                   happening right now, not what happened yesterday.
@@ -163,7 +170,8 @@ export default function BentoFeatures() {
                 <div
                   className="pointer-events-none absolute h-32 w-32 rounded-full"
                   style={{
-                    background: 'radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)',
+                    background:
+                      'radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%)',
                   }}
                 />
                 <div className="bg-bgDark3 border-mainBorderDarker relative z-10 flex h-20 w-20 items-center justify-center rounded-full border">

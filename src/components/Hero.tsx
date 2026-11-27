@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <>
       <section
-        className="bg-black mb-[28vw] flex w-full items-center justify-center pb-24 sm:pb-32 md:mb-[18vw] md:pb-44 lg:mb-[10vw] lg:pb-0 xl:mb-[13vw] 2xl:mb-60"
+        className="mb-[28vw] flex w-full items-center justify-center bg-black pb-24 sm:pb-32 md:mb-[18vw] md:pb-44 lg:mb-[10vw] lg:pb-0 xl:mb-[13vw] 2xl:mb-60"
         id="home"
       >
         {/* <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 65%)' }}></div> */}
@@ -16,7 +16,10 @@ export default function Hero() {
               Discover new data flow
             </span>
           </div>
-          <div className="hero-fade-in mx-auto max-w-3xl px-4" style={{ '--delay': '0.05s' } as CSSProperties}>
+          <div
+            className="hero-fade-in mx-auto max-w-3xl px-4"
+            style={{ '--delay': '0.05s' } as CSSProperties}
+          >
             <h1 className="xs:text-4xl text-[1.7rem] leading-[1.1] font-bold tracking-tight md:text-5xl lg:text-6xl">
               <span className="text-heroText">One platform to track</span>
               <br />
@@ -25,8 +28,8 @@ export default function Hero() {
           </div>
           <div className="hero-fade-in" style={{ '--delay': '0.1s' } as CSSProperties}>
             <p className="text-secondaryText mx-auto mt-7 max-w-2xl px-4 text-sm leading-relaxed sm:text-base">
-              A complete analytics platform designed to scale with your team - from your first event to
-              billions of data points.
+              A complete analytics platform designed to scale with your team - from your first event
+              to billions of data points.
             </p>
           </div>
           <div className="hero-fade-in" style={{ '--delay': '0.15s' } as CSSProperties}>
@@ -39,7 +42,7 @@ export default function Hero() {
                 Get Started
               </button>
               <button
-                className="text-primaryText bg-gray-900 hover:bg-gray-800 border-primaryColor flex h-12 w-72 cursor-pointer items-center justify-center rounded-xl border border-solid text-sm font-bold transition sm:w-44"
+                className="text-primaryText border-primaryColor flex h-12 w-72 cursor-pointer items-center justify-center rounded-xl border border-solid bg-gray-900 text-sm font-bold transition hover:bg-gray-800 sm:w-44"
                 data-open-modal
                 aria-label="Live demo"
               >
@@ -71,7 +74,10 @@ export default function Hero() {
                 className="bg-bgDark2"
                 aria-hidden="true"
               >
-                <path d="M1200 0L0 0 598.97 114.72 1200 0z" className="shape-fill bg-black fill-black"></path>
+                <path
+                  d="M1200 0L0 0 598.97 114.72 1200 0z"
+                  className="shape-fill bg-black fill-black"
+                ></path>
               </svg>
             </div>
           </div>

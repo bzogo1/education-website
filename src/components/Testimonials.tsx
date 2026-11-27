@@ -95,7 +95,7 @@ const row2 = [
 
 export default function Testimonials() {
   return (
-    <section className="bg-black w-full overflow-hidden pt-8 pb-8 lg:pt-16 lg:pb-12">
+    <section className="w-full overflow-hidden bg-black pt-8 pb-8 lg:pt-16 lg:pb-12">
       <div className="fade-in">
         <div className="block-subtitle mb-6 text-center">Testimonials</div>
         <div className="block-big-title mb-16 px-8 text-center sm:px-24 md:px-48">
@@ -111,7 +111,11 @@ export default function Testimonials() {
                 key={`${t.name}-${i}`}
                 {...(i >= row1.length ? { 'aria-hidden': true } : {})}
               >
-                <div className="mb-4 flex gap-0.5" role="img" aria-label={`${t.rating} out of 5 stars`}>
+                <div
+                  className="mb-4 flex gap-0.5"
+                  role="img"
+                  aria-label={`${t.rating} out of 5 stars`}
+                >
                   {Array.from({ length: t.rating }).map((_, j) => (
                     <svg
                       className="text-secondaryColor fill-secondaryColor h-4 w-4"
@@ -123,7 +127,9 @@ export default function Testimonials() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-primaryText mb-6 text-[0.95rem] leading-relaxed">&quot;{t.content}&quot;</p>
+                <p className="text-primaryText mb-6 text-[0.95rem] leading-relaxed">
+                  &quot;{t.content}&quot;
+                </p>
                 <div className="mt-auto flex items-center gap-3">
                   <Image
                     src={t.image}
@@ -152,7 +158,11 @@ export default function Testimonials() {
                 key={`${t.name}-${i}`}
                 {...(i >= row2.length ? { 'aria-hidden': true } : {})}
               >
-                <div className="mb-4 flex gap-0.5" role="img" aria-label={`${t.rating} out of 5 stars`}>
+                <div
+                  className="mb-4 flex gap-0.5"
+                  role="img"
+                  aria-label={`${t.rating} out of 5 stars`}
+                >
                   {Array.from({ length: t.rating }).map((_, j) => (
                     <svg
                       className="text-secondaryColor fill-secondaryColor h-4 w-4"
@@ -164,7 +174,9 @@ export default function Testimonials() {
                     </svg>
                   ))}
                 </div>
-                <p className="text-primaryText mb-6 text-[0.95rem] leading-relaxed">&quot;{t.content}&quot;</p>
+                <p className="text-primaryText mb-6 text-[0.95rem] leading-relaxed">
+                  &quot;{t.content}&quot;
+                </p>
                 <div className="mt-auto flex items-center gap-3">
                   <Image
                     src={t.image}

@@ -1,9 +1,15 @@
 # build output
 dist/
 .output/
+.astro/
 
 # dependencies
 node_modules/
+
+# test and audit reports
+test-results/
+playwright-report/
+lighthouse-reports/
 
 # logs
 npm-debug.log*
@@ -15,6 +21,7 @@ pnpm-debug.log*
 # environment variables
 .env
 .env.production
+.env.local
 
 # macOS-specific files
 .DS_Store

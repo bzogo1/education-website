@@ -48,8 +48,7 @@ const milestones: Milestone[] = [
     side: 'left',
     date: 'Today',
     title: '10,000+ teams',
-    description:
-      '2B+ events per month. Building AI-powered insights and predictive analytics.',
+    description: '2B+ events per month. Building AI-powered insights and predictive analytics.',
     glow: true,
   },
 ];
@@ -74,7 +73,7 @@ function TimelineEntry({ milestone }: { milestone: Milestone }) {
       )}
       <div
         className={`border-secondaryColor bg-bgDark2 absolute top-1 left-0 z-10 h-[1.375rem] w-[1.375rem] rounded-full border-2 lg:left-1/2 lg:-translate-x-1/2${
-          milestone.glow ? ' shadow-[0_0_8px_rgba(145,198,255,0.3)]' : ''
+          milestone.glow ? 'shadow-[0_0_8px_rgba(145,198,255,0.3)]' : ''
         }`}
       />
       {milestone.side === 'left' ? (
@@ -109,8 +108,9 @@ export default function AboutPage() {
                 </h1>
                 <p className="text-secondaryText text-lg leading-relaxed">
                   Tailcast was born from experience with analytics tools that bury insights under
-                  layers of complexity. We set out to build something different - a platform that&apos;s
-                  powerful enough for engineers yet intuitive enough for the entire team.
+                  layers of complexity. We set out to build something different - a platform
+                  that&apos;s powerful enough for engineers yet intuitive enough for the entire
+                  team.
                 </p>
               </div>
               <div className="flex flex-col gap-14 lg:w-1/2 lg:pt-14 lg:pl-16 xl:pl-24">
@@ -181,9 +181,9 @@ export default function AboutPage() {
                     Enterprise-grade security, built in
                   </h2>
                   <p className="text-secondaryText mb-8 leading-relaxed">
-                    Your data is encrypted at rest and in transit. We&apos;re SOC 2 Type II certified
-                    and GDPR compliant. Role-based access, SSO, and audit logs come standard - not as
-                    enterprise add-ons.
+                    Your data is encrypted at rest and in transit. We&apos;re SOC 2 Type II
+                    certified and GDPR compliant. Role-based access, SSO, and audit logs come
+                    standard - not as enterprise add-ons.
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <span className="badge-neutral font-semibold">SOC 2 Type II</span>

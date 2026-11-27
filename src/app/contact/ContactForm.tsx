@@ -38,11 +38,7 @@ export default function ContactForm() {
   };
 
   return (
-    <div
-      ref={wrapperRef}
-      className="bg-bgDark3 rounded-3xl p-8 sm:p-10"
-      id="contact-wrapper"
-    >
+    <div ref={wrapperRef} className="bg-bgDark3 rounded-3xl p-8 sm:p-10" id="contact-wrapper">
       <form
         id="contact-form"
         onSubmit={handleSubmit}
@@ -108,7 +104,7 @@ export default function ContactForm() {
           />
         </div>
         {error && (
-          <p className="text-red-400 mb-4 text-sm" role="alert">
+          <p className="mb-4 text-sm text-red-400" role="alert">
             {error}
           </p>
         )}

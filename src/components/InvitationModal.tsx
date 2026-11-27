@@ -112,9 +112,18 @@ export default function InvitationModal() {
               Winter is coming
             </h2>
             <ul className="text-primaryText mt-8 mb-6 2xl:mt-12">
-              <li className="mb-4 flex"><CheckArrowIcon /><span>Vestibulum viverra</span></li>
-              <li className="mb-4 flex"><CheckArrowIcon /><span>Morbi mollis metus pretium</span></li>
-              <li className="mb-4 flex"><CheckArrowIcon /><span>Etiam lectus nunc, commodo</span></li>
+              <li className="mb-4 flex">
+                <CheckArrowIcon />
+                <span>Vestibulum viverra</span>
+              </li>
+              <li className="mb-4 flex">
+                <CheckArrowIcon />
+                <span>Morbi mollis metus pretium</span>
+              </li>
+              <li className="mb-4 flex">
+                <CheckArrowIcon />
+                <span>Etiam lectus nunc, commodo</span>
+              </li>
             </ul>
           </div>
           <div className="flex w-full flex-col items-center justify-center pt-0 lg:w-1/2">
@@ -132,7 +141,9 @@ export default function InvitationModal() {
             </h3>
             <div className="-m-2 mt-4 flex flex-wrap lg:mt-0">
               <div className="mx-auto w-full p-2 sm:w-4/5">
-                <label htmlFor="modal-email" className="sr-only">Email address</label>
+                <label htmlFor="modal-email" className="sr-only">
+                  Email address
+                </label>
                 <input
                   className="form-input py-4 text-center font-medium"
                   type="email"
@@ -142,7 +153,7 @@ export default function InvitationModal() {
               </div>
               <div className="mx-auto mt-4 w-full p-2 sm:w-4/5">
                 <button
-                  className="text-black shadow-4xl bg-primaryColor w-full cursor-pointer rounded-xl px-6 py-4 font-semibold transition duration-200 ease-in-out hover:bg-[#b8dcff] focus:ring focus:ring-[#91c6ff]"
+                  className="shadow-4xl bg-primaryColor w-full cursor-pointer rounded-xl px-6 py-4 font-semibold text-black transition duration-200 ease-in-out hover:bg-[#b8dcff] focus:ring focus:ring-[#91c6ff]"
                   type="button"
                   aria-label="Join now"
                 >

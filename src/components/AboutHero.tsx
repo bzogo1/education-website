@@ -11,8 +11,8 @@ export default function AboutHero() {
               </h2>
               <p className="text-secondaryText text-lg leading-relaxed">
                 Tailcast was born from experience with analytics tools that bury insights under
-                layers of complexity. We set out to build something different - a platform that&apos;s
-                powerful enough for engineers yet intuitive enough for the entire team.
+                layers of complexity. We set out to build something different - a platform
+                that&apos;s powerful enough for engineers yet intuitive enough for the entire team.
               </p>
             </div>
             <div className="flex flex-col gap-14 lg:w-1/2 lg:pt-14">

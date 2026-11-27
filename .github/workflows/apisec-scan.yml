@@ -1,0 +1,39 @@
+name: APIsec
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - name: Validate APIsec configuration
+        env:
+          APISEC_USERNAME: ${{ secrets.APISEC_USERNAME }}
+          APISEC_PASSWORD: ${{ secrets.APISEC_PASSWORD }}
+          APISEC_PROJECT: ${{ vars.APISEC_PROJECT }}
+        run: |
+          if [ -z "$APISEC_USERNAME" ] || [ -z "$APISEC_PASSWORD" ] || [ -z "$APISEC_PROJECT" ]; then
+            echo "::error::Configure APISEC_USERNAME, APISEC_PASSWORD, and the APISEC_PROJECT variable before running this workflow."
+            exit 1
+          fi
+
+      - name: Run APIsec scan
+        uses: apisec-inc/apisec-run-scan@025432089674a28ba8fb55f8ab06c10215e772ea
+        with:
+          apisec-username: ${{ secrets.APISEC_USERNAME }}
+          apisec-password: ${{ secrets.APISEC_PASSWORD }}
+          apisec-project: ${{ vars.APISEC_PROJECT }}
+          sarif-result-file: apisec-results.sarif
+
+      - name: Upload APIsec results
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: apisec-results.sarif

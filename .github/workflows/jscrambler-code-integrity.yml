@@ -1,0 +1,51 @@
+name: Jscrambler Code Integrity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  protect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24.21.0
+          cache: npm
+
+      - name: Validate Jscrambler configuration
+        env:
+          APPLICATION_ID: ${{ secrets.JSCRAMBLER_APPLICATION_ID }}
+          SECRET_KEY: ${{ secrets.JSCRAMBLER_SECRET_KEY }}
+          ACCESS_KEY: ${{ secrets.JSCRAMBLER_ACCESS_KEY }}
+        run: |
+          if [ -z "$APPLICATION_ID" ] || [ -z "$SECRET_KEY" ] || [ -z "$ACCESS_KEY" ]; then
+            echo "::error::Configure the JSCRAMBLER_APPLICATION_ID, JSCRAMBLER_SECRET_KEY, and JSCRAMBLER_ACCESS_KEY secrets before running this workflow."
+            exit 1
+          fi
+          if [ ! -f jscrambler.json ]; then
+            echo "::error::Add the jscrambler.json configuration file before running this workflow."
+            exit 1
+          fi
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build website
+        run: npm run build
+
+      - name: Protect build with Jscrambler
+        uses: jscrambler/code-integrity-actions/protect@ab65962a2ecffcc362b75a997e24a181d0bde5fb
+        with:
+          application-id: ${{ secrets.JSCRAMBLER_APPLICATION_ID }}
+          secret-key: ${{ secrets.JSCRAMBLER_SECRET_KEY }}
+          access-key: ${{ secrets.JSCRAMBLER_ACCESS_KEY }}
+          jscrambler-config-path: jscrambler.json
+          files-src: dist/**/*
+          files-dest: .

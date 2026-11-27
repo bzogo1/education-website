@@ -159,7 +159,7 @@ export default function ServiceTabs() {
             return (
               <div
                 key={cat.id}
-                className={`tab-panel${active ? '' : ' hidden'}`}
+                className={`tab-panel${active ? '' : 'hidden'}`}
                 role="tabpanel"
                 id={`service-panel-${cat.id}`}
                 data-panel={cat.id}

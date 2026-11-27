@@ -8,7 +8,7 @@ import CheckArrowIcon from '@/components/icons/CheckArrowIcon';
 export default function Features1() {
   return (
     <section
-      className="bg-black -mt-8 mb-8 w-full pt-24 sm:-mt-8 sm:mb-24 md:pt-[12vw] lg:pt-16 xl:-mt-8 2xl:mt-0"
+      className="-mt-8 mb-8 w-full bg-black pt-24 sm:-mt-8 sm:mb-24 md:pt-[12vw] lg:pt-16 xl:-mt-8 2xl:mt-0"
       id="features"
     >
       <div className="fade-in">
@@ -20,13 +20,22 @@ export default function Features1() {
                 Unlike any tool you used before
               </h2>
               <p className="text-secondaryText mb-10 leading-loose">
-                Discover a new level of data analysis with our innovative and user-friendly platform.
-                Transform your business needs with actionable insights.
+                Discover a new level of data analysis with our innovative and user-friendly
+                platform. Transform your business needs with actionable insights.
               </p>
               <ul className="text-primaryText mb-6">
-                <li className="mb-4 flex"><CheckArrowIcon /><span>Real-time data visualization</span></li>
-                <li className="mb-4 flex"><CheckArrowIcon /><span>Advanced predictive analytics</span></li>
-                <li className="mb-4 flex"><CheckArrowIcon /><span>Seamless integration with APIs</span></li>
+                <li className="mb-4 flex">
+                  <CheckArrowIcon />
+                  <span>Real-time data visualization</span>
+                </li>
+                <li className="mb-4 flex">
+                  <CheckArrowIcon />
+                  <span>Advanced predictive analytics</span>
+                </li>
+                <li className="mb-4 flex">
+                  <CheckArrowIcon />
+                  <span>Seamless integration with APIs</span>
+                </li>
               </ul>
             </div>
           </div>

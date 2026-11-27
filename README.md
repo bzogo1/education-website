@@ -6,7 +6,7 @@
   </ul>
 </div>
 
-**Dark-themed website template built with Astro 6 & Tailwind CSS, designed for a fictional startup.**<br>
+**Dark-themed website template built with Astro 7 & Tailwind CSS, designed for a fictional startup.**<br>
 Responsive, fast, and ready to customize.
 
 [Live Demo](https://tailcast.vercel.app) · [Getting Started](#quickstart) · [Changelog](https://github.com/matt765/Tailcast/blob/main/CHANGELOG.md)
@@ -17,7 +17,7 @@ Responsive, fast, and ready to customize.
 
 ## Tech stack
 
-Astro 6, TypeScript, Tailwind CSS 4, ESLint, Prettier
+Astro 7, TypeScript 6, Tailwind CSS 4, ESLint, Prettier
 
 ## Features
 
@@ -36,10 +36,12 @@ Astro 6, TypeScript, Tailwind CSS 4, ESLint, Prettier
 
 ## Quickstart
 
+Requires Node.js 22.23.4 or newer and npm 12.2.1 or newer.
+
 ```bash
 git clone https://github.com/matt765/Tailcast.git
 cd Tailcast
-npm install
+npm ci
 npm run dev
 ```
 
@@ -85,13 +87,15 @@ You can also deploy on Vercel with one click:
 
 ## Available commands
 
-| Command           | Action                           |
-| :---------------- | :------------------------------- |
-| `npm run dev`     | Start development server         |
-| `npm run build`   | Build for production (`./dist/`) |
-| `npm run preview` | Preview production build locally |
-| `npm run lint`    | Run ESLint                       |
-| `npm run format`  | Format code with Prettier        |
+| Command            | Action                                                   |
+| :----------------- | :------------------------------------------------------- |
+| `npm run dev`      | Start development server                                 |
+| `npm run build`    | Build for production (`./dist/`)                         |
+| `npm run preview`  | Preview production build locally                         |
+| `npm run check`    | Run Astro type and content checks                        |
+| `npm run lint`     | Run ESLint                                               |
+| `npm run format`   | Format code with Prettier                                |
+| `npm run test:e2e` | Build the site and run cross-browser accessibility tests |
 
 ## License
 

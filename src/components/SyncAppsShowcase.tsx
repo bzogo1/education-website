@@ -1,4 +1,3 @@
-
 export default function SyncAppsShowcase() {
   return (
     <section className="sync-showcase" aria-labelledby="sync-showcase-title">
@@ -16,7 +15,11 @@ export default function SyncAppsShowcase() {
           </div>
         </div>
 
-        <div className="sync-showcase__visual" aria-label="Connected apps network illustration" role="img">
+        <div
+          className="sync-showcase__visual"
+          aria-label="Connected apps network illustration"
+          role="img"
+        >
           <div className="sync-showcase__halo sync-showcase__halo--outer"></div>
           <div className="sync-showcase__halo sync-showcase__halo--inner"></div>
           <svg className="sync-showcase__lines" viewBox="0 0 520 360" aria-hidden="true">

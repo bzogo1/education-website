@@ -1,0 +1,32 @@
+name: Semgrep
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '37 19 * * 1'
+
+permissions:
+  contents: read
+
+jobs:
+  semgrep:
+    name: Scan with Semgrep CE
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
+    container:
+      image: semgrep/semgrep
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Scan with Semgrep
+        run: semgrep scan --config auto --sarif --output semgrep.sarif
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: semgrep.sarif

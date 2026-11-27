@@ -6,7 +6,7 @@ import CheckArrowIcon from '@/components/icons/CheckArrowIcon';
 export default function Features2() {
   return (
     <>
-      <section className="bg-black mt-12 mb-12 w-full pt-4 sm:mt-24 lg:my-20 lg:mb-24">
+      <section className="mt-12 mb-12 w-full bg-black pt-4 sm:mt-24 lg:my-20 lg:mb-24">
         <div className="fade-in">
           <div className="mx-auto flex w-11/12 flex-wrap items-center md:pl-4 xl:w-[81.25rem] xl:pr-16 xl:pl-16 2xl:w-[90.625rem]">
             <div className="order-last mx-auto flex w-11/12 flex-wrap justify-center sm:w-3/4 sm:pr-8 lg:order-first lg:-mx-4 lg:w-1/2">
@@ -39,40 +39,58 @@ export default function Features2() {
               <div className="lg:w-unset mx-auto w-11/12 sm:w-4/5 md:w-3/4 lg:mx-auto">
                 <span className="block-subtitle">Make Data-Driven Decisions</span>
                 <h2 className="block-big-title feature-preview-title mt-6 mb-8 text-4xl lg:text-5xl">
-                  <button type="button" className="feature-preview-trigger" aria-label="Preview Choose">
+                  <button
+                    type="button"
+                    className="feature-preview-trigger"
+                    aria-label="Preview Choose"
+                  >
                     <span>Choose</span>
                     <span className="feature-preview-card feature-preview-card-top">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={feature5.src} alt="Choose preview" />
                     </span>
                   </button>
                   <span className="feature-preview-text"> your</span>
-                  <button type="button" className="feature-preview-trigger" aria-label="Preview Own">
+                  <button
+                    type="button"
+                    className="feature-preview-trigger"
+                    aria-label="Preview Own"
+                  >
                     <span>Own</span>
                     <span className="feature-preview-card feature-preview-card-top">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={feature6.src} alt="Own preview" />
                     </span>
                   </button>
                   <span className="feature-preview-text"> option</span>
                   <span className="feature-preview-text"> to</span>
-                  <button type="button" className="feature-preview-trigger" aria-label="Preview Build">
+                  <button
+                    type="button"
+                    className="feature-preview-trigger"
+                    aria-label="Preview Build"
+                  >
                     <span>Build</span>
                     <span className="feature-preview-card">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img src={feature5.src} alt="Build preview" />
                     </span>
                   </button>
                   <span className="feature-preview-text">.</span>
                 </h2>
                 <p className="text-secondaryText mb-12 leading-loose">
-                  Monitor and track data issues with ease using our intuitive and efficient issue tracking
-                  system. Stay ahead of potential problems and improve your workflow.
+                  Monitor and track data issues with ease using our intuitive and efficient issue
+                  tracking system. Stay ahead of potential problems and improve your workflow.
                 </p>
                 <ul className="text-primaryText mb-6">
-                  <li className="mb-4 flex"><CheckArrowIcon /><span>Collaborative environment</span></li>
-                  <li className="mb-4 flex"><CheckArrowIcon /><span>Smart issue categorization</span></li>
-                  <li className="mb-4 flex"><CheckArrowIcon /><span>Customizable notifications</span></li>
+                  <li className="mb-4 flex">
+                    <CheckArrowIcon />
+                    <span>Collaborative environment</span>
+                  </li>
+                  <li className="mb-4 flex">
+                    <CheckArrowIcon />
+                    <span>Smart issue categorization</span>
+                  </li>
+                  <li className="mb-4 flex">
+                    <CheckArrowIcon />
+                    <span>Customizable notifications</span>
+                  </li>
                 </ul>
               </div>
             </div>

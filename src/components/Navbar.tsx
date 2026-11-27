@@ -66,7 +66,7 @@ export default function Navbar() {
 
   return (
     <nav
-      className={`w-full h-20 flex flex-col justify-center items-center fixed z-40 transition-all duration-300 ${navBg}`}
+      className={`fixed z-40 flex h-20 w-full flex-col items-center justify-center transition-all duration-300 ${navBg}`}
       id="main-nav"
       data-homepage={isHomepage ? 'true' : 'false'}
       aria-label="Main navigation"
@@ -102,7 +102,7 @@ export default function Navbar() {
         <div>
           <div className="hidden grow basis-0 justify-end lg:flex">
             <a
-              className="main-border-gray bg-gray-900 hover:bg-gray-800 active:scale-95 transition-transform duration-150 flex rounded-xl pt-2 pr-8 pb-2 pl-6 text-sm text-white ml-4"
+              className="main-border-gray ml-4 flex rounded-xl bg-gray-900 pt-2 pr-8 pb-2 pl-6 text-sm text-white transition-transform duration-150 hover:bg-gray-800 active:scale-95"
               href="/signup"
               aria-label="Get Started"
             >
@@ -111,7 +111,7 @@ export default function Navbar() {
           </div>
         </div>
         <button
-          className="border-mainBorder hover:bg-gray-900 flex cursor-pointer flex-col rounded-md border border-solid px-2 py-3 lg:hidden"
+          className="border-mainBorder flex cursor-pointer flex-col rounded-md border border-solid px-2 py-3 hover:bg-gray-900 lg:hidden"
           id="mobile-menu-toggle"
           aria-label="Toggle menu"
           aria-expanded={menuOpen}
@@ -131,7 +131,7 @@ export default function Navbar() {
       />
       {/* Mobile navbar */}
       <div
-        className={`bg-black border-gray-800 absolute top-4 left-0 z-50 mt-16 w-full flex-col items-center gap-10 border-y border-solid pt-10 pb-10 lg:hidden ${menuOpen ? 'flex' : 'hidden'}`}
+        className={`absolute top-4 left-0 z-50 mt-16 w-full flex-col items-center gap-10 border-y border-solid border-gray-800 bg-black pt-10 pb-10 lg:hidden ${menuOpen ? 'flex' : 'hidden'}`}
         id="mobile-menu"
         onKeyDown={(e) => {
           if (e.key !== 'Tab') return;
@@ -161,7 +161,7 @@ export default function Navbar() {
         ))}
         <div className="flex gap-4">
           <a
-            className="outlined-button active:scale-95 transition-transform duration-150 flex pt-2 pr-8 pb-2 pl-6"
+            className="outlined-button flex pt-2 pr-8 pb-2 pl-6 transition-transform duration-150 active:scale-95"
             href="/signup"
             aria-label="Login"
             onClick={() => setMenuOpen(false)}

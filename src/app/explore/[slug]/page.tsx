@@ -141,8 +141,8 @@ export default async function ExplorePositionPage({
                 <div className="card sticky top-28 rounded-3xl p-8">
                   <h3 className="text-primaryText mb-6 text-xl font-bold">Apply for this role</h3>
                   <p className="text-secondaryText mb-8 leading-relaxed">
-                    Interested in this position? Send us your resume and a short note about why you'd
-                    be a great fit.
+                    Interested in this position? Send us your resume and a short note about why
+                    you'd be a great fit.
                   </p>
                   <button id="open-apply-modal" className="contained-button w-full py-3 text-lg">
                     Apply now

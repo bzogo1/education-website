@@ -137,7 +137,7 @@ export default function Gallery() {
   }, []);
 
   return (
-    <section className="bg-black w-full pt-8 pb-16 lg:pt-12 lg:pb-24">
+    <section className="w-full bg-black pt-8 pb-16 lg:pt-12 lg:pb-24">
       <div className="fade-in">
         <div className="content-container">
           <div className="mb-12 max-w-2xl">
@@ -152,7 +152,7 @@ export default function Gallery() {
             {/* Track wrapper with arrows */}
             <div className="gallery-viewport relative">
               <button
-                className="gallery-prev border-mainBorder bg-gray-900 text-primaryText hover:bg-gray-800 absolute top-1/2 -left-7 z-10 flex hidden h-14 w-14 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border transition-colors duration-300 lg:flex"
+                className="gallery-prev border-mainBorder text-primaryText absolute top-1/2 -left-7 z-10 flex hidden h-14 w-14 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border bg-gray-900 transition-colors duration-300 hover:bg-gray-800 lg:flex"
                 aria-label="Previous"
               >
                 <svg
@@ -166,7 +166,7 @@ export default function Gallery() {
                 </svg>
               </button>
               <button
-                className="gallery-next border-mainBorder bg-gray-900 text-primaryText hover:bg-gray-800 absolute top-1/2 -right-7 z-10 flex hidden h-14 w-14 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border transition-colors duration-300 lg:flex"
+                className="gallery-next border-mainBorder text-primaryText absolute top-1/2 -right-7 z-10 flex hidden h-14 w-14 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border bg-gray-900 transition-colors duration-300 hover:bg-gray-800 lg:flex"
                 aria-label="Next"
               >
                 <svg
@@ -186,7 +186,7 @@ export default function Gallery() {
                 >
                   {[...slides, ...slides].map((slide, i) => (
                     <div
-                      className="gallery-slide bg-gray-900 border-mainBorderDarker flex aspect-[4/3] w-full shrink-0 items-center justify-center rounded-xl border sm:w-[calc(50%-0.75rem)]"
+                      className="gallery-slide border-mainBorderDarker flex aspect-[4/3] w-full shrink-0 items-center justify-center rounded-xl border bg-gray-900 sm:w-[calc(50%-0.75rem)]"
                       key={i}
                     >
                       <svg
@@ -209,7 +209,7 @@ export default function Gallery() {
                 <button
                   className={cn(
                     'gallery-dot h-4 w-4 cursor-pointer rounded-full transition-all duration-300',
-                    i === 0 ? 'bg-primaryText scale-100' : 'bg-secondaryText/30 scale-90',
+                    i === 0 ? 'bg-primaryText scale-100' : 'bg-secondaryText/30 scale-90'
                   )}
                   data-dot-index={i}
                   aria-label={`Go to page ${i + 1}`}
