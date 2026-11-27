@@ -57,9 +57,10 @@ export function getBlogPosts(): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
   return fs
     .readdirSync(BLOG_DIR)
+    .map((f) => f.replace(/[^a-z0-9._-]/gi, ''))
     .filter((f) => /^[a-z0-9][a-z0-9_-]*\.md$/i.test(f))
     .map((f) => {
-      const filePath = path.resolve(BLOG_DIR, path.basename(f));
+      const filePath = path.resolve(BLOG_DIR, f);
       if (!filePath.startsWith(BLOG_DIR + path.sep)) {
         throw new Error(`Refusing to read blog post outside content directory: ${f}`);
       }
