@@ -324,9 +324,11 @@ export async function POST(request: NextRequest) {
         }
       } else {
         const errorText = await res.text();
+        // eslint-disable-next-line no-console
         console.error('AI provider error', res.status, errorText.slice(0, 300));
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('AI request failed', error);
     }
   }

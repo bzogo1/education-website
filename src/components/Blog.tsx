@@ -32,7 +32,10 @@ export default function Blog() {
             {/* Desktop layout (lg+): featured + sidebar */}
             <div className="hidden h-auto flex-row gap-8 lg:flex lg:h-[28rem] xl:h-[32rem]">
               {/* Featured post (left) */}
-              <Link href={`/blog/${featuredPost.slug}`} className="group h-full lg:w-3/5">
+              <Link
+                href={`/blog/${encodeURIComponent(featuredPost.slug)}`}
+                className="group h-full lg:w-3/5"
+              >
                 <article className="card flex h-full flex-col overflow-hidden rounded-3xl transition">
                   <div className="flex-grow p-4 pb-0">
                     <div className="bg-bgDark1Lighter flex h-full items-center justify-center rounded-2xl">
@@ -66,7 +69,7 @@ export default function Blog() {
                 {sidebarPosts.map((post) => (
                   <Link
                     key={post.slug}
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${encodeURIComponent(post.slug)}`}
                     className="group card flex flex-1 items-center gap-4 p-4 transition"
                   >
                     <div className="bg-bgDark1Lighter flex aspect-square shrink-0 items-center justify-center self-stretch rounded-xl">
@@ -94,7 +97,11 @@ export default function Blog() {
             {/* Mobile/Tablet layout (< lg): 4 equal cards */}
             <div className="xs:grid-cols-2 grid grid-cols-1 gap-6 lg:hidden">
               {allPosts.map((post) => (
-                <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <Link
+                  key={post.slug}
+                  href={`/blog/${encodeURIComponent(post.slug)}`}
+                  className="group"
+                >
                   <article className="card flex h-full flex-col overflow-hidden rounded-2xl transition">
                     <div className="p-3 pb-0">
                       <div className="bg-bgDark1Lighter xs:aspect-auto xs:h-40 flex aspect-[16/9] items-center justify-center rounded-xl">

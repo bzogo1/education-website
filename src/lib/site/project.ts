@@ -15,14 +15,16 @@ export function newId(prefix = ''): string {
 }
 
 export function slugify(value: string, fallback = 'site'): string {
-  const slug = value
+  const collapsed = value
     .toLowerCase()
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+/, '')
-    .replace(/-+$/, '')
-    .slice(0, 60);
+    .replace(/[^a-z0-9]+/g, '-');
+  let start = 0;
+  let end = collapsed.length;
+  while (start < end && collapsed[start] === '-') start += 1;
+  while (end > start && collapsed[end - 1] === '-') end -= 1;
+  const slug = collapsed.slice(start, end).slice(0, 60);
   return slug || fallback;
 }
 

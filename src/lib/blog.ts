@@ -57,7 +57,7 @@ export function getBlogPosts(): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
   return fs
     .readdirSync(BLOG_DIR)
-    .filter((f) => f.endsWith('.md'))
+    .filter((f) => /^[a-z0-9][a-z0-9_-]*\.md$/i.test(f))
     .map((f) => {
       const filePath = path.resolve(BLOG_DIR, f);
       if (filePath !== BLOG_DIR && !filePath.startsWith(BLOG_DIR + path.sep)) {

@@ -28,7 +28,7 @@ export default function BlogPage() {
             {/* Featured + sidebar */}
             <div className="mb-16 flex flex-col gap-8 lg:flex-row">
               {/* Featured post (left) */}
-              <a href={`/blog/${featuredPost.slug}`} className="group lg:w-3/5">
+              <a href={`/blog/${encodeURIComponent(featuredPost.slug)}`} className="group lg:w-3/5">
                 <article className="card flex h-full flex-col overflow-hidden rounded-3xl transition lg:min-h-full">
                   <div className="p-4 lg:flex-grow">
                     <div className="bg-bgDark1Lighter flex aspect-[16/9] items-center justify-center rounded-2xl lg:aspect-auto lg:h-full">
@@ -61,7 +61,7 @@ export default function BlogPage() {
                 {sidebarPosts.map((post) => (
                   <a
                     key={post.slug}
-                    href={`/blog/${post.slug}`}
+                    href={`/blog/${encodeURIComponent(post.slug)}`}
                     className="group card flex items-center gap-4 p-4 transition"
                   >
                     <div className="bg-bgDark1Lighter flex h-20 w-20 shrink-0 items-center justify-center rounded-xl">
@@ -89,7 +89,11 @@ export default function BlogPage() {
             <h2 className="text-primaryText mb-8 text-2xl font-bold">All articles</h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {gridPosts.map((post) => (
-                <a key={post.slug} href={`/blog/${post.slug}`} className="group">
+                <a
+                  key={post.slug}
+                  href={`/blog/${encodeURIComponent(post.slug)}`}
+                  className="group"
+                >
                   <article className="card flex h-full flex-col overflow-hidden rounded-3xl transition">
                     <div className="p-4">
                       <div className="bg-bgDark1Lighter flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl">

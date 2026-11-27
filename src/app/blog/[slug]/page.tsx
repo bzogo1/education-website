@@ -73,7 +73,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <h2 className="text-primaryText mb-8 text-2xl font-bold">See also</h2>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {relatedPosts.map((related) => (
-              <a key={related.slug} href={`/blog/${related.slug}`} className="group">
+              <a
+                key={related.slug}
+                href={`/blog/${encodeURIComponent(related.slug)}`}
+                className="group"
+              >
                 <article className="card flex h-full flex-col overflow-hidden rounded-3xl transition">
                   <div className="p-4">
                     <div className="bg-bgDark1Lighter flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl">
