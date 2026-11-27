@@ -68,7 +68,7 @@ export default function Blog() {
               <div className="flex h-full flex-col gap-5 lg:w-2/5">
                 {sidebarPosts.map((post) => (
                   <Link
-                    key={post.slug}
+                    key={encodeURIComponent(post.slug)}
                     href={`/blog/${encodeURIComponent(post.slug)}`}
                     className="group card flex flex-1 items-center gap-4 p-4 transition"
                   >
@@ -98,7 +98,7 @@ export default function Blog() {
             <div className="xs:grid-cols-2 grid grid-cols-1 gap-6 lg:hidden">
               {allPosts.map((post) => (
                 <Link
-                  key={post.slug}
+                  key={encodeURIComponent(post.slug)}
                   href={`/blog/${encodeURIComponent(post.slug)}`}
                   className="group"
                 >
