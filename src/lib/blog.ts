@@ -55,18 +55,15 @@ function parsePost(filePath: string): BlogPost {
 
 export function getBlogPosts(): BlogPost[] {
   if (!fs.existsSync(BLOG_DIR)) return [];
-  return fs
-    .readdirSync(BLOG_DIR)
-    .map((f) => f.replace(/[^a-z0-9._-]/gi, ''))
-    .filter((f) => /^[a-z0-9][a-z0-9_-]*\.md$/i.test(f))
-    .map((f) => {
-      const filePath = path.resolve(BLOG_DIR, f);
-      if (!filePath.startsWith(BLOG_DIR + path.sep)) {
-        throw new Error(`Refusing to read blog post outside content directory: ${f}`);
-      }
-      return parsePost(filePath);
-    })
-    .sort((a, b) => b.date.getTime() - a.date.getTime());
+  const posts: BlogPost[] = [];
+  for (const entry of fs.readdirSync(BLOG_DIR)) {
+    const name = entry.replace(/[^a-z0-9._-]/gi, '');
+    if (!/^[a-z0-9][a-z0-9_-]*\.md$/i.test(name)) continue;
+    const filePath = path.resolve(BLOG_DIR, name);
+    if (!filePath.startsWith(BLOG_DIR + path.sep)) continue;
+    posts.push(parsePost(filePath));
+  }
+  return posts.sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 
 export function getBlogPost(slug: string): BlogPost | undefined {
