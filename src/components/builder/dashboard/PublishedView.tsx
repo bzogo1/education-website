@@ -2,16 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import {
-  ArrowUpRight,
-  Copy,
-  Eye,
-  Globe2,
-  Link2,
-  Loader2,
-  PenLine,
-  PowerOff,
-} from 'lucide-react';
+import { ArrowUpRight, Copy, Eye, Globe2, Link2, Loader2, PenLine, PowerOff } from 'lucide-react';
 import { formatRelativeTime } from '@/lib/site/project';
 import type { AnalyticsSummary, SiteProject } from '@/lib/site/types';
 import { Badge, CopyButton, EmptyState, SectionHeader, BTN_GHOST, BTN_PRIMARY } from './ui';
@@ -141,7 +132,7 @@ export default function PublishedView({
                       <ArrowUpRight size={10} />
                     </a>
                   </div>
-                  <div className="hidden w-20 text-right text-[12px] tabular-nums text-white/55 sm:block">
+                  <div className="hidden w-20 text-right text-[12px] text-white/55 tabular-nums sm:block">
                     {viewsFor(project.id).toLocaleString()}
                   </div>
                   <div className="flex w-auto items-center justify-end gap-1.5 sm:w-24">

@@ -56,7 +56,11 @@ Rules:
 function siteSchemaOk(site: unknown): site is SiteProject {
   if (!site || typeof site !== 'object') return false;
   const candidate = site as SiteProject;
-  return typeof candidate.title === 'string' && Array.isArray(candidate.pages) && candidate.pages.length > 0;
+  return (
+    typeof candidate.title === 'string' &&
+    Array.isArray(candidate.pages) &&
+    candidate.pages.length > 0
+  );
 }
 
 /* --------------------------- rule based fallback -------------------------- */
@@ -87,10 +91,13 @@ function guessBlockType(message: string): BlockType | null {
 
 function templateForPrompt(message: string): string {
   const text = message.toLowerCase();
-  if (/art|paint|design|photo|illustrat|studio|portfolio of my work/.test(text)) return 'studio-art';
-  if (/writ|essay|journal|humanities|politic|philosoph|debate|english/.test(text)) return 'humanities';
+  if (/art|paint|design|photo|illustrat|studio|portfolio of my work/.test(text))
+    return 'studio-art';
+  if (/writ|essay|journal|humanities|politic|philosoph|debate|english/.test(text))
+    return 'humanities';
   if (/business|startup|founder|entrepreneur|market|sell|shop/.test(text)) return 'founder';
-  if (/athlete|track|run|cross country|sport|recruit|swim|basketball|soccer/.test(text)) return 'athlete';
+  if (/athlete|track|run|cross country|sport|recruit|swim|basketball|soccer/.test(text))
+    return 'athlete';
   if (/cv|resume|academic record/.test(text)) return 'cv';
   if (/research|science|stem|lab|biology|chemistry|physics|math|computer|code|robotic/.test(text))
     return 'research';
@@ -153,14 +160,20 @@ function fallbackCreate(message: string): SiteProject {
   const project = personaliseBuild(template.build(), message, template.name);
   project.source = 'ai';
 
-  const wanted = BLOCK_KEYWORDS.filter(([pattern]) => pattern.test(message)).map(([, type]) => type);
+  const wanted = BLOCK_KEYWORDS.filter(([pattern]) => pattern.test(message)).map(
+    ([, type]) => type
+  );
   const firstPage = project.pages[0];
   if (firstPage) {
     const existing = new Set(firstPage.blocks.map((block) => block.type));
     const extras = wanted.filter((type) => !existing.has(type)).map((type) => makeBlock(type));
     if (extras.length > 0) {
       const footerIndex = firstPage.blocks.findIndex((block) => block.type === 'footer');
-      firstPage.blocks.splice(footerIndex === -1 ? firstPage.blocks.length : footerIndex, 0, ...extras);
+      firstPage.blocks.splice(
+        footerIndex === -1 ? firstPage.blocks.length : footerIndex,
+        0,
+        ...extras
+      );
     }
   }
   return project;

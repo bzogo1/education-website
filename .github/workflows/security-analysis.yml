@@ -13,10 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v7
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
 
       - name: OWASP Noir Action
-        uses: owasp-noir/noir@v1.4.0
+        uses: owasp-noir/noir@8b8d1683ba7b70387c4abf9f34c8d7f0a74b6ba4 # v1.4.0
         with:
           base_path: .
           passive_scan: 'true'

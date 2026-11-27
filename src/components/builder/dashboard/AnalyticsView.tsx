@@ -14,7 +14,10 @@ function formatDay(iso: string): string {
   });
 }
 
-function delta(current: number, previous: number): { label: string; direction: 'up' | 'down' | 'flat' } {
+function delta(
+  current: number,
+  previous: number
+): { label: string; direction: 'up' | 'down' | 'flat' } {
   if (previous === 0 && current === 0) return { label: 'No change', direction: 'flat' };
   if (previous === 0) return { label: 'New traffic', direction: 'up' };
   const change = Math.round(((current - previous) / previous) * 100);
@@ -163,7 +166,9 @@ export default function AnalyticsView({
               </div>
               <div className="mt-2 flex justify-between text-[10px] text-white/25">
                 <span>{formatDay(summary.series[0]?.date ?? '')}</span>
-                <span>{formatDay(summary.series[Math.floor(summary.series.length / 2)]?.date ?? '')}</span>
+                <span>
+                  {formatDay(summary.series[Math.floor(summary.series.length / 2)]?.date ?? '')}
+                </span>
                 <span>{formatDay(summary.series[summary.series.length - 1]?.date ?? '')}</span>
               </div>
             </>
@@ -173,10 +178,7 @@ export default function AnalyticsView({
 
       <section className="overflow-hidden rounded-2xl border border-white/[0.07] bg-[#101113]">
         <div className="border-b border-white/[0.06] p-5 pb-4">
-          <SectionHeader
-            title="By site"
-            description="Compare the portfolios you have published."
-          />
+          <SectionHeader title="By site" description="Compare the portfolios you have published." />
         </div>
         {summary.sites.length === 0 ? (
           <div className="px-5 py-10 text-center text-[12px] text-white/35">
@@ -209,7 +211,7 @@ export default function AnalyticsView({
                     />
                   </div>
                 </div>
-                <span className="w-14 shrink-0 text-right text-[12px] tabular-nums text-white/60">
+                <span className="w-14 shrink-0 text-right text-[12px] text-white/60 tabular-nums">
                   {site.views.toLocaleString()}
                 </span>
                 {site.publishedUrl ? (

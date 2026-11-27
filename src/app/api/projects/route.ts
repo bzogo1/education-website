@@ -20,11 +20,17 @@ function invalidProject(project: unknown): project is SiteProject {
 export async function GET(request: NextRequest) {
   const user = await getUserFromRequest(request);
   if (!user) {
-    return NextResponse.json({ projects: [], error: 'Sign in to sync your projects.' }, { status: 401 });
+    return NextResponse.json(
+      { projects: [], error: 'Sign in to sync your projects.' },
+      { status: 401 }
+    );
   }
   const admin = getAdminClient();
   if (!admin) {
-    return NextResponse.json({ projects: [], error: 'Supabase is not configured.' }, { status: 503 });
+    return NextResponse.json(
+      { projects: [], error: 'Supabase is not configured.' },
+      { status: 503 }
+    );
   }
 
   const { data, error } = await admin
@@ -67,7 +73,8 @@ export async function POST(request: NextRequest) {
   }
   const project = body.project;
 
-  const handle = (await getUsername(admin, user.id)) ?? slugify(user.email?.split('@')[0] ?? 'student');
+  const handle =
+    (await getUsername(admin, user.id)) ?? slugify(user.email?.split('@')[0] ?? 'student');
   const { data: existing } = await admin.from('sites').select('slug').eq('user_id', user.id);
   const slug = uniqueSlug(
     projectSlug(project),

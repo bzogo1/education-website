@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { appOrigin, getAdminClient, getUserFromRequest, isMissingSchema } from '@/lib/supabase/admin';
+import {
+  appOrigin,
+  getAdminClient,
+  getUserFromRequest,
+  isMissingSchema,
+} from '@/lib/supabase/admin';
 import type { AnalyticsPoint, AnalyticsSummary, SiteAnalytics } from '@/lib/site/types';
 
 export const runtime = 'nodejs';
@@ -98,9 +103,7 @@ export async function GET(request: NextRequest) {
       title: site.title,
       slug: site.slug,
       published: site.published,
-      publishedUrl: site.published
-        ? `${origin}/u/${site.owner_username}/${site.slug}`
-        : undefined,
+      publishedUrl: site.published ? `${origin}/u/${site.owner_username}/${site.slug}` : undefined,
       views: perSite.get(site.id) ?? 0,
       last7: 0,
     }))

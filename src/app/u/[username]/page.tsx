@@ -84,7 +84,11 @@ export default async function PublicProfilePage({
   const name = profile
     ? `${profile.firstName ?? ''} ${profile.lastName ?? ''}`.trim() || profile.username
     : username;
-  const meta = [profile?.school, profile?.graduationYear && `Class of ${profile.graduationYear}`, profile?.location]
+  const meta = [
+    profile?.school,
+    profile?.graduationYear && `Class of ${profile.graduationYear}`,
+    profile?.location,
+  ]
     .filter(Boolean)
     .join('  ·  ');
 
@@ -154,9 +158,7 @@ export default async function PublicProfilePage({
             <h2 className="text-lg font-semibold tracking-tight">
               {sites.length === 1 ? 'Portfolio' : 'Portfolios'}
             </h2>
-            <span className="text-xs text-white/40">
-              {sites.length} published
-            </span>
+            <span className="text-xs text-white/40">{sites.length} published</span>
           </div>
 
           {sites.length === 0 ? (
@@ -187,7 +189,11 @@ export default async function PublicProfilePage({
                     </p>
                   ) : null}
                   <p className="mt-5 text-[11px] tracking-wide text-white/35">
-                    Updated {new Date(site.updated_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}
+                    Updated{' '}
+                    {new Date(site.updated_at).toLocaleDateString('en-US', {
+                      month: 'short',
+                      year: 'numeric',
+                    })}
                   </p>
                 </a>
               ))}

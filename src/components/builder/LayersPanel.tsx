@@ -59,9 +59,7 @@ export default function LayersPanel({
                     <BlockIcon name={def?.icon ?? ''} size={12} />
                   </span>
                   <span
-                    className={`truncate text-[11.5px] ${
-                      active ? 'text-white' : 'text-white/55'
-                    }`}
+                    className={`truncate text-[11.5px] ${active ? 'text-white' : 'text-white/55'}`}
                   >
                     {def?.label ?? block.type}
                   </span>

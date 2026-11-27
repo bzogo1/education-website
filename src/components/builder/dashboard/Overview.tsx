@@ -22,7 +22,16 @@ import type { AnalyticsSummary, SiteProject, StudentProfile } from '@/lib/site/t
 import type { Viewer } from '@/lib/supabase/use-user';
 import type { WorkspaceMode } from '@/lib/site/store';
 import SitePreview from './SitePreview';
-import { Badge, CopyButton, LABEL, ProgressBar, SectionHeader, StatCard, BTN_GHOST, BTN_PRIMARY } from './ui';
+import {
+  Badge,
+  CopyButton,
+  LABEL,
+  ProgressBar,
+  SectionHeader,
+  StatCard,
+  BTN_GHOST,
+  BTN_PRIMARY,
+} from './ui';
 import type { ViewKey } from './Shell';
 
 const SUGGESTIONS = [
@@ -70,7 +79,11 @@ export default function Overview({
   const firstName = viewer.displayName.split(' ')[0] ?? 'there';
 
   const steps: { label: string; done: boolean; view?: ViewKey; href?: string }[] = [
-    { label: 'Create your account', done: Boolean(viewer.user), href: viewer.user ? undefined : '/signup' },
+    {
+      label: 'Create your account',
+      done: Boolean(viewer.user),
+      href: viewer.user ? undefined : '/signup',
+    },
     { label: 'Add profile details', done: completeness >= 45, view: 'settings' },
     { label: 'Build your first portfolio', done: projects.length > 0, view: 'templates' },
     { label: 'Publish and get your link', done: publishedProjects.length > 0, view: 'published' },
@@ -201,7 +214,11 @@ export default function Overview({
                     disabled={sending || !prompt.trim()}
                     className={BTN_PRIMARY + ' ml-auto py-1.5'}
                   >
-                    {sending ? <Loader2 size={13} className="animate-spin" /> : <Sparkles size={13} />}
+                    {sending ? (
+                      <Loader2 size={13} className="animate-spin" />
+                    ) : (
+                      <Sparkles size={13} />
+                    )}
                     {sending ? 'Building…' : 'Build my portfolio'}
                   </button>
                 </div>
@@ -272,7 +289,11 @@ export default function Overview({
                         <p className="truncate text-[12px] font-medium text-white/85">
                           {project.title}
                         </p>
-                        {project.publishedUrl ? <Badge tone="live">Live</Badge> : <Badge>Draft</Badge>}
+                        {project.publishedUrl ? (
+                          <Badge tone="live">Live</Badge>
+                        ) : (
+                          <Badge>Draft</Badge>
+                        )}
                       </div>
                       <p className="mt-1 text-[10.5px] text-white/30">
                         {project.pages.length} page{project.pages.length === 1 ? '' : 's'} ·{' '}
@@ -328,7 +349,8 @@ export default function Overview({
                   onClick={() => onNavigate(projects.length > 0 ? 'projects' : 'templates')}
                   className={BTN_PRIMARY + ' mt-3 w-full py-2'}
                 >
-                  <Globe2 size={13} /> {projects.length > 0 ? 'Publish a project' : 'Create a project'}
+                  <Globe2 size={13} />{' '}
+                  {projects.length > 0 ? 'Publish a project' : 'Create a project'}
                 </button>
               </>
             )}
@@ -339,7 +361,9 @@ export default function Overview({
               <p className="text-[11px] font-semibold tracking-[0.1em] text-white/40 uppercase">
                 Get set up
               </p>
-              <span className="text-[11px] text-white/30">{completedSteps}/{steps.length}</span>
+              <span className="text-[11px] text-white/30">
+                {completedSteps}/{steps.length}
+              </span>
             </div>
             <div className="mt-3">
               <ProgressBar value={progress} />

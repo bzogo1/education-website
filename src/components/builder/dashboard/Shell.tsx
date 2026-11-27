@@ -46,7 +46,9 @@ function Brand() {
         F
       </span>
       <span className="leading-tight">
-        <span className="block text-[15px] font-semibold tracking-[-0.01em] text-[#f5f4ef]">Folio</span>
+        <span className="block text-[15px] font-semibold tracking-[-0.01em] text-[#f5f4ef]">
+          Folio
+        </span>
         <span className="block text-[10.5px] tracking-[0.13em] text-white/35 uppercase">
           Student portfolios
         </span>
@@ -93,7 +95,7 @@ function NavList({
             />
             <span className="flex-1">{label}</span>
             {typeof counts[key] === 'number' && counts[key]! > 0 ? (
-              <span className="text-[10.5px] tabular-nums text-white/30">{counts[key]}</span>
+              <span className="text-[10.5px] text-white/30 tabular-nums">{counts[key]}</span>
             ) : null}
           </button>
         );

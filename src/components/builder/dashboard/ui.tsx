@@ -48,9 +48,7 @@ export function StatCard({
   return (
     <div
       className={`relative overflow-hidden rounded-2xl border p-5 ${
-        accent
-          ? 'border-[#6fa384]/25 bg-[#11170f]'
-          : 'border-white/[0.07] bg-[#101113]'
+        accent ? 'border-[#6fa384]/25 bg-[#11170f]' : 'border-white/[0.07] bg-[#101113]'
       }`}
     >
       <div className="flex items-start justify-between gap-3">

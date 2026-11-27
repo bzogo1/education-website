@@ -12,10 +12,6 @@ export default tseslint.config(
     },
   },
   {
-    ignores: [
-      '.next/',
-      'node_modules/',
-      '.vercel/',
-    ],
+    ignores: ['.next/', 'node_modules/', '.vercel/'],
   }
 );

@@ -65,7 +65,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
   {
     id: 'research',
     name: 'Research & STEM',
-    description: 'For lab work, olympiads, and computational projects. Numbers up front, evidence everywhere.',
+    description:
+      'For lab work, olympiads, and computational projects. Numbers up front, evidence everywhere.',
     category: 'STEM',
     accent: '#1d4ed8',
     featured: true,
@@ -154,13 +155,15 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
                   school: 'Lincoln High School',
                   degree: 'STEM honors track',
                   period: '2023 — 2027',
-                  detail: 'GPA 3.98 / 4.0 · 7 AP courses including Biology, Chemistry, and Computer Science A · National Honor Society',
+                  detail:
+                    'GPA 3.98 / 4.0 · 7 AP courses including Biology, Chemistry, and Computer Science A · National Honor Society',
                 },
                 {
                   school: 'Northwest Science Academy',
                   degree: 'Summer research program',
                   period: 'Summer 2026',
-                  detail: 'Selected as one of 24 students; eight weeks of full-time computational biology research.',
+                  detail:
+                    'Selected as one of 24 students; eight weeks of full-time computational biology research.',
                 },
               ],
             }),
@@ -172,13 +175,15 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
                   role: 'Research assistant',
                   org: 'University computational biology lab',
                   period: '2025 — present',
-                  detail: 'Maintain the lab’s analysis pipeline, run weekly quality checks, and present findings at lab meeting.',
+                  detail:
+                    'Maintain the lab’s analysis pipeline, run weekly quality checks, and present findings at lab meeting.',
                 },
                 {
                   role: 'Founder & coordinator',
                   org: 'Peer tutoring collective',
                   period: '2025 — present',
-                  detail: 'Recruited 18 volunteer tutors and built the scheduling and reminder system the program runs on.',
+                  detail:
+                    'Recruited 18 volunteer tutors and built the scheduling and reminder system the program runs on.',
                 },
               ],
             }),
@@ -193,21 +198,38 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             block('achievements', {
               heading: 'Awards & honors',
               items: [
-                { title: 'National Merit Commended Scholar', issuer: 'National Merit Scholarship Program', year: '2026', detail: '' },
-                { title: 'First place, regional science fair', issuer: 'Northwest Science Expo', year: '2025', detail: 'Computational biology category, 180 entrants.' },
-                { title: 'Research scholarship finalist', issuer: 'State STEM Foundation', year: '2025', detail: 'One of 12 finalists statewide.' },
+                {
+                  title: 'National Merit Commended Scholar',
+                  issuer: 'National Merit Scholarship Program',
+                  year: '2026',
+                  detail: '',
+                },
+                {
+                  title: 'First place, regional science fair',
+                  issuer: 'Northwest Science Expo',
+                  year: '2025',
+                  detail: 'Computational biology category, 180 entrants.',
+                },
+                {
+                  title: 'Research scholarship finalist',
+                  issuer: 'State STEM Foundation',
+                  year: '2025',
+                  detail: 'One of 12 finalists statewide.',
+                },
               ],
             }),
             block('testimonials', {
               heading: 'Recommendations',
               items: [
                 {
-                  quote: 'One of the most self-directed students I have taught. She asks the question the rest of the class misses, then goes and answers it.',
+                  quote:
+                    'One of the most self-directed students I have taught. She asks the question the rest of the class misses, then goes and answers it.',
                   author: 'Dr. Elena Ruiz',
                   role: 'AP Biology teacher',
                 },
                 {
-                  quote: 'She treats every analysis like someone will depend on it — because in our lab, someone does.',
+                  quote:
+                    'She treats every analysis like someone will depend on it — because in our lab, someone does.',
                   author: 'Priya Raman',
                   role: 'Lab supervisor',
                 },
@@ -215,7 +237,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             }),
             block('cta', {
               title: 'Want the full research summary?',
-              subtitle: 'I am happy to send abstracts, transcripts, or a longer write-up of either project.',
+              subtitle:
+                'I am happy to send abstracts, transcripts, or a longer write-up of either project.',
               buttonText: 'Email me',
               buttonHref: 'mailto:maya@example.com',
             }),
@@ -271,8 +294,18 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             block('achievements', {
               heading: 'Presentations',
               items: [
-                { title: 'Poster: folding visualizer in classrooms', issuer: 'Northwest Science Expo', year: '2026', detail: '' },
-                { title: 'Lightning talk: reproducible pipelines for small labs', issuer: 'State student research symposium', year: '2025', detail: '' },
+                {
+                  title: 'Poster: folding visualizer in classrooms',
+                  issuer: 'Northwest Science Expo',
+                  year: '2026',
+                  detail: '',
+                },
+                {
+                  title: 'Lightning talk: reproducible pipelines for small labs',
+                  issuer: 'State student research symposium',
+                  year: '2025',
+                  detail: '',
+                },
               ],
             }),
             block('cta', {
@@ -289,7 +322,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
   {
     id: 'humanities',
     name: 'Humanities & Writing',
-    description: 'Essays, debate, and journalism. A serif, editorial layout that lets the writing lead.',
+    description:
+      'Essays, debate, and journalism. A serif, editorial layout that lets the writing lead.',
     category: 'Humanities',
     accent: '#9a6b2f',
     featured: true,
@@ -370,26 +404,32 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
                   role: 'Editor-in-chief',
                   org: 'The Riverside Review',
                   period: '2025 — present',
-                  detail: 'Lead a staff of 14, edit every issue, and run a fact-checking process that cut corrections in half.',
+                  detail:
+                    'Lead a staff of 14, edit every issue, and run a fact-checking process that cut corrections in half.',
                 },
                 {
                   role: 'Novice debate coach',
                   org: 'Riverside Debate Society',
                   period: '2024 — present',
-                  detail: 'Design practice drills and mentor first-year debaters through their first tournaments.',
+                  detail:
+                    'Design practice drills and mentor first-year debaters through their first tournaments.',
                 },
                 {
                   role: 'Editorial intern',
                   org: 'Atlanta Community Press',
                   period: 'Summer 2026',
-                  detail: 'Wrote and fact-checked local government coverage alongside a two-person desk.',
+                  detail:
+                    'Wrote and fact-checked local government coverage alongside a two-person desk.',
                 },
               ],
             }),
             block('skills', {
               heading: 'Skills',
               groups: [
-                { name: 'Writing', items: 'Investigative reporting, editorial, persuasive essays, copy editing' },
+                {
+                  name: 'Writing',
+                  items: 'Investigative reporting, editorial, persuasive essays, copy editing',
+                },
                 { name: 'Research', items: 'Interviews, public records, spreadsheet analysis' },
                 { name: 'Tools', items: 'InDesign, Google Sheets, Notion, WordPress' },
               ],
@@ -397,16 +437,32 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             block('achievements', {
               heading: 'Awards',
               items: [
-                { title: 'Gold Key, editorial writing', issuer: 'Scholastic Art & Writing Awards', year: '2026', detail: '' },
-                { title: 'State finalist, extemporaneous debate', issuer: 'State Debate League', year: '2025', detail: '' },
-                { title: 'Student journalist of the year', issuer: 'Atlanta Community Press', year: '2025', detail: '' },
+                {
+                  title: 'Gold Key, editorial writing',
+                  issuer: 'Scholastic Art & Writing Awards',
+                  year: '2026',
+                  detail: '',
+                },
+                {
+                  title: 'State finalist, extemporaneous debate',
+                  issuer: 'State Debate League',
+                  year: '2025',
+                  detail: '',
+                },
+                {
+                  title: 'Student journalist of the year',
+                  issuer: 'Atlanta Community Press',
+                  year: '2025',
+                  detail: '',
+                },
               ],
             }),
             block('testimonials', {
               heading: 'From my editors',
               items: [
                 {
-                  quote: 'Amara is the rare student editor who improves a sentence without flattening the writer’s voice.',
+                  quote:
+                    'Amara is the rare student editor who improves a sentence without flattening the writer’s voice.',
                   author: 'Judith Mbeki',
                   role: 'Faculty adviser, The Riverside Review',
                 },
@@ -414,7 +470,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             }),
             block('contact', {
               heading: 'Let’s talk',
-              subtitle: 'Pitches, questions about a piece, or admissions conversations — email is best.',
+              subtitle:
+                'Pitches, questions about a piece, or admissions conversations — email is best.',
               email: 'amara@example.com',
               location: 'Atlanta, GA',
               links: contactLinks,
@@ -558,8 +615,18 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             block('achievements', {
               heading: 'Recognition',
               items: [
-                { title: 'Gold Key, printmaking', issuer: 'Scholastic Art & Writing Awards', year: '2026', detail: '' },
-                { title: 'Best in show', issuer: 'Riverside Spring Exhibition', year: '2025', detail: 'Juried by the museum’s curatorial team.' },
+                {
+                  title: 'Gold Key, printmaking',
+                  issuer: 'Scholastic Art & Writing Awards',
+                  year: '2026',
+                  detail: '',
+                },
+                {
+                  title: 'Best in show',
+                  issuer: 'Riverside Spring Exhibition',
+                  year: '2025',
+                  detail: 'Juried by the museum’s curatorial team.',
+                },
               ],
             }),
             block('contact', {
@@ -601,7 +668,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             }),
             block('cta', {
               title: 'Come see it in person',
-              subtitle: 'The spring exhibition opens in May. I am also happy to arrange a studio visit.',
+              subtitle:
+                'The spring exhibition opens in May. I am also happy to arrange a studio visit.',
               buttonText: 'Get in touch',
               buttonHref: 'mailto:noah@example.com',
             }),
@@ -613,7 +681,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
   {
     id: 'founder',
     name: 'Entrepreneurship',
-    description: 'For students who build businesses, clubs, or products. Outcomes and traction first.',
+    description:
+      'For students who build businesses, clubs, or products. Outcomes and traction first.',
     category: 'Business',
     accent: '#0f766e',
     build: () =>
@@ -700,13 +769,15 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
                   role: 'Founder',
                   org: 'Uniform Swap',
                   period: '2024 — present',
-                  detail: 'Built the first marketplace, recruited 900 listings, and negotiated pickup spots at six schools.',
+                  detail:
+                    'Built the first marketplace, recruited 900 listings, and negotiated pickup spots at six schools.',
                 },
                 {
                   role: 'Operations intern',
                   org: 'Neighborhood Business Alliance',
                   period: 'Summer 2026',
-                  detail: 'Interviewed 30 shop owners about bookkeeping and turned the findings into a workshop series.',
+                  detail:
+                    'Interviewed 30 shop owners about bookkeeping and turned the findings into a workshop series.',
                 },
               ],
             }),
@@ -722,7 +793,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
               heading: 'What partners say',
               items: [
                 {
-                  quote: 'Sofia is the only student I have worked with who asks about the pickup schedule before the pitch deck.',
+                  quote:
+                    'Sofia is the only student I have worked with who asks about the pickup schedule before the pitch deck.',
                   author: 'Dana Whitfield',
                   role: 'Director, Neighborhood Business Alliance',
                 },
@@ -731,13 +803,24 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             block('achievements', {
               heading: 'Recognition',
               items: [
-                { title: 'Regional finalist', issuer: 'National Youth Entrepreneurship Challenge', year: '2026', detail: '' },
-                { title: 'Community impact grant', issuer: 'Chicago Future Fund', year: '2025', detail: '$5,000 for Uniform Swap logistics.' },
+                {
+                  title: 'Regional finalist',
+                  issuer: 'National Youth Entrepreneurship Challenge',
+                  year: '2026',
+                  detail: '',
+                },
+                {
+                  title: 'Community impact grant',
+                  issuer: 'Chicago Future Fund',
+                  year: '2025',
+                  detail: '$5,000 for Uniform Swap logistics.',
+                },
               ],
             }),
             block('contact', {
               heading: 'Work with me',
-              subtitle: 'Open to mentors, partners, and anyone who has solved a resale logistics problem better than I have.',
+              subtitle:
+                'Open to mentors, partners, and anyone who has solved a resale logistics problem better than I have.',
               email: 'sofia@example.com',
               location: 'Chicago, IL',
               links: contactLinks,
@@ -782,7 +865,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             }),
             block('cta', {
               title: 'Have a problem worth solving?',
-              subtitle: 'I am always up for a conversation about operations, marketplaces, or teaching students to ship.',
+              subtitle:
+                'I am always up for a conversation about operations, marketplaces, or teaching students to ship.',
               buttonText: 'Say hello',
               buttonHref: 'mailto:sofia@example.com',
             }),
@@ -794,7 +878,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
   {
     id: 'athlete',
     name: 'Scholar-Athlete',
-    description: 'Training, academics, and leadership in one place. Built for college recruiting conversations.',
+    description:
+      'Training, academics, and leadership in one place. Built for college recruiting conversations.',
     category: 'Athletics',
     accent: '#b91c1c',
     build: () =>
@@ -851,22 +936,39 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
                   role: 'Distance captain',
                   org: 'Lakeview Track & Field',
                   period: '2025 — present',
-                  detail: 'Write weekly workouts with the coach and run a peer mentoring group for first-year runners.',
+                  detail:
+                    'Write weekly workouts with the coach and run a peer mentoring group for first-year runners.',
                 },
                 {
                   role: 'Volunteer coach',
                   org: 'Middle school running club',
                   period: '2024 — present',
-                  detail: 'Lead twice-weekly practices for 25 students; built a simple progress tracker for the club.',
+                  detail:
+                    'Lead twice-weekly practices for 25 students; built a simple progress tracker for the club.',
                 },
               ],
             }),
             block('achievements', {
               heading: 'Athletic & academic honors',
               items: [
-                { title: 'Conference champion, 1600m', issuer: 'Big Eight Conference', year: '2026', detail: '' },
-                { title: 'All-state, second team', issuer: 'State Track & Field', year: '2026', detail: '' },
-                { title: 'Academic All-Conference', issuer: 'Big Eight Conference', year: '2025', detail: 'Awarded for GPA and varsity participation.' },
+                {
+                  title: 'Conference champion, 1600m',
+                  issuer: 'Big Eight Conference',
+                  year: '2026',
+                  detail: '',
+                },
+                {
+                  title: 'All-state, second team',
+                  issuer: 'State Track & Field',
+                  year: '2026',
+                  detail: '',
+                },
+                {
+                  title: 'Academic All-Conference',
+                  issuer: 'Big Eight Conference',
+                  year: '2025',
+                  detail: 'Awarded for GPA and varsity participation.',
+                },
               ],
             }),
             block('gallery', {
@@ -882,7 +984,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
               heading: 'From my coaches',
               items: [
                 {
-                  quote: 'Ethan is the first captain I have had who brings me data. He makes the whole squad more serious without making it less fun.',
+                  quote:
+                    'Ethan is the first captain I have had who brings me data. He makes the whole squad more serious without making it less fun.',
                   author: 'Coach Dan Merrick',
                   role: 'Head track & field coach',
                 },
@@ -923,14 +1026,16 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
               items: [
                 {
                   title: 'Conference finals — 1600m',
-                  description: 'First place in 4:19.3. Went out controlled and moved at 600m to go.',
+                  description:
+                    'First place in 4:19.3. Went out controlled and moved at 600m to go.',
                   tags: '1st, 4:19.3',
                   url: '#',
                   image: '',
                 },
                 {
                   title: 'State prelims — 800m',
-                  description: 'Advanced to finals with a 1:56.8. Splits were even; closing speed is the next focus.',
+                  description:
+                    'Advanced to finals with a 1:56.8. Splits were even; closing speed is the next focus.',
                   tags: 'Qualified, 1:56.8',
                   url: '#',
                   image: '',
@@ -953,7 +1058,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
   {
     id: 'cv',
     name: 'Academic CV',
-    description: 'Quiet, text-forward, and fast to fill in. For applications that need the facts, not the flourishes.',
+    description:
+      'Quiet, text-forward, and fast to fill in. For applications that need the facts, not the flourishes.',
     category: 'General',
     accent: '#334155',
     build: () =>
@@ -967,9 +1073,7 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
           page('Home', 'home', [
             block('navbar', {
               logoText: 'Your Name',
-              links: [
-                { label: 'CV', href: 'home' },
-              ],
+              links: [{ label: 'CV', href: 'home' }],
               ctaLabel: 'Email',
               ctaHref: 'mailto:you@example.com',
             }),
@@ -1011,7 +1115,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
               items: [
                 {
                   title: 'Your project',
-                  description: 'A sentence on the problem, a sentence on what you built, a sentence on the result.',
+                  description:
+                    'A sentence on the problem, a sentence on what you built, a sentence on the result.',
                   tags: 'Skill, Skill',
                   url: '#',
                   image: '',
@@ -1027,7 +1132,9 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             }),
             block('achievements', {
               heading: 'Awards',
-              items: [{ title: 'Award name', issuer: 'Issuing organization', year: '2026', detail: '' }],
+              items: [
+                { title: 'Award name', issuer: 'Issuing organization', year: '2026', detail: '' },
+              ],
             }),
             block('contact', {
               heading: 'Contact',
@@ -1064,7 +1171,8 @@ export const SITE_TEMPLATES: SiteTemplate[] = [
             block('hero', {
               eyebrow: 'Class of 2027',
               title: 'Your website starts here',
-              subtitle: 'Write a short introduction, then add sections from the left panel or ask the assistant.',
+              subtitle:
+                'Write a short introduction, then add sections from the left panel or ask the assistant.',
               ctaText: 'About me',
               ctaHref: '#about',
               secondaryText: '',

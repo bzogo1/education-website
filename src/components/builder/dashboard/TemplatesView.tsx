@@ -38,9 +38,7 @@ export default function TemplatesView({
   const [error, setError] = useState<string | null>(null);
 
   const visible =
-    category === 'All'
-      ? previews
-      : previews.filter((item) => item.template.category === category);
+    category === 'All' ? previews : previews.filter((item) => item.template.category === category);
 
   const build = async (text?: string) => {
     const value = (text ?? prompt).trim();

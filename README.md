@@ -69,15 +69,15 @@ You can also deploy on Vercel with one click:
 
 ## Available commands
 
-| Command              | Action                                     |
-| :------------------- | :----------------------------------------- |
-| `npm run dev`        | Start the development server               |
-| `npm run build`      | Build for production (`.next/`)            |
-| `npm run start`      | Serve the production build locally         |
-| `npm run check`      | Run the TypeScript type check              |
-| `npm run lint`       | Run ESLint                                 |
-| `npm run format`     | Format code with Prettier                  |
-| `npm run format:check` | Check formatting                         |
+| Command                | Action                             |
+| :--------------------- | :--------------------------------- |
+| `npm run dev`          | Start the development server       |
+| `npm run build`        | Build for production (`.next/`)    |
+| `npm run start`        | Serve the production build locally |
+| `npm run check`        | Run the TypeScript type check      |
+| `npm run lint`         | Run ESLint                         |
+| `npm run format`       | Format code with Prettier          |
+| `npm run format:check` | Check formatting                   |
 
 ## License
 

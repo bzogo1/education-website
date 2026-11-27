@@ -37,7 +37,11 @@ const rows = (v: unknown): Row[] => arr<Row>(v).filter((r) => r && typeof r === 
 
 /** Accepts both "a, b" and ["a", "b"] so AI output never loses a list. */
 const csv = (v: unknown): string => {
-  if (Array.isArray(v)) return v.map((item) => String(item ?? '').trim()).filter(Boolean).join(', ');
+  if (Array.isArray(v))
+    return v
+      .map((item) => String(item ?? '').trim())
+      .filter(Boolean)
+      .join(', ');
   return typeof v === 'string' ? v : '';
 };
 
@@ -91,7 +95,10 @@ function renderHref(href: string, ctx: RenderContext): string {
   if (!value || value === '#') return '#';
   if (/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i.test(value)) return safeUrl(value) || '#';
   if (value.startsWith('/') || value.startsWith('#')) return value;
-  return pageHref(value.replace(/^\.?\//, '').replace(/\/+$/, ''), ctx);
+  const trimmed = value.replace(/^\.?\//, '');
+  let end = trimmed.length;
+  while (end > 0 && trimmed[end - 1] === '/') end -= 1;
+  return pageHref(trimmed.slice(0, end), ctx);
 }
 
 function imageHtml(url: string, alt: string, extraClass = ''): string {
@@ -159,7 +166,10 @@ function renderNavbar(block: SiteBlock, p: Row, ctx: RenderContext, activePage: 
   const cta = str(p.ctaLabel)
     ? `<a class="nav-cta" href="${esc(renderHref(str(p.ctaHref, '#'), ctx))}">${esc(str(p.ctaLabel))}</a>`
     : '';
-  const home = pageHref(activePage.slug === ctx.project.pages[0]?.slug ? activePage.slug : 'home', ctx);
+  const home = pageHref(
+    activePage.slug === ctx.project.pages[0]?.slug ? activePage.slug : 'home',
+    ctx
+  );
 
   return `<header class="nav" data-block-id="${esc(block.id)}">
     <div class="wrap nav-inner">
@@ -239,7 +249,8 @@ function renderAbout(block: SiteBlock, p: Row): string {
         facts.length
           ? `<dl class="facts">${facts
               .map(
-                (fact) => `<div class="fact"><dt>${esc(str(fact.label))}</dt><dd>${esc(str(fact.value))}</dd></div>`
+                (fact) =>
+                  `<div class="fact"><dt>${esc(str(fact.label))}</dt><dd>${esc(str(fact.value))}</dd></div>`
               )
               .join('')}</dl>`
           : ''
@@ -451,7 +462,9 @@ function renderContact(block: SiteBlock, p: Row, ctx: RenderContext): string {
       links.length
         ? `<div class="contact-links">${links
             .map(
-              (link) => `<a class="contact-link" href="${esc(renderHref(str(link.href, '#'), ctx))}">
+              (
+                link
+              ) => `<a class="contact-link" href="${esc(renderHref(str(link.href, '#'), ctx))}">
                 <span>${esc(str(link.label, 'Link'))}</span><span aria-hidden="true">↗</span>
               </a>`
             )
@@ -831,7 +844,9 @@ a{color:inherit}
 }
 
 function siteName(project: SiteProject): string {
-  const navbar = project.pages.flatMap((page) => page.blocks).find((block) => block.type === 'navbar');
+  const navbar = project.pages
+    .flatMap((page) => page.blocks)
+    .find((block) => block.type === 'navbar');
   return str(navbar?.props.logoText, project.title);
 }
 
@@ -948,7 +963,10 @@ ${body}
 </html>`;
 }
 
-export function compileProjectIndexHtml(project: SiteProject, options: CompileOptions = {}): string {
+export function compileProjectIndexHtml(
+  project: SiteProject,
+  options: CompileOptions = {}
+): string {
   const page = project.pages[0];
   if (!page) {
     return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8" /><title>Empty site</title></head><body></body></html>';

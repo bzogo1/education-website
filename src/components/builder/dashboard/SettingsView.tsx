@@ -82,8 +82,8 @@ export default function SettingsView({
           Settings
         </h1>
         <p className="mt-1.5 text-[13px] text-white/45">
-          Your profile powers the public page at /u/{form.username}. Admissions teams see this before
-          they open a single portfolio.
+          Your profile powers the public page at /u/{form.username}. Admissions teams see this
+          before they open a single portfolio.
         </p>
       </div>
 
@@ -312,9 +312,7 @@ export default function SettingsView({
               <p className="text-[11px] font-semibold tracking-[0.1em] text-white/40 uppercase">
                 Public page
               </p>
-              <Badge tone={completeness >= 70 ? 'live' : 'warn'}>
-                {completeness}% complete
-              </Badge>
+              <Badge tone={completeness >= 70 ? 'live' : 'warn'}>{completeness}% complete</Badge>
             </div>
             <div className="mt-4 flex items-center gap-3">
               <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-[#1d2a22] text-[13px] font-semibold text-[#bfe0cb]">
@@ -331,7 +329,8 @@ export default function SettingsView({
               <ProgressBar value={completeness} />
             </div>
             <p className="mt-3 text-[10.5px] leading-4 text-white/30">
-              {form.school || 'School'} {form.graduationYear ? `· Class of ${form.graduationYear}` : ''}
+              {form.school || 'School'}{' '}
+              {form.graduationYear ? `· Class of ${form.graduationYear}` : ''}
             </p>
             <div className="mt-4 flex flex-col gap-2">
               <Link

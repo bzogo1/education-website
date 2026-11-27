@@ -1,10 +1,16 @@
 import type { SitePage, SiteProject, SiteTheme, StudentProfile } from './types';
 
+function randomToken(): string {
+  if (typeof crypto === 'undefined') {
+    throw new Error('A secure random source is required.');
+  }
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID();
+  const bytes = crypto.getRandomValues(new Uint8Array(16));
+  return Array.from(bytes, (b) => b.toString(16).padStart(2, '0')).join('');
+}
+
 export function newId(prefix = ''): string {
-  const raw =
-    typeof crypto !== 'undefined' && 'randomUUID' in crypto
-      ? crypto.randomUUID()
-      : `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`;
+  const raw = randomToken();
   return prefix ? `${prefix}_${raw}` : raw;
 }
 
@@ -14,7 +20,8 @@ export function slugify(value: string, fallback = 'site'): string {
     .normalize('NFKD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
+    .replace(/^-+/, '')
+    .replace(/-+$/, '')
     .slice(0, 60);
   return slug || fallback;
 }
@@ -40,7 +47,9 @@ export function normalizeTheme(theme: unknown): SiteTheme {
 
 function normalizePage(page: Partial<SitePage>): SitePage {
   const blocks = Array.isArray(page.blocks)
-    ? page.blocks.filter((b): b is SitePage['blocks'][number] => Boolean(b && typeof b === 'object'))
+    ? page.blocks.filter((b): b is SitePage['blocks'][number] =>
+        Boolean(b && typeof b === 'object')
+      )
     : [];
   const name = typeof page.name === 'string' && page.name.trim() ? page.name : 'Home';
   return {
@@ -59,7 +68,8 @@ function normalizePage(page: Partial<SitePage>): SitePage {
 export function normalizeProject(project: Partial<SiteProject> & { id: string }): SiteProject {
   const now = new Date().toISOString();
   const pages = Array.isArray(project.pages) ? project.pages.map(normalizePage) : [];
-  const title = typeof project.title === 'string' && project.title.trim() ? project.title : 'Untitled site';
+  const title =
+    typeof project.title === 'string' && project.title.trim() ? project.title : 'Untitled site';
   return {
     id: project.id,
     title,

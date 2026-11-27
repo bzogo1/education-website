@@ -7,6 +7,7 @@ import Footer from '@/components/Footer';
 import ScrollUpButton from '@/components/ScrollUpButton';
 import Article from '@/components/Article';
 import { getBlogPosts, getBlogPost } from '@/lib/blog';
+import BlogIcon from '@/components/BlogIcon';
 
 export const dynamicParams = false;
 
@@ -76,13 +77,13 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <article className="card flex h-full flex-col overflow-hidden rounded-3xl transition">
                   <div className="p-4">
                     <div className="bg-bgDark1Lighter flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl">
-                      <svg
+                      <BlogIcon
+                        icon={related.icon}
                         className="text-secondaryColor/30 h-16 w-16"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="0.75"
                         viewBox="0 0 24 24"
-                        dangerouslySetInnerHTML={{ __html: related.icon }}
                       />
                     </div>
                   </div>

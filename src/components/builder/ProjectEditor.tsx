@@ -75,10 +75,9 @@ export default function ProjectEditor({
   const [confirmDelete, setConfirmDelete] = useState(false);
 
   const activePage = project.pages.find((page) => page.id === activePageId) ?? project.pages[0];
-  const selectedBlock =
-    activePage?.blocks.find((block) => block.id === selectedBlockId) ?? null;
+  const selectedBlock = activePage?.blocks.find((block) => block.id === selectedBlockId) ?? null;
   const selectedIndex = selectedBlock
-    ? activePage?.blocks.findIndex((block) => block.id === selectedBlock.id) ?? -1
+    ? (activePage?.blocks.findIndex((block) => block.id === selectedBlock.id) ?? -1)
     : -1;
 
   const html = useMemo(
@@ -171,7 +170,10 @@ export default function ProjectEditor({
     const sourcePage = project.pages[0];
     const page = makePage(
       clean,
-      uniqueSlug(slugify(clean, 'page'), project.pages.map((candidate) => candidate.slug))
+      uniqueSlug(
+        slugify(clean, 'page'),
+        project.pages.map((candidate) => candidate.slug)
+      )
     );
     const navigation = makeBlock('navbar');
     const footer = makeBlock('footer');
@@ -245,7 +247,7 @@ export default function ProjectEditor({
             value={project.title}
             onChange={(event) => onUpdate((current) => ({ ...current, title: event.target.value }))}
             aria-label="Project title"
-            className="w-36 truncate rounded-md border border-transparent bg-transparent px-1.5 py-1 text-[12.5px] font-medium text-white/85 outline-none transition hover:border-white/[0.1] focus:border-[#6fa384] sm:w-52"
+            className="w-36 truncate rounded-md border border-transparent bg-transparent px-1.5 py-1 text-[12.5px] font-medium text-white/85 transition outline-none hover:border-white/[0.1] focus:border-[#6fa384] sm:w-52"
           />
           <span
             className="hidden items-center gap-1.5 text-[10.5px] text-white/30 md:inline-flex"
@@ -430,9 +432,7 @@ export default function ProjectEditor({
               ))}
             </div>
             <div
-              className={`min-h-0 flex-1 ${
-                tab === 'ai' ? 'overflow-hidden' : 'overflow-y-auto'
-              }`}
+              className={`min-h-0 flex-1 ${tab === 'ai' ? 'overflow-hidden' : 'overflow-y-auto'}`}
             >
               {tab === 'add' ? (
                 <ElementsPanel page={activePage} onAddBlock={addBlockToPage} />
@@ -507,9 +507,7 @@ export default function ProjectEditor({
         {!previewMode ? (
           <aside
             className={`${
-              inspectorOpen
-                ? 'fixed inset-y-0 right-0 z-40 flex w-[318px] shadow-2xl'
-                : 'hidden'
+              inspectorOpen ? 'fixed inset-y-0 right-0 z-40 flex w-[318px] shadow-2xl' : 'hidden'
             } border-l border-white/[0.07] xl:static xl:z-auto xl:flex xl:w-[304px] xl:shadow-none`}
           >
             <div className="min-h-0 w-full">
@@ -545,12 +543,16 @@ export default function ProjectEditor({
         </div>
       ) : null}
 
-      <Modal open={confirmDelete} onClose={() => setConfirmDelete(false)} title="Delete this project?">
+      <Modal
+        open={confirmDelete}
+        onClose={() => setConfirmDelete(false)}
+        title="Delete this project?"
+      >
         <div className="p-5">
           <p className="text-[12.5px] leading-5 text-white/50">
             <span className="font-medium text-white/80">{project.title}</span> and its pages will be
-            removed from this workspace. If it is published, the public link will stop working.
-            This cannot be undone.
+            removed from this workspace. If it is published, the public link will stop working. This
+            cannot be undone.
           </p>
           <div className="mt-5 flex justify-end gap-2">
             <button type="button" onClick={() => setConfirmDelete(false)} className={BTN_GHOST}>

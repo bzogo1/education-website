@@ -170,7 +170,8 @@ export default function BrowserFrame({
         onDrop={(event) => {
           event.preventDefault();
           setDragOver(false);
-          const type = event.dataTransfer.getData(BLOCK_MIME) || event.dataTransfer.getData('text/plain');
+          const type =
+            event.dataTransfer.getData(BLOCK_MIME) || event.dataTransfer.getData('text/plain');
           if (type) onDropBlock(type);
         }}
       >

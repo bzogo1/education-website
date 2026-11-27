@@ -3,6 +3,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ScrollUpButton from '@/components/ScrollUpButton';
 import { getBlogPosts } from '@/lib/blog';
+import BlogIcon from '@/components/BlogIcon';
 
 export const metadata: Metadata = {
   title: 'Blog',
@@ -31,13 +32,13 @@ export default function BlogPage() {
                 <article className="card flex h-full flex-col overflow-hidden rounded-3xl transition lg:min-h-full">
                   <div className="p-4 lg:flex-grow">
                     <div className="bg-bgDark1Lighter flex aspect-[16/9] items-center justify-center rounded-2xl lg:aspect-auto lg:h-full">
-                      <svg
+                      <BlogIcon
+                        icon={featuredPost.icon}
                         className="text-secondaryColor/30 h-32 w-32"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="0.5"
                         viewBox="0 0 24 24"
-                        dangerouslySetInnerHTML={{ __html: featuredPost.icon }}
                       />
                     </div>
                   </div>
@@ -64,13 +65,13 @@ export default function BlogPage() {
                     className="group card flex items-center gap-4 p-4 transition"
                   >
                     <div className="bg-bgDark1Lighter flex h-20 w-20 shrink-0 items-center justify-center rounded-xl">
-                      <svg
+                      <BlogIcon
+                        icon={post.icon}
                         className="text-secondaryColor/40 h-8 w-8"
                         fill="none"
                         stroke="currentColor"
                         strokeWidth="1"
                         viewBox="0 0 24 24"
-                        dangerouslySetInnerHTML={{ __html: post.icon }}
                       />
                     </div>
                     <div>
@@ -92,13 +93,13 @@ export default function BlogPage() {
                   <article className="card flex h-full flex-col overflow-hidden rounded-3xl transition">
                     <div className="p-4">
                       <div className="bg-bgDark1Lighter flex aspect-[3/2] items-center justify-center overflow-hidden rounded-2xl">
-                        <svg
+                        <BlogIcon
+                          icon={post.icon}
                           className="text-secondaryColor/30 h-16 w-16"
                           fill="none"
                           stroke="currentColor"
                           strokeWidth="0.75"
                           viewBox="0 0 24 24"
-                          dangerouslySetInnerHTML={{ __html: post.icon }}
                         />
                       </div>
                     </div>

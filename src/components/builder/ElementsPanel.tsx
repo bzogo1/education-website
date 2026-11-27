@@ -88,7 +88,9 @@ export default function ElementsPanel({
                 <span className="text-white/40 transition group-hover:text-[#a8d4b8]">
                   <BlockIcon name={block.icon} size={15} />
                 </span>
-                <span className="text-[11px] leading-4 font-medium text-white/70">{block.label}</span>
+                <span className="text-[11px] leading-4 font-medium text-white/70">
+                  {block.label}
+                </span>
               </button>
             ))}
           </div>

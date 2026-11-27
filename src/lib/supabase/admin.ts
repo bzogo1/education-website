@@ -26,10 +26,7 @@ export async function getUserFromRequest(request: Request): Promise<User | null>
   }
 }
 
-export async function getUsername(
-  admin: SupabaseClient,
-  userId: string
-): Promise<string | null> {
+export async function getUsername(admin: SupabaseClient, userId: string): Promise<string | null> {
   const { data, error } = await admin
     .from('profiles')
     .select('username')

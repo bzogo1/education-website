@@ -1,6 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getAdminClient, getUserFromRequest, isMissingSchema } from '@/lib/supabase/admin';
-import { PROFILE_COLUMNS, cleanText, rowToProfile, sanitizeLinks, type ProfileRow } from '@/lib/site/db';
+import {
+  PROFILE_COLUMNS,
+  cleanText,
+  rowToProfile,
+  sanitizeLinks,
+  type ProfileRow,
+} from '@/lib/site/db';
 import { slugify } from '@/lib/site/project';
 import type { StudentProfile } from '@/lib/site/types';
 

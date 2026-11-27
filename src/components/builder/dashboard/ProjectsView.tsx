@@ -206,7 +206,11 @@ export default function ProjectsView({
                         <h2 className="min-w-0 truncate text-[13px] font-medium text-white/85">
                           {project.title}
                         </h2>
-                        {project.publishedUrl ? <Badge tone="live">Live</Badge> : <Badge>Draft</Badge>}
+                        {project.publishedUrl ? (
+                          <Badge tone="live">Live</Badge>
+                        ) : (
+                          <Badge>Draft</Badge>
+                        )}
                       </div>
                       <p className="mt-1 text-[10.5px] text-white/30">
                         {project.pages.length} page{project.pages.length === 1 ? '' : 's'} ·{' '}
@@ -319,11 +323,7 @@ export default function ProjectsView({
                         Confirm
                       </button>
                     ) : (
-                      <IconButton
-                        label="Delete"
-                        danger
-                        onClick={() => setConfirmId(project.id)}
-                      >
+                      <IconButton label="Delete" danger onClick={() => setConfirmId(project.id)}>
                         <Trash2 size={13} />
                       </IconButton>
                     )}

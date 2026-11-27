@@ -30,7 +30,10 @@ function validProject(value: unknown): value is SiteProject {
 function guestHandle(project: SiteProject): string {
   const existing = project.handle ?? '';
   if (/^guest-[a-z0-9]{6,12}$/.test(existing)) return existing;
-  return `guest-${newId().replace(/[^a-z0-9]/gi, '').slice(0, 8).toLowerCase()}`;
+  return `guest-${newId()
+    .replace(/[^a-z0-9]/gi, '')
+    .slice(0, 8)
+    .toLowerCase()}`;
 }
 
 async function fallbackToStorage(
@@ -96,7 +99,7 @@ export async function POST(request: NextRequest) {
 
   const handle = (
     user
-      ? (await getUsername(admin, user.id)) ?? slugify(user.email?.split('@')[0] ?? 'student')
+      ? ((await getUsername(admin, user.id)) ?? slugify(user.email?.split('@')[0] ?? 'student'))
       : guestHandle(project)
   ).replace(/[^a-z0-9_-]/gi, '');
   const origin = appOrigin(request);
@@ -144,7 +147,9 @@ export async function POST(request: NextRequest) {
     theme: project.theme ?? { mode: 'light', font: 'sans' },
     pages: project.pages,
     published: true,
-    published_at: (existing as { published_at?: string | null } | null)?.published_at ?? new Date().toISOString(),
+    published_at:
+      (existing as { published_at?: string | null } | null)?.published_at ??
+      new Date().toISOString(),
     updated_at: new Date().toISOString(),
   });
 
@@ -172,7 +177,8 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
   const user = await getUserFromRequest(request);
-  if (!user) return NextResponse.json({ error: 'Sign in to manage published sites.' }, { status: 401 });
+  if (!user)
+    return NextResponse.json({ error: 'Sign in to manage published sites.' }, { status: 401 });
   const admin = getAdminClient();
   if (!admin) return NextResponse.json({ error: 'Publishing is not configured.' }, { status: 503 });
 

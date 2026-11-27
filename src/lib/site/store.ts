@@ -17,7 +17,9 @@ function parseProjects(raw: string | null): SiteProject[] {
     const parsed: unknown = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
     return parsed
-      .filter((item): item is { id: string } => Boolean(item && typeof item === 'object' && 'id' in item))
+      .filter((item): item is { id: string } =>
+        Boolean(item && typeof item === 'object' && 'id' in item)
+      )
       .map((item) => normalizeProject(item));
   } catch {
     return [];

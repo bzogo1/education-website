@@ -1,7 +1,13 @@
 import { newId, slugify } from './project';
 import type { BlockType, SiteBlock, SitePage } from './types';
 
-export type BlockCategory = 'Structure' | 'Intro' | 'Academics' | 'Showcase' | 'Contact' | 'Marketing';
+export type BlockCategory =
+  | 'Structure'
+  | 'Intro'
+  | 'Academics'
+  | 'Showcase'
+  | 'Contact'
+  | 'Marketing';
 
 export interface FieldSpec {
   key: string;
@@ -533,10 +539,7 @@ export const BLOCK_CATALOG: BlockDef[] = [
         { label: 'LinkedIn', href: '#' },
       ],
     }),
-    fields: [
-      { key: 'text', label: 'Copyright line', type: 'textarea' },
-      LINK_FIELDS,
-    ],
+    fields: [{ key: 'text', label: 'Copyright line', type: 'textarea' }, LINK_FIELDS],
   },
   {
     type: 'features',
@@ -578,8 +581,18 @@ export const BLOCK_CATALOG: BlockDef[] = [
     defaults: () => ({
       title: 'Tutoring',
       plans: [
-        { name: 'Single session', price: '$25', features: ['60 minutes', 'Any STEM subject'], ctaText: 'Book' },
-        { name: 'Monthly', price: '$80', features: ['4 sessions', 'Homework support'], ctaText: 'Book' },
+        {
+          name: 'Single session',
+          price: '$25',
+          features: ['60 minutes', 'Any STEM subject'],
+          ctaText: 'Book',
+        },
+        {
+          name: 'Monthly',
+          price: '$80',
+          features: ['4 sessions', 'Homework support'],
+          ctaText: 'Book',
+        },
       ],
     }),
     fields: [

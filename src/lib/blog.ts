@@ -22,7 +22,7 @@ export interface BlogPost {
   content: string;
 }
 
-const BLOG_DIR = path.join(process.cwd(), 'src', 'content', 'blog');
+const BLOG_DIR = path.resolve(process.cwd(), 'src', 'content', 'blog');
 
 /** Maps frontmatter asset paths like `../../assets/images/blog1.png` to public `/images/blog1.png`. */
 function toPublicImagePath(p: string): string {
@@ -41,7 +41,7 @@ function parsePost(filePath: string): BlogPost {
     description: data.description,
     date: data.date instanceof Date ? data.date : new Date(data.date),
     image: toPublicImagePath(data.image),
-    icon: data.icon ?? '',
+    icon: typeof data.icon === 'string' ? data.icon : '',
     author: {
       name: data.author?.name ?? '',
       role: data.author?.role ?? '',
@@ -58,7 +58,13 @@ export function getBlogPosts(): BlogPost[] {
   return fs
     .readdirSync(BLOG_DIR)
     .filter((f) => f.endsWith('.md'))
-    .map((f) => parsePost(path.join(BLOG_DIR, f)))
+    .map((f) => {
+      const filePath = path.resolve(BLOG_DIR, f);
+      if (filePath !== BLOG_DIR && !filePath.startsWith(BLOG_DIR + path.sep)) {
+        throw new Error(`Refusing to read blog post outside content directory: ${f}`);
+      }
+      return parsePost(filePath);
+    })
     .sort((a, b) => b.date.getTime() - a.date.getTime());
 }
 

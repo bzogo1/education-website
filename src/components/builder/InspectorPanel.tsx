@@ -19,7 +19,16 @@ export function SiteDesignFields({
   onUpdateProject: (patch: Partial<SiteProject>) => void;
   onUpdatePage: (patch: { name?: string; slug?: string }) => void;
 }) {
-  const accents = ['#2f6f4e', '#1d4ed8', '#9a6b2f', '#c026d3', '#0f766e', '#b91c1c', '#334155', '#111827'];
+  const accents = [
+    '#2f6f4e',
+    '#1d4ed8',
+    '#9a6b2f',
+    '#c026d3',
+    '#0f766e',
+    '#b91c1c',
+    '#334155',
+    '#111827',
+  ];
 
   return (
     <div className="space-y-6 p-4">
@@ -75,7 +84,7 @@ export function SiteDesignFields({
               onClick={() => onUpdateProject({ accent: color })}
               className={`size-6 rounded-full border transition ${
                 project.accent.toLowerCase() === color.toLowerCase()
-                  ? 'border-white scale-110'
+                  ? 'scale-110 border-white'
                   : 'border-white/10 hover:scale-105'
               }`}
               style={{ backgroundColor: color }}
@@ -191,7 +200,8 @@ function ItemEditor({
         <div key={index} className="rounded-lg border border-white/[0.08] bg-[#0b0c0d] p-2.5">
           <div className="mb-2 flex items-center justify-between gap-2">
             <span className="truncate text-[10.5px] font-medium text-white/45">
-              {String(item[field.itemLabelKey ?? 'title'] ?? `Item ${index + 1}`) || `Item ${index + 1}`}
+              {String(item[field.itemLabelKey ?? 'title'] ?? `Item ${index + 1}`) ||
+                `Item ${index + 1}`}
             </span>
             <button
               type="button"
@@ -324,7 +334,7 @@ export default function InspectorPanel({
       <div className="flex h-11 shrink-0 items-center gap-2 border-b border-white/[0.07] px-3">
         <SlidersHorizontal size={13} className="text-white/30" />
         <span className="flex-1 text-[11px] font-semibold tracking-[0.1em] text-white/40 uppercase">
-          {block ? def?.label ?? 'Block' : 'Site settings'}
+          {block ? (def?.label ?? 'Block') : 'Site settings'}
         </span>
         <button
           type="button"

@@ -67,8 +67,12 @@ export function sanitizeLinks(value: unknown): StudentLink[] {
   return value
     .filter((link): link is Record<string, unknown> => Boolean(link && typeof link === 'object'))
     .map((link) => ({
-      label: String(link.label ?? '').trim().slice(0, 40),
-      url: String(link.url ?? link.href ?? '').trim().slice(0, 300),
+      label: String(link.label ?? '')
+        .trim()
+        .slice(0, 40),
+      url: String(link.url ?? link.href ?? '')
+        .trim()
+        .slice(0, 300),
     }))
     .filter((link) => link.label.length > 0 && link.url.length > 0)
     .slice(0, 8);
@@ -89,7 +93,9 @@ export function rowToProfile(row: ProfileRow): StudentProfile {
   };
 }
 
-export function displayNameOf(profile: Pick<StudentProfile, 'firstName' | 'lastName' | 'username'>): string {
+export function displayNameOf(
+  profile: Pick<StudentProfile, 'firstName' | 'lastName' | 'username'>
+): string {
   const full = `${profile.firstName ?? ''} ${profile.lastName ?? ''}`.trim();
   return full || profile.username;
 }
